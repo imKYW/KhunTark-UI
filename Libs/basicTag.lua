@@ -49,10 +49,12 @@ end
 
 -- Shortcut Number
 local scNumber = function(value)
-    if value >= 1e9 then
+    if value >= 1e10 then
         return ('%.fb'):format(value / 1e9)
-    elseif value >= 1e6 then
+    elseif value >= 1e7 then
         return ('%.fm'):format(value / 1e6)
+    elseif value >= 1e6 then
+        return ('%.1fm'):format(value / 1e6)
     elseif (value >= 1e3) then
         return ('%.fk'):format(value / 1e3)
     else
@@ -115,6 +117,10 @@ oUF.Tags.Methods['unit:name4'] = function(unit, raid)
     return scString(UnitName(realUnit or unit or r), 4, true)
 end
 oUF.Tags.Events['unit:name4'] = 'UNIT_NAME_UPDATE'
+oUF.Tags.Methods['unit:name5'] = function(unit, raid)
+    return scString(UnitName(realUnit or unit or raid), 5, true)
+end
+oUF.Tags.Events['unit:name5'] = 'UNIT_NAME_UPDATE'
 oUF.Tags.Methods['unit:name8'] = function(unit, raid)
     return scString(UnitName(realUnit or unit or raid), 8, true)
 end

@@ -1,0 +1,7 @@
+## Interface: 70000
+## Title: KBJ CombatUI
+## Version: 0.1
+## Author: Kimbanjang
+## Notes: UI for focusing combat
+
+oUF\oUF.xml

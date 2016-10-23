@@ -1,6 +1,5 @@
-local name, ns = ...
+local _, ns = ...
 local cfg = CreateFrame('Frame')
-local _, class = UnitClass('player')
 
 -- Media ------------------------------------------------------------------------------------------
 -- Texture
@@ -8,66 +7,41 @@ cfg.texture = 'Interface\\AddOns\\KBJcombatUI\\Media\\texture'
 cfg.symbol = 'Interface\\AddOns\\KBJcombatUI\\Media\\symbol.ttf'
 cfg.glow = 'Interface\\AddOns\\KBJcombatUI\\Media\\glowTex'
 
--- Font
-cfg.font, cfg.fontsize, cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf', 10, 0, 0, 'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
-cfg.stdfont, cfg.stdfontsize, cfg.stdshadowoffsetX, cfg.stdshadowoffsetX, cfg.stdfontflag = STANDARD_TEXT_FONT, 10, 0, 0, 'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
+-- Font ( fontStd is FRIZQT__ + koverwatch )
+cfg.font, cfg.fontsize = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontStd.ttf', 10
+cfg.bfont, cfg.bfontsize = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf', 10
+cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 1, ''
 
 -- Unit Frames ------------------------------------------------------------------------------------
 -- Main Group (player, target, focus, pet, targettarget, focustarget)
-cfg.mainUF = {
-	targetWidth = 95,
-	targetHeight = 34,
+cfg.mainUF = {  -- Anchor is Target
+	width = 95,
+	height = 34,
 	position = { a = UIParent, x = 80, y = 0 },
 }
 
--- party, arena, raid, boss, tank
--- arenatarget, partytarget, maintanktarget
-
-
-
--- Unit Frames Size
-cfg.player = { 
-    width = 28,
-    health = 41,
-    power = 2, -- height = health + power + 1(space)
-}
-
-cfg.target = { 
-    width = 73,
-    health = 41,
-    power = 2, -- height = health + power + 1(space)
-} -- target, party, arena
-
-cfg.focus = { 
-    width = 73,
-    health = 18,
-    power = 2, -- height = health + power + 1(space)
-} -- focus, boss, tank
-
-cfg.raid = { 
-    width = 44, 
-    health = 41,
-    power = 2, -- height = health + power + 1(space)
-} -- raid
-
-cfg.ttarget = { 
-    width = 73 ,
-    height = 13,
-} -- targettarget, focustarget, arenatarget, partytarget, maintanktarget
-
--- Unit Frames Positions
-cfg.unit_positions = { 				
-          Player = { a = UIParent,		  x=  110, y=   25},  
-          Target = { a = 'KBJcombatUIPlayer', x=  260, y=  350},  
-    Targettarget = { a = 'KBJcombatUITarget', x=    0, y=  -64},  
-           Focus = { a = 'KBJcombatUIPlayer', x= -105, y=  320},  
-     Focustarget = { a = 'KBJcombatUIFocus',  x=   95, y=    0},  
-             Pet = { a = 'KBJcombatUIPlayer', x=	0, y=  -64},  
-            Boss = { a = 'KBJcombatUITarget', x=   82, y=  350},  
-            Tank = { a = UIParent,		  x= -300, y=   21},  
-            Raid = { a = UIParent,		  x=  15, y=  -100},   
-	       Party = { a = UIParent,		  x= -133, y=  -53},
-           Arena = { a = 'KBJcombatUITarget', x=  246, y=  -53},			  
+-- Sub Group (party, raid, boss, tank, arena, partytarget, tanktarget, arenatarget)
+cfg.subUF = {
+	party = {
+		width = 70,
+		height = 25,
+		position = { a = UIParent, x = -120, y = -80 },
+	},
+	raid = {
+		width = 95,
+		height = 34,
+		position = { a = UIParent, x = 80, y = 0 },
+	},
+	boss = { -- arena
+		width = 95,
+		height = 34,
+		position = { a = UIParent, x = 80, y = 0 },
+	},
+	tank = {
+		width = 95,
+		height = 34,
+		position = { a = UIParent, x = 80, y = 0 },
+	},
 }
 
 -----------------------------

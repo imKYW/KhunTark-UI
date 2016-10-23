@@ -11,64 +11,18 @@ cfg.glow = mediaPath..'glowTex'
 
 -- Font
 cfg.font, cfg.fontsize, cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = mediaPath..'fontThick.ttf', 10, 0, 0,  'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
-cfg.krfont, cfg.krfontsize, cfg.krshadowoffsetX, cfg.krshadowoffsetY, cfg.krfontflag = STANDARD_TEXT_FONT, 10, 0, 0,  'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
+cfg.stdfont, cfg.stdfontsize, cfg.stdshadowoffsetX, cfg.stdshadowoffsetX, cfg.stdfontflag = STANDARD_TEXT_FONT, 10, 0, 0,  'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
 
 -- Unit Frames ------------------------------------------------------------------------------------
--- Enable
-cfg.uf = {
-	party = true,			-- Party
-	party_target = true,	-- Party target
-	raid = true,			-- Raid
-	boss = true,			-- Boss
-	arena = true,			-- Arena
-	tank = true,			-- Maintank
-	tank_target = true,		-- Maintank target
+-- Main Group (player, target, focus, pet, targettarget, focustarget)
+cfg.mainUF = {
+	width = 28,
+	health = 41,
+	position = { a = UIParent, x=  110, y=   21},
 }
 
--- Unit Frames Size
-cfg.player = { 
-    width = 28,
-    health = 41,
-    power = 2, -- height = health + power + 1(space)
-}
-
-cfg.target = { 
-    width = 73,
-    health = 41,
-    power = 2, -- height = health + power + 1(space)
-} -- target, party, arena
-
-cfg.focus = { 
-    width = 73,
-    health = 18,
-    power = 2, -- height = health + power + 1(space)
-} -- focus, boss, tank
-
-cfg.raid = { 
-    width = 44, 
-    health = 41,
-    power = 2, -- height = health + power + 1(space)
-} -- raid
-
-cfg.ttarget = { 
-    width = 73 ,
-    height = 13,
-} -- targettarget, focustarget, arenatarget, partytarget, maintanktarget
-
--- Unit Frames Positions
-cfg.unit_positions = { 				
-          Player = { a = UIParent,		  x=  110, y=   21},  
-          Target = { a = 'oUF_KBJPlayer', x=  260, y=  350},  
-    Targettarget = { a = 'oUF_KBJTarget', x=    0, y=  -64},  
-           Focus = { a = 'oUF_KBJPlayer', x= -105, y=  320},  
-     Focustarget = { a = 'oUF_KBJFocus',  x=   95, y=    0},  
-             Pet = { a = 'oUF_KBJPlayer', x=	0, y=  -64},  
-            Boss = { a = 'oUF_KBJTarget', x=   82, y=  350},  
-            Tank = { a = UIParent,		  x= -300, y=   21},  
-            Raid = { a = UIParent,		  x=  15, y=  -100},   
-	       Party = { a = UIParent,		  x= -133, y=  -53},
-           Arena = { a = 'oUF_KBJTarget', x=  246, y=  -53},			  
-}
+-- party, arena, raid, boss, tank
+-- arenatarget, partytarget, maintanktarget
 
 -----------------------------
 -- Unit Frames Options

@@ -4,4 +4,10 @@
 ## Author: Kimbanjang
 ## Notes: UI for focusing combat
 
+Config.lua
+
 oUF\oUF.xml
+Libs\basicCore.lua
+Libs\basicTag.lua
+
+Layout.lua

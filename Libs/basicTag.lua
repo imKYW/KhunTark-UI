@@ -43,7 +43,7 @@ local hex = function(r, g, b)
     if not r then return '|cffFFFFFF' end
     if(type(r) == 'table') then
         if(r.r) then r, g, b = r.r, r.g, r.b else r, g, b = unpack(r) end
-    end    
+    end
     return ("|cff%02x%02x%02x"):format(r * 255, g * 255, b * 255)
 end
 

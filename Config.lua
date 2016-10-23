@@ -4,25 +4,71 @@ local _, class = UnitClass('player')
 
 -- Media ------------------------------------------------------------------------------------------
 -- Texture
-local mediaPath = 'Interface\\AddOns\\oUF_KBJ\\Media\\'
-cfg.texture = mediaPath..'texture'
-cfg.symbol = mediaPath..'symbol.ttf'
-cfg.glow = mediaPath..'glowTex'
+cfg.texture = 'Interface\\AddOns\\KBJcombatUI\\Media\\texture'
+cfg.symbol = 'Interface\\AddOns\\KBJcombatUI\\Media\\symbol.ttf'
+cfg.glow = 'Interface\\AddOns\\KBJcombatUI\\Media\\glowTex'
 
 -- Font
-cfg.font, cfg.fontsize, cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = mediaPath..'fontThick.ttf', 10, 0, 0,  'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
-cfg.stdfont, cfg.stdfontsize, cfg.stdshadowoffsetX, cfg.stdshadowoffsetX, cfg.stdfontflag = STANDARD_TEXT_FONT, 10, 0, 0,  'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
+cfg.font, cfg.fontsize, cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf', 10, 0, 0, 'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
+cfg.stdfont, cfg.stdfontsize, cfg.stdshadowoffsetX, cfg.stdshadowoffsetX, cfg.stdfontflag = STANDARD_TEXT_FONT, 10, 0, 0, 'THINOUTLINE' -- '' for none THINOUTLINE Outlinemonochrome
 
 -- Unit Frames ------------------------------------------------------------------------------------
 -- Main Group (player, target, focus, pet, targettarget, focustarget)
 cfg.mainUF = {
-	width = 28,
-	health = 41,
-	position = { a = UIParent, x=  110, y=   21},
+	targetWidth = 95,
+	targetHeight = 34,
+	position = { a = UIParent, x = 80, y = 0 },
 }
 
 -- party, arena, raid, boss, tank
 -- arenatarget, partytarget, maintanktarget
+
+
+
+-- Unit Frames Size
+cfg.player = { 
+    width = 28,
+    health = 41,
+    power = 2, -- height = health + power + 1(space)
+}
+
+cfg.target = { 
+    width = 73,
+    health = 41,
+    power = 2, -- height = health + power + 1(space)
+} -- target, party, arena
+
+cfg.focus = { 
+    width = 73,
+    health = 18,
+    power = 2, -- height = health + power + 1(space)
+} -- focus, boss, tank
+
+cfg.raid = { 
+    width = 44, 
+    health = 41,
+    power = 2, -- height = health + power + 1(space)
+} -- raid
+
+cfg.ttarget = { 
+    width = 73 ,
+    height = 13,
+} -- targettarget, focustarget, arenatarget, partytarget, maintanktarget
+
+-- Unit Frames Positions
+cfg.unit_positions = { 				
+          Player = { a = UIParent,		  x=  110, y=   25},  
+          Target = { a = 'KBJcombatUIPlayer', x=  260, y=  350},  
+    Targettarget = { a = 'KBJcombatUITarget', x=    0, y=  -64},  
+           Focus = { a = 'KBJcombatUIPlayer', x= -105, y=  320},  
+     Focustarget = { a = 'KBJcombatUIFocus',  x=   95, y=    0},  
+             Pet = { a = 'KBJcombatUIPlayer', x=	0, y=  -64},  
+            Boss = { a = 'KBJcombatUITarget', x=   82, y=  350},  
+            Tank = { a = UIParent,		  x= -300, y=   21},  
+            Raid = { a = UIParent,		  x=  15, y=  -100},   
+	       Party = { a = UIParent,		  x= -133, y=  -53},
+           Arena = { a = 'KBJcombatUITarget', x=  246, y=  -53},			  
+}
 
 -----------------------------
 -- Unit Frames Options
@@ -68,7 +114,7 @@ cfg.aura = {
 	
 	onlyShowPlayer = false,         -- only show player debuffs on target
 	disableCooldown = true,         -- hide omniCC
-	font = mediaPath..'pixel.ttf',
+	font = 'Interface\\AddOns\\KBJcombatUI\\Media\\pixel.ttf',
 	fontsize = 8,
 	fontflag = 'Outlinemonochrome',
 }

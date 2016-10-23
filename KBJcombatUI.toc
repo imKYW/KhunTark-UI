@@ -1,6 +1,6 @@
 ## Interface: 70000
 ## Title: KBJ CombatUI
-## Version: 0.1
+## Version: 0.3
 ## Author: Kimbanjang
 ## Notes: UI for focusing combat
 

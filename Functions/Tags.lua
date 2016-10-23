@@ -2,53 +2,49 @@ local _, ns = ...
 local oUF = ns.oUF or oUF
 local class = select(2, UnitClass('player'))
 
--- Custom Power Color
-oUF.colors.power['MANA'] = { 0.37, 0.6, 1 }
-oUF.colors.power['RAGE'] = { 0.9,  0.3,  0.23 }
-oUF.colors.power['RUNIC_POWER'] = { 0, 0.81, 1 }
+-- Tag Function -------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
+-- Gradation Health Color
 local healthColor = function(value)    
-    local r, g, b;
+    local r, g, b
     local min, max = 0, 100
 
-    if ( (max - min) > 0 ) then
-        value = (value - min) / (max - min)
+    if value > 0 then value = value / 100
     else
         value = 0
     end
-
-    if(value > 0.5) then
-        r = (1.0 - value) * 2
-        g = 1.0
+    if value > 0.5 then
+        r = (1 - value) * 2
+        g = 1
     else
-        r = 1.0
+        r = 1
         g = value * 2
     end
-    b = 0.0
+    b = 0
 
     return r, g, b
 end
+
+-- Power Color
+oUF.colors.power['MANA'] = { 0.37, 0.6, 1 } -- Recoloring for looks good
+oUF.colors.power['RAGE'] = { 0.9,  0.3,  0.23 } -- Recoloring for looks good
+oUF.colors.power['RUNIC_POWER'] = { 0, 0.81, 1 } -- Recoloring for looks good
 
 local powerColor = function(unit)
     if not unit then return end
-    local id, power, r, g, b = UnitPowerType(unit)
+    
+    local _, power, r, g, b = UnitPowerType(unit)
     local color = PowerBarColor[power]
+
     if color then
         r, g, b = color.r, color.g, color.b
     end
+
     return r, g, b
 end
 
-local sValue = function(val)
-	if (val >= 1e6) then
-        return ('%.fm'):format(val / 1e6)
-    elseif (val >= 1e3) then
-        return ('%.fk'):format(val / 1e3)
-    else
-        return ('%d'):format(val)
-    end
-end
-
+-- Hex to RGB
 local hex = function(r, g, b)
     if not r then return '|cffFFFFFF' end
     if(type(r) == 'table') then
@@ -57,7 +53,21 @@ local hex = function(r, g, b)
     return ("|cff%02x%02x%02x"):format(r * 255, g * 255, b * 255)
 end
 
-local utf8sub = function(string, i, dots)
+-- Shortcut Number
+local scNumber = function(val)
+    if val >= 1e9 then
+        return ('%.fb'):format(val / 1e9)
+    elseif val >= 1e6 then
+        return ('%.fm'):format(val / 1e6)
+    elseif (val >= 1e3) then
+        return ('%.fk'):format(val / 1e3)
+    else
+        return ('%d'):format(val)
+    end
+end
+
+-- Shortcut String
+local scString = function(string, i, dots)
     local bytes = string:len()
     if bytes <= i then
         return string
@@ -85,6 +95,10 @@ local utf8sub = function(string, i, dots)
     end
 end
 
+-- Tag Function -------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
+
+-- Return Reaction Color at Tag (usually name)
 oUF.Tags.Methods['color'] = function(u, r)
     local reaction = UnitReaction(u, 'player')
     if (UnitIsTapDenied(u)) then
@@ -100,40 +114,38 @@ oUF.Tags.Methods['color'] = function(u, r)
 end
 oUF.Tags.Events['color'] = 'UNIT_REACTION UNIT_HEALTH'
 
+-- Shortcut name
 oUF.Tags.Methods['unit:name4'] = function(u, r)
     local name = UnitName(realUnit or u or r)
-    return utf8sub(name, 4, true)
+    return scString(name, 4, true)
 end
 oUF.Tags.Events['unit:name4'] = 'UNIT_NAME_UPDATE'
-
 oUF.Tags.Methods['unit:name8'] = function(u, r)
     local name = UnitName(realUnit or u or r)
-    return utf8sub(name, 8, true)
+    return scString(name, 8, true)
 end
 oUF.Tags.Events['unit:name8'] = 'UNIT_NAME_UPDATE'
-
 oUF.Tags.Methods['unit:name10'] = function(u, r)
     local name = UnitName(realUnit or u or r)
-    return utf8sub(name, 10, true)
+    return scString(name, 10, true)
 end
 oUF.Tags.Events['unit:name10'] = 'UNIT_NAME_UPDATE'
 
+-- LV + Classification
 oUF.Tags.Methods['unit:lv'] = function(u) 
     local level = UnitLevel(u)
-    local typ = UnitClassification(u)
+    local classification = UnitClassification(u)
     local color = GetQuestDifficultyColor(level)
 
-    if level <= 0 then
-        level = '??' 
-    end
+    if level <= 0 then level = '??' end
 
-    if typ=='worldboss' then
+    if classification == 'worldboss' then
         return hex(color)..level..'!'
-    elseif typ=='rare' then
+    elseif classification == 'rare' then
         return hex(color)..level..'#'
-    elseif typ=='rareelite' then
+    elseif classification == 'rareelite' then
         return hex(color)..level..'#+'
-    elseif typ=='elite' then
+    elseif classification == 'elite' then
         return hex(color)..level..'+'
     else
         return hex(color)..level
@@ -141,6 +153,7 @@ oUF.Tags.Methods['unit:lv'] = function(u)
 end
 oUF.Tags.Events['unit:lv'] = 'UNIT_NAME_UPDATE'
 
+-- Color HP%
 oUF.Tags.Methods['unit:HPpercent'] = function(u)
     local min, max = UnitHealth(u), UnitHealthMax(u)
 
@@ -157,13 +170,15 @@ oUF.Tags.Methods['unit:HPpercent'] = function(u)
 end
 oUF.Tags.Events['unit:HPpercent'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
-oUF.Tags.Methods['unit:HPstring'] = function(u)
+-- Current HP
+oUF.Tags.Methods['unit:HPcurrent'] = function(u)
     local min = UnitHealth(u)
-    return sValue(min)
+    return scNumber(min)
 end
-oUF.Tags.Events['unit:HPstring'] = 'UNIT_HEALTH UNIT_CONNECTION'
+oUF.Tags.Events['unit:HPcurrent'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
-oUF.Tags.Methods['unit:HPcombo'] = function(u)
+-- Current HP if HP = 100%, not Color HP%
+oUF.Tags.Methods['unit:HPmix'] = function(u)
     local min, max = UnitHealth(u), UnitHealthMax(u)
 
     if UnitIsDead(u) then
@@ -176,11 +191,12 @@ oUF.Tags.Methods['unit:HPcombo'] = function(u)
         local healthValue = math.floor(min/max*100+.5)
         return hex(healthColor(healthValue))..healthValue
     else
-        return sValue(min)
+        return scNumber(min)
     end
 end
-oUF.Tags.Events['unit:HPcombo'] = 'UNIT_HEALTH UNIT_CONNECTION'
+oUF.Tags.Events['unit:HPmix'] = 'UNIT_HEALTH UNIT_CONNECTION'
 
+-- PP% if Using % power, not Current PP
 oUF.Tags.Methods['unit:PPflex'] = function(u)
     local min, max = UnitPower(u), UnitPowerMax(u)
     local ptype = UnitPowerType(u)
@@ -196,6 +212,7 @@ oUF.Tags.Methods['unit:PPflex'] = function(u)
 end
 oUF.Tags.Events['unit:PPflex'] = 'UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER'
 
+-- Class Resource
 oUF.Tags.Methods['unit:Resource'] = function(u)
     local num = 0
 
@@ -229,7 +246,7 @@ oUF.Tags.Methods['unit:Resource'] = function(u)
 end
 oUF.Tags.Events['unit:Resource'] = 'UNIT_POWER SPELLS_CHANGED'
 
--- Sub Mana Resource
+-- Mana to Sub Resource
 oUF.Tags.Methods['unit:SubMana'] = function(u)
     if GetSpecializationInfo(GetSpecialization()) == 263 -- ele
     or GetSpecializationInfo(GetSpecialization()) == 262 -- enh

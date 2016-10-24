@@ -5,8 +5,12 @@
 ## Notes: UI for focusing combat
 
 oUF\oUF.xml
+
 Config.lua
 
+Libs\oUF_Smooth.lua
+Libs\oUF_Experience.lua
+Libs\oUF_GCD.lua
 Libs\basicCore.lua
 Libs\basicTag.lua
 

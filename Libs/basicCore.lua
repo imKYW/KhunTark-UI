@@ -1,11 +1,6 @@
 local name, ns = ...
 local cfg = ns.cfg
 
-local backdrop = {
-    bgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
-    insets = {top = -5, left = -5, bottom = -5, right = -5},
-}
-
 -- Frame Backdrop -----------------------------------------------------------------------
 function fBackDrop(parent, anchor) 
     local f = CreateFrame('Frame', nil, parent)

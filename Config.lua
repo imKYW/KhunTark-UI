@@ -5,19 +5,19 @@ local cfg = CreateFrame('Frame')
 -- Texture
 cfg.texture = 'Interface\\AddOns\\KBJcombatUI\\Media\\texture'
 cfg.symbol = 'Interface\\AddOns\\KBJcombatUI\\Media\\symbol.ttf'
-cfg.glow = 'Interface\\AddOns\\KBJcombatUI\\Media\\glowTex'
+cfg.glow = 'Interface\\AddOns\\KBJcombatUI\\Media\\textureGlow'
 
 -- Font ( fontStd is FRIZQT__ + koverwatch )
-cfg.font, cfg.fontsize = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontStd.ttf', 10
-cfg.bfont, cfg.bfontsize = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf', 10
-cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 1, ''
+cfg.font = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontStd.ttf'
+cfg.bfont = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf'
+cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'
 
 -- Unit Frames ------------------------------------------------------------------------------------
 -- Main Group (player, target, focus, pet, targettarget, focustarget)
 cfg.mainUF = {  -- Anchor is Target
 	width = 95,
 	height = 34,
-	position = { a = UIParent, x = 80, y = 0 },
+	position = { sa = 'LEFT', a = UIParent, pa = 'CENTER', x = 80, y = 0 },
 }
 
 -- Sub Group (party, raid, boss, tank, arena, partytarget, tanktarget, arenatarget)
@@ -25,22 +25,22 @@ cfg.subUF = {
 	party = {
 		width = 70,
 		height = 25,
-		position = { a = UIParent, x = -120, y = -80 },
+		position = { sa = 'TOPRIGHT', a = UIParent, pa = 'CENTER', x = -120, y = -80 },
 	},
 	raid = {
-		width = 95,
-		height = 34,
-		position = { a = UIParent, x = 80, y = 0 },
+		width = 44,
+		height = 44,
+		position = { sa = 'TOPLEFT', a = UIParent, pa = 'TOPLEFT', x = 15, y = -100 },
 	},
 	boss = { -- arena
 		width = 95,
 		height = 34,
-		position = { a = UIParent, x = 80, y = 0 },
+		position = { sa = '', a = UIParent, pa = '', x = 80, y = 0 },
 	},
 	tank = {
 		width = 95,
 		height = 34,
-		position = { a = UIParent, x = 80, y = 0 },
+		position = { sa = '', a = UIParent, pa = '', x = 80, y = 0 },
 	},
 }
 

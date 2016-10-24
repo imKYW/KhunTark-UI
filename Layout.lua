@@ -67,16 +67,16 @@ local UnitSpecific = {
     	Shared(self, ...)
 		self.unit = 'focus'		
 
-		self:SetSize((cfg.mainUF.width-5)/2, cfg.mainUF.height/2)	
-		self.Health:SetHeight(cfg.mainUF.height / 2)
+		self:SetSize((cfg.mainUF.width-5)/2, cfg.subUF.party.height/2)	
+		self.Health:SetHeight(cfg.subUF.party.height/2)
 		self.Health:SetReverseFill(true)
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
         name:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 3)
 		self:Tag(name, '[color][unit:name5]')
 
-        local htext = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 1)        
+        local htext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)        
         self:Tag(htext, '[unit:HPpercent]')
 
 		local RaidI = self.Health:CreateTexture(nil, "OVERLAY")
@@ -90,8 +90,8 @@ local UnitSpecific = {
     pet = function(self, ...)
     	Shared(self, ...)
     	self.unit = 'pet'
-		self:SetSize((cfg.mainUF.width-5)/2, 3)
 
+		self:SetSize((cfg.mainUF.width-5)/2, 3)
 		self.Health.colorClass = false
     	self.Health.colorReaction = false
 		self.Health.colorHealth = true
@@ -125,15 +125,15 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'focustarget'
 
-		self:SetSize((cfg.mainUF.width-5)/2, cfg.mainUF.height/2)
-		self.Health:SetHeight(cfg.mainUF.height / 2)
+		self:SetSize((cfg.mainUF.width-5)/2, cfg.subUF.party.height/2)
+		self.Health:SetHeight(cfg.subUF.party.height/2)
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
         name:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 1, 3)
 		self:Tag(name, '[color][unit:name5]')
 
-        local htext = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
-        htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 1)
+        local htext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
+        htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
         self:Tag(htext, '[unit:HPpercent]')
 
 		local RaidI = self.Health:CreateTexture(nil, "OVERLAY")
@@ -144,9 +144,11 @@ local UnitSpecific = {
     end,
 
 	party = function(self, ...)
-		Shared(self, ...)
-		Power(self)		
-		self.unit = 'party'		
+		Shared(self, ...)		
+		self.unit = 'party'
+
+		Power(self)
+		ctfBorder(self)
 		
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
 		self.Health:SetHeight(cfg.subUF.party.height-3)
@@ -176,7 +178,7 @@ local UnitSpecific = {
 		self.LFDRole:SetPoint("CENTER", self.Health, "TOPLEFT", 6, -6)
 		self.ReadyCheck = self.Health:CreateTexture(nil, "OVERLAY")
 		self.ReadyCheck:SetSize(22, 22)
-		self.ReadyCheck:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.ReadyCheck:SetPoint("CENTER", self.Health, "CENTER", 0, 0)		
     end,
 
     partytarget = function(self, ...)
@@ -199,11 +201,11 @@ local UnitSpecific = {
 
     raid = function(self, ...)
 		Shared(self, ...)
-
-		self.unit = 'raid'
+		self.unit = 'raid'		
 		self:SetAttribute("type2", "focus")
 		
 		Power(self)
+		ctfBorder(self)
 
 		self:SetSize(cfg.subUF.raid.width, cfg.subUF.raid.height)	
 		self.Health:SetHeight(cfg.subUF.raid.height-3)
@@ -262,7 +264,7 @@ oUF:Factory(function(self)
     spawnHelper(self, 'targettarget', 'BOTTOMRIGHT', 'oUF_CombaUITarget', 'TOPRIGHT', 0, 5)
     spawnHelper(self, 'focus', 'BOTTOM', 'oUF_CombaUITargetTarget', 'TOP', 0, 25)
     spawnHelper(self, 'focustarget', 'LEFT', 'oUF_CombaUIFocus','RIGHT', 5, 0)
-    spawnHelper(self, 'pet', 'BOTTOM', 'oUF_CombaUIPlayer', 'TOP', 0, 3)
+    spawnHelper(self, 'pet', 'BOTTOM', 'oUF_CombaUIPlayer', 'TOP', 0, 4)
 
 	self:SetActiveStyle('CombaUI - Party')
 	self:SpawnHeader('oUF_Party', nil, 'custom show',
@@ -277,7 +279,7 @@ oUF:Factory(function(self)
 	self:SetActiveStyle'CombaUI - Pet'
 	self:SpawnHeader('oUF_PartyPets', nil, 'custom show',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
-		'yOffset', -38,
+		'yOffset', -12-cfg.subUF.party.height,
 		'oUF-initialConfigFunction', ([[
 			self:SetAttribute('unitsuffix', 'pet')
 		]])

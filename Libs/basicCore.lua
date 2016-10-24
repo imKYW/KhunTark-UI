@@ -115,24 +115,34 @@ end
 
 -- Current Target/Focus -----------------------------------------------------------------
 function ctfBorder(self)
+    local ctfBackdrop = {
+        bgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
+        insets = { left = -2, right = -2, top = -2, bottom = -2 }
+    }
+
     local ctBorder = CreateFrame('Frame', nil, self)
     ctBorder:SetPoint('TOPLEFT', self, 'TOPLEFT')
     ctBorder:SetPoint('BOTTOMRIGHT', self, 'BOTTOMRIGHT')
-    ctBorder:SetBackdrop(backdrop)
-    ctBorder:SetBackdropColor(0.8, 0.8, 0.8, 1)
+    ctBorder:SetBackdrop(ctfBackdrop)
+    ctBorder:SetBackdropColor(0.9, 0.9, 0.9, 1)
     ctBorder:SetFrameLevel(1)
     ctBorder:Hide()
 
     local cfBorder = CreateFrame('Frame', nil, self)
     cfBorder:SetPoint('TOPLEFT', self, 'TOPLEFT')
     cfBorder:SetPoint('BOTTOMRIGHT', self, 'BOTTOMRIGHT')
-    cfBorder:SetBackdrop(backdrop)
-    cfBorder:SetBackdropColor(0.6, 0.8, 0, 1)
+    cfBorder:SetBackdrop(ctfBackdrop)
+    cfBorder:SetBackdropColor(0.6, 0.9, 0, 1)
     cfBorder:SetFrameLevel(1)
     cfBorder:Hide()
 
     self.TargetBorder = ctBorder
     self.FocusBorder = cfBorder
+
+    self:RegisterEvent('PLAYER_TARGET_CHANGED', CurrentTarget)
+    self:RegisterEvent('PLAYER_FOCUS_CHANGED', CurrentFocus)
+    --self:RegisterEvent('RAID_ROSTER_UPDATE', ChangedTarget)
+    --self:RegisterEvent('RAID_ROSTER_UPDATE', CurrentFocus)
 end
 
 function CurrentTarget(self)

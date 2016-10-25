@@ -1,25 +1,19 @@
 local _, ns = ...
 local cfg = ns.cfg
-local oUF = ns.oUF or oUF
-
-local colors = oUF.colors
-local _, playerClass = UnitClass("player")
 
 local kbjStyle = {}
 
 function kbjStyle:PostCastStart(unit, name, rank, castid)
     local color
-    if UnitIsUnit(unit, "player") then
-        color = colors.class[playerClass]
-    elseif self.interrupt then
-        color = colors.uninterruptible
+    if self.interrupt then
+        color = { 1, 1, 1 }
     elseif UnitIsFriend(unit, "player") then
-        color = colors.reaction[5]
+        color = { 0.1, 0.8, 0.1 }
     else
-        color = colors.reaction[1]
+        color = { 1, 0.7, 0 }
     end
     local r, g, b = color[1], color[2], color[3]
-    self:SetStatusBarColor(r * 0.8, g * 0.8, b * 0.8)
+    self:SetStatusBarColor(r, g, b)
     self.bg:SetVertexColor(r * 0.2, g * 0.2, b * 0.2)
 
     self.__castType = "CAST"
@@ -27,14 +21,12 @@ end
 
 function kbjStyle:PostChannelStart(unit, name, rank, text)
     local color
-    if UnitIsUnit(unit, "player") then
-        color = colors.class[playerClass]
-    elseif self.interrupt then
-        color = colors.reaction[4]
+    if self.interrupt then
+        color = { 1, 1, 1 }
     elseif UnitIsFriend(unit, "player") then
-        color = colors.reaction[5]
+        color = { 0.2, 0.7, 0.2 }
     else
-        color = colors.reaction[1]
+        color = { 0.3, 0.3, 1.0 }
     end
     local r, g, b = color[1], color[2], color[3]
     self:SetStatusBarColor(r * 0.6, g * 0.6, b * 0.6)

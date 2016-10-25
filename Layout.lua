@@ -17,11 +17,13 @@ local UnitSpecific = {
 	player = function(self, ...)
 		Shared(self, ...)
 		self.unit = 'player'
-		
-		self:SetSize((cfg.mainUF.width-5)/2, cfg.mainUF.height/2)	
-		self.Health:SetHeight(cfg.mainUF.height / 2)
 
-		local htext = cFontString(self.Health, nil, cfg.bfont, 16, cfg.fontflag, 1, 1, 1, 'LEFT')
+		extCastbar(self)
+
+		self:SetSize(cfg.mainUF.width, cfg.mainUF.height)	
+		self.Health:SetHeight(cfg.mainUF.height)
+
+		local htext = cFontString(self.Health, nil, cfg.bfont, 13, cfg.fontflag, 1, 1, 1, 'LEFT')
 		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)        
 		self:Tag(htext, '[unit:HPpercent]')
 
@@ -34,19 +36,21 @@ local UnitSpecific = {
 	end,
 
 	target = function(self, ...)
-		Shared(self, ...)
-		Power(self)		
-		self.unit = 'target'		
+		Shared(self, ...)			
+		self.unit = 'target'
+
+		Power(self)
+		extCastbar(self)
 		
-		self:SetSize(cfg.mainUF.width, cfg.mainUF.height)
-		self.Health:SetHeight(cfg.mainUF.height-3)
+		self:SetSize(cfg.mainUF.width*2+5, cfg.mainUF.height*2)
+		self.Health:SetHeight(cfg.mainUF.height*2-3)
 		self.Power:SetHeight(2)
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 4, 0)        
 		self:Tag(name, '[color][name] [unit:lv]')
 		
-		local htext = cFontString(self.Health, nil, cfg.bfont, 31, cfg.fontflag, 1, 1, 1, 'LEFT')
+		local htext = cFontString(self.Health, nil, cfg.bfont, 23, cfg.fontflag, 1, 1, 1, 'LEFT')
 		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
 		self:Tag(htext, '[unit:HPpercent]')
 
@@ -55,17 +59,19 @@ local UnitSpecific = {
 		self:Tag(htextsub, '[unit:HPcurrent]')
 
 		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(24, 24)
+		self.RaidIcon:SetSize(20, 20)
 		self.RaidIcon:SetAlpha(0.9)
 		self.RaidIcon:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 	end,
 
 	focus = function(self, ...)
 		Shared(self, ...)
-		self.unit = 'focus'		
+		self.unit = 'focus'
 
-		self:SetSize((cfg.mainUF.width-5)/2, cfg.subUF.party.height/2)	
-		self.Health:SetHeight(cfg.subUF.party.height/2)
+		extCastbar(self)
+		
+		self:SetSize(cfg.mainUF.width, cfg.mainUF.height)
+		self.Health:SetHeight(cfg.mainUF.height)
 		self.Health:SetReverseFill(true)
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
@@ -77,7 +83,7 @@ local UnitSpecific = {
 		self:Tag(htext, '[unit:HPpercent]')
 
 		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(14, 14)
+		self.RaidIcon:SetSize(12, 12)
 		self.RaidIcon:SetAlpha(0.9)
 		self.RaidIcon:SetPoint("LEFT", self.Health, "LEFT", 1, 0)
 	end,
@@ -86,7 +92,7 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'pet'
 
-		self:SetSize((cfg.mainUF.width-5)/2, 3)
+		self:SetSize(cfg.mainUF.width, 2)
 		self.Health.colorClass = false
 		self.Health.colorReaction = false
 		self.Health.colorHealth = true
@@ -97,20 +103,20 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'targettarget'
 
-		self:SetSize((cfg.mainUF.width-5)/2, cfg.mainUF.height/2)
-		self.Health:SetHeight(cfg.mainUF.height / 2)
+		self:SetSize(cfg.mainUF.width, cfg.mainUF.height)
+		self.Health:SetHeight(cfg.mainUF.height)
 		self.Health:SetReverseFill(true)
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
-	    name:SetPoint('LEFT', self.Health, 'RIGHT', 4, 1)
+	    name:SetPoint('LEFT', self.Health, 'RIGHT', 4, 0)
 		self:Tag(name, '[color][name]')
 
-	    local htext = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
+	    local htext = cFontString(self.Health, nil, cfg.bfont, 13, cfg.fontflag, 1, 1, 1, 'RIGHT')
 	    htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 1)
 	    self:Tag(htext, '[unit:HPpercent]')
 
 		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(14, 14)
+		self.RaidIcon:SetSize(12, 12)
 		self.RaidIcon:SetAlpha(0.9)
 		self.RaidIcon:SetPoint("LEFT", self.Health, "LEFT", 1, 0)
 	end,
@@ -119,8 +125,8 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'focustarget'
 
-		self:SetSize((cfg.mainUF.width-5)/2, cfg.subUF.party.height/2)
-		self.Health:SetHeight(cfg.subUF.party.height/2)
+		self:SetSize(cfg.mainUF.width, cfg.mainUF.height)
+		self.Health:SetHeight(cfg.mainUF.height)
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
 	    name:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 1, 3)
@@ -131,7 +137,7 @@ local UnitSpecific = {
 	    self:Tag(htext, '[unit:HPpercent]')
 
 		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(14, 14)
+		self.RaidIcon:SetSize(12, 12)
 		self.RaidIcon:SetAlpha(0.9)
 		self.RaidIcon:SetPoint("RIGHT", self.Health, "RIGHT", -1, 0)
 	end,

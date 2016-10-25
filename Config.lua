@@ -12,12 +12,12 @@ cfg.font = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontStd.ttf'
 cfg.bfont = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf'
 cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'
 
--- Unit Frames ------------------------------------------------------------------------------------
+-- Unit Frames --------------------------------------------------------------------------
 -- Main Group (player, target, focus, pet, targettarget, focustarget)
 cfg.mainUF = {  -- Anchor is Target
-	width = 95,
-	height = 34,
-	position = { sa = 'LEFT', a = UIParent, pa = 'CENTER', x = 80, y = 0 },
+	width = 41,
+	height = 13,
+	position = { sa = 'LEFT', a = UIParent, pa = 'CENTER', x = 50, y = 0 },
 }
 
 -- Sub Group (party, raid, boss, tank, arena, partytarget, tanktarget, arenatarget)
@@ -44,6 +44,35 @@ cfg.subUF = {
 	},
 }
 
+-- Castbars -----------------------------------------------------------------------------
+cfg.castbar = {
+	player = {
+		width = 100,
+		height = 14,
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -100 },
+	},
+	target = {
+		width = 150,
+		height = 18,
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = 105 },
+	},
+	focus = {
+		width = 73,
+		height = 13,
+		position = { sa = 'BOTTOMRIGHT', a = 'oUF_CombaUIFocus', pa = 'BOTTOMLEFT', x = -5, y = 0 },
+	},
+	boss = {
+		width = 100,
+		height = 14,
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = -120, y = -100 },
+	},
+	arena = {
+		width = 100,
+		height = 14,
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = -120, y = -100 },
+	},
+}
+
 -----------------------------
 -- Unit Frames Options
 -----------------------------
@@ -53,7 +82,6 @@ cfg.options = {
 	disableRaidFrameManager = true,	-- disable default compact Raid Manager 
 	ResurrectIcon = true,
 	--TotemBar = false,
-	--Maelstrom = true,
 	--MushroomBar = true,
 }
 
@@ -203,44 +231,6 @@ cfg.spellIDs = {
 -- Castbars 
 -----------------------------
 
--- Player
-cfg.player_cb = {
-	enable = true,
-	pos = {'CENTER', UIParent, 0, 36},
-	width = 100,
-	height = 14,
-}
 
--- Target
-cfg.target_cb = {
-	enable = true,
-	pos = {'CENTER', UIParent, 0, 240},
-	width = 180,
-	height = 22,
-}
-
--- Focus
-cfg.focus_cb = {
-	enable = true,
-	pos = {'CENTER', UIParent, 0, 280},
-	width = 180,
-	height = 18,
-}
-
--- Boss
-cfg.boss_cb = {
-	enable = false,
-	pos = {'BOTTOMRIGHT', 0, -16},
-	width = 150,
-	height = 15,
-}
-
--- Arena
-cfg.arena_cb = {
-	enable = true,
-	pos = {'TOPRIGHT', -80, 0},
-	height = 9,
-	width = 130,
-}
 
 ns.cfg = cfg

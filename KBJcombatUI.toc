@@ -13,5 +13,6 @@ Libs\oUF_Experience.lua
 Libs\oUF_GCD.lua
 Libs\basicCore.lua
 Libs\basicTag.lua
+Libs\extCastbar.lua
 
 Layout.lua

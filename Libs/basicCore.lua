@@ -1,6 +1,12 @@
 local name, ns = ...
 local cfg = ns.cfg
 
+--[[ Temp
+PetCastingBarFrame:UnregisterAllEvents()
+PetCastingBarFrame.Show = function() end
+PetCastingBarFrame:Hide()
+]]
+
 -- Frame Backdrop -----------------------------------------------------------------------
 function fBackDrop(parent, anchor) 
     local f = CreateFrame('Frame', nil, parent)

@@ -308,37 +308,6 @@ createAuraWatch = function(self, unit)
     end
 end
 
-Healcomm = function(self) 
-    local myBar = cStatusbar(self.Health, cfg.texture, nil, self:GetWidth(), nil, 0.33, 0.59, 0.33, 0.6)
-    myBar:SetPoint('TOP')
-    myBar:SetPoint('BOTTOM')
-    myBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
-       
-    local otherBar = cStatusbar(self.Health, cfg.texture, nil, self:GetWidth(), nil, 0.33, 0.59, 0.33, 0.6)
-    otherBar:SetPoint('TOP')
-    otherBar:SetPoint('BOTTOM')
-    otherBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
-
-    local absorbBar = cStatusbar(self.Health, cfg.texture, nil, self:GetWidth(), nil, 0.33, 0.59, 0.33, 0.6)
-    absorbBar:SetPoint('TOP')
-    absorbBar:SetPoint('BOTTOM')
-    absorbBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
-    
-    local healAbsorbBar = cStatusbar(self.Health, cfg.texture, nil, self:GetWidth(), nil, 0.33, 0.59, 0.33, 0.6)
-    healAbsorbBar:SetPoint('TOP')
-    healAbsorbBar:SetPoint('BOTTOM')
-    healAbsorbBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
-   
-    self.HealPrediction = {
-        myBar = myBar,
-        otherBar = otherBar,
-        absorbBar = absorbBar,
-        healAbsorbBar = healAbsorbBar,
-        maxOverflow = 1,
-        frequentUpdates = true,
-   }
-end
-
 AuraTracker = function(self)
     self.PortraitTimer = CreateFrame('Frame', nil, self.Health)
     self.PortraitTimer.Icon = self.PortraitTimer:CreateTexture(nil, 'BACKGROUND')

@@ -47,7 +47,7 @@ local UnitSpecific = {
 		self.Power:SetHeight(2)
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
-		name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 4, 0)        
+		name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 4, 1)        
 		self:Tag(name, '[color][name] [unit:lv]')
 		
 		local htext = cFontString(self.Health, nil, cfg.bfont, 23, cfg.fontflag, 1, 1, 1, 'LEFT')
@@ -62,6 +62,32 @@ local UnitSpecific = {
 		self.RaidIcon:SetSize(20, 20)
 		self.RaidIcon:SetAlpha(0.9)
 		self.RaidIcon:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+
+		local unitBuff = CreateFrame('Frame', nil, self)
+		unitBuff.size = 21
+		unitBuff.spacing = 1
+		unitBuff.num = 8
+		unitBuff:SetSize(cfg.mainUF.width*2+5, unitBuff.size)
+		unitBuff:SetPoint('TOPLEFT', self, 'BOTTOMLEFT', 0, -5)
+		unitBuff:SetAlpha(0.6)
+		unitBuff.initialAnchor = 'BOTTOMLEFT' 
+		unitBuff['growth-y'] = 'DOWN'
+		--unitBuff.PostCreateIcon = auraIcon
+		--unitBuff.PostUpdateIcon = PostUpdateIcon
+		self.Buffs = unitBuff
+		
+		local unitDebuff = CreateFrame('Frame', nil, self)
+		unitDebuff.size = 15
+		unitDebuff.spacing = 1
+		unitDebuff.num = 6
+		unitDebuff:SetPoint('BOTTOMLEFT', self, 'BOTTOMRIGHT', 4, -1)
+		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num/2-1), unitDebuff.size)
+		unitDebuff.initialAnchor = 'BOTTOMLEFT'
+		unitDebuff.onlyShowPlayer = true
+		--unitDebuff.PostCreateIcon = auraIcon
+		--unitDebuff.PostUpdateIcon = PostUpdateIcon
+		unitDebuff.CustomFilter = CustomFilter
+		self.Debuffs = unitDebuff       
 	end,
 
 	focus = function(self, ...)
@@ -69,7 +95,7 @@ local UnitSpecific = {
 		self.unit = 'focus'
 
 		extCastbar(self)
-		
+
 		self:SetSize(cfg.mainUF.width, cfg.mainUF.height)
 		self.Health:SetHeight(cfg.mainUF.height)
 		self.Health:SetReverseFill(true)

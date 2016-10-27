@@ -1,6 +1,7 @@
 local name, ns = ...
 local cfg = ns.cfg
 local oUF = ns.oUF or oUF
+local class = select(2, UnitClass('player'))
 
 local Shared = function(self, unit)
 	self:RegisterForClicks('AnyUp')
@@ -26,6 +27,37 @@ local UnitSpecific = {
 		local htext = cFontString(self.Health, nil, cfg.bfont, 13, cfg.fontflag, 1, 1, 1, 'LEFT')
 		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)        
 		self:Tag(htext, '[unit:HPpercent]')
+
+		-- Class Special Bar
+		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player')
+		then
+			local runes = CreateFrame('Frame', nil, self)
+            runes:SetPoint('CENTER', UIParent, 'CENTER', 0, 30)
+            runes:SetSize(52, 8)
+            runes.bg = fBackDrop(runes, runes)
+			local i = 6
+            for index = 1, 6 do
+                runes[i] = cStatusbar(runes, cfg.texture, nil, 8, 8, 0.21, 0.6, 0.7, 1)
+			    if i == 6 then
+                    runes[i]:SetPoint('RIGHT', runes, 'RIGHT', 0, 0)
+                else
+                    runes[i]:SetPoint('RIGHT', runes[i+1], 'LEFT', -1, 0)
+                end
+                runes[i].bg = runes[i]:CreateTexture(nil, 'BACKGROUND')
+                runes[i].bg:SetAllPoints(runes[i])
+                runes[i].bg:SetTexture(cfg.texture)
+                runes[i].bg.multiplier = .3
+
+                i=i-1
+            end
+            self.Runes = runes
+		elseif class == 'MONK' then
+			-- Stagger? like Runebar
+		elseif class == 'DRUID' then
+			-- MushroomBar?
+		elseif class == 'SHAMAN' then
+			-- TotemBar? like Runebar
+		end
 
 		self.Combat = self.Health:CreateTexture(nil, 'OVERLAY')
 		self.Combat:SetSize(18, 18)
@@ -318,7 +350,7 @@ oUF:Factory(function(self)
 	spawnHelper(self, 'pet', 'BOTTOM', 'oUF_CombaUIPlayer', 'TOP', 0, 4)
 
 	self:SetActiveStyle('CombaUI - Party')
-	self:SpawnHeader('oUF_Party', nil, 'custom show',
+	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -15,
 		'oUF-initialConfigFunction', ([[
@@ -328,16 +360,16 @@ oUF:Factory(function(self)
 	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
 	self:SetActiveStyle'CombaUI - Pet'
-	self:SpawnHeader('oUF_PartyPets', nil, 'custom show',
+	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
-		'yOffset', -12-cfg.subUF.party.height,
+		'yOffset', -13-cfg.subUF.party.height,
 		'oUF-initialConfigFunction', ([[
 			self:SetAttribute('unitsuffix', 'pet')
 		]])
 	):SetPoint("TOPRIGHT", 'oUF_Party', "TOPRIGHT", 0, 6)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
-	self:SpawnHeader('oUF_PartyTargets', nil, 'custom show',
+	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -15-cfg.subUF.party.height/2,
 		'oUF-initialConfigFunction', ([[

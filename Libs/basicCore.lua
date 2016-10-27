@@ -94,11 +94,15 @@ function Health(self)
     self.Highlight = hl
 end
 
-function Power(self)
+function Power(self, direction) -- TOP else BOTTOM
     local p = cStatusbar(self, cfg.texture, nil, nil, nil, 1, 1, 1, 1)
     p:SetPoint('LEFT')
     p:SetPoint('RIGHT')
-    p:SetPoint('TOP', self.Health, 'BOTTOM', 0, -1)
+    if direction == 'TOP' then
+        p:SetPoint('BOTTOM', self.Health, 'TOP', 0, 1)
+    else
+        p:SetPoint('TOP', self.Health, 'BOTTOM', 0, -1)
+    end
 
     local pbg = p:CreateTexture(nil, 'BACKGROUND')
     pbg:SetAllPoints(p)
@@ -163,6 +167,25 @@ function CurrentFocus(self)
 end
 
 -- Current Target/Focus -----------------------------------------------------------------
+--CreateClassBar
+local function CreateClassBar(self)
+    --statusbar
+    local s = CreateFrame("StatusBar", nil, self)
+    s:SetStatusBarTexture(cfg.texture)
+    s:SetSize(130, 5)
+    SetPoint('CENTER', UIParent, 'CENTER', 0, 30)
+    --bg
+    local bg = s:CreateTexture(nil, "BACKGROUND")
+    bg:SetTexture(cfg.texture)
+    bg:SetAllPoints()
+    s.bg = bg
+    --backdrop
+    CreateBackdrop(s)
+    --attributes
+    s.bg.multiplier = 0.3
+    return s
+end
+
 local GetTime = GetTime
 local floor, fmod = floor, math.fmod
 local day, hour, minute = 86400, 3600, 60

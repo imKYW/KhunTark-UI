@@ -76,7 +76,7 @@ function extCastbar(self)
     elseif self.unit == 'target' then
         castbar:SetSize(cfg.castbar.target.width, cfg.castbar.target.height)
         castbar:SetPoint(cfg.castbar.target.position.sa, cfg.castbar.target.position.a, cfg.castbar.target.position.pa, cfg.castbar.target.position.x, cfg.castbar.target.position.y)
-        castbarIcon:SetSize(cfg.castbar.target.height*1.5, cfg.castbar.target.height*1.5)
+        castbarIcon:SetSize(cfg.castbar.target.height*1.7, cfg.castbar.target.height*1.7)
         castbarIcon:SetPoint('RIGHT', castbar, 'LEFT', -3, 0)
         castbarName:SetFont(cfg.font, 11, cfg.fontflag)
         castbarName:SetJustifyH('LEFT')

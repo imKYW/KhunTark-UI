@@ -55,11 +55,11 @@ local UnitSpecific = {
             end
             self.Runes = runes
 		elseif class == 'MONK' then
-			-- Stagger? like Runebar
+			-- TODO : Stagger? like Runebar
 		elseif class == 'DRUID' then
-			-- MushroomBar?
+			-- TODO : MushroomBar?
 		elseif class == 'SHAMAN' then
-			-- TotemBar? like Runebar
+			-- TODO : TotemBar? like Runebar
 		end
 
 		self.Combat = self.Health:CreateTexture(nil, 'OVERLAY')
@@ -303,24 +303,65 @@ local UnitSpecific = {
 		self.unit = 'boss'
 		
 		Power(self)
-
-		self:SetSize(cfg.subUF.boss.width, cfg.subUF.boss.height)	
-		self.Health:SetHeight(cfg.subUF.boss.height-3)
-		self.Health.frequentUpdates = true
-		self.Power:SetHeight(2)
+		ctfBorder(self)
 		
-		local name = cFontString(self.Health, nil, cfg.font, 10, cfg.fontflag, 1, 1, 1)
-		name:SetPoint('TOPLEFT', -1, 12)
-		name:SetJustifyH('LEFT')
-		self:Tag(name, '[color][unit:name10]')
-		local htext = cFontString(self.Health, nil, cfg.bfont, 15, cfg.fontflag, 1, 1, 1)
-		htext:SetPoint('LEFT', 1, 0)
-		name:SetJustifyH('LEFT')
+		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
+		self.Health:SetHeight(cfg.subUF.party.height-3)
+		self.Power:SetHeight(2)
+
+		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		name:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 2)
+		self:Tag(name, '[color][name]')
+		
+		local htext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'LEFT')
+		htext:SetPoint('LEFT', self.Health, 'LEFT', 0, 0)
 		self:Tag(htext, '[unit:HPmix]')
 
 		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(14, 14)
-		self.RaidIcon:SetPoint("CENTER", self, "LEFT", 0, 0)
+		self.RaidIcon:SetSize(18, 18)
+		self.RaidIcon:SetAlpha(0.9)
+		self.RaidIcon:SetPoint("RIGHT", self.Health, "RIGHT", -1, 0)
+
+	    --[[
+	    local altp = createStatusbar(self, cfg.texture, nil, cfg.AltPowerBar.boss.height, cfg.AltPowerBar.boss.width, 1, 1, 1, 1)
+        altp:SetPoint(unpack(cfg.AltPowerBar.boss.pos))
+		altp.bd = framebd(altp, altp) 
+        altp.bg = altp:CreateTexture(nil, 'BORDER')
+        altp.bg:SetAllPoints(altp)
+        altp.bg:SetTexture(cfg.texture)
+        altp.bg:SetVertexColor(1, 1, 1, 0.3)
+        altp.Text = fs(altp, 'OVERLAY', cfg.aura.font, cfg.aura.fontsize, cfg.aura.fontflag, 1, 1, 1)
+        altp.Text:SetPoint('CENTER')
+        self:Tag(altp.Text, '[altpower]') 
+		altp:EnableMouse(true)
+		altp.colorTexture = true
+        self.AltPowerBar = altp
+        ]]
+
+		local unitBuff = CreateFrame('Frame', nil, self)
+		unitBuff.size = cfg.subUF.party.height
+		unitBuff.spacing = 1
+		unitBuff.num = 2
+		unitBuff:SetSize(unitBuff.size*(unitBuff.num/2)+unitBuff.spacing*(unitBuff.num/2-1), unitBuff.size*2)
+		unitBuff:SetPoint('RIGHT', self, 'LEFT', -3, -0)
+		unitBuff:SetAlpha(0.7)
+		unitBuff.initialAnchor = 'RIGHT' 
+		unitBuff['growth-x'] = 'LEFT'
+		--unitBuff.PostCreateIcon = auraIcon
+		--unitBuff.PostUpdateIcon = PostUpdateIcon
+		self.Buffs = unitBuff
+
+		local unitDebuff = CreateFrame('Frame', nil, self)
+		unitDebuff.size = cfg.subUF.party.height
+		unitDebuff.spacing = 1
+		unitDebuff.num = 4
+		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
+		unitDebuff:SetPoint('LEFT', self, 'RIGHT', 3, 0)
+		unitDebuff:SetAlpha(0.7)
+		--unitDebuff.PostCreateIcon = auraIcon
+		--unitDebuff.PostUpdateIcon = PostUpdateIcon
+		unitDebuff.CustomFilter = CustomFilter
+		self.Debuffs = unitDebuff
 	end,
 }
 UnitSpecific.focustarget = UnitSpecific.targettarget
@@ -398,4 +439,8 @@ oUF:Factory(function(self)
 			self:SetWidth(%d)
 		]]):format(cfg.subUF.raid.height, cfg.subUF.raid.width)
 	):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
+
+	for i = 1, MAX_BOSS_FRAMES do
+		spawnHelper(self, 'boss'..i, 'LEFT', 'oUF_CombaUIFocus', 'RIGHT', 100, 40-(40*i))
+	end
 end)

@@ -340,9 +340,9 @@ local UnitSpecific = {
 
 		local unitBuff = CreateFrame('Frame', nil, self)
 		unitBuff.size = cfg.subUF.party.height
-		unitBuff.spacing = 1
+		unitBuff.spacing = 5
 		unitBuff.num = 2
-		unitBuff:SetSize(unitBuff.size*(unitBuff.num/2)+unitBuff.spacing*(unitBuff.num/2-1), unitBuff.size*2)
+		unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
 		unitBuff:SetPoint('RIGHT', self, 'LEFT', -5, -0)
 		--unitBuff:SetAlpha(0.7)
 		unitBuff.initialAnchor = 'RIGHT' 
@@ -353,7 +353,7 @@ local UnitSpecific = {
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height
-		unitDebuff.spacing = 1
+		unitDebuff.spacing = 5
 		unitDebuff.num = 4
 		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
 		unitDebuff:SetPoint('LEFT', self, 'RIGHT', 5, 0)

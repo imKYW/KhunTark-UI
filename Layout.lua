@@ -96,28 +96,28 @@ local UnitSpecific = {
 
 		local unitBuff = CreateFrame('Frame', nil, self)
 		unitBuff.size = 18
-		unitBuff.spacing = 1
+		unitBuff.spacing = 5
 		unitBuff.num = 10
 		unitBuff:SetSize(unitBuff.size*(unitBuff.num/2)+unitBuff.spacing*(unitBuff.num/2-1), unitBuff.size*2)
 		unitBuff:SetPoint('TOPLEFT', self, 'BOTTOMRIGHT', 2, -4)
-		unitBuff:SetAlpha(0.6)
+		unitBuff:SetAlpha(0.8)
 		unitBuff.initialAnchor = 'TOPLEFT' 
 		unitBuff['growth-y'] = 'DOWN'
-		--unitBuff.PostCreateIcon = auraIcon
-		--unitBuff.PostUpdateIcon = PostUpdateIcon
+		unitBuff.PostCreateIcon = PostCreateIconSmall
+		unitBuff.PostUpdateIcon = PostUpdateIcon
 		self.Buffs = unitBuff
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = 14
-		unitDebuff.spacing = 1
+		unitDebuff.spacing = 5
 		unitDebuff.num = 6
 		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-		unitDebuff:SetPoint('LEFT', htext, 'RIGHT', 0, 0)
-		unitDebuff:SetAlpha(0.7)
+		unitDebuff:SetPoint('LEFT', htext, 'RIGHT', 2, 0)
+		unitDebuff:SetAlpha(0.8)
 		unitDebuff.initialAnchor = 'LEFT'
 		unitDebuff.onlyShowPlayer = true
-		--unitDebuff.PostCreateIcon = auraIcon
-		--unitDebuff.PostUpdateIcon = PostUpdateIcon
+		unitDebuff.PostCreateIcon = PostCreateIconSmall
+		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 	end,
@@ -218,13 +218,13 @@ local UnitSpecific = {
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height
-		unitDebuff.spacing = 1
+		unitDebuff.spacing = 5
 		unitDebuff.num = 4
 		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-		unitDebuff:SetPoint('LEFT', self, 'RIGHT', 3, 0)
-		unitDebuff:SetAlpha(0.7)
-		--unitDebuff.PostCreateIcon = auraIcon
-		--unitDebuff.PostUpdateIcon = PostUpdateIcon
+		unitDebuff:SetPoint('LEFT', self, 'RIGHT', 5, 0)
+		--unitDebuff:SetAlpha(0.7)
+		unitDebuff.PostCreateIcon = PostCreateIconSmall
+		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 	end,
@@ -343,12 +343,12 @@ local UnitSpecific = {
 		unitBuff.spacing = 1
 		unitBuff.num = 2
 		unitBuff:SetSize(unitBuff.size*(unitBuff.num/2)+unitBuff.spacing*(unitBuff.num/2-1), unitBuff.size*2)
-		unitBuff:SetPoint('RIGHT', self, 'LEFT', -3, -0)
-		unitBuff:SetAlpha(0.7)
+		unitBuff:SetPoint('RIGHT', self, 'LEFT', -5, -0)
+		--unitBuff:SetAlpha(0.7)
 		unitBuff.initialAnchor = 'RIGHT' 
 		unitBuff['growth-x'] = 'LEFT'
-		--unitBuff.PostCreateIcon = auraIcon
-		--unitBuff.PostUpdateIcon = PostUpdateIcon
+		unitBuff.PostCreateIcon = PostCreateIconSmall
+		unitBuff.PostUpdateIcon = PostUpdateIcon
 		self.Buffs = unitBuff
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
@@ -356,10 +356,10 @@ local UnitSpecific = {
 		unitDebuff.spacing = 1
 		unitDebuff.num = 4
 		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-		unitDebuff:SetPoint('LEFT', self, 'RIGHT', 3, 0)
-		unitDebuff:SetAlpha(0.7)
-		--unitDebuff.PostCreateIcon = auraIcon
-		--unitDebuff.PostUpdateIcon = PostUpdateIcon
+		unitDebuff:SetPoint('LEFT', self, 'RIGHT', 5, 0)
+		--unitDebuff:SetAlpha(0.7)
+		unitDebuff.PostCreateIcon = PostCreateIconSmall
+		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 	end,
@@ -394,7 +394,7 @@ oUF:Factory(function(self)
 	spawnHelper(self, 'pet', 'BOTTOMLEFT', 'oUF_CombaUIPlayer', 'BOTTOMRIGHT', 4, 0)
 
 	self:SetActiveStyle('CombaUI - Party')
-	self:SpawnHeader('oUF_Party', nil, 'custom show',
+	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -15,
 		'oUF-initialConfigFunction', ([[
@@ -404,7 +404,7 @@ oUF:Factory(function(self)
 	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
 	self:SetActiveStyle'CombaUI - Partypet'
-	self:SpawnHeader('oUF_PartyPets', nil, 'custom show',
+	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -13-cfg.subUF.party.height,
 		'oUF-initialConfigFunction', ([[
@@ -413,7 +413,7 @@ oUF:Factory(function(self)
 	):SetPoint("TOPRIGHT", 'oUF_Party', "TOPRIGHT", 0, 6)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
-	self:SpawnHeader('oUF_PartyTargets', nil, 'custom show',
+	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -15-cfg.subUF.party.height/2,
 		'oUF-initialConfigFunction', ([[

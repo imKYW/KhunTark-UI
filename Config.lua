@@ -10,6 +10,7 @@ cfg.glow = 'Interface\\AddOns\\KBJcombatUI\\Media\\textureGlow'
 -- Font ( fontStd is FRIZQT__ + koverwatch )
 cfg.font = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontStd.ttf'
 cfg.bfont = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf'
+cfg.aurafont = 'Interface\\AddOns\\KBJcombatUI\\Media\\pixel.ttf'
 cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'
 
 -- Unit Frames --------------------------------------------------------------------------

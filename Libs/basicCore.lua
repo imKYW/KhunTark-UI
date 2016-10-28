@@ -166,30 +166,10 @@ function CurrentFocus(self)
     end
 end
 
--- Current Target/Focus -----------------------------------------------------------------
---CreateClassBar
-local function CreateClassBar(self)
-    --statusbar
-    local s = CreateFrame("StatusBar", nil, self)
-    s:SetStatusBarTexture(cfg.texture)
-    s:SetSize(130, 5)
-    SetPoint('CENTER', UIParent, 'CENTER', 0, 30)
-    --bg
-    local bg = s:CreateTexture(nil, "BACKGROUND")
-    bg:SetTexture(cfg.texture)
-    bg:SetAllPoints()
-    s.bg = bg
-    --backdrop
-    CreateBackdrop(s)
-    --attributes
-    s.bg.multiplier = 0.3
-    return s
-end
-
+-- Buff/Debuff/Aura Icon ----------------------------------------------------------------
 local GetTime = GetTime
-local floor, fmod = floor, math.fmod
 local day, hour, minute = 86400, 3600, 60
-FormatTime = function(s)
+local FormatTime = function(s)
     if s >= day then
         return format('%dd', floor(s/day + 0.5))
     elseif s >= hour then
@@ -197,10 +177,10 @@ FormatTime = function(s)
     elseif s >= minute then
         return format('%dm', floor(s/minute + 0.5))
     end
-    return format('%d', fmod(s, minute))
+    return format('%d', math.fmod(s, minute))
 end
 
-CreateAuraTimer = function(self,elapsed)
+local CreateAuraTimer = function(self, elapsed)
     self.elapsed = (self.elapsed or 0) + elapsed
     if self.elapsed >= 0.1 then
         self.timeLeft = self.expires - GetTime()
@@ -222,15 +202,15 @@ CreateAuraTimer = function(self,elapsed)
     end
 end
 
-auraIcon = function(auras, button)
-    local c = button.count
-    c:ClearAllPoints()
-    c:SetPoint('BOTTOMRIGHT', 3, -1)
-    c:SetFontObject(nil)
-    c:SetFont(cfg.aura.font, cfg.aura.fontsize, cfg.aura.fontflag)
-    c:SetTextColor(1, 1, 1) 
+function PostCreateIconSmall(auras, button)
+    local btnC = button.count
+    btnC:ClearAllPoints()
+    btnC:SetPoint('CENTER', button, 'BOTTOMRIGHT', 1, 0)
+    btnC:SetFontObject(nil)
+    btnC:SetFont(cfg.aurafont, 8, cfg.fontflag)
+    btnC:SetTextColor(1, 1, 1)
     
-    auras.disableCooldown = cfg.aura.disableCooldown    
+    auras.disableCooldown = false
     auras.showDebuffType = true
     
     button.overlay:SetTexture(nil)
@@ -239,19 +219,19 @@ auraIcon = function(auras, button)
     button:SetBackdropColor(0, 0, 0, 1)
     
     button.glow = CreateFrame('Frame', nil, button)
-    button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -4, 4)
-    button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 4, -4)
+    button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
+    button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
     button.glow:SetFrameLevel(button:GetFrameLevel()-1)
-    button.glow:SetBackdrop({bgFile = '', edgeFile = cfg.glow, edgeSize = 5,
-    insets = {left = 3,right = 3,top = 3,bottom = 3,},
+    button.glow:SetBackdrop({bgFile = '', edgeFile = cfg.glow, edgeSize = 4,
+    insets = { left = 3, right = 3, top = 3, bottom = 3 },
     })
     
-    local remaining = cFontString(button, 'OVERLAY', cfg.aura.font, cfg.aura.fontsize, cfg.aura.fontflag, 1, 1, 1)
+    local remaining = cFontString(button, 'OVERLAY', cfg.aurafont, 8, cfg.fontflag, 1, 1, 1)
     remaining:SetPoint('TOPLEFT')
     button.remaining = remaining
 end
 
-PostUpdateIcon = function(icons, unit, icon, index, offset)
+function PostUpdateIcon(icons, unit, icon, index, offset)
     local name, _, _, _, dtype, duration, expirationTime, unitCaster = UnitAura(unit, index, icon.filter)
     local texture = icon.icon
     if icon.isPlayer or UnitIsFriend('player', unit) or not icon.isDebuff then
@@ -275,6 +255,27 @@ PostUpdateIcon = function(icons, unit, icon, index, offset)
     icon.duration = duration
     icon.expires = expirationTime
     icon:SetScript('OnUpdate', CreateAuraTimer)
+end
+
+-- Current Target/Focus -----------------------------------------------------------------
+
+--CreateClassBar
+local function CreateClassBar(self)
+    --statusbar
+    local s = CreateFrame("StatusBar", nil, self)
+    s:SetStatusBarTexture(cfg.texture)
+    s:SetSize(130, 5)
+    SetPoint('CENTER', UIParent, 'CENTER', 0, 30)
+    --bg
+    local bg = s:CreateTexture(nil, "BACKGROUND")
+    bg:SetTexture(cfg.texture)
+    bg:SetAllPoints()
+    s.bg = bg
+    --backdrop
+    CreateBackdrop(s)
+    --attributes
+    s.bg.multiplier = 0.3
+    return s
 end
 
 CustomFilter = function(icons, ...)

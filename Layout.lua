@@ -395,7 +395,7 @@ oUF:Factory(function(self)
 
 	self:SetActiveStyle('CombaUI - Party')
 	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
-		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
+		'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
 		'yOffset', -15,
 		'oUF-initialConfigFunction', ([[
 			self:SetHeight(%d)
@@ -405,7 +405,7 @@ oUF:Factory(function(self)
 
 	self:SetActiveStyle'CombaUI - Partypet'
 	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
-		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
+		'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
 		'yOffset', -13-cfg.subUF.party.height,
 		'oUF-initialConfigFunction', ([[
 			self:SetAttribute('unitsuffix', 'pet')
@@ -414,7 +414,7 @@ oUF:Factory(function(self)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
 	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
-		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
+		'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
 		'yOffset', -15-cfg.subUF.party.height/2,
 		'oUF-initialConfigFunction', ([[
 		self:SetAttribute('unitsuffix', 'target')
@@ -441,6 +441,6 @@ oUF:Factory(function(self)
 	):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
 
 	for i = 1, MAX_BOSS_FRAMES do
-		spawnHelper(self, 'boss'..i, 'LEFT', 'oUF_CombaUIFocus', 'RIGHT', 100, 40-(40*i))
+		spawnHelper(self, 'boss'..i, 'LEFT', 'oUF_CombaUIFocus', 'RIGHT', 150, 40-(40*i))
 	end
 end)

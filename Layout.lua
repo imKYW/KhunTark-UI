@@ -81,7 +81,7 @@ local UnitSpecific = {
 
 		self.Combat = self.Power:CreateTexture(nil, 'OVERLAY')
 		self.Combat:SetSize(20, 20)
-		self.Combat:SetPoint('CENTER', UIParent, 'CENTER', 30, 0)
+		self.Combat:SetPoint('RIGHT', htext, 'LEFT', 3, 0)
 		-- TODO : Rest Highlight
 
 		-- EXP Bar
@@ -144,18 +144,18 @@ local UnitSpecific = {
 		self.RaidIcon:SetSize(16, 16)
 		self.RaidIcon:SetAlpha(0.9)
 		self.RaidIcon:SetPoint("RIGHT", htext, "LEFT", -1, 0)
---[[
+
 		local unitBuff = CreateFrame('Frame', nil, self)
-		unitBuff.size = 18
+		unitBuff.size = 22
 		unitBuff.spacing = 5
-		unitBuff.num = 10
-		unitBuff:SetSize(unitBuff.size*(unitBuff.num/2)+unitBuff.spacing*(unitBuff.num/2-1), unitBuff.size*2)
-		unitBuff:SetPoint('TOPLEFT', self, 'BOTTOMRIGHT', 2, -4)
+		unitBuff.num = 3
+		unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
+		unitBuff:SetPoint('TOPLEFT', self.Health, 'BOTTOMLEFT', 0, -18)
 		unitBuff:SetAlpha(0.8)
-		unitBuff.initialAnchor = 'TOPLEFT'
-		unitBuff['growth-y'] = 'DOWN'
+		unitBuff.initialAnchor = 'LEFT'
 		unitBuff.PostCreateIcon = PostCreateIconSmall
-		unitBuff.PostUpdateIcon = PostUpdateIcon
+		unitBuff.PostUpdateIcon = PostUpdateIcon		
+		--unitBuff.CustomFilter = CustomFilter
 		self.Buffs = unitBuff
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
@@ -163,15 +163,14 @@ local UnitSpecific = {
 		unitDebuff.spacing = 5
 		unitDebuff.num = 6
 		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-		unitDebuff:SetPoint('LEFT', htext, 'RIGHT', 2, 0)
-		unitDebuff:SetAlpha(0.8)
+		unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 5)
+		--unitDebuff:SetAlpha(0.8)
 		unitDebuff.initialAnchor = 'LEFT'
 		unitDebuff.onlyShowPlayer = true
 		unitDebuff.PostCreateIcon = PostCreateIconSmall
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		unitDebuff.CustomFilter = CustomFilter
-		self.Debuffs = unitDebuff
-	]]
+		self.Debuffs = unitDebuff	
 	end,
 
 	focus = function(self, ...)
@@ -435,7 +434,7 @@ end
 oUF:Factory(function(self)
 	spawnHelper(self, 'target', 'LEFT', UIParent, 'CENTER', 100, 50)
 	spawnHelper(self, 'targettarget', 'TOP', 'oUF_CombaUITarget', 'BOTTOM', 0, -3)
-	spawnHelper(self, 'focus', 'LEFT', UIParent, 'CENTER', 100, 100)
+	spawnHelper(self, 'focus', 'LEFT', UIParent, 'CENTER', 100, 105)
 	spawnHelper(self, 'focustarget', 'BOTTOM', 'oUF_CombaUIFocus','TOP', 0, 5)
 	spawnHelper(self, 'player', cfg.mainUF.position.sa, cfg.mainUF.position.a, cfg.mainUF.position.pa, cfg.mainUF.position.x, cfg.mainUF.position.y)    
 	spawnHelper(self, 'pet', 'BOTTOMLEFT', 'oUF_CombaUIPlayer', 'BOTTOMRIGHT', 4, 0)

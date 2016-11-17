@@ -100,8 +100,10 @@ function Power(self, direction) -- TOP else BOTTOM
     p:SetPoint('RIGHT')
     if direction == 'TOP' then
         p:SetPoint('BOTTOM', self.Health, 'TOP', 0, 1)
-    else
+    elseif direction == 'BOTTOM' then
         p:SetPoint('TOP', self.Health, 'BOTTOM', 0, -1)
+    else
+        p:SetPoint('TOP')
     end
 
     local pbg = p:CreateTexture(nil, 'BACKGROUND')
@@ -210,7 +212,7 @@ function PostCreateIconSmall(auras, button)
     btnC:SetFont(cfg.aurafont, 8, cfg.fontflag)
     btnC:SetTextColor(1, 1, 1)
     
-    auras.disableCooldown = false
+    auras.disableCooldown = true
     auras.showDebuffType = true
     
     button.overlay:SetTexture(nil)

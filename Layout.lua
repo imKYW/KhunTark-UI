@@ -16,26 +16,34 @@ end
 
 local UnitSpecific = {
 	player = function(self, ...)
-		Shared(self, ...)
+		self:RegisterForClicks('AnyUp')
 		self.unit = 'player'
 
+		fBackDrop(self, self)
+		Power(self)
 		extCastbar(self)
 
 		self:SetSize(cfg.mainUF.width, cfg.mainUF.height)	
-		self.Health:SetHeight(cfg.mainUF.height)		
+		self.Power:SetHeight(cfg.mainUF.height)		
 
-		local htext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
-		htext:SetPoint('LEFT', self.Health, 'LEFT', 0, 0)        
+		local htext = cFontString(self.Power, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		htext:SetPoint('BOTTOMRIGHT', 'oUF_CombaUITarget', 'TOPLEFT', -6, 2)
 		self:Tag(htext, '[unit:HPpercent]')
-		local ptext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
-		ptext:SetPoint('RIGHT', self.Health, 'LEFT', -1, 0)        
-		self:Tag(ptext, '[unit:PPflex]')
 
-		-- Class Special Bar
-		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player')
-		then
+		-- Class Bar
+		local ptext = cFontString(self.Power, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'CENTER')
+		ptext:SetPoint('CENTER', self.Power, 'CENTER', 1, 1)        
+		self:Tag(ptext, '[unit:PPflex]')
+		local cres = cFontString(self.Power, nil, cfg.bfont, 21, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		cres:SetPoint('RIGHT', self.Power, 'LEFT', -3, 0)        
+		self:Tag(cres, '[color][player:Resource]')
+		local subpower = cFontString(self.Power, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
+		subpower:SetPoint('LEFT', self.Power, 'RIGHT', 3, 1)        
+		self:Tag(subpower, '[player:SubMana]')
+
+		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player') then
 			local runes = CreateFrame('Frame', nil, self)
-            runes:SetPoint('TOP', self, 'BOTTOM', 0, -3)
+            runes:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
             runes:SetSize(cfg.mainUF.width, 3)
             runes.bg = fBackDrop(runes, runes)
 			local i = 6
@@ -62,10 +70,44 @@ local UnitSpecific = {
 			-- TODO : TotemBar? like Runebar
 		end
 
-		self.Combat = self.Health:CreateTexture(nil, 'OVERLAY')
+		self.Combat = self.Power:CreateTexture(nil, 'OVERLAY')
 		self.Combat:SetSize(20, 20)
-		self.Combat:SetPoint('LEFT', UIParent, 'CENTER', 30, 0)
+		self.Combat:SetPoint('CENTER', UIParent, 'CENTER', 30, 0)
 		-- TODO : Rest Highlight
+
+		-- EXP Bar
+		local Experience = CreateFrame('StatusBar', nil, self)
+		Experience:SetPoint('TOP', UIParent, 'TOP',0, -5)
+		Experience:SetSize(300, 8)
+		Experience:SetStatusBarTexture(cfg.texture)
+		Experience.bg = fBackDrop(Experience, Experience)
+
+		local Rested = CreateFrame('StatusBar', nil, Experience)
+		Rested:SetAllPoints()
+		Rested:SetStatusBarTexture(cfg.texture)
+		Rested:SetAlpha(0.7)
+		Rested:SetBackdrop({
+			bgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
+			insets = {top = -1, left = -1, bottom = -1, right = -1},
+		})
+		Rested:SetBackdropColor(0, 0, 0)
+
+		local ExperienceLv = cFontString(Experience, 'OVERLAY', cfg.font, 11, cfg.fontflag, 1, 1, 1)
+		ExperienceLv:SetPoint('RIGHT', Experience, 'LEFT', -1, 0)        
+		ExperienceLv:SetJustifyH('CENTER')
+		self:Tag(ExperienceLv, 'Lv [level]')
+
+		local ExperienceInfo = cFontString(Experience, 'OVERLAY', cfg.font, 9, cfg.fontflag, 1, 1, 1)
+		ExperienceInfo:SetPoint('CENTER', Experience, 'CENTER', 0, 0)        
+		ExperienceInfo:SetJustifyH('CENTER')
+		self:Tag(ExperienceInfo, '[perxp]% / TNL : [tnlxp] (Rest : [perrested]%)')
+
+		local ExperienceBG = Rested:CreateTexture(nil, 'BORDER')
+		ExperienceBG:SetAllPoints()
+		ExperienceBG:SetColorTexture(1/3, 1/3, 1/3)
+
+		self.Experience = Experience
+		self.Experience.Rested = Rested
 	end,
 
 	target = function(self, ...)
@@ -85,15 +127,15 @@ local UnitSpecific = {
 		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)        
 		self:Tag(name, '[unit:lv] [color][name]')		
-		local htext = cFontString(self, nil, cfg.bfont, 16, cfg.fontflag, 1, 1, 1, 'RIGHT')
-		htext:SetPoint('BOTTOMRIGHT', oUF_CombaUIPlayer, 'TOPRIGHT', 3, 1)
+		local htext = cFontString(self, nil, cfg.bfont, 33, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		htext:SetPoint('TOPRIGHT', self.Health, 'TOPLEFT', -3, 4)
 		self:Tag(htext, '[unit:HPpercent]')
 
 		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(10, 10)
+		self.RaidIcon:SetSize(16, 16)
 		self.RaidIcon:SetAlpha(0.9)
-		self.RaidIcon:SetPoint("RIGHT", htext, "LEFT", -1, -1)
-
+		self.RaidIcon:SetPoint("RIGHT", htext, "LEFT", -1, 0)
+--[[
 		local unitBuff = CreateFrame('Frame', nil, self)
 		unitBuff.size = 18
 		unitBuff.spacing = 5
@@ -101,7 +143,7 @@ local UnitSpecific = {
 		unitBuff:SetSize(unitBuff.size*(unitBuff.num/2)+unitBuff.spacing*(unitBuff.num/2-1), unitBuff.size*2)
 		unitBuff:SetPoint('TOPLEFT', self, 'BOTTOMRIGHT', 2, -4)
 		unitBuff:SetAlpha(0.8)
-		unitBuff.initialAnchor = 'TOPLEFT' 
+		unitBuff.initialAnchor = 'TOPLEFT'
 		unitBuff['growth-y'] = 'DOWN'
 		unitBuff.PostCreateIcon = PostCreateIconSmall
 		unitBuff.PostUpdateIcon = PostUpdateIcon
@@ -120,6 +162,7 @@ local UnitSpecific = {
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
+	]]
 	end,
 
 	focus = function(self, ...)
@@ -172,18 +215,13 @@ local UnitSpecific = {
 		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
 	    name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0.5)
 		self:Tag(name, '[color][name]')
-
-		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(11, 11)
-		self.RaidIcon:SetAlpha(0.9)
-		self.RaidIcon:SetPoint("right", self.Health, "LEFT", -4, 0)
 	end,
 
 	party = function(self, ...)
 		Shared(self, ...)		
 		self.unit = 'party'
 
-		Power(self)
+		Power(self, 'BOTTOM')
 		ctfBorder(self)
 		
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
@@ -263,7 +301,7 @@ local UnitSpecific = {
 		self.unit = 'raid'		
 		self:SetAttribute("type2", "focus")
 		
-		Power(self)
+		Power(self, 'BOTTOM')
 		ctfBorder(self)
 
 		self:SetSize(cfg.subUF.raid.width, cfg.subUF.raid.height)	
@@ -302,7 +340,7 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'boss'
 		
-		Power(self)
+		Power(self, 'BOTTOM')
 		ctfBorder(self)
 		
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
@@ -386,11 +424,11 @@ local spawnHelper = function(self, unit, ...)
 end
 
 oUF:Factory(function(self)
-	spawnHelper(self, 'player', cfg.mainUF.position.sa, cfg.mainUF.position.a, cfg.mainUF.position.pa, cfg.mainUF.position.x, cfg.mainUF.position.y)    
-	spawnHelper(self, 'target', 'LEFT', UIParent, 'CENTER', 50, 0)
-	spawnHelper(self, 'targettarget', 'BOTTOM', 'oUF_CombaUITarget', 'TOP', 0, 5)
+	spawnHelper(self, 'target', 'LEFT', UIParent, 'CENTER', 100, 50)
+	spawnHelper(self, 'targettarget', 'TOP', 'oUF_CombaUITarget', 'BOTTOM', 0, -3)
 	spawnHelper(self, 'focus', 'LEFT', UIParent, 'CENTER', 100, 100)
 	spawnHelper(self, 'focustarget', 'BOTTOM', 'oUF_CombaUIFocus','TOP', 0, 5)
+	spawnHelper(self, 'player', cfg.mainUF.position.sa, cfg.mainUF.position.a, cfg.mainUF.position.pa, cfg.mainUF.position.x, cfg.mainUF.position.y)    
 	spawnHelper(self, 'pet', 'BOTTOMLEFT', 'oUF_CombaUIPlayer', 'BOTTOMRIGHT', 4, 0)
 
 	self:SetActiveStyle('CombaUI - Party')

@@ -2,6 +2,7 @@ local name, ns = ...
 local cfg = ns.cfg
 local oUF = ns.oUF or oUF
 local class = select(2, UnitClass('player'))
+local classSpec = GetSpecialization()
 
 local Shared = function(self, unit)
 	self:RegisterForClicks('AnyUp')
@@ -43,27 +44,35 @@ local UnitSpecific = {
 
 		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player') then
 			local runes = CreateFrame('Frame', nil, self)
-            runes:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
-            runes:SetSize(cfg.mainUF.width, 3)
-            runes.bg = fBackDrop(runes, runes)
+			runes:SetSize(cfg.mainUF.width, 3)
+			runes:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
+			runes.bg = fBackDrop(runes, runes)
 			local i = 6
-            for index = 1, 6 do
-                runes[i] = cStatusbar(runes, cfg.texture, nil, cfg.mainUF.width/6-1, 3, 0.21, 0.6, 0.7, 1)
-			    if i == 6 then
-                    runes[i]:SetPoint('TOPRIGHT', runes, 'TOPRIGHT', 0, 0)
-                else
-                    runes[i]:SetPoint('RIGHT', runes[i+1], 'LEFT', -1, 0)
-                end
-                runes[i].bg = runes[i]:CreateTexture(nil, 'BACKGROUND')
-                runes[i].bg:SetAllPoints(runes[i])
-                runes[i].bg:SetTexture(cfg.texture)
-                runes[i].bg.multiplier = .3
+			for index = 1, 6 do
+				runes[i] = cStatusbar(runes, cfg.texture, nil, cfg.mainUF.width/6-1, 3, 0.21, 0.6, 0.7, 1)
+				if i == 6 then
+					runes[i]:SetPoint('TOPRIGHT', runes, 'TOPRIGHT', 0, 0)
+				else
+					runes[i]:SetPoint('RIGHT', runes[i+1], 'LEFT', -1, 0)
+				end
+				runes[i].bg = runes[i]:CreateTexture(nil, 'BACKGROUND')
+				runes[i].bg:SetAllPoints(runes[i])
+				runes[i].bg:SetTexture(cfg.texture)
+				runes[i].bg.multiplier = 0.3
 
-                i=i-1
-            end
-            self.Runes = runes
-		elseif class == 'MONK' then
-			-- TODO : Stagger? like Runebar
+				i=i-1
+			end
+			self.Runes = runes
+		elseif classSpec == SPEC_MONK_BREWMASTER then
+			local stagger = CreateFrame('StatusBar', nil, self)
+			stagger:SetSize(cfg.mainUF.width, 3)
+			stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
+			stagger.bg = fBackDrop(stagger, stagger)
+			stagger.bg = stagger:CreateTexture(nil, 'BACKGROUND')
+			stagger.bg:SetAllPoints(stagger)
+			stagger.bg:SetTexture(cfg.texture)
+			stagger.bg.multiplier = 0.3
+			self.Stagger = stagger
 		elseif class == 'DRUID' then
 			-- TODO : MushroomBar?
 		elseif class == 'SHAMAN' then

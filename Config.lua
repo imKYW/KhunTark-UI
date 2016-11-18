@@ -16,9 +16,14 @@ cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'
 -- Unit Frames --------------------------------------------------------------------------
 -- Main Group (player, target, focus, pet, targettarget, focustarget)
 cfg.mainUF = {  -- Anchor is Player unitframe
-	width = 51,
-	height = 4,
-	position = { sa = 'TOP', a = UIParent, pa = 'CENTER', x = 0, y = -50 },
+	player = {
+		width = 51,
+		height = 4,
+		position = { sa = 'TOP', a = UIParent, pa = 'CENTER', x = 0, y = -55 },
+	},
+	target = {
+		position = { sa = 'LEFT', a = UIParent, pa = 'CENTER', x = 100, y = 50 },
+	}
 }
 
 -- Sub Group (party, raid, boss, tank, arena, partytarget, tanktarget, arenatarget)
@@ -50,7 +55,7 @@ cfg.castbar = {
 	player = {
 		width = 110,
 		height = 14,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -80 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -85 },
 	},
 	target = {
 		width = 150,

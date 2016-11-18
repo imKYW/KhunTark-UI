@@ -24,16 +24,16 @@ local UnitSpecific = {
 		Power(self)
 		extCastbar(self)
 
-		self:SetSize(cfg.mainUF.width, cfg.mainUF.height)	
-		self.Power:SetHeight(cfg.mainUF.height)		
+		self:SetSize(cfg.mainUF.player.width, cfg.mainUF.player.height)	
+		self.Power:SetHeight(cfg.mainUF.player.height)		
 
 		local htext = cFontString(self.Power, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'RIGHT')
-		htext:SetPoint('BOTTOMRIGHT', 'oUF_CombaUITarget', 'TOPLEFT', -6, 2)
+		htext:SetPoint('BOTTOMRIGHT', cfg.mainUF.target.position.a, cfg.mainUF.target.position.pa, cfg.mainUF.target.position.x-6, cfg.mainUF.target.position.y+7)
 		self:Tag(htext, '[unit:HPpercent]')
 
 		-- Class Bar
 		local ptext = cFontString(self.Power, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'CENTER')
-		ptext:SetPoint('CENTER', self.Power, 'CENTER', 1, 1)        
+		ptext:SetPoint('CENTER', self.Power, 'CENTER', 1, 0)        
 		self:Tag(ptext, '[unit:PPflex]')
 		local cres = cFontString(self.Power, nil, cfg.bfont, 21, cfg.fontflag, 1, 1, 1, 'RIGHT')
 		cres:SetPoint('RIGHT', self.Power, 'LEFT', -3, 0)        
@@ -44,12 +44,12 @@ local UnitSpecific = {
 
 		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player') then
 			local runes = CreateFrame('Frame', nil, self)
-			runes:SetSize(cfg.mainUF.width, 3)
+			runes:SetSize(cfg.mainUF.player.width, 3)
 			runes:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
 			runes.bg = fBackDrop(runes, runes)
 			local i = 6
 			for index = 1, 6 do
-				runes[i] = cStatusbar(runes, cfg.texture, nil, cfg.mainUF.width/6-1, 3, 0.21, 0.6, 0.7, 1)
+				runes[i] = cStatusbar(runes, cfg.texture, nil, cfg.mainUF.player.width/6-1, 3, 0.21, 0.6, 0.7, 1)
 				if i == 6 then
 					runes[i]:SetPoint('TOPRIGHT', runes, 'TOPRIGHT', 0, 0)
 				else
@@ -65,7 +65,7 @@ local UnitSpecific = {
 			self.Runes = runes
 		elseif classSpec == SPEC_MONK_BREWMASTER then
 			local stagger = CreateFrame('StatusBar', nil, self)
-			stagger:SetSize(cfg.mainUF.width, 3)
+			stagger:SetSize(cfg.mainUF.player.width, 3)
 			stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
 			stagger.bg = fBackDrop(stagger, stagger)
 			stagger.bg = stagger:CreateTexture(nil, 'BACKGROUND')
@@ -78,6 +78,17 @@ local UnitSpecific = {
 		elseif class == 'SHAMAN' then
 			-- TODO : TotemBar? like Runebar
 		end
+
+		-- GCD Bar
+		local class_color = RAID_CLASS_COLORS[class]
+		local gcd = cStatusbar(self, cfg.texture, nil, cfg.mainUF.player.width, cfg.mainUF.player.height, class_color.r, class_color.g, class_color.b, 1)
+		gcd:SetPoint('BOTTOM', self.Power, 'TOP', 0, 8)
+		gcd.bd = fBackDrop(gcd, gcd)
+		gcd.bg = gcd:CreateTexture(nil, 'BACKGROUND')
+		gcd.bg:SetAllPoints(gcd)
+		gcd.bg:SetTexture(cfg.texture)
+		gcd.bg:SetVertexColor(class_color.r, class_color.g, class_color.b, 0.4)
+		self.GCD = gcd
 
 		self.Combat = self.Power:CreateTexture(nil, 'OVERLAY')
 		self.Combat:SetSize(20, 20)
@@ -146,12 +157,11 @@ local UnitSpecific = {
 		self.RaidIcon:SetPoint("RIGHT", htext, "LEFT", -1, 0)
 
 		local unitBuff = CreateFrame('Frame', nil, self)
-		unitBuff.size = 22
+		unitBuff.size = 13
 		unitBuff.spacing = 5
 		unitBuff.num = 3
 		unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
-		unitBuff:SetPoint('TOPLEFT', self.Health, 'BOTTOMLEFT', 0, -18)
-		unitBuff:SetAlpha(0.8)
+		unitBuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 5)
 		unitBuff.initialAnchor = 'LEFT'
 		unitBuff.PostCreateIcon = PostCreateIconSmall
 		unitBuff.PostUpdateIcon = PostUpdateIcon		
@@ -159,17 +169,16 @@ local UnitSpecific = {
 		self.Buffs = unitBuff
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
-		unitDebuff.size = 14
+		unitDebuff.size = 16
 		unitDebuff.spacing = 5
 		unitDebuff.num = 6
 		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-		unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 5)
-		--unitDebuff:SetAlpha(0.8)
+		unitDebuff:SetPoint('LEFT', 'oUF_CombaUIPlayer', 'RIGHT', 5, 0)
 		unitDebuff.initialAnchor = 'LEFT'
 		unitDebuff.onlyShowPlayer = true
 		unitDebuff.PostCreateIcon = PostCreateIconSmall
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
-		unitDebuff.CustomFilter = CustomFilter
+		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff	
 	end,
 
@@ -432,12 +441,12 @@ local spawnHelper = function(self, unit, ...)
 end
 
 oUF:Factory(function(self)
-	spawnHelper(self, 'target', 'LEFT', UIParent, 'CENTER', 100, 50)
-	spawnHelper(self, 'targettarget', 'TOP', 'oUF_CombaUITarget', 'BOTTOM', 0, -3)
-	spawnHelper(self, 'focus', 'LEFT', UIParent, 'CENTER', 100, 105)
-	spawnHelper(self, 'focustarget', 'BOTTOM', 'oUF_CombaUIFocus','TOP', 0, 5)
-	spawnHelper(self, 'player', cfg.mainUF.position.sa, cfg.mainUF.position.a, cfg.mainUF.position.pa, cfg.mainUF.position.x, cfg.mainUF.position.y)    
+	spawnHelper(self, 'player', cfg.mainUF.player.position.sa, cfg.mainUF.player.position.a, cfg.mainUF.player.position.pa, cfg.mainUF.player.position.x, cfg.mainUF.player.position.y)
 	spawnHelper(self, 'pet', 'BOTTOMLEFT', 'oUF_CombaUIPlayer', 'BOTTOMRIGHT', 4, 0)
+	spawnHelper(self, 'target', cfg.mainUF.target.position.sa, cfg.mainUF.target.position.a, cfg.mainUF.target.position.pa, cfg.mainUF.target.position.x, cfg.mainUF.target.position.y)
+	spawnHelper(self, 'targettarget', 'TOP', 'oUF_CombaUITarget', 'BOTTOM', 0, -3)
+	spawnHelper(self, 'focus', 'CENTER', 'oUF_CombaUITarget', 'CENTER', 0, 55)
+	spawnHelper(self, 'focustarget', 'BOTTOM', 'oUF_CombaUIFocus','TOP', 0, 5)
 
 	self:SetActiveStyle('CombaUI - Party')
 	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',

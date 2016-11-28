@@ -2,7 +2,6 @@ local name, ns = ...
 local cfg = ns.cfg
 local oUF = ns.oUF or oUF
 local class = select(2, UnitClass('player'))
-local classSpec = GetSpecialization()
 
 local Shared = function(self, unit)
 	self:RegisterForClicks('AnyUp')
@@ -39,7 +38,7 @@ local UnitSpecific = {
 		cres:SetPoint('RIGHT', self.Power, 'LEFT', -3, 0)        
 		self:Tag(cres, '[color][player:Resource]')
 		local subpower = cFontString(self.Power, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
-		subpower:SetPoint('LEFT', self.Power, 'RIGHT', 3, 1)        
+		subpower:SetPoint('LEFT', self.Power, 'RIGHT', 3, 0)        
 		self:Tag(subpower, '[player:SubMana]')
 
 		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player') then
@@ -63,7 +62,7 @@ local UnitSpecific = {
 				i=i-1
 			end
 			self.Runes = runes
-		elseif classSpec == SPEC_MONK_BREWMASTER then
+		elseif class == 'MONK' then
 			local stagger = CreateFrame('StatusBar', nil, self)
 			stagger:SetSize(cfg.mainUF.player.width, 3)
 			stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
@@ -450,7 +449,8 @@ oUF:Factory(function(self)
 
 	self:SetActiveStyle('CombaUI - Party')
 	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
-		'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
+--	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
+		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -15,
 		'oUF-initialConfigFunction', ([[
 			self:SetHeight(%d)
@@ -460,7 +460,7 @@ oUF:Factory(function(self)
 
 	self:SetActiveStyle'CombaUI - Partypet'
 	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
-		'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
+		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -13-cfg.subUF.party.height,
 		'oUF-initialConfigFunction', ([[
 			self:SetAttribute('unitsuffix', 'pet')
@@ -469,7 +469,7 @@ oUF:Factory(function(self)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
 	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
-		'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
+		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -15-cfg.subUF.party.height/2,
 		'oUF-initialConfigFunction', ([[
 		self:SetAttribute('unitsuffix', 'target')

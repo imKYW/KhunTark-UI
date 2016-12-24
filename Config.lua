@@ -18,12 +18,9 @@ cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'
 cfg.mainUF = {  -- Anchor is Player unitframe
 	player = {
 		width = 51,
-		height = 4,
+		height = 10,
 		position = { sa = 'TOP', a = UIParent, pa = 'CENTER', x = 0, y = -55 },
 	},
-	target = {
-		position = { sa = 'LEFT', a = UIParent, pa = 'CENTER', x = 100, y = 50 },
-	}
 }
 
 -- Sub Group (party, raid, boss, tank, arena, partytarget, tanktarget, arenatarget)
@@ -31,7 +28,7 @@ cfg.subUF = {
 	party = {
 		width = 70,
 		height = 25,
-		position = { sa = 'TOPRIGHT', a = UIParent, pa = 'CENTER', x = -120, y = -105 },
+		position = { sa = 'TOPRIGHT', a = UIParent, pa = 'CENTER', x = -120, y = -115 },
 	},
 	raid = {
 		width = 44,
@@ -41,7 +38,7 @@ cfg.subUF = {
 	boss = { -- arena
 		width = 70,
 		height = 25,
-		position = { sa = '', a = UIParent, pa = '', x = 120, y = 0 },
+		position = { sa = 'TOPLEFT', a = UIParent, pa = 'CENTER', x = 180, y = -115 },
 	},
 	tank = {
 		width = 95,
@@ -55,22 +52,17 @@ cfg.castbar = {
 	player = {
 		width = 110,
 		height = 14,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -85 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -88 },
 	},
 	target = {
-		width = 150,
+		width = 140,
 		height = 18,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = 150 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = 100 },
 	},
 	focus = {
 		width = 81,
 		height = 13,
 		position = { sa = 'BOTTOMRIGHT', a = 'oUF_CombaUIFocus', pa = 'BOTTOMLEFT', x = -5, y = 0 },
-	},
-	boss = {
-		width = 100,
-		height = 14,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = -120, y = -100 },
 	},
 	arena = {
 		width = 100,
@@ -83,8 +75,6 @@ cfg.castbar = {
 -- Unit Frames Options
 -----------------------------
 cfg.options = {
-	healcomm = false,
-	smooth = true,
 	disableRaidFrameManager = true,	-- disable default compact Raid Manager 
 	ResurrectIcon = true,
 	--TotemBar = false,

@@ -1,13 +1,13 @@
 local _, ns = ...
-local cfg = ns.cfg
 local oUF = ns.oUF or oUF
 
-if not cfg.uf.arena then return end
-
 local trinketSpells = {
-	[59752] = 120,
-	[42292] = 120,
-	[7744] = 45,
+	[42292] = 120, -- PVP trinkets
+	[195710] = 180, -- Honorable Medallion
+	[208683] = 120, -- Gladiator's Medallion
+	[59752] = 30, -- Every Man For Himself
+	[20594] = 30, -- Stoneform
+	[7744] = 30, -- Will of the Forsaken
 }
 
 local GetTrinketIcon = function(unit)

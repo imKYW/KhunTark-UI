@@ -173,11 +173,11 @@ local GetTime = GetTime
 local day, hour, minute = 86400, 3600, 60
 local FormatTime = function(s)
     if s >= day then
-        return format('%dd', floor(s/day + 0.5))
+        return format('%d', floor(s/day + 0.5))
     elseif s >= hour then
-        return format('%dh', floor(s/hour + 0.5))
+        return format('%d', floor(s/hour + 0.5))
     elseif s >= minute then
-        return format('%dm', floor(s/minute + 0.5))
+        return format('%d', floor(s/minute + 0.5))
     end
     return format('%d', math.fmod(s, minute))
 end
@@ -193,6 +193,8 @@ local CreateAuraTimer = function(self, elapsed)
                 self.remaining:SetTextColor(0.69, 0.31, 0.31)
             elseif self.timeLeft < 60 then
                 self.remaining:SetTextColor(1, 0.85, 0)
+            elseif self.timeLeft < 3600 then
+                self.remaining:SetTextColor(0.35, 0.85, 0.35)
             else
                 self.remaining:SetTextColor(1, 1, 1)
             end

@@ -1,8 +1,5 @@
 local _, ns = ...
-local cfg = ns.cfg
 local oUF = ns.oUF or oUF
-
-if not cfg.gcd.enable then return end
 
 local referenceSpells = {
 	3714,		-- Death Knight /  Path of Frost

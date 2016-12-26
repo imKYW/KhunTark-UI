@@ -28,7 +28,7 @@ cfg.subUF = {
 	party = {
 		width = 70,
 		height = 25,
-		position = { sa = 'TOPRIGHT', a = UIParent, pa = 'CENTER', x = -120, y = -115 },
+		position = { sa = 'TOPRIGHT', a = UIParent, pa = 'CENTER', x = -120, y = -120 },
 	},
 	raid = {
 		width = 44,
@@ -38,7 +38,7 @@ cfg.subUF = {
 	boss = { -- arena
 		width = 70,
 		height = 25,
-		position = { sa = 'TOPLEFT', a = UIParent, pa = 'CENTER', x = 180, y = -115 },
+		position = { sa = 'TOPLEFT', a = UIParent, pa = 'CENTER', x = 180, y = -120 },
 	},
 	tank = {
 		width = 95,
@@ -52,7 +52,7 @@ cfg.castbar = {
 	player = {
 		width = 110,
 		height = 14,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -88 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -98 },
 	},
 	target = {
 		width = 140,
@@ -132,10 +132,7 @@ cfg.treat = {
 
 --GCD
 cfg.gcd = {
-	enable = true,
 	pos = {'CENTER', UIParent, 0, 51},
-	width = 229,
-	height = 7,
 }
 
 --RaidDebuffs

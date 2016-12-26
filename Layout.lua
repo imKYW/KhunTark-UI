@@ -78,8 +78,8 @@ local UnitSpecific = {
 
 		-- GCD Bar
 		local class_color = RAID_CLASS_COLORS[class]
-		local gcd = cStatusbar(self, cfg.texture, nil, cfg.mainUF.player.width, cfg.mainUF.player.height, class_color.r, class_color.g, class_color.b, 1)
-		gcd:SetPoint('BOTTOM', self.Power, 'TOP', 0, 8)
+		local gcd = cStatusbar(self, cfg.texture, nil, cfg.mainUF.player.width, 3, class_color.r, class_color.g, class_color.b, 1)
+		gcd:SetPoint('BOTTOM', self.Power, 'TOP', 0, 22)
 		gcd.bd = fBackDrop(gcd, gcd)
 		gcd.bg = gcd:CreateTexture(nil, 'BACKGROUND')
 		gcd.bg:SetAllPoints(gcd)
@@ -88,8 +88,8 @@ local UnitSpecific = {
 		self.GCD = gcd
 
 		self.Combat = self.Power:CreateTexture(nil, 'OVERLAY')
-		self.Combat:SetSize(20, 20)
-		self.Combat:SetPoint('RIGHT', htext, 'LEFT', 3, 0)
+		self.Combat:SetSize(15, 15)
+		self.Combat:SetPoint('BOTTOMLEFT', self, 'TOPLEFT', -1, -2)
 		-- TODO : Rest Highlight
 
 		-- EXP Bar
@@ -405,10 +405,10 @@ local UnitSpecific = {
 
 		local unitBuff = CreateFrame('Frame', nil, self)
 		unitBuff.size = cfg.subUF.party.height
-		unitBuff.spacing = 4
+		unitBuff.spacing = 5
 		unitBuff.num = 2
 		unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
-		unitBuff:SetPoint('RIGHT', self, 'LEFT', -4, -0)
+		unitBuff:SetPoint('RIGHT', self, 'LEFT', -5, -0)
 		--unitBuff:SetAlpha(0.7)
 		unitBuff.initialAnchor = 'RIGHT' 
 		unitBuff['growth-x'] = 'LEFT'
@@ -418,10 +418,10 @@ local UnitSpecific = {
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height
-		unitDebuff.spacing = 4
+		unitDebuff.spacing = 5
 		unitDebuff.num = 5
 		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-		unitDebuff:SetPoint('LEFT', self, 'RIGHT', 4, 0)
+		unitDebuff:SetPoint('LEFT', self, 'RIGHT', 5, 0)
 		--unitDebuff:SetAlpha(0.7)
 		unitDebuff.PostCreateIcon = PostCreateIconSmall
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
@@ -486,7 +486,7 @@ oUF:Factory(function(self)
 	spawnHelper(self, 'focustarget', 'BOTTOM', 'oUF_CombaUIFocus','TOP', 0, 5)
 
 	self:SetActiveStyle('CombaUI - Party')
-	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; show',
+	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 --	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -18,
@@ -497,7 +497,7 @@ oUF:Factory(function(self)
 	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
 	self:SetActiveStyle'CombaUI - Partypet'
-	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; show',
+	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -16-cfg.subUF.party.height,
 		'oUF-initialConfigFunction', ([[
@@ -506,7 +506,7 @@ oUF:Factory(function(self)
 	):SetPoint("TOPRIGHT", 'oUF_Party', "TOPRIGHT", 0, 6)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
-	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; show',
+	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', -18-cfg.subUF.party.height/2,
 		'oUF-initialConfigFunction', ([[

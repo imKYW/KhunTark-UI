@@ -26,13 +26,13 @@ local UnitSpecific = {
 		self.Health:SetHeight(cfg.mainUF.player.height-4)
 		self.Power:SetHeight(3)		
 
-		local htext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
-		htext:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 3, 2)
+		local htext = cFontString(self.Health, nil, cfg.bfont, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
 		self:Tag(htext, '[unit:HPpercent]')
 		local ptext = cFontString(self.Power, nil, cfg.bfont, 9, cfg.fontflag, 1, 1, 1, 'CENTER')
-		ptext:SetPoint('CENTER', self.Power, 'CENTER', 1, 0)        
+		ptext:SetPoint('CENTER', self.Power, 'CENTER', 1, -1)        
 		self:Tag(ptext, '[unit:PPflex]')
-		local cres = cFontString(self.Power, nil, cfg.bfont, 21, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		local cres = cFontString(self.Power, nil, cfg.bfont, 26, cfg.fontflag, 1, 1, 1, 'RIGHT')
 		cres:SetPoint('RIGHT', self, 'LEFT', -3, 0)        
 		self:Tag(cres, '[color][player:Resource]')
 		local subpower = cFontString(self.Power, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
@@ -41,12 +41,12 @@ local UnitSpecific = {
 
 		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player') then
 			local runes = CreateFrame('Frame', nil, self)
-			runes:SetSize(cfg.mainUF.player.width, 3)
+			runes:SetSize(cfg.mainUF.player.width, 5)
 			runes:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
 			runes.bg = fBackDrop(runes, runes)
 			local i = 6
 			for index = 1, 6 do
-				runes[i] = cStatusbar(runes, cfg.texture, nil, cfg.mainUF.player.width/6-1, 3, 0.21, 0.6, 0.7, 1)
+				runes[i] = cStatusbar(runes, cfg.texture, nil, cfg.mainUF.player.width/6-1, 5, 0.21, 0.6, 0.7, 1)
 				if i == 6 then
 					runes[i]:SetPoint('TOPRIGHT', runes, 'TOPRIGHT', 0, 0)
 				else
@@ -62,7 +62,7 @@ local UnitSpecific = {
 			self.Runes = runes
 		elseif class == 'MONK' then
 			local stagger = CreateFrame('StatusBar', nil, self)
-			stagger:SetSize(cfg.mainUF.player.width, 3)
+			stagger:SetSize(cfg.mainUF.player.width, 5)
 			stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
 			stagger.bg = fBackDrop(stagger, stagger)
 			stagger.bg = stagger:CreateTexture(nil, 'BACKGROUND')
@@ -79,7 +79,7 @@ local UnitSpecific = {
 		-- GCD Bar
 		local class_color = RAID_CLASS_COLORS[class]
 		local gcd = cStatusbar(self, cfg.texture, nil, cfg.mainUF.player.width, 3, class_color.r, class_color.g, class_color.b, 1)
-		gcd:SetPoint('BOTTOM', self.Power, 'TOP', 0, 22)
+		gcd:SetPoint(cfg.castbar.player.position.sa, cfg.castbar.player.position.a, cfg.castbar.player.position.pa, cfg.castbar.player.position.x, cfg.castbar.player.position.y-cfg.castbar.player.height)
 		gcd.bd = fBackDrop(gcd, gcd)
 		gcd.bg = gcd:CreateTexture(nil, 'BACKGROUND')
 		gcd.bg:SetAllPoints(gcd)
@@ -88,8 +88,8 @@ local UnitSpecific = {
 		self.GCD = gcd
 
 		self.Combat = self.Power:CreateTexture(nil, 'OVERLAY')
-		self.Combat:SetSize(15, 15)
-		self.Combat:SetPoint('BOTTOMLEFT', self, 'TOPLEFT', -1, -2)
+		self.Combat:SetSize(17, 17)
+		self.Combat:SetPoint('LEFT', self.Health, 'LEFT', 0, 0)
 		-- TODO : Rest Highlight
 
 		-- EXP Bar
@@ -133,17 +133,17 @@ local UnitSpecific = {
 
 		extCastbar(self)
 		
-		self:SetSize(cfg.mainUF.player.width, cfg.mainUF.player.height)
+		self:SetSize(cfg.mainUF.player.width*0.8, cfg.mainUF.player.height)
 		--self.Health.colorClass = false
 		--self.Health.colorReaction = false
 		--self.Health.colorHealth = true
 		--self.Health.colorSmooth = true
 
-		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
+		local name = cFontString(self.Health, nil, cfg.font, 13, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)        
 		self:Tag(name, '[unit:lv] [color][name]')		
-		local htext = cFontString(self.Health, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'LEFT')
-		htext:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', -1, 1)
+		local htext = cFontString(self.Health, nil, cfg.bfont, 16, cfg.fontflag, 1, 1, 1, 'LEFT')
+		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
 		self:Tag(htext, '[unit:HPpercent]')
 
 		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
@@ -183,15 +183,10 @@ local UnitSpecific = {
 
 		extCastbar(self)
 
-		self:SetSize(3, 14)
-		self.Health:SetHeight(14)
-		self.Health:SetOrientation("VERTICAL")
-		self.Health.colorClass = false
-		self.Health.colorReaction = false
-		self.Health.colorHealth = true
-		self.Health.colorSmooth = true
+		self:SetSize(cfg.mainUF.player.width*0.4, cfg.mainUF.player.height*0.4)
+		self.Health:SetHeight(cfg.mainUF.player.height*0.4)
 
-		local name = cFontString(self.Health, nil, cfg.font, 16, cfg.fontflag, 1, 1, 1, 'LEFT')
+		local name = cFontString(self.Health, nil, cfg.font, 14, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)
 		self:Tag(name, '[color][name]')
 
@@ -216,7 +211,7 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'targettarget'
 
-		self:SetSize(cfg.mainUF.player.width/3, 6)
+		self:SetSize((cfg.mainUF.player.width*0.8)/3, 6)
 		self.Health.colorClass = false
     	self.Health.colorReaction = false
 		self.Health.colorHealth = true
@@ -231,9 +226,7 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'focustarget'
 
-		self:SetSize(3, 10)
-		self.Health:SetHeight(10)
-		self.Health:SetOrientation("VERTICAL")
+		self:SetSize((cfg.mainUF.player.width*0.8)/3, 6)
 		self.Health.colorClass = false
     	self.Health.colorReaction = false
 		self.Health.colorHealth = true
@@ -256,7 +249,7 @@ local UnitSpecific = {
 		self.Health:SetReverseFill(true)
 		self.Power:SetHeight(2)
 
-		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
 		name:SetPoint('TOPRIGHT', self.Health, 'TOPLEFT', -1, 2)
 		self:Tag(name, '[color][name]')
 		
@@ -298,7 +291,7 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'partypet'
 
-		self:SetSize(cfg.subUF.party.width/2, 2)
+		self:SetSize(cfg.subUF.party.width/3, 2)
 		self.Health.colorClass = false
 		self.Health.colorReaction = false
 		self.Health.colorHealth = true
@@ -309,18 +302,17 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'partytarget'
 
-		self:SetSize(cfg.subUF.party.width/2, cfg.subUF.party.height/2)
-		self.Health:SetHeight(cfg.subUF.party.height/2)
-		self.Health:SetReverseFill(true)
+		self:SetSize(3, 10)
+		self.Health:SetHeight(10)
+		self.Health:SetOrientation("VERTICAL")
+		self.Health.colorClass = false
+    	self.Health.colorReaction = false
+		self.Health.colorHealth = true
+		self.Health.colorSmooth = true
 
-		local htext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
-		htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
-		self:Tag(htext, '[unit:HPpercent]')
-
-		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(10, 10)
-		self.RaidIcon:SetAlpha(0.9)
-		self.RaidIcon:SetPoint("LEFT", self.Health, "LEFT", 1, 0)
+		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
+	    name:SetPoint('RIGHT', self.Health, 'LEFT', -1, 0.5)
+		self:Tag(name, '[color][name]')
 	end,
 
 	raid = function(self, ...)
@@ -447,7 +439,7 @@ local UnitSpecific = {
 		self:Tag(name, '[color][name]')
 		
 		local htext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'LEFT')
-		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
+		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 1)
 		self:Tag(htext, '[unit:HPmix]')
 
 		local t = CreateFrame('Frame', nil, self)
@@ -456,6 +448,23 @@ local UnitSpecific = {
 		t.bg = fBackDrop(t, t)	
 		self.Trinket = t
     end,
+
+    arenatarget = function(self, ...)
+		Shared(self, ...)
+		self.unit = 'arenatarget'
+
+		self:SetSize(3, 10)
+		self.Health:SetHeight(10)
+		self.Health:SetOrientation("VERTICAL")
+		self.Health.colorClass = false
+    	self.Health.colorReaction = false
+		self.Health.colorHealth = true
+		self.Health.colorSmooth = true
+
+		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
+	    name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0.5)
+		self:Tag(name, '[color][name]')
+	end,
 }
 
 oUF:RegisterStyle('CombaUI', Shared)
@@ -482,14 +491,14 @@ oUF:Factory(function(self)
 	spawnHelper(self, 'pet', 'BOTTOMLEFT', 'oUF_CombaUIPlayer', 'TOPLEFT', 0, 5)
 	spawnHelper(self, 'target', 'LEFT', 'oUF_CombaUIPlayer', 'RIGHT', 10, 0)
 	spawnHelper(self, 'targettarget', 'BOTTOMRIGHT', 'oUF_CombaUITarget', 'TOPRIGHT', 0, 5)
-	spawnHelper(self, 'focus', 'RIGHT', 'oUF_CombaUITarget', 'RIGHT', 17, 120)
-	spawnHelper(self, 'focustarget', 'BOTTOM', 'oUF_CombaUIFocus','TOP', 0, 5)
+	spawnHelper(self, 'focus', 'BOTTOMLEFT', 'oUF_CombaUITarget', 'TOPRIGHT', 0, 40)
+	spawnHelper(self, 'focustarget', 'BOTTOMRIGHT', 'oUF_CombaUIFocus','TOPRIGHT', 0, 7)
 
 	self:SetActiveStyle('CombaUI - Party')
 	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
---	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
-		'yOffset', -18,
+		'yOffset', 18,
+		'point', 'BOTTOM',
 		'oUF-initialConfigFunction', ([[
 			self:SetHeight(%d)
 			self:SetWidth(%d)
@@ -499,20 +508,22 @@ oUF:Factory(function(self)
 	self:SetActiveStyle'CombaUI - Partypet'
 	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
-		'yOffset', -16-cfg.subUF.party.height,
+		'yOffset', 16+cfg.subUF.party.height,
+		'point', 'BOTTOM',
 		'oUF-initialConfigFunction', ([[
 			self:SetAttribute('unitsuffix', 'pet')
 		]])
-	):SetPoint("TOPRIGHT", 'oUF_Party', "TOPRIGHT", 0, 6)
+	):SetPoint("TOPRIGHT", 'oUF_Party', "TOPRIGHT", 0, 5)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
 	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
-		'yOffset', -18-cfg.subUF.party.height/2,
+		'yOffset', 8+cfg.subUF.party.height,
+		'point', 'BOTTOM',
 		'oUF-initialConfigFunction', ([[
-		self:SetAttribute('unitsuffix', 'target')
+			self:SetAttribute('unitsuffix', 'target')
 		]])
-	):SetPoint('TOPRIGHT', 'oUF_Party', 'TOPLEFT', -5, -cfg.subUF.party.height/2)
+	):SetPoint('BOTTOMRIGHT', 'oUF_Party', 'BOTTOMLEFT', -5, 0)
 
 	self:SetActiveStyle'CombaUI - Raid'
 	self:SpawnHeader('oUF_Raid', nil, 'custom show',
@@ -534,7 +545,7 @@ oUF:Factory(function(self)
 	):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
 
 	for i = 1, MAX_BOSS_FRAMES do
-		spawnHelper(self, 'boss'..i, cfg.subUF.boss.position.sa, cfg.subUF.boss.position.a, cfg.subUF.boss.position.pa, cfg.subUF.boss.position.x, cfg.subUF.boss.position.y+43-(43*i))
+		spawnHelper(self, 'boss'..i, cfg.subUF.boss.position.sa, cfg.subUF.boss.position.a, cfg.subUF.boss.position.pa, cfg.subUF.boss.position.x, cfg.subUF.boss.position.y-43+(43*i))
 	end
 
 	local arena = {}
@@ -544,7 +555,7 @@ oUF:Factory(function(self)
 		if i == 1 then
 			arena[i]:SetPoint(cfg.subUF.boss.position.sa, cfg.subUF.boss.position.a, cfg.subUF.boss.position.pa, cfg.subUF.boss.position.x, cfg.subUF.boss.position.y)
 		else
-			arena[i]:SetPoint('TOP', arena[i-1], 'BOTTOM', 0, -18)
+			arena[i]:SetPoint('BOTTOM', arena[i-1], 'TOP', 0, 18)
 		end
 	end
 	local arenapet = {}
@@ -554,7 +565,7 @@ oUF:Factory(function(self)
 		arenapet[i]:SetPoint("BOTTOMLEFT", arena[i], "TOPLEFT", 0, 3)
 	end
 	local arenatarget = {}	
-	self:SetActiveStyle'CombaUI - Focustarget'
+	self:SetActiveStyle'CombaUI - Arenatarget'
 	for i = 1, 5 do
 		arenatarget[i] = self:Spawn('arena'..i..'target', 'oUF_Arena'..i..'target')
 		arenatarget[i]:SetPoint('BOTTOMLEFT', arena[i], 'BOTTOMRIGHT', 5, 0)
@@ -651,8 +662,9 @@ end)
 ----------------------------------------------------------------------------------------
 -- For testing /run oUFAbu.TestArena()
 function TUF()
-	oUF_CombaUIBoss1:Show(); oUF_CombaUIBoss1.Hide = function() end oUF_CombaUIBoss1.unit = "target"
-	oUF_CombaUIBoss2:Show(); oUF_CombaUIBoss2.Hide = function() end oUF_CombaUIBoss2.unit = "target"
+	--oUF_CombaUIBoss1:Show(); oUF_CombaUIBoss1.Hide = function() end oUF_CombaUIBoss1.unit = "target"
+	--oUF_CombaUIBoss2:Show(); oUF_CombaUIBoss2.Hide = function() end oUF_CombaUIBoss2.unit = "target"
+	--oUF_Party:Show(); oUF_Party.Hide = function() end oUF_Party.unit = "target"
 
 	oUF_Arena1:Show(); oUF_Arena1.Hide = function() end oUF_Arena1.unit = "target"
 	oUF_Arena2:Show(); oUF_Arena2.Hide = function() end oUF_Arena2.unit = "target"
@@ -680,8 +692,9 @@ function TUF()
 	f:SetScript("OnUpdate", function(self, elapsed)
 		time = time + elapsed
 		if time > 5 then
-			oUF_CombaUIBoss1:UpdateAllElements("ForceUpdate")
-			oUF_CombaUIBoss2:UpdateAllElements("ForceUpdate")
+			--oUF_CombaUIBoss1:UpdateAllElements("ForceUpdate")
+			--oUF_CombaUIBoss2:UpdateAllElements("ForceUpdate")
+			--oUF_Party:UpdateAllElements("ForceUpdate")
 			oUF_Arena1:UpdateAllElements("ForceUpdate")
 			oUF_Arena2:UpdateAllElements("ForceUpdate")
 			oUF_Arena3:UpdateAllElements("ForceUpdate")

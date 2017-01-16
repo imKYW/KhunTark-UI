@@ -633,7 +633,7 @@ oUF:Factory(function(self)
 					    local _, spec, class, texture = nil, 'UNKNOWN', 'UNKNOWN', nil
 
 					    if s and s > 0 then
-						    _, spec, _, texture, _, _, class = GetSpecializationInfoByID(s)
+						    _, spec, _, texture, _, class = GetSpecializationInfoByID(s)
 					    end
 
 					    if class and spec then

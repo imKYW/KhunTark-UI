@@ -19,7 +19,7 @@ cfg.mainUF = {  -- Anchor is Player unitframe
 	player = {
 		width = 100,
 		height = 20,
-		position = { sa = 'TOP', a = UIParent, pa = 'CENTER', x = 0, y = -150 },
+		position = { sa = 'TOP', a = UIParent, pa = 'CENTER', x = 0, y = -100 },
 	},
 }
 
@@ -52,7 +52,7 @@ cfg.castbar = {
 	player = {
 		width = 100,
 		height = 14,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -95 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -80 },
 	},
 	target = {
 		width = 140,
@@ -128,11 +128,6 @@ cfg.treat = {
 	pos = {'CENTER', UIParent, 0, 39},
 	width = 40,
 	height = 4,
-}
-
---GCD
-cfg.gcd = {
-	pos = {'CENTER', UIParent, 0, 51},
 }
 
 --RaidDebuffs

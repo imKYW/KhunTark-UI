@@ -3,6 +3,14 @@ local cfg = ns.cfg
 local oUF = ns.oUF or oUF
 local class = select(2, UnitClass('player'))
 
+local auraLoader = CreateFrame('Frame')
+auraLoader:RegisterEvent('ADDON_LOADED')
+auraLoader:SetScript('OnEvent', function(self, event, addon)
+	ActivityAuras = ActivityAuras or {}
+	PersonalAuras = PersonalAuras or {}
+	UpdateAuraList()
+end)
+
 local Shared = function(self, unit)
 	self:RegisterForClicks('AnyUp')
 	self:SetScript('OnEnter', OnEnterHL)
@@ -125,6 +133,34 @@ local UnitSpecific = {
 
 		self.Experience = Experience
 		self.Experience.Rested = Rested
+
+		local personalBuff = CreateFrame('Frame', nil, self)
+		personalBuff.size = 30
+		personalBuff.spacing = 4
+		personalBuff.num = 5
+		personalBuff:SetSize((personalBuff.size+personalBuff.spacing)*personalBuff.num-personalBuff.spacing, personalBuff.size)
+		personalBuff:SetPoint('CENTER', UIParent, 'CENTER', -75, -(personalBuff.size/2))
+		personalBuff.initialAnchor = 'CENTER'            
+		personalBuff['growth-x'] = 'LEFT' 
+		personalBuff['growth-y'] = 'DOWN'
+		personalBuff.PostCreateIcon = PostCreateIconNormal
+		personalBuff.PostUpdateIcon = PostUpdateIcon
+		personalBuff.CustomFilter = CustomAuraFilters.personal
+		self.Auras = personalBuff
+
+		local activityBuff = CreateFrame('Frame', nil, self)
+		activityBuff.size = 30
+		activityBuff.spacing = 4
+		activityBuff.num = 5
+		activityBuff:SetSize((activityBuff.size+activityBuff.spacing)*activityBuff.num-activityBuff.spacing, activityBuff.size)
+		activityBuff:SetPoint('CENTER', UIParent, 'CENTER', 75, -(personalBuff.size/2))
+		activityBuff.initialAnchor = 'CENTER'
+		activityBuff['growth-x'] = 'RIGHT'
+		activityBuff['growth-y'] = 'DOWN'
+		activityBuff.PostCreateIcon = PostCreateIconNormal
+		activityBuff.PostUpdateIcon = PostUpdateIcon
+		activityBuff.CustomFilter = CustomAuraFilters.activity
+		self.Buffs = activityBuff
 	end,
 
 	target = function(self, ...)

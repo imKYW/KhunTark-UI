@@ -120,6 +120,20 @@ function Power(self, direction) -- TOP else BOTTOM
     self.Power.bg = pbg
 end
 
+-- PhaseIcon ----------------------------------------------------------------------------
+function Phase(self)
+    local pi = CreateFrame('Frame', nil, self.Health)
+    pi:SetFrameLevel(self.Health:GetFrameLevel()+1)
+    pi:SetSize(10, 10)
+    pi:SetPoint('CENTER', 0,-3)
+    pi:SetAlpha(0.2)
+    pi.text = cFontString(pi, 'OVERLAY', cfg.symbol, 18, '', 1, 0, 1)
+    pi.text:SetShadowOffset(1, -1)
+    pi.text:SetPoint('CENTER')
+    pi.text:SetText('M')
+    self.PhaseIcon = pi
+end
+
 -- Current Target/Focus -----------------------------------------------------------------
 function ctfBorder(self)
     local ctfBackdrop = {
@@ -290,27 +304,26 @@ function PostUpdateIcon(icons, unit, icon, index, offset)
     icon:SetScript('OnUpdate', CreateAuraTimer)
 end
 
--- Current Target/Focus -----------------------------------------------------------------
-
---CreateClassBar
-local function CreateClassBar(self)
-    --statusbar
-    local s = CreateFrame("StatusBar", nil, self)
-    s:SetStatusBarTexture(cfg.texture)
-    s:SetSize(130, 5)
-    SetPoint('CENTER', UIParent, 'CENTER', 0, 30)
-    --bg
-    local bg = s:CreateTexture(nil, "BACKGROUND")
-    bg:SetTexture(cfg.texture)
-    bg:SetAllPoints()
-    s.bg = bg
-    --backdrop
-    CreateBackdrop(s)
-    --attributes
-    s.bg.multiplier = 0.3
-    return s
+-- PortraitTimer ------------------------------------------------------------------------
+function PortraitTimer(self, size, fontsize, sa, a, pa, x, y)
+    self.PortraitTimer = CreateFrame('Frame', nil, self.Health)
+    self.PortraitTimer:SetSize(size, size)    
+    self.PortraitTimer:SetPoint(sa, a, pa, x, y)
+    self.PortraitTimer:SetFrameStrata('MEDIUM')
+    self.PortraitTimer.bg = fBackDrop(self.PortraitTimer, self.PortraitTimer)
+    self.PortraitTimer.Icon = self.PortraitTimer:CreateTexture(nil, 'BACKGROUND')
+    self.PortraitTimer.Icon:SetAllPoints(self.PortraitTimer)
+    self.PortraitTimer.Remaining = self.PortraitTimer:CreateFontString(nil, 'OVERLAY')
+    self.PortraitTimer.Remaining:SetPoint('BOTTOM', self.PortraitTimer.Icon, 'BOTTOM', 0, 1)
+    self.PortraitTimer.Remaining:SetTextColor(1, 1, 1)
+    self.PortraitTimer.Remaining:SetFont(cfg.font, fontsize, 'THINOUTLINE')
 end
 
+
+
+
+
+-- dummy
 CustomFilter = function(icons, ...)
     local _, icon, name, _, _, _, _, _, _, caster = ...
     local isPlayer
@@ -322,70 +335,4 @@ CustomFilter = function(icons, ...)
         icon.owner = caster
         return true
     end
-end
-
-AWIcon = function(AWatch, icon, spellID, name, self)          
-    local count = cFontString(icon, 'OVERLAY', cfg.aura.font, cfg.aura.fontsize, cfg.aura.fontflag, 1, 1, 1)
-    count:SetPoint('BOTTOMRIGHT', icon, 5, -5)
-    icon.count = count
-    icon.cd:SetReverse(true)
-end
-
-createAuraWatch = function(self, unit)
-    if cfg.aw.enable and cfg.spellIDs[class] then
-        local auras = CreateFrame('Frame', nil, self)
-        auras:SetAllPoints(self.Health)
-        auras.onlyShowPresent = cfg.aw.onlyShowPresent
-        auras.anyUnit = cfg.aw.anyUnit
-        auras.icons = {}
-        auras.PostCreateIcon = AWIcon
-        
-        for i, v in pairs(cfg.spellIDs[class]) do
-            local icon = CreateFrame('Frame', nil, auras)
-            icon.spellID = v[1]
-            icon:SetSize(6, 6)
-            if v[3] then
-                icon:SetPoint(v[3])
-            else
-                icon:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMLEFT', 7 * i, 0)
-            end
-            icon:SetBackdrop(backdrop)
-            icon:SetBackdropColor(0, 0, 0, 1)
-            
-            local tex = icon:CreateTexture(nil, 'ARTWORK')
-            tex:SetAllPoints(icon)
-            tex:SetTexCoord(.1, .9, .1, .9)
-            tex:SetTexture(cfg.texture)
-            tex:SetVertexColor(unpack(v[2]))
-            icon.icon = tex
-        
-            auras.icons[v[1]] = icon
-        end
-        self.AuraWatch = auras
-    end
-end
-
-AuraTracker = function(self)
-    self.PortraitTimer = CreateFrame('Frame', nil, self.Health)
-    self.PortraitTimer.Icon = self.PortraitTimer:CreateTexture(nil, 'BACKGROUND')
-    self.PortraitTimer.Icon:SetSize(32, 32)
-    self.PortraitTimer.Icon:SetPoint("CENTER", self.Health, "CENTER", 0, -1)
-
-    self.PortraitTimer.Remaining = self.PortraitTimer:CreateFontString(nil, 'OVERLAY')
-    self.PortraitTimer.Remaining:SetPoint('BOTTOM', self.PortraitTimer.Icon)
-    self.PortraitTimer.Remaining:SetFont(cfg.font, 15, 'THINOUTLINE')
-    self.PortraitTimer.Remaining:SetTextColor(1, 1, 1)
-end
-
-ph = function(self) 
-    local ph = CreateFrame('Frame', nil, self.Health)
-    ph:SetFrameLevel(self.Health:GetFrameLevel()+1)
-    ph:SetSize(10, 10)
-    ph:SetPoint('CENTER', 0,-3)
-    ph:SetAlpha(0.2)
-    ph.text = cFontString(ph, 'OVERLAY', cfg.symbol, 18, '', 1, 0, 1)
-    ph.text:SetShadowOffset(1, -1)
-    ph.text:SetPoint('CENTER')
-    ph.text:SetText('M')
-    self.PhaseIcon = ph
 end

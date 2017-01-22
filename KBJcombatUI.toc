@@ -1,6 +1,6 @@
 ## Interface: 70100
 ## Title: KBJ CombatUI
-## Version: 1.2
+## Version: 1.5
 ## Author: Kimbanjang
 ## Notes: UI for focusing combat
 
@@ -12,6 +12,7 @@ Libs\oUF_Smooth.lua
 Libs\oUF_Experience.lua
 Libs\oUF_GCD.lua
 Libs\oUF_Trinkets.lua
+Libs\oUF_Portraittimers.lua
 Libs\oUF_PVPSpecIcons.lua
 Libs\basicCore.lua
 Libs\basicTag.lua

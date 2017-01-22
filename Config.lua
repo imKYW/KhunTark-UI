@@ -21,6 +21,11 @@ cfg.mainUF = {  -- Anchor is Player unitframe
 		height = 20,
 		position = { sa = 'TOP', a = UIParent, pa = 'CENTER', x = 0, y = -100 },
 	},
+	focus = {
+		width = 40,
+		height = 10,
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 130, y = 78 },
+	},
 }
 
 -- Sub Group (party, raid, boss, tank, arena, partytarget, tanktarget, arenatarget)
@@ -28,7 +33,7 @@ cfg.subUF = {
 	party = {
 		width = 80,
 		height = 25,
-		position = { sa = 'BOTTOMRIGHT', a = UIParent, pa = 'CENTER', x = -190, y = -25 },
+		position = { sa = 'BOTTOMRIGHT', a = UIParent, pa = 'CENTER', x = -270, y = -70 },
 	},
 	raid = {
 		width = 44,
@@ -38,7 +43,7 @@ cfg.subUF = {
 	boss = { -- arena
 		width = 80,
 		height = 25,
-		position = { sa = 'BOTTOMLEFT', a = UIParent, pa = 'CENTER', x = 250, y = -25 },
+		position = { sa = 'BOTTOMLEFT', a = UIParent, pa = 'CENTER', x = 270, y = -70 },
 	},
 	tank = {
 		width = 95,
@@ -60,9 +65,9 @@ cfg.castbar = {
 		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = 100 },
 	},
 	focus = {
-		width = 140,
+		width = 120,
 		height = 13,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = 75 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 10, y = 78 },
 	},
 	arena = {
 		width = 100,

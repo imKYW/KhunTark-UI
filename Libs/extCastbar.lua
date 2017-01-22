@@ -93,15 +93,14 @@ function extCastbar(self)
     elseif self.unit == 'focus' then
         castbar:SetSize(cfg.castbar.focus.width, cfg.castbar.focus.height)
         castbar:SetPoint(cfg.castbar.focus.position.sa, cfg.castbar.focus.position.a, cfg.castbar.focus.position.pa, cfg.castbar.focus.position.x, cfg.castbar.focus.position.y)
-        castbar:SetReverseFill(true)
-        castbarIcon:SetSize(cfg.castbar.focus.height*1.7, cfg.castbar.focus.height*1.7)
-        castbarIcon:SetPoint('LEFT', castbar, 'RIGHT', 3, 0)
+        castbarIcon:SetSize(cfg.castbar.focus.height, cfg.castbar.focus.height)
+        castbarIcon:SetPoint('RIGHT', castbar, 'LEFT', -3, 0)
         castbarName:SetFont(cfg.font, 10, cfg.fontflag)
-        castbarName:SetJustifyH('RIGHT')
-        castbarName:SetPoint('RIGHT', castbar, 'RIGHT', 0, 0.5)
+        castbarName:SetJustifyH('LEFT')
+        castbarName:SetPoint('LEFT', castbar, 'LEFT', 1, 0.5)
         castbarTime:SetFont(cfg.bfont, 10, cfg.fontflag)
-        castbarTime:SetJustifyH('LEFT')
-        castbarTime:SetPoint('LEFT', castbar, 'LEFT', 1, 0.5)
+        castbarTime:SetJustifyH('RIGHT')
+        castbarTime:SetPoint('RIGHT', castbar, 'RIGHT', 0, 0.5)
         castbarShield:SetSize(cfg.castbar.focus.height*4, cfg.castbar.focus.height*4)
         castbarShield:SetPoint("CENTER", castbarIcon, "CENTER", 0, 1)
     end
@@ -120,13 +119,10 @@ function extCastbar(self)
 
     self.Castbar = castbar
     self.Castbar.bg = castbarBG
-    self.Castbar.Icon = castbarIcon
     self.Castbar.Text = castbarName
     self.Castbar.Time = castbarTime
+    self.Castbar.Icon = castbarIcon
     self.Castbar.Shield = castbarShield
-
-    if self.unit ~= 'focus' then
-        self.Castbar.Spark = castbarSpark    
-        self.Castbar.SafeZone = castbarSafeZone
-    end
+    self.Castbar.Spark = castbarSpark    
+    self.Castbar.SafeZone = castbarSafeZone
 end

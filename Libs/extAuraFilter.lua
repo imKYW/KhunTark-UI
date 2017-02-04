@@ -27,6 +27,7 @@ local ActivityAuras = {
 
 local PersonalAuras = {
 	[207472]  = 4, -- [LEG] 프라다
+	[228399]  = 4, -- [ENH] for Tanker
 	[1022]   = 4, -- Hand of Protection
 	[102342] = 4, -- Ironbark
 	[33206]  = 4, -- Pain Suppression
@@ -57,7 +58,8 @@ if playerClass == "DEATHKNIGHT" then
 	ActivityAuras[49016]	= 2 -- [Unholy] Unholy Frenzy
 	ActivityAuras[81340]	= 2 -- [Unholy] Sudden Doom
 	ActivityAuras[188290]	= 2 -- [Unholy] Death and Decay
-	ActivityAuras[215711]	= 2 -- [Unholy] Soul Reaper
+	ActivityAuras[215711]	= 2 -- [Unholy] Soul Reaper	
+	PersonalAuras[207319]	= 2 -- [Unholy 5/2] 시체방패
 	--PersonalAuras[49039]	= 2 -- [T2/1] Lichborne
 	--PersonalAuras[51052]	= 2 -- [T2/2] Anti-Magic Zone
 	--PersonalAuras[51460]	= 2 -- [T4/3] Runic Corruption

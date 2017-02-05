@@ -151,6 +151,24 @@ oUF.Tags.Methods['unit:lv'] = function(unit)
 end
 oUF.Tags.Events['unit:lv'] = 'UNIT_NAME_UPDATE'
 
+-- Classification
+oUF.Tags.Methods['unit:classification'] = function(unit)
+    local classification = UnitClassification(unit)
+
+    if classification == 'worldboss' then
+        return '!'
+    elseif classification == 'rare' then
+        return '#'
+    elseif classification == 'rareelite' then
+        return '#+'
+    elseif classification == 'elite' then
+        return '+'
+    else
+        return false
+    end
+end
+oUF.Tags.Events['unit:classification'] = 'UNIT_NAME_UPDATE'
+
 -- Color HP%
 oUF.Tags.Methods['unit:HPpercent'] = function(unit)
     local min, max = UnitHealth(unit), UnitHealthMax(unit)

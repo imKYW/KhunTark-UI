@@ -16,7 +16,7 @@ local Shared = function(self, unit)
 	self:SetScript('OnEnter', OnEnterHL)
 	self:SetScript('OnLeave', OnLeaveHL)
 
-	fBackDrop(self, self)	
+	fBackDrop(self, self)
 	Health(self)
 
 	self.Range = { insideAlpha = 1, outsideAlpha = 0.4 }

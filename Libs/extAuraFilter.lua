@@ -181,6 +181,14 @@ CustomAuraFilters = {
 		return v and v < 4
 	end,
 	]]
+	--[[
+	local function CustomFilter(...)
+	--icons, unit, icon, name, rank, texture, count, dispelType, duration, expiration, caster, isStealable, nameplateShowSelf, spellID, canApply, isBossDebuff, casterIsPlayer, nameplateShowAll
+	local _, _, _, _, _, _, _, _, _, _, caster, _, _, _, _, _, _, nameplateShowAll = ...
+	return nameplateShowAll or (caster == "player" or caster == "pet" or caster == "vehicle")
+	end
+
+	]]
 }
 
 OnlyPlayerFilter = function(icons, ...)

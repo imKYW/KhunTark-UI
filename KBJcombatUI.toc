@@ -1,6 +1,6 @@
 ## Interface: 70100
 ## Title: KBJ CombatUI
-## Version: 1.5
+## Version: 1.8
 ## Author: Kimbanjang
 ## Notes: UI for focusing combat
 
@@ -21,3 +21,4 @@ Libs\extCastbar.lua
 Libs\extClassbar.lua
 
 Layout.lua
+NamePlate.lua

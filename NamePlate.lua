@@ -108,18 +108,16 @@ local NamePlateSpecific = function(self)
 	unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
 	unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', -1, 24)
 	unitDebuff.initialAnchor = 'TOPLEFT'
-	--unitDebuff["growth-x"] = 'RIGHT'
-	--unitDebuff["growth-y"] = 'UP'
 	unitDebuff.onlyShowPlayer = true
 	unitDebuff.PostCreateIcon = PostCreateIconSmall
 	unitDebuff.PostUpdateIcon = PostUpdateIcon
 	unitDebuff.CustomFilter = CustomFilter
 	self.Debuffs = unitDebuff
-	self.Debuffs:SetScale(0.7) -- trick Scale bug
+	self.Debuffs:SetScale(0.7) -- trick for Scale bug
 
 	local AuraTacker = CreateFrame('Frame', nil, self)
-	AuraTacker:SetSize(20, 20)    
-    AuraTacker:SetPoint('TOP', self.Health, 'BOTTOM', 0, -30)
+	AuraTacker:SetSize(24, 24)    
+    AuraTacker:SetPoint('TOP', self.Health, 'BOTTOM', 0, -23)
     AuraTacker:SetFrameStrata('MEDIUM')
     AuraTacker.bg = fBackDrop(AuraTacker, AuraTacker)
     AuraTacker.Icon = AuraTacker:CreateTexture(nil, 'BACKGROUND')
@@ -142,38 +140,7 @@ local NamePlateSpecific = function(self)
 	unitBuff.PostUpdateIcon = PostUpdateIcon
 	--unitBuff.CustomFilter = CustomFilter
 	self.Buffs = unitBuff
-
-	local unitDebuff = CreateFrame('Frame', nil, self)
-	unitDebuff.size = 16
-	unitDebuff.spacing = 4
-	unitDebuff.num = 8
-	unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-	unitDebuff:SetPoint('TOPLEFT', self.Health, 'BOTTOMLEFT', 0, -5)
-	unitDebuff.initialAnchor = 'LEFT'
-	unitDebuff.onlyShowPlayer = true
-	unitDebuff.PostCreateIcon = PostCreateIconSmall
-	unitDebuff.PostUpdateIcon = PostUpdateIcon
-	--unitDebuff.CustomFilter = CustomFilter
-	self.Debuffs = unitDebuff
-
-	cfg.nameplate = {
-	--debuffs
-	debuffs = {
-		enabled = false,
-		point = {"BOTTOMLEFT","TOPLEFT",0,5},
-		num = 5,
-		cols = 5,
-		size = 22,
-		spacing = 5,
-		initialAnchor = "TOPLEFT",
-		growthX = "RIGHT",
-		growthY = "UP",
-		disableCooldown = true,
-		filter = "HARMFUL|INCLUDE_NAME_PLATE_ONLY",
-		CustomFilter = CustomFilter
-	},
-}
-]]
+	]]
 end
 
 -- Spawn --------------------------------------------------------------------------------

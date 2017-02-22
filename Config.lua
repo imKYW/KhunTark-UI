@@ -57,7 +57,7 @@ cfg.castbar = {
 	player = {
 		width = 100,
 		height = 14,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -80 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -73 },
 	},
 	target = {
 		width = 140,

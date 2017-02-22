@@ -297,6 +297,8 @@ local UnitSpecific = {
 		htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
 		self:Tag(htext, '[unit:HPmix]')
 
+		self.DebuffHighlight = true
+
 		self.Leader = self.Health:CreateTexture(nil, "OVERLAY")
 		self.Leader:SetSize(11, 11)
 		self.Leader:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
@@ -380,6 +382,8 @@ local UnitSpecific = {
 		htext:SetJustifyH('RIGHT')
 	    self:Tag(htext, '[unit:HPpercent]')
 
+	    self.DebuffHighlight = true
+
 	    self.Leader = self.Health:CreateTexture(nil, "OVERLAY")
 		self.Leader:SetSize(11, 11)
 		self.Leader:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
@@ -394,7 +398,7 @@ local UnitSpecific = {
 		self.LFDRole:SetPoint("CENTER", self, "TOPRIGHT", -6, -6)
 		self.ReadyCheck = self.Health:CreateTexture(nil, "OVERLAY")
 		self.ReadyCheck:SetSize(32, 32)
-		self.ReadyCheck:SetPoint("CENTER", self, "CENTER", 0, 0)
+		self.ReadyCheck:SetPoint("CENTER", self, "CENTER", 0, 0)		
 	end,
 
 	boss = function(self, ...)

@@ -72,11 +72,11 @@ local function Update(object, event, unit)
 	local s = UnitThreatSituation(object.unit)
 	if s and s > 1 then
 		r, g, b = GetThreatStatusColor(s)
-		object.framebd:SetBackdropBorderColor(r, g, b)
+		object.fBackDrop:SetBackdropBorderColor(r, g, b)
 	elseif debuffType and CanDispel[playerClass]then	
-		object.framebd:SetBackdropBorderColor(color.r, color.g, color.b, object.DebuffHighlightAlpha or 1)	
+		object.fBackDrop:SetBackdropBorderColor(color.r, color.g, color.b, object.DebuffHighlightAlpha or 1)	
 	else
-		object.framebd:SetBackdropBorderColor(0, 0, 0)
+		object.fBackDrop:SetBackdropBorderColor(0, 0, 0)
 	end
 end
 

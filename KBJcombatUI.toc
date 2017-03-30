@@ -1,4 +1,4 @@
-## Interface: 70100
+## Interface: 70200
 ## Title: KBJ CombatUI
 ## Version: 1.9
 ## Author: Kimbanjang

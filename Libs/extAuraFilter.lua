@@ -23,6 +23,10 @@ local ActivityAuras = {
 	[214802]  = 4, -- [ITEM] 앵거 레드
 	[214803]  = 4, -- [ITEM] 앵거 블루
 	[214807]  = 4, -- [ITEM] 앵거 그린
+	[225726]  = 4, -- [ITEM] 매개체 화염(치타)
+	[225729]  = 4, -- [ITEM] 매개체 냉기(특화)
+	[225730]  = 4, -- [ITEM] 매개체 비전(가속)
+	[225130]  = 4, -- [ITEM] 티콘 탱 장신구
 }
 
 local PersonalAuras = {
@@ -71,16 +75,24 @@ end
 
 -- Monk -------------------------------------------------------------------------------------------
 if playerClass == "MONK" then
-	ActivityAuras[116847]	= 2 -- [WW 6/1] Rushing Jade Wind
-	ActivityAuras[195321]	= 2 -- [WW] 힘전달
-	ActivityAuras[196741]	= 2 -- [WW 6/3] 연계타격
-	ActivityAuras[137639]	= 2 -- [WW 7] 폭대불
-	ActivityAuras[152173]	= 2 -- [WW 7/3] 평온
-	PersonalAuras[117841]	= 2 -- [WW] Tiger's Lust
-	PersonalAuras[125174]	= 2 -- [WW] Touch of Karma
-	PersonalAuras[195381]	= 2 -- [WW] 치유의바람
-	PersonalAuras[122783]	= 2 -- [WW 5/2] Diffuse Magic
-	PersonalAuras[122278]	= 2 -- [WW 5/3] Dampen Harm
+	ActivityAuras[116847]	= 2 -- [T6/1] Rushing Jade Wind
+	PersonalAuras[117841]	= 2 -- Tiger's Lust
+	PersonalAuras[122783]	= 2 -- [T5/2] Diffuse Magic
+	PersonalAuras[122278]	= 2 -- [T5/3] Dampen Harm
+	ActivityAuras[215479]	= 2 -- [BM] 무쇠가죽주
+	--ActivityAuras[228563]	= 2 -- [BM] 의식상실연계
+	PersonalAuras[124275]	= 2 -- [BM] 작은 시간차
+	PersonalAuras[124274]	= 2 -- [BM] 중간 시간차
+	PersonalAuras[124273]	= 2 -- [BM] 큰 시간차
+	--PersonalAuras[195630]	= 2 -- [BM] 교묘한 투사
+	--PersonalAuras[214373]	= 2 -- [BM] 맥주수염
+	ActivityAuras[116768]	= 2 -- [WW] Blackout Kick! / 후려차기!
+	ActivityAuras[195321]	= 2 -- [WW] Transfer the Power / 힘전달
+	ActivityAuras[196741]	= 2 -- [WW] Hit Combo / 연계타격
+	ActivityAuras[137639]	= 2 -- [WW] Storm, Earth, and Fire / 폭대불
+	ActivityAuras[152173]	= 2 -- [WW] Serenity / 평온
+	PersonalAuras[125174]	= 2 -- [WW] Touch of Karma / 업보
+	PersonalAuras[195381]	= 2 -- [WW] Healing Winds / 치유의바람
 end
 
 --[[ ADD Racials / But I don't used it. cuz I played gnome only

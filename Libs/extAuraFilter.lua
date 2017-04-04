@@ -26,11 +26,11 @@ local ActivityAuras = {
 	[225726]  = 4, -- [ITEM] 매개체 화염(치타)
 	[225729]  = 4, -- [ITEM] 매개체 냉기(특화)
 	[225730]  = 4, -- [ITEM] 매개체 비전(가속)
-	[225130]  = 4, -- [ITEM] 티콘 탱 장신구
 }
 
 local PersonalAuras = {
 	[207472]  = 4, -- [LEG] 프라다
+	[225130]  = 4, -- [ITEM] 티콘 탱 장신구
 	[228399]  = 4, -- [ENH] for Tanker
 	[1022]   = 4, -- Hand of Protection
 	[102342] = 4, -- Ironbark

@@ -19,7 +19,8 @@ local ActivityAuras = {
 	[2825]   = 4, -- Bloodlust (shaman)
 	[32182]  = 4, -- Heroism (shaman)
 	[80353]  = 4, -- Time Warp (mage)
-	[229206]  = 4, -- [POT] 지속힘
+	[229206]  = 4, -- [POT] 지속힘	
+	[224149]  = 4, -- [ITEM] 별비셋
 	[214802]  = 4, -- [ITEM] 앵거 레드
 	[214803]  = 4, -- [ITEM] 앵거 블루
 	[214807]  = 4, -- [ITEM] 앵거 그린
@@ -199,7 +200,6 @@ CustomAuraFilters = {
 	local _, _, _, _, _, _, _, _, _, _, caster, _, _, _, _, _, _, nameplateShowAll = ...
 	return nameplateShowAll or (caster == "player" or caster == "pet" or caster == "vehicle")
 	end
-
 	]]
 }
 

@@ -288,6 +288,7 @@ local UnitSpecific = {
 		self.Health:SetHeight(cfg.subUF.party.height-3)
 		self.Health:SetReverseFill(true)
 		self.Power:SetHeight(2)
+		self.Power:SetReverseFill(true)
 
 		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
 		name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 3, 2)
@@ -401,6 +402,47 @@ local UnitSpecific = {
 		self.ReadyCheck:SetPoint("CENTER", self, "CENTER", 0, 0)		
 	end,
 
+	tank = function(self, ...)
+		Shared(self, ...)
+		self.unit = 'tank'
+		
+		Power(self, 'BOTTOM')
+		ctfBorder(self)
+		PortraitTimer(self, cfg.subUF.party.height, 14, 'LEFT', self, 'RIGHT', 5, 0) -- x = -(cfg.subUF.party.height-10-(cfg.subUF.party.height/2))
+		
+		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
+		self.Health:SetHeight(cfg.subUF.party.height-3)
+		self.Health:SetReverseFill(true)
+		self.Power:SetHeight(2)
+		self.Power:SetReverseFill(true)
+
+		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		name:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 2, 2)
+		self:Tag(name, '[color][name]')
+		
+		local htext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
+		self:Tag(htext, '[unit:HPmix]')
+
+		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidIcon:SetSize(18, 18)
+		self.RaidIcon:SetAlpha(0.9)
+		self.RaidIcon:SetPoint("LEFT", self.Health, "LEFT", 0, 0)
+
+		local unitDebuff = CreateFrame('Frame', nil, self)
+		unitDebuff.size = cfg.subUF.party.height
+		unitDebuff.spacing = 5
+		unitDebuff.num = 5
+		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
+		unitDebuff:SetPoint('RIGHT', self, 'LEFT', -5, 0)
+		unitDebuff.initialAnchor = 'RIGHT'
+		unitDebuff['growth-x'] = 'LEFT'
+		unitDebuff.PostCreateIcon = PostCreateIconSmall
+		unitDebuff.PostUpdateIcon = PostUpdateIcon
+		--unitDebuff.CustomFilter = CustomFilter
+		self.Debuffs = unitDebuff
+	end,
+
 	boss = function(self, ...)
 		Shared(self, ...)
 		self.unit = 'boss'
@@ -412,7 +454,7 @@ local UnitSpecific = {
 		self.Health:SetHeight(cfg.subUF.party.height-3)
 		self.Power:SetHeight(2)
 
-		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 2)
 		self:Tag(name, '[color][name]')
 		
@@ -446,9 +488,9 @@ local UnitSpecific = {
 		unitBuff.spacing = 5
 		unitBuff.num = 2
 		unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
-		unitBuff:SetPoint('RIGHT', self, 'LEFT', -5, -0)
+		unitBuff:SetPoint('RIGHT', self, 'LEFT', -5, 0)
 		--unitBuff:SetAlpha(0.7)
-		unitBuff.initialAnchor = 'RIGHT' 
+		unitBuff.initialAnchor = 'RIGHT'
 		unitBuff['growth-x'] = 'LEFT'
 		unitBuff.PostCreateIcon = PostCreateIconSmall
 		unitBuff.PostUpdateIcon = PostUpdateIcon
@@ -541,8 +583,8 @@ oUF:Factory(function(self)
 	spawnHelper(self, 'focus', cfg.mainUF.focus.position.sa, cfg.mainUF.focus.position.a, cfg.mainUF.focus.position.pa, cfg.mainUF.focus.position.x, cfg.mainUF.focus.position.y)
 	spawnHelper(self, 'focustarget', 'TOPRIGHT', 'oUF_CombaUIFocus','BOTTOMRIGHT', 0, -7)
 
-	self:SetActiveStyle('CombaUI - Party')
-	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
+	self:SetActiveStyle('CombaUI - Party') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
+	self:SpawnHeader('oUF_Party', nil, 'custom hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', 18,
 		'point', 'BOTTOM',
@@ -552,27 +594,31 @@ oUF:Factory(function(self)
 		]]):format(cfg.subUF.party.height, cfg.subUF.party.width)
 	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
-	self:SetActiveStyle'CombaUI - Partypet'
-	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
+	self:SetActiveStyle('CombaUI - Partypet')
+	self:SpawnHeader('oUF_PartyPets', nil, 'custom hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', 16+cfg.subUF.party.height,
 		'point', 'BOTTOM',
 		'oUF-initialConfigFunction', ([[
 			self:SetAttribute('unitsuffix', 'pet')
-		]])
+			self:SetHeight(%d)
+			self:SetWidth(%d)
+		]]):format(2, cfg.subUF.party.width/3)
 	):SetPoint("TOPRIGHT", 'oUF_Party', "TOPRIGHT", 0, 5)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
-	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid6,noexists,group:raid] show; hide',
+	self:SpawnHeader('oUF_PartyTargets', nil, 'custom hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', 8+cfg.subUF.party.height,
 		'point', 'BOTTOM',
 		'oUF-initialConfigFunction', ([[
 			self:SetAttribute('unitsuffix', 'target')
-		]])
+			self:SetHeight(%d)
+			self:SetWidth(%d)
+		]]):format(10, 3)
 	):SetPoint('BOTTOMLEFT', 'oUF_Party', 'BOTTOMRIGHT', 5, 0)
 
-	self:SetActiveStyle'CombaUI - Raid'
+	self:SetActiveStyle('CombaUI - Raid')
 	self:SpawnHeader('oUF_Raid', nil, 'custom show',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'xoffset', 5,
@@ -590,6 +636,18 @@ oUF:Factory(function(self)
 			self:SetWidth(%d)
 		]]):format(cfg.subUF.raid.height, cfg.subUF.raid.width)
 	):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
+
+	self:SetActiveStyle('CombaUI - Tank')
+	self:SpawnHeader('oUF_MainTank', nil, 'raid',
+		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
+		'groupFilter', 'MAINTANK',
+		'yOffset', 18,		
+		'point', 'BOTTOM',
+		'oUF-initialConfigFunction', ([[
+			self:SetHeight(%d)
+			self:SetWidth(%d)
+		]]):format(cfg.subUF.party.height, cfg.subUF.party.width)
+	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
 	for i = 1, MAX_BOSS_FRAMES do
 		spawnHelper(self, 'boss'..i, cfg.subUF.boss.position.sa, cfg.subUF.boss.position.a, cfg.subUF.boss.position.pa, cfg.subUF.boss.position.x, cfg.subUF.boss.position.y-43+(43*i))
@@ -709,10 +767,14 @@ end)
 ----------------------------------------------------------------------------------------
 -- For testing /run oUFAbu.TestArena()
 function TUF()
-	--oUF_CombaUIBoss1:Show(); oUF_CombaUIBoss1.Hide = function() end oUF_CombaUIBoss1.unit = "target"
-	--oUF_CombaUIBoss2:Show(); oUF_CombaUIBoss2.Hide = function() end oUF_CombaUIBoss2.unit = "target"
-	oUF_Party:Show(); oUF_Party.Hide = function() end oUF_Party.unit = "target"
+	oUF_CombaUIBoss1:Show(); oUF_CombaUIBoss1.Hide = function() end oUF_CombaUIBoss1.unit = "target"
+	oUF_CombaUIBoss2:Show(); oUF_CombaUIBoss2.Hide = function() end oUF_CombaUIBoss2.unit = "target"
+	--oUF_Party:Show(); oUF_Party.Hide = function() end oUF_Party.unit = "target"
+	--oUF_PartyPets:Show(); oUF_PartyPets.Hide = function() end oUF_PartyPets.unit = "target"
+	--oUF_PartyTargets:Show(); oUF_PartyTargets.Hide = function() end oUF_PartyTargets.unit = "target"
 
+	--oUF_MainTank:Show(); oUF_MainTank.Hide = function() end oUF_MainTank.unit = "target"
+	--[[
 	oUF_Arena1:Show(); oUF_Arena1.Hide = function() end oUF_Arena1.unit = "target"
 	oUF_Arena2:Show(); oUF_Arena2.Hide = function() end oUF_Arena2.unit = "target"
 	oUF_Arena3:Show(); oUF_Arena3.Hide = function() end oUF_Arena3.unit = "target"
@@ -725,18 +787,20 @@ function TUF()
 	oUF_ArenaPrep1:Show(); oUF_ArenaPrep1.Hide = function() end oUF_ArenaPrep1.unit = "target"
 	oUF_ArenaPrep2:Show(); oUF_ArenaPrep2.Hide = function() end oUF_ArenaPrep2.unit = "target"	
 	oUF_ArenaPrep3:Show(); oUF_ArenaPrep3.Hide = function() end oUF_ArenaPrep3.unit = "target"
-
+	]]
 	local time = 0
 	local f = CreateFrame("Frame")
 	f:SetScript("OnUpdate", function(self, elapsed)
 		time = time + elapsed
 		if time > 5 then
-			--oUF_CombaUIBoss1:UpdateAllElements("ForceUpdate")
-			--oUF_CombaUIBoss2:UpdateAllElements("ForceUpdate")
+			oUF_CombaUIBoss1:UpdateAllElements("ForceUpdate")
+			oUF_CombaUIBoss2:UpdateAllElements("ForceUpdate")
 			--oUF_Party:UpdateAllElements("ForceUpdate")
-			oUF_Arena1:UpdateAllElements("ForceUpdate")
-			oUF_Arena2:UpdateAllElements("ForceUpdate")
-			oUF_Arena3:UpdateAllElements("ForceUpdate")
+
+			--oUF_MainTank:UpdateAllElements("ForceUpdate")
+			--oUF_Arena1:UpdateAllElements("ForceUpdate")
+			--oUF_Arena2:UpdateAllElements("ForceUpdate")
+			--oUF_Arena3:UpdateAllElements("ForceUpdate")
 			time = 0
 		end
 	end)

@@ -2,7 +2,19 @@ local _, ns = ...
 local oUF = ns.oUF or oUF
 
 ns.PortraitTimerDB = {
+    --'119085', '227723',
     -- Higher up = higher display priority
+    -- Raid Debuff for Tank
+    '206641', -- Arcane Slash at Trilliax
+    '206677', -- Searing Brand at Krosus
+    '212492', -- Annihilate at Spellblade
+    '218503', -- Recursive Strikes at Botanist
+    '205984', -- Frost Gravitational Pull at Star
+    '214335', -- Fel Gravitational Pull at Star
+    '214167', -- Void Gravitational Pull at Star
+    '209615', -- Ablation Explosion at Elisande
+    '221606', -- Flames Of Sargeras at Guldan
+
     -- CCs
     '33786',  -- Cyclone
     '108194', -- Asphyxiate
@@ -222,9 +234,16 @@ local function AuraTimer(self, elapsed)
     end
 end
 
-local function UpdateIcon(self, texture, duration, expires)
+local function UpdateIcon(self, texture, duration, expires, count)
     self.Icon:SetTexture(texture) --SetPortraitToTexture(self.Icon, texture)
     self.Icon:SetTexCoord(0.07, 0.93, 0.07, 0.93) --self.Icon:SetTexCoord(.1, .9, .1, .9)
+
+    if count and count > 0 then
+        self.Count:SetText(count)
+    else
+        self.Count:SetText("")
+    end
+
     self.expires = expires
     self.duration = duration
     self:SetScript('OnUpdate', AuraTimer)
@@ -239,8 +258,11 @@ local Update = function(self, event, unit)
     for _, spellID in ipairs(ns.PortraitTimerDB) do
         local spell = GetSpellInfo(spellID)
         if (UnitBuff(unit, spell)) then
-            local name, _, texture, _, _, duration, expires = UnitBuff(unit, spell)
-            UpdateIcon(pt, texture, duration, expires)
+            local name, _, texture, count, _, duration, expires = UnitBuff(unit, spell)
+            if count then UpdateIcon(pt, texture, duration, expires, count)
+            else
+                UpdateIcon(pt, texture, duration, expires)
+            end
 
             pt:Show()
 
@@ -250,8 +272,11 @@ local Update = function(self, event, unit)
 
             return
         elseif (UnitDebuff(unit, spell)) then
-            local name, _, texture, _, _, duration, expires = UnitDebuff(unit, spell)
-            UpdateIcon(pt, texture, duration, expires)
+            local name, _, texture, count, _, duration, expires = UnitDebuff(unit, spell)
+            if count then UpdateIcon(pt, texture, duration, expires, count)
+            else
+                UpdateIcon(pt, texture, duration, expires)
+            end
 
             pt:Show()
 

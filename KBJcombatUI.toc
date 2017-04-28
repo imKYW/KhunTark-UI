@@ -13,13 +13,14 @@ Libs\oUF_DebuffHighlight.lua
 Libs\oUF_Experience.lua
 Libs\oUF_GCD.lua
 Libs\oUF_Trinkets.lua
+Libs\oUF_Freebgrid_Auras.lua
+Libs\oUF_Freebgrid_AurasList.lua
 Libs\oUF_Portraittimers.lua
 Libs\oUF_PVPSpecIcons.lua
 Libs\basicCore.lua
 Libs\basicTag.lua
 Libs\extAuraFilter.lua
 Libs\extCastbar.lua
-Libs\extClassbar.lua
 
 Layout.lua
 NamePlate.lua

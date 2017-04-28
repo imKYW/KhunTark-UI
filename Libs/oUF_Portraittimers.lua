@@ -234,16 +234,9 @@ local function AuraTimer(self, elapsed)
     end
 end
 
-local function UpdateIcon(self, texture, duration, expires, count)
+local function UpdateIcon(self, texture, duration, expires)
     self.Icon:SetTexture(texture) --SetPortraitToTexture(self.Icon, texture)
     self.Icon:SetTexCoord(0.07, 0.93, 0.07, 0.93) --self.Icon:SetTexCoord(.1, .9, .1, .9)
-
-    if count and count > 0 then
-        self.Count:SetText(count)
-    else
-        self.Count:SetText("")
-    end
-
     self.expires = expires
     self.duration = duration
     self:SetScript('OnUpdate', AuraTimer)
@@ -258,11 +251,8 @@ local Update = function(self, event, unit)
     for _, spellID in ipairs(ns.PortraitTimerDB) do
         local spell = GetSpellInfo(spellID)
         if (UnitBuff(unit, spell)) then
-            local name, _, texture, count, _, duration, expires = UnitBuff(unit, spell)
-            if count then UpdateIcon(pt, texture, duration, expires, count)
-            else
-                UpdateIcon(pt, texture, duration, expires)
-            end
+            local name, _, texture, _, _, duration, expires = UnitBuff(unit, spell)
+            UpdateIcon(pt, texture, duration, expires)
 
             pt:Show()
 
@@ -272,11 +262,8 @@ local Update = function(self, event, unit)
 
             return
         elseif (UnitDebuff(unit, spell)) then
-            local name, _, texture, count, _, duration, expires = UnitDebuff(unit, spell)
-            if count then UpdateIcon(pt, texture, duration, expires, count)
-            else
-                UpdateIcon(pt, texture, duration, expires)
-            end
+            local name, _, texture, _, _, duration, expires = UnitBuff(unit, spell)
+            UpdateIcon(pt, texture, duration, expires)
 
             pt:Show()
 

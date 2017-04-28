@@ -383,8 +383,6 @@ local UnitSpecific = {
 		htext:SetJustifyH('RIGHT')
 	    self:Tag(htext, '[unit:HPpercent]')
 
-	    self.DebuffHighlight = true
-
 	    self.Leader = self.Health:CreateTexture(nil, "OVERLAY")
 		self.Leader:SetSize(11, 11)
 		self.Leader:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
@@ -399,7 +397,11 @@ local UnitSpecific = {
 		self.LFDRole:SetPoint("CENTER", self, "TOPRIGHT", -6, -6)
 		self.ReadyCheck = self.Health:CreateTexture(nil, "OVERLAY")
 		self.ReadyCheck:SetSize(32, 32)
-		self.ReadyCheck:SetPoint("CENTER", self, "CENTER", 0, 0)		
+		self.ReadyCheck:SetPoint("CENTER", self, "CENTER", 0, 0)
+
+		self.FreebAuras = CreateFrame('Frame', nil, self)
+		self.FreebAuras:SetSize(cfg.subUF.raid.width*0.75, cfg.subUF.raid.height*0.75)
+		self.FreebAuras:SetPoint('CENTER', self.Health)
 	end,
 
 	tank = function(self, ...)
@@ -408,7 +410,7 @@ local UnitSpecific = {
 		
 		Power(self, 'BOTTOM')
 		ctfBorder(self)
-		PortraitTimer(self, cfg.subUF.party.height, 14, 'LEFT', self, 'RIGHT', 5, 0) -- x = -(cfg.subUF.party.height-10-(cfg.subUF.party.height/2))
+		--PortraitTimer(self, cfg.subUF.party.height, 14, 'LEFT', self, 'RIGHT', 5, 0) -- x = -(cfg.subUF.party.height-10-(cfg.subUF.party.height/2))
 		
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
 		self.Health:SetHeight(cfg.subUF.party.height-3)
@@ -584,7 +586,7 @@ oUF:Factory(function(self)
 	spawnHelper(self, 'focustarget', 'TOPRIGHT', 'oUF_CombaUIFocus','BOTTOMRIGHT', 0, -7)
 
 	self:SetActiveStyle('CombaUI - Party') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
-	self:SpawnHeader('oUF_Party', nil, 'custom hide',
+	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', 18,
 		'point', 'BOTTOM',
@@ -595,7 +597,7 @@ oUF:Factory(function(self)
 	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
 	self:SetActiveStyle('CombaUI - Partypet')
-	self:SpawnHeader('oUF_PartyPets', nil, 'custom hide',
+	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', 16+cfg.subUF.party.height,
 		'point', 'BOTTOM',
@@ -607,7 +609,7 @@ oUF:Factory(function(self)
 	):SetPoint("TOPRIGHT", 'oUF_Party', "TOPRIGHT", 0, 5)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
-	self:SpawnHeader('oUF_PartyTargets', nil, 'custom hide',
+	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
 		'yOffset', 8+cfg.subUF.party.height,
 		'point', 'BOTTOM',

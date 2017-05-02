@@ -68,7 +68,7 @@ local UnitSpecific = {
 				i=i-1
 			end
 			self.Runes = runes
-		elseif class == 'MONK' then
+		elseif class == 'MONK' and not UnitHasVehicleUI('player') then
 			local stagger = CreateFrame('StatusBar', nil, self)
 			stagger:SetSize(cfg.mainUF.player.width, 5)
 			stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)

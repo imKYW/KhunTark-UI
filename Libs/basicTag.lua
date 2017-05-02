@@ -285,7 +285,7 @@ oUF.Tags.Methods['player:StaggerPercent'] = function()
     local staggerText = scNumber(stagger)
 
     if stagger >= 60 then return hex(1, 0.42, 0.42)..staggerText
-    elseif stagger >= 30 then return hex(1, 0,98, 0.72)..staggerText
+    elseif stagger >= 30 then return hex(1, 0.98, 0.72)..staggerText
     elseif stagger > 0 then return hex(0.52, 1, 0.52)..staggerText
     else
         return

@@ -78,6 +78,13 @@ local UnitSpecific = {
 			stagger.bg:SetTexture(cfg.texture)
 			stagger.bg.multiplier = 0.3
 			self.Stagger = stagger
+
+			local staggerCurrent = cFontString(self.Stagger, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
+			staggerCurrent:SetPoint('LEFT', self.Stagger, 'LEFT', 1, 0)        
+			self:Tag(staggerCurrent, '[player:StaggerCurrent]')
+			local staggerPercent = cFontString(self.Power, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'RIGHT')
+			staggerPercent:SetPoint('RIGHT', self, 'LEFT', -3, 0)        
+			self:Tag(staggerPercent, '[player:StaggerPercent]')
 		elseif class == 'DRUID' then
 			-- TODO : MushroomBar?
 		elseif class == 'SHAMAN' then
@@ -182,6 +189,9 @@ local UnitSpecific = {
 		local htext = cFontString(self.Health, nil, cfg.bfont, 16, cfg.fontflag, 1, 1, 1, 'LEFT')
 		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
 		self:Tag(htext, '[unit:HPpercent]')
+		local htext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		htext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
+		self:Tag(htext, '[unit:HPcurrent]')
 
 		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
 		self.RaidIcon:SetSize(16, 16)

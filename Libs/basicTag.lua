@@ -261,7 +261,7 @@ oUF.Tags.Methods['player:Resource'] = function()
         return num
     end
 end
-oUF.Tags.Events['player:Resource'] = 'UNIT_POWER SPELLS_CHANGED'
+oUF.Tags.Events['player:Resource'] = 'UNIT_POWER SPELLS_CHANGED PLAYER_SPECIALIZATION_CHANGED'
 
 -- Player Mana if Mana is Sub Resource
 oUF.Tags.Methods['player:SubMana'] = function()
@@ -277,4 +277,28 @@ oUF.Tags.Methods['player:SubMana'] = function()
         return "|cff5e99ff"..math.floor(UnitPower('player', SPELL_POWER_MANA) / UnitPowerMax('player', SPELL_POWER_MANA) * 100 + 0.5).."|r"
     end
 end
-oUF.Tags.Events['player:SubMana'] = 'UNIT_POWER_FREQUENT UNIT_MAXPOWER'
+oUF.Tags.Events['player:SubMana'] = 'UNIT_POWER_FREQUENT UNIT_MAXPOWER PLAYER_SPECIALIZATION_CHANGED'
+
+-- Stagger% for Monk BM
+oUF.Tags.Methods['player:StaggerPercent'] = function()
+    local stagger = UnitStagger("player") / UnitHealthMax("player") * 100
+    local staggerText = scNumber(stagger)
+
+    if stagger >= 60 then return hex(1, 0.42, 0.42)..staggerText
+    elseif stagger >= 30 then return hex(1, 0,98, 0.72)..staggerText
+    elseif stagger > 0 then return hex(0.52, 1, 0.52)..staggerText
+    else
+        return
+    end
+end
+oUF.Tags.Events['player:StaggerPercent'] = 'UNIT_AURA PLAYER_SPECIALIZATION_CHANGED'
+
+-- Current Stagger for Monk BM
+oUF.Tags.Methods['player:StaggerCurrent'] = function()
+    local stagger = UnitStagger("player")
+    if stagger > 0 then return scNumber(stagger)
+    else
+        return
+    end
+end
+oUF.Tags.Events['player:StaggerCurrent'] = 'UNIT_AURA PLAYER_SPECIALIZATION_CHANGED'

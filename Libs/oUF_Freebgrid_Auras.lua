@@ -92,6 +92,16 @@ local CreateAuraIcon = function(auras)
     end
 end
 
+local MultiCheck = function(what, ...)
+    for i = 1, select('#', ...) do
+        if (what == select(i, ...)) then
+            return true
+        end
+    end
+
+    return false
+end
+
     -- Want to see all magic/disease/curse or poison debuffs, even when you can't dispell it?
     -- I've prepared something below..
 
@@ -179,7 +189,7 @@ checkTalents:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED')
 checkTalents:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
 checkTalents:RegisterEvent('CHARACTER_POINTS_CHANGED')
 checkTalents:SetScript('OnEvent', function()
-    if (ns.MultiCheck(class, 'SHAMAN', 'PALADIN', 'DRUID', 'PRIEST', 'MONK')) then
+    if (MultiCheck(class, 'SHAMAN', 'PALADIN', 'DRUID', 'PRIEST', 'MONK')) then
         local spec = GetSpecialization()
         if (class == 'SHAMAN') then
             dispelClass[class].Magic = spec == 3 and true

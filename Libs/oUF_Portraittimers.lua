@@ -1,20 +1,20 @@
 local _, ns = ...
 local oUF = ns.oUF or oUF
 
-ns.PortraitTimerDB = {
-    --'119085', '227723',
-    -- Higher up = higher display priority
-    -- Raid Debuff for Tank
-    '206641', -- Arcane Slash at Trilliax
-    '206677', -- Searing Brand at Krosus
-    '212492', -- Annihilate at Spellblade
-    '218503', -- Recursive Strikes at Botanist
-    '205984', -- Frost Gravitational Pull at Star
-    '214335', -- Fel Gravitational Pull at Star
-    '214167', -- Void Gravitational Pull at Star
-    '209615', -- Ablation Explosion at Elisande
-    '221606', -- Flames Of Sargeras at Guldan
+local PortraitTimerDB = {
+    --[[ Raid Debuff for Tank
+        '206641', -- Arcane Slash at Trilliax
+        '206677', -- Searing Brand at Krosus
+        '212492', -- Annihilate at Spellblade
+        '218503', -- Recursive Strikes at Botanist
+        '205984', -- Frost Gravitational Pull at Star
+        '214335', -- Fel Gravitational Pull at Star
+        '214167', -- Void Gravitational Pull at Star
+        '209615', -- Ablation Explosion at Elisande
+        '221606', -- Flames Of Sargeras at Guldan
+    ]]
 
+    -- Higher up = higher display priority
     -- CCs
     '33786',  -- Cyclone
     '108194', -- Asphyxiate
@@ -248,7 +248,7 @@ local Update = function(self, event, unit)
     end
 
     local pt = self.PortraitTimer
-    for _, spellID in ipairs(ns.PortraitTimerDB) do
+    for _, spellID in ipairs(PortraitTimerDB) do
         local spell = GetSpellInfo(spellID)
         if (UnitBuff(unit, spell)) then
             local name, _, texture, _, _, duration, expires = UnitBuff(unit, spell)
@@ -262,7 +262,7 @@ local Update = function(self, event, unit)
 
             return
         elseif (UnitDebuff(unit, spell)) then
-            local name, _, texture, _, _, duration, expires = UnitBuff(unit, spell)
+            local name, _, texture, _, _, duration, expires = UnitDebuff(unit, spell)
             UpdateIcon(pt, texture, duration, expires)
 
             pt:Show()

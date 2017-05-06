@@ -23,6 +23,10 @@ end
     -- Note: Just must be in this instance, when you run the script above
 
 local L = {
+    -- Legion
+    --['Emelard Nightmare'] = 1094,
+    ['The Nighthold'] = 1088,    
+
     -- Draenor Raids
     ['Hellfire Citadel'] = 1026,
     ['Blackrock Foundry'] = 988,
@@ -34,6 +38,9 @@ local L = {
     ['Terrace of Endless Spring'] = 886,
     ['Heart of Fear'] = 897,
     ['Mogu\'shan Vaults'] = 896,
+
+    -- PVP    
+    ['PVP'] = 9999,
 }
 
 ns.auras = {
@@ -53,18 +60,6 @@ ns.auras = {
         [GetSpellInfo(51372)] = 1, -- Daze
         [GetSpellInfo(5246)] = 5, -- Intimidating Shout
         -- [GetSpellInfo(6788)] = 16, -- Weakened Soul
-
-        --[[ Raid Debuff for Tank
-        '206641', -- Arcane Slash at Trilliax
-        '206677', -- Searing Brand at Krosus
-        '212492', -- Annihilate at Spellblade
-        '218503', -- Recursive Strikes at Botanist
-        '205984', -- Frost Gravitational Pull at Star
-        '214335', -- Fel Gravitational Pull at Star
-        '214167', -- Void Gravitational Pull at Star
-        '209615', -- Ablation Explosion at Elisande
-        '221606', -- Flames Of Sargeras at Guldan
-    ]]
     },
 
         -- Buffs
@@ -80,6 +75,87 @@ ns.auras = {
         -- Raid Debuffs
 
     instances = {
+        [L['The Nighthold']] = {
+            -- Skorpyron
+            [GetSpellInfo(204766)] = 20, -- Energy Surge
+            [GetSpellInfo(204744)] = 7, -- Toxic Chitin
+            [GetSpellInfo(214718)] = 4, -- Acidic Fragments
+
+            -- Chronomatic Anomaly
+            [GetSpellInfo(206607)] = 20, -- Chronomatic Particles
+            [GetSpellInfo(206617)] = 7, -- Time Bomb
+
+            -- Trilliax
+            [GetSpellInfo(206641)] = 20, -- Arcane Slash
+            [GetSpellInfo(208910)] = 3, -- Searing Bond
+            [GetSpellInfo(206838)] = 3, -- Succulent Feast
+            [GetSpellInfo(211615)] = 4, -- Sterilize
+            [GetSpellInfo(206798)] = 6, -- Toxic Slice
+            [GetSpellInfo(214573)] = 7, -- Stuffed
+
+            -- Spellblade Aluriel
+            [GetSpellInfo(215458)] = 20, -- Annihilate
+            [GetSpellInfo(230414)] = 3, -- Fel Stomp
+            [GetSpellInfo(212587)] = 4, -- Mark of Frost
+            [GetSpellInfo(213166)] = 4, -- Searing Brand Mark
+            [GetSpellInfo(212531)] = 5, -- Mark of Frost soon
+            [GetSpellInfo(213148)] = 5, -- Searing Brand Mark soon
+            [GetSpellInfo(212647)] = 7, -- Frostbitten
+
+            -- Krosus
+            [GetSpellInfo(206677)] = 20, -- Searing Brand
+            [GetSpellInfo(205344)] = 3, -- Orb of Destruciton
+
+            -- Tichondrious
+            [GetSpellInfo(208230)] = 20, -- Feast of Blood
+            [GetSpellInfo(206466)] = 3, -- Essence of Night
+            [GetSpellInfo(212794)] = 4, -- Brand of Argus
+            [GetSpellInfo(216040)] = 5, -- Burning Soul
+            [GetSpellInfo(216024)] = 6, -- Volatile Wound
+            [GetSpellInfo(206480)] = 7, -- Carrion Plague
+
+            -- High Botanist Tel'arn
+            [GetSpellInfo(218503)] = 20, -- Recursive Strikes
+            [GetSpellInfo(218342)] = 4, -- Parasitic Fixate
+            [GetSpellInfo(218809)] = 3, -- Call of Night
+            [GetSpellInfo(219235)] = 7, -- Toxic Spores
+
+            -- Star Augur Etraeus
+            [GetSpellInfo(205429)] = 21, -- Star Sign: Crab
+            [GetSpellInfo(216344)] = 21, -- Star Sign: Dragon
+            [GetSpellInfo(216345)] = 21, -- Star Sign: Hunter
+            [GetSpellInfo(205445)] = 21, -- Star Sign: Wolf
+            [GetSpellInfo(205984)] = 20, -- Gravitational Pull Frost
+            [GetSpellInfo(214335)] = 20, -- Gravitational Pull Fel
+            [GetSpellInfo(214167)] = 20, -- Gravitational Pull Void
+            [GetSpellInfo(206464)] = 7, -- Coronal Ejection
+            [GetSpellInfo(206936)] = 7, -- Icy Ejection
+            [GetSpellInfo(205649)] = 7, -- Fel Ejection
+            [GetSpellInfo(206398)] = 9, -- Felflame
+            [GetSpellInfo(206965)] = 9, -- Voidburst
+
+            -- Grand Magistrix Elisande
+            [GetSpellInfo(209973)] = 20, -- Ablation Explosion
+            [GetSpellInfo(209598)] = 4, -- Conflexive Burst
+            [GetSpellInfo(209244)] = 7, -- Delphuric Beam
+            [GetSpellInfo(211261)] = 9, -- Permeliative Torment
+            
+            -- Gul'dan
+            [GetSpellInfo(221606)] = 21, -- Flames Of Sargeras
+            [GetSpellInfo(209011)] = 20, -- Bonds of Fel
+            [GetSpellInfo(206384)] = 20, -- Empowered Bonds of Fel
+            [GetSpellInfo(209454)] = 19, -- Eye of Gul'dan
+            [GetSpellInfo(221728)] = 19, -- Empowered Eye of Gul'dan
+            [GetSpellInfo(208802)] = 9, -- Soul Corrosion
+
+            [GetSpellInfo(210339)] = 7, -- Time Dilation
+            [GetSpellInfo(206985)] = 7, -- Scattering Field
+            [GetSpellInfo(210296)] = 7, -- Resonant Barrier
+
+
+        },
+
+
         [L['Hellfire Citadel']] = {
 
                 -- Hellfire Assault
@@ -743,6 +819,10 @@ ns.auras = {
 
             [GetSpellInfo(116778)] = 7,    -- Focused Defense
             [GetSpellInfo(116525)] = 7,    -- Focused Assault
+        },
+
+        [L['PVP']] = {
+
         },
     },
 }

@@ -410,7 +410,7 @@ local UnitSpecific = {
 		self.ReadyCheck:SetPoint("CENTER", self, "CENTER", 0, 0)
 
 		self.FreebAuras = CreateFrame('Frame', nil, self)
-		self.FreebAuras:SetSize(cfg.subUF.raid.width*0.75, cfg.subUF.raid.height*0.75)
+		self.FreebAuras:SetSize(cfg.subUF.raid.width*0.6, cfg.subUF.raid.height*0.6)
 		self.FreebAuras:SetPoint('CENTER', self.Health)
 	end,
 
@@ -440,6 +440,10 @@ local UnitSpecific = {
 		self.RaidIcon:SetSize(18, 18)
 		self.RaidIcon:SetAlpha(0.9)
 		self.RaidIcon:SetPoint("LEFT", self.Health, "LEFT", 0, 0)
+
+		self.FreebAuras = CreateFrame('Frame', nil, self)
+		self.FreebAuras:SetSize(cfg.subUF.party.height, cfg.subUF.party.height)
+		self.FreebAuras:SetPoint('LEFT', self, "RIGHT", 5, 0)
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height

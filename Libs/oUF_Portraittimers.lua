@@ -2,18 +2,6 @@ local _, ns = ...
 local oUF = ns.oUF or oUF
 
 local PortraitTimerDB = {
-    --[[ Raid Debuff for Tank
-        '206641', -- Arcane Slash at Trilliax
-        '206677', -- Searing Brand at Krosus
-        '212492', -- Annihilate at Spellblade
-        '218503', -- Recursive Strikes at Botanist
-        '205984', -- Frost Gravitational Pull at Star
-        '214335', -- Fel Gravitational Pull at Star
-        '214167', -- Void Gravitational Pull at Star
-        '209615', -- Ablation Explosion at Elisande
-        '221606', -- Flames Of Sargeras at Guldan
-    ]]
-
     -- Higher up = higher display priority
     -- CCs
     '33786',  -- Cyclone

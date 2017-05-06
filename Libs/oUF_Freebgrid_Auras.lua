@@ -73,11 +73,11 @@ local CreateAuraIcon = function(auras)
         local font, fontsize = GameFontNormalSmall:GetFont()
         local count = overlay:CreateFontString(nil, 'OVERLAY')
         count:SetFont(font, 10, 'THINOUTLINE')
-        count:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 1, 1)
+        count:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 6, -5)
 
         local remaining = button:CreateFontString(nil, 'OVERLAY')
         remaining:SetPoint('CENTER', icon, 0.5, 0)
-        remaining:SetFont(font, 11, 'THINOUTLINE')
+        remaining:SetFont(font, 12, 'THINOUTLINE')
         remaining:SetTextColor(1, 0.82, 0)
 
         button.overlay = overlay
@@ -222,9 +222,12 @@ local zoneDelay = function(self, elapsed)
 
     if (IsInInstance()) then
         SetMapToCurrentZone()
+        local _, zoneType = IsInInstance()
         local zone = GetCurrentMapAreaID()
 
-        if (ns.auras.instances[zone]) then
+        if zoneType == "pvp" or zoneType == "arena" or zone == 978 then
+            instDebuffs = ns.auras.instances[9999]
+        elseif (ns.auras.instances[zone]) then
             instDebuffs = ns.auras.instances[zone]
         end
     else

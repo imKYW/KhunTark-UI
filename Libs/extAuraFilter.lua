@@ -15,16 +15,20 @@ local updateFuncs = {} -- functions to call to add/remove auras
 local BaseAuras = {}
 
 local ActivityAuras = {
-	[90355]  = 4, -- Ancient Hysteria (core hound)
 	[2825]   = 4, -- Bloodlust (shaman)
 	[32182]  = 4, -- Heroism (shaman)
 	[80353]  = 4, -- Time Warp (mage)
+	[90355]  = 4, -- Ancient Hysteria (core hound)
+	[146555]  = 4, -- Drum of Rage (item)
+	[178207]  = 4, -- Drum of Fury (item)
+	[230935]  = 4, -- Drum of Mountin (item)
 	[229206]  = 4, -- [POT] 지속힘	
-	[224149]  = 4, -- [ITEM] 별비셋
-	[221796]  = 4, -- [ITEM] 피굶 영웅	
-	[214802]  = 4, -- [ITEM] 앵거 레드
-	[214803]  = 4, -- [ITEM] 앵거 블루
-	[214807]  = 4, -- [ITEM] 앵거 그린
+	[208052]  = 4, -- [LEG] 세푸즈
+	[224149]  = 4, -- [SET] 별비셋
+	[221796]  = 4, -- [ITEM] 피굶 영웅
+	[214802]  = 4, -- [ITEM] 앵거 레드(치타)
+	[214807]  = 4, -- [ITEM] 앵거 그린(특화)
+	[214803]  = 4, -- [ITEM] 앵거 블루(가속)
 	[225726]  = 4, -- [ITEM] 매개체 화염(치타)
 	[225729]  = 4, -- [ITEM] 매개체 냉기(특화)
 	[225730]  = 4, -- [ITEM] 매개체 비전(가속)
@@ -78,11 +82,12 @@ end
 -- Monk -------------------------------------------------------------------------------------------
 if playerClass == "MONK" then
 	ActivityAuras[116847]	= 2 -- [T6/1] Rushing Jade Wind
-	PersonalAuras[117841]	= 2 -- Tiger's Lust
+	PersonalAuras[119085]	= 2 -- [T2/1] Chi Torpedo
+	PersonalAuras[117841]	= 2 -- [T2/2] Tiger's Lust
 	PersonalAuras[122783]	= 2 -- [T5/2] Diffuse Magic
 	PersonalAuras[122278]	= 2 -- [T5/3] Dampen Harm
 	ActivityAuras[215479]	= 2 -- [BM] 무쇠가죽주
-	--ActivityAuras[228563]	= 2 -- [BM] 의식상실연계
+	ActivityAuras[228563]	= 2 -- [BM] 의식상실연계
 	PersonalAuras[124275]	= 2 -- [BM] 작은 시간차
 	PersonalAuras[124274]	= 2 -- [BM] 중간 시간차
 	PersonalAuras[124273]	= 2 -- [BM] 큰 시간차

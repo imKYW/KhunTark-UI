@@ -120,7 +120,7 @@ local NamePlateSpecific = function(self)
 	self.Debuffs = unitDebuff
 	self.Debuffs:SetScale(0.7) -- trick for Scale bug
 
---[[
+	--[[
 	local AuraTacker = CreateFrame('Frame', nil, self)
 	AuraTacker:SetSize(24, 24)    
     AuraTacker:SetPoint('TOP', self.Health, 'BOTTOM', 0, -23)
@@ -133,7 +133,8 @@ local NamePlateSpecific = function(self)
     AuraTacker.Remaining:SetTextColor(1, 1, 1)
     AuraTacker.Remaining:SetFont(cfg.font, 8, 'THINOUTLINE')
     self.PortraitTimer = AuraTacker
-]]
+	]]
+	
 	--[[
 	local unitBuff = CreateFrame('Frame', nil, self)
 	unitBuff.size = 14

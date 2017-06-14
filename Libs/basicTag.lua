@@ -240,6 +240,7 @@ oUF.Tags.Methods['player:Resource'] = function()
         num = UnitPower('player', SPELL_POWER_SOUL_SHARDS)
     -- Combo Points
     elseif playerClass == 'ROGUE'
+    -- PlayerClass == 'DRUID' and RequireSpell = 5221 -- Shred
     or playerClassSpec == 104 -- Druid Feral
     or playerClassSpec == 103 -- Druid Guardian
         then

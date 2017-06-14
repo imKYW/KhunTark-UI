@@ -238,7 +238,7 @@ local Update = function(self, event, unit)
     local pt = self.PortraitTimer
     for _, spellID in ipairs(PortraitTimerDB) do
         local spell = GetSpellInfo(spellID)
-        if (UnitBuff(unit, spell)) then
+        if UnitBuff(unit, spell) then
             local name, _, texture, _, _, duration, expires = UnitBuff(unit, spell)
             UpdateIcon(pt, texture, duration, expires)
 

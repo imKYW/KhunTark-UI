@@ -175,7 +175,7 @@ local UnitSpecific = {
 		self.unit = 'target'
 
 		extCastbar(self)
-		PortraitTimer(self, 38, 16, 'BOTTOMLEFT', self, 'TOPLEFT', 0, 5)
+		--PortraitTimer(self, 38, 16, 'BOTTOMLEFT', self, 'TOPLEFT', 0, 5)
 		
 		self:SetSize(cfg.mainUF.player.width*0.8, cfg.mainUF.player.height)
 		--self.Health.colorClass = false
@@ -229,7 +229,7 @@ local UnitSpecific = {
 		self.unit = 'focus'
 
 		extCastbar(self)		
-		PortraitTimer(self, 26, 11, 'RIGHT', self, 'LEFT', -5, 0)
+		--PortraitTimer(self, 26, 11, 'RIGHT', self, 'LEFT', -5, 0)
 
 		self:SetSize(cfg.mainUF.focus.width, cfg.mainUF.focus.height)
 		self.Health:SetHeight(cfg.mainUF.focus.height)
@@ -292,7 +292,7 @@ local UnitSpecific = {
 		Power(self, 'BOTTOM')
 		Phase(self)
 		ctfBorder(self)
-		PortraitTimer(self, 34, 12, 'CENTER', self, 'CENTER', 0, 0)
+		--PortraitTimer(self, 34, 12, 'CENTER', self, 'CENTER', 0, 0)
 		
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
 		self.Health:SetHeight(cfg.subUF.party.height-3)
@@ -533,7 +533,7 @@ local UnitSpecific = {
 		Power(self, 'BOTTOM')
 		--extCastbar(self)
 		ctfBorder(self)		
-		PortraitTimer(self, 36, 16, 'CENTER', self, 'LEFT', -16, 0) -- x = -(cfg.subUF.party.height-10-(cfg.subUF.party.height/2))
+		--PortraitTimer(self, 36, 16, 'CENTER', self, 'LEFT', -16, 0) -- x = -(cfg.subUF.party.height-10-(cfg.subUF.party.height/2))
 		
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
 		self.Health:SetHeight(cfg.subUF.party.height-3)

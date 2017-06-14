@@ -102,9 +102,9 @@ local UnitSpecific = {
 		gcd.bg:SetVertexColor(class_color.r, class_color.g, class_color.b, 0.4)
 		self.GCD = gcd
 
-		self.Combat = self.Power:CreateTexture(nil, 'OVERLAY')
-		self.Combat:SetSize(17, 17)
-		self.Combat:SetPoint('LEFT', self.Health, 'LEFT', 0, 0)
+		self.CombatIndicator = self.Power:CreateTexture(nil, 'OVERLAY')
+		self.CombatIndicator:SetSize(17, 17)
+		self.CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 0, 0)
 		-- TODO : Rest Highlight
 
 		-- EXP Bar
@@ -193,10 +193,10 @@ local UnitSpecific = {
 		htext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
 		self:Tag(htext, '[unit:HPcurrent]')
 
-		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(16, 16)
-		self.RaidIcon:SetAlpha(0.9)
-		self.RaidIcon:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(16, 16)
+		self.RaidTargetIndicator:SetAlpha(0.9)
+		self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
 		local unitBuff = CreateFrame('Frame', nil, self)
 		unitBuff.size = 14
@@ -238,10 +238,10 @@ local UnitSpecific = {
 		name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)
 		self:Tag(name, '[color][name]')
 
-		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(14, 14)
-		self.RaidIcon:SetAlpha(0.9)
-		self.RaidIcon:SetPoint("right", self.Health, "LEFT", -4, 0)
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(14, 14)
+		self.RaidTargetIndicator:SetAlpha(0.9)
+		self.RaidTargetIndicator:SetPoint("right", self.Health, "LEFT", -4, 0)
 	end,
 
 	pet = function(self, ...)
@@ -310,22 +310,22 @@ local UnitSpecific = {
 
 		self.DebuffHighlight = true
 
-		self.Leader = self.Health:CreateTexture(nil, "OVERLAY")
-		self.Leader:SetSize(11, 11)
-		self.Leader:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
-		self.Assistant = self.Health:CreateTexture(nil, "OVERLAY")
-		self.Assistant:SetSize(11, 11)
-		self.Assistant:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
-		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(18, 18)
-		self.RaidIcon:SetAlpha(0.9)
-		self.RaidIcon:SetPoint("LEFT", self.Health, "LEFT", 1, 0)
-		self.LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
-		self.LFDRole:SetSize(10, 10)
-		self.LFDRole:SetPoint("CENTER", self.Health, "TOPLEFT", 6, -6)
-		self.ReadyCheck = self.Health:CreateTexture(nil, "OVERLAY")
-		self.ReadyCheck:SetSize(22, 22)
-		self.ReadyCheck:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.LeaderIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.LeaderIndicator:SetSize(11, 11)
+		self.LeaderIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
+		self.AssistantIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.AssistantIndicator:SetSize(11, 11)
+		self.AssistantIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(18, 18)
+		self.RaidTargetIndicator:SetAlpha(0.9)
+		self.RaidTargetIndicator:SetPoint("LEFT", self.Health, "LEFT", 1, 0)
+		self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.GroupRoleIndicator:SetSize(10, 10)
+		self.GroupRoleIndicator:SetPoint("CENTER", self.Health, "TOPLEFT", 6, -6)
+		self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.ReadyCheckIndicator:SetSize(22, 22)
+		self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height
@@ -393,21 +393,21 @@ local UnitSpecific = {
 		htext:SetJustifyH('RIGHT')
 	    self:Tag(htext, '[unit:HPpercent]')
 
-	    self.Leader = self.Health:CreateTexture(nil, "OVERLAY")
-		self.Leader:SetSize(11, 11)
-		self.Leader:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
-		self.Assistant = self.Health:CreateTexture(nil, "OVERLAY")
-		self.Assistant:SetSize(11, 11)
-		self.Assistant:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
-		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(16, 16)
-		self.RaidIcon:SetPoint("CENTER", self, "LEFT", 0, 0)
-		self.LFDRole = self.Health:CreateTexture(nil, "OVERLAY")
-		self.LFDRole:SetSize(10, 10)
-		self.LFDRole:SetPoint("CENTER", self, "TOPRIGHT", -6, -6)
-		self.ReadyCheck = self.Health:CreateTexture(nil, "OVERLAY")
-		self.ReadyCheck:SetSize(32, 32)
-		self.ReadyCheck:SetPoint("CENTER", self, "CENTER", 0, 0)
+	    self.LeaderIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.LeaderIndicator:SetSize(11, 11)
+		self.LeaderIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
+		self.AssistantIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.AssistantIndicator:SetSize(11, 11)
+		self.AssistantIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(16, 16)
+		self.RaidTargetIndicator:SetPoint("CENTER", self, "LEFT", 0, 0)
+		self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.GroupRoleIndicator:SetSize(10, 10)
+		self.GroupRoleIndicator:SetPoint("CENTER", self, "TOPRIGHT", -6, -6)
+		self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.ReadyCheckIndicator:SetSize(32, 32)
+		self.ReadyCheckIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
 
 		self.FreebAuras = CreateFrame('Frame', nil, self)
 		self.FreebAuras:SetSize(cfg.subUF.raid.width*0.6, cfg.subUF.raid.height*0.6)
@@ -436,10 +436,10 @@ local UnitSpecific = {
 		htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
 		self:Tag(htext, '[unit:HPmix]')
 
-		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(18, 18)
-		self.RaidIcon:SetAlpha(0.9)
-		self.RaidIcon:SetPoint("LEFT", self.Health, "LEFT", 0, 0)
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(18, 18)
+		self.RaidTargetIndicator:SetAlpha(0.9)
+		self.RaidTargetIndicator:SetPoint("LEFT", self.Health, "LEFT", 0, 0)
 
 		self.FreebAuras = CreateFrame('Frame', nil, self)
 		self.FreebAuras:SetSize(cfg.subUF.party.height, cfg.subUF.party.height)
@@ -478,14 +478,14 @@ local UnitSpecific = {
 		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
 		self:Tag(htext, '[unit:HPmix]')
 
-		self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidIcon:SetSize(18, 18)
-		self.RaidIcon:SetAlpha(0.9)
-		self.RaidIcon:SetPoint("RIGHT", self.Health, "RIGHT", -1, 0)
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(18, 18)
+		self.RaidTargetIndicator:SetAlpha(0.9)
+		self.RaidTargetIndicator:SetPoint("RIGHT", self.Health, "RIGHT", -1, 0)
 
 	    --[[
-	    local altp = createStatusbar(self, cfg.texture, nil, cfg.AltPowerBar.boss.height, cfg.AltPowerBar.boss.width, 1, 1, 1, 1)
-        altp:SetPoint(unpack(cfg.AltPowerBar.boss.pos))
+	    local altp = createStatusbar(self, cfg.texture, nil, cfg.AlternativePower.boss.height, cfg.AlternativePower.boss.width, 1, 1, 1, 1)
+        altp:SetPoint(unpack(cfg.AlternativePower.boss.pos))
 		altp.bd = framebd(altp, altp) 
         altp.bg = altp:CreateTexture(nil, 'BORDER')
         altp.bg:SetAllPoints(altp)
@@ -495,8 +495,7 @@ local UnitSpecific = {
         altp.Text:SetPoint('CENTER')
         self:Tag(altp.Text, '[altpower]') 
 		altp:EnableMouse(true)
-		altp.colorTexture = true
-        self.AltPowerBar = altp
+        self.AlternativePower = altp
         ]]
 
 		local unitBuff = CreateFrame('Frame', nil, self)

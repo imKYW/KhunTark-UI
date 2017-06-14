@@ -232,7 +232,7 @@ OnlyPlayerFilter = function(icons, ...)
     end
     if((icons.onlyShowPlayer and isPlayer) or (not icons.onlyShowPlayer and name)) then
         icon.isPlayer = isPlayer
-        icon.owner = caster
+        icon.caster = caster
         return true
     end
 end

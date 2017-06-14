@@ -4,21 +4,26 @@ local oUF = ns.oUF or oUF
 
 -- NamePlateCVars -----------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
-local NamePlateCVars = {}
--- System
-NamePlateCVars["nameplateGlobalScale"] = 1
-NamePlateCVars["nameplateMaxDistance"] = 60
-NamePlateCVars["nameplateOtherTopInset"] = -1
-NamePlateCVars["nameplateOtherBottomInset"] = -1
+local npCVars = {
+	-- System
+	nameplateGlobalScale = 1,
+	NamePlateHorizontalScale = 1,
+	NamePlateVerticalScale = 1,
+	
+	nameplateLargerScale = 1,
+	nameplateMaxDistance = 60,
+	--nameplateOtherTopInset = -1,
+	--nameplateOtherBottomInset = -1,
 
--- Non Select
-NamePlateCVars["nameplateMinScale"] = 0.8
-NamePlateCVars["nameplateMaxScale"] = 0.8
-NamePlateCVars["nameplateMinAlpha"] = 0.6
-NamePlateCVars["nameplateMaxAlpha"] = 0.6
--- Select
-NamePlateCVars["nameplateSelectedScale"] = 1
-NamePlateCVars["nameplateSelectedAlpha"] = 1
+	-- Non Select
+	nameplateMinScale = 0.8,
+	nameplateMaxScale = 0.8,
+	nameplateMinAlpha = 0.6,
+	nameplateMaxAlpha = 0.6,
+	-- Select
+	nameplateSelectedScale = 1,
+	nameplateSelectedAlpha = 1,
+}
 
 -- Function -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
@@ -96,10 +101,10 @@ local NamePlateSpecific = function(self)
 	htext:SetPoint('RIGHT', self.Health, 'BOTTOMRIGHT', 0, 0)
 	self:Tag(htext, '[unit:HPpercent]%')
 
-	self.RaidIcon = self.Health:CreateTexture(nil, "OVERLAY")
-	self.RaidIcon:SetSize(12, 12)
-	self.RaidIcon:SetAlpha(0.9)
-	self.RaidIcon:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+	self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+	self.RaidTargetIndicator:SetSize(12, 12)
+	self.RaidTargetIndicator:SetAlpha(0.9)
+	self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
 	local unitDebuff = CreateFrame('Frame', nil, self)
 	unitDebuff.size = 16
@@ -147,4 +152,4 @@ end
 -- Spawn --------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 oUF:RegisterStyle(name.."Nameplate", NamePlateSpecific)
-oUF:SpawnNamePlates(name.."Nameplate", name, nil, NamePlateCVars)
+oUF:SpawnNamePlates(name.."Nameplate", name, nil, npCVars)

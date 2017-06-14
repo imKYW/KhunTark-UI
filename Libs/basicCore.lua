@@ -120,7 +120,7 @@ function Power(self, direction) -- TOP else BOTTOM
     self.Power.bg = pbg
 end
 
--- PhaseIcon ----------------------------------------------------------------------------
+-- PhaseIndicator -----------------------------------------------------------------------
 function Phase(self)
     local pi = CreateFrame('Frame', nil, self.Health)
     pi:SetFrameLevel(self.Health:GetFrameLevel()+1)
@@ -131,7 +131,7 @@ function Phase(self)
     pi.text:SetShadowOffset(1, -1)
     pi.text:SetPoint('CENTER')
     pi.text:SetText('M')
-    self.PhaseIcon = pi
+    self.PhaseIndicator = pi
 end
 
 -- Current Target/Focus -----------------------------------------------------------------
@@ -336,7 +336,7 @@ CustomFilter = function(icons, ...)
     end
     if((icons.onlyShowPlayer and isPlayer) or (not icons.onlyShowPlayer and name)) then
         icon.isPlayer = isPlayer
-        icon.owner = caster
+        icon.caster = caster
         return true
     end
 end

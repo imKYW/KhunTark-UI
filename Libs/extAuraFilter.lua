@@ -15,16 +15,20 @@ local updateFuncs = {} -- functions to call to add/remove auras
 local BaseAuras = {}
 
 local ActivityAuras = {
-	[2825]   = 4, -- Bloodlust (shaman)
-	[32182]  = 4, -- Heroism (shaman)
+	[2825]   = 4, -- Bloodlust (shaman H)
+	[32182]  = 4, -- Heroism (shaman A)
 	[80353]  = 4, -- Time Warp (mage)
 	[90355]  = 4, -- Ancient Hysteria (core hound)
+	[160452]  = 4, -- Netherwinds (nether ray)
 	[146555]  = 4, -- Drum of Rage (item)
 	[178207]  = 4, -- Drum of Fury (item)
 	[230935]  = 4, -- Drum of Mountin (item)
+	[242584]  = 4, -- [WEAPON] DPS 52+ : DEX
+	[243096]  = 4, -- [WEAPON] Tank 52+ : Ver
 	[229206]  = 4, -- [POT] 지속힘	
 	[208052]  = 4, -- [LEG] 세푸즈
 	[224149]  = 4, -- [SET] 별비셋
+	[214128]  = 4, -- [ITEM] 시간의 파편
 	[221796]  = 4, -- [ITEM] 피굶 영웅
 	[214802]  = 4, -- [ITEM] 앵거 레드(치타)
 	[214807]  = 4, -- [ITEM] 앵거 그린(특화)
@@ -100,6 +104,17 @@ if playerClass == "MONK" then
 	ActivityAuras[152173]	= 2 -- [WW] Serenity / 평온
 	PersonalAuras[125174]	= 2 -- [WW] Touch of Karma / 업보
 	PersonalAuras[195381]	= 2 -- [WW] Healing Winds / 치유의바람
+end
+
+-- Hunter -----------------------------------------------------------------------------------------
+if playerClass == "HUNTER" then
+	PersonalAuras[186257]	= 2 -- 치타의 상 90%
+	PersonalAuras[186258]	= 2 -- 치타의 상 30%
+	PersonalAuras[118922]	= 2 -- [T3/1] 급가속
+	ActivityAuras[19574]	= 2 -- [BM] 야격
+	ActivityAuras[193530]	= 2 -- [BM] 야생의 상
+	ActivityAuras[195222]	= 4 -- [BM] 폭풍채찍(WEAPON)
+	PersonalAuras[186265]	= 2 -- [BM] 거북의 상
 end
 
 --[[ ADD Racials / But I don't used it. cuz I played gnome only

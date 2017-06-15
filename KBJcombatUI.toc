@@ -3,6 +3,8 @@
 ## Version: 1.9
 ## Author: Kimbanjang
 ## Notes: UI for focusing combat
+## RequiredDeps: Blizzard_CombatText
+## LoadWith: Blizzard_CombatText
 
 oUF\oUF.xml
 

@@ -7,6 +7,11 @@ PetCastingBarFrame.Show = function() end
 PetCastingBarFrame:Hide()
 ]]
 
+-- Setup FloatingCombatText -------------------------------------------------------------
+CombatTextFont:SetFont(cfg.font, cfg.plugin.fcf.size, cfg.fontflag)
+CombatTextFont:SetShadowOffset(0,0)
+CombatTextFont:SetShadowColor(0,0,0,0.4)
+
 -- Frame Backdrop -----------------------------------------------------------------------
 function fBackDrop(parent, anchor) 
     local f = CreateFrame('Frame', nil, parent)

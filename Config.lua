@@ -76,6 +76,14 @@ cfg.castbar = {
 	},
 }
 
+-- Plugin -------------------------------------------------------------------------------
+cfg.plugin = {
+	fcf = { -- Floating Combat Feedback
+		enable = true,
+		size = 13,
+	},
+}
+
 -----------------------------
 -- Unit Frames Options
 -----------------------------
@@ -125,6 +133,8 @@ cfg.aura = {
 -----------------------------
 -- Plugins 
 -----------------------------
+--FloatingCombatText
+
 
 --ThreatBar
 cfg.treat = {

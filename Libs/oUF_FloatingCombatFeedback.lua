@@ -111,7 +111,6 @@ local function Update(self, event, unit, message, flag, amount, school)
 	if self.unit ~= unit then return end
 
 	local element = self.FloatingCombatFeedback
-	local multiplier = 1
 	local text, color
 
 	if message == "WOUND" and not element.ignoreDamage then
@@ -128,9 +127,9 @@ local function Update(self, event, unit, message, flag, amount, school)
 				or colors[message]
 
 			if flag == "CRITICAL" or flag == "CRUSHING" then
-				multiplier = 1.25
+				text = text.."!!"
 			elseif flag == "GLANCING" then
-				multiplier = 0.75
+				text = text.."**"
 			end
 		elseif flag and flag ~= "CRITICAL" and flag ~= "CRUSHING" and flag ~= "GLANCING" and not element.ignoreMisc then
 			text = _G[flag]
@@ -146,7 +145,7 @@ local function Update(self, event, unit, message, flag, amount, school)
 		color = element.colors and element.colors[message] or colors[message]
 
 		if flag == "CRITICAL" then
-			multiplier = 1.25
+			text = text.."!!"
 		end
 	elseif message == "HEAL" and not element.ignoreHeal then
 		if element.abbreviateNumbers then
@@ -158,7 +157,7 @@ local function Update(self, event, unit, message, flag, amount, school)
 		color = element.colors and element.colors[message] or colors[message]
 
 		if flag == "CRITICAL" then
-			multiplier = 1.25
+			text = text.."!!"
 		end
 	elseif not element.ignoreMisc then
 		text = _G[message]
@@ -176,7 +175,7 @@ local function Update(self, event, unit, message, flag, amount, school)
 		string.y = element.yOffset * string.yDirection
 
 		string:SetText(text)
-		string:SetTextHeight(element.fontHeight * multiplier)
+		string:SetTextHeight(element.fontHeight)
 		string:SetTextColor(color.r, color.g, color.b)
 		string:SetPoint("CENTER", element, "CENTER", string.x, string.y)
 		string:SetAlpha(1)

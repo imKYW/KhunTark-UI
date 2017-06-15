@@ -168,6 +168,18 @@ local UnitSpecific = {
 		activityBuff.PostUpdateIcon = PostUpdateIcon
 		activityBuff.CustomFilter = CustomAuraFilters.activity
 		self.Buffs = activityBuff
+
+		local PlayerFCF = CreateFrame("Frame", nil, self)
+		PlayerFCF:SetSize(35, 35)
+		PlayerFCF:SetPoint("BOTTOM", 0, 10)
+		for i = 1, 8 do
+			PlayerFCF[i] = PlayerFCF:CreateFontString(nil, "OVERLAY", "CombatTextFont")
+		end
+		PlayerFCF.mode = "Fountain"
+		PlayerFCF.xOffset = 30
+		PlayerFCF.fontHeight = cfg.plugin.fcf.size
+		PlayerFCF.abbreviateNumbers = true
+		self.FloatingCombatFeedback = PlayerFCF
 	end,
 
 	target = function(self, ...)
@@ -221,14 +233,14 @@ local UnitSpecific = {
 		unitDebuff.PostCreateIcon = PostCreateIconSmall
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		--unitDebuff.CustomFilter = CustomFilter
-		self.Debuffs = unitDebuff		
+		self.Debuffs = unitDebuff
 	end,
 
 	focus = function(self, ...)
 		Shared(self, ...)
 		self.unit = 'focus'
 
-		extCastbar(self)		
+		extCastbar(self)
 		--PortraitTimer(self, 26, 11, 'RIGHT', self, 'LEFT', -5, 0)
 
 		self:SetSize(cfg.mainUF.focus.width, cfg.mainUF.focus.height)

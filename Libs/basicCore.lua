@@ -322,21 +322,3 @@ function PortraitTimer(self, size, fontsize, sa, a, pa, x, y)
     self.PortraitTimer.Remaining:SetTextColor(1, 1, 1)
     self.PortraitTimer.Remaining:SetFont(cfg.font, fontsize, 'THINOUTLINE')
 end
-
-
-
-
-
--- dummy
-CustomFilter = function(icons, ...)
-    local _, icon, name, _, _, _, _, _, _, caster = ...
-    local isPlayer
-    if (caster == 'player' or caster == 'vechicle') then
-        isPlayer = true
-    end
-    if((icons.onlyShowPlayer and isPlayer) or (not icons.onlyShowPlayer and name)) then
-        icon.isPlayer = isPlayer
-        icon.caster = caster
-        return true
-    end
-end

@@ -16,6 +16,7 @@ Libs\oUF_Trinkets.lua
 Libs\oUF_Freebgrid_Auras.lua
 Libs\oUF_Freebgrid_AurasList.lua
 Libs\oUF_PVPSpecIcons.lua
+Libs\oUF_FloatingCombatFeedback.lua
 Libs\basicCore.lua
 Libs\basicTag.lua
 Libs\extAuraFilter.lua

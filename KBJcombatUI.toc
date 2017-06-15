@@ -1,6 +1,6 @@
 ## Interface: 70200
 ## Title: KBJ CombatUI
-## Version: 1.9
+## Version: 7.2.5.1
 ## Author: Kimbanjang
 ## Notes: UI for focusing combat
 ## RequiredDeps: Blizzard_CombatText

@@ -108,7 +108,7 @@ local UnitSpecific = {
 		-- TODO : Rest Highlight
 
 		-- EXP Bar
-		local Experience = CreateFrame('StatusBar', nil, self)
+		local Experience = CreateFrame('StatusBar', nil, self, 'AnimatedStatusBarTemplate')
 		Experience:SetPoint('TOP', UIParent, 'TOP',0, -5)
 		Experience:SetSize(300, 8)
 		Experience:SetStatusBarTexture(cfg.texture)
@@ -132,7 +132,7 @@ local UnitSpecific = {
 		local ExperienceInfo = cFontString(Experience, 'OVERLAY', cfg.font, 9, cfg.fontflag, 1, 1, 1)
 		ExperienceInfo:SetPoint('CENTER', Experience, 'CENTER', 0, 0)        
 		ExperienceInfo:SetJustifyH('CENTER')
-		self:Tag(ExperienceInfo, '[perxp]% / TNL : [tnlxp] (Rest : [perrested]%)')
+		self:Tag(ExperienceInfo, '[experience:per]% / TNL : [experience:tnl] (Rest : [experience:perrested]%)')
 
 		local ExperienceBG = Rested:CreateTexture(nil, 'BORDER')
 		ExperienceBG:SetAllPoints()

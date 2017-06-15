@@ -3,25 +3,25 @@ local oUF = ns.oUF or oUF
 assert(oUF, 'oUF Experience was unable to locate oUF install')
 
 for tag, func in next, {
-	['curxp'] = function(unit)
+	['experience:cur'] = function(unit)
 		return (IsWatchingHonorAsXP() and UnitHonor or UnitXP) ('player')
 	end,
-	['maxxp'] = function(unit)
+	['experience:max'] = function(unit)
 		return (IsWatchingHonorAsXP() and UnitHonorMax or UnitXPMax) ('player')
 	end,
-	['tnlxp'] = function(unit)
-		return math.floor(_TAGS.maxxp(unit) - _TAGS.curxp(unit))
+	['experience:tnl'] = function(unit)
+		return math.floor(_TAGS['experience:max'](unit) - _TAGS['experience:cur'](unit))
+	end,	
+	['experience:per'] = function(unit)
+		return math.floor(_TAGS['experience:cur'](unit) / _TAGS['experience:max'](unit) * 100 + 0.5)
 	end,
-	['perxp'] = function(unit)
-		return math.floor(_TAGS.curxp(unit) / _TAGS.maxxp(unit) * 100 + 0.5)
-	end,
-	['currested'] = function()
+	['experience:currested'] = function()
 		return (IsWatchingHonorAsXP() and GetHonorExhaustion or GetXPExhaustion) ()
 	end,
-	['perrested'] = function(unit)
-		local rested = _TAGS.currested()
+	['experience:perrested'] = function(unit)
+		local rested = _TAGS['experience:currested']()
 		if(rested and rested > 0) then
-			return math.floor(rested / _TAGS.maxxp(unit) * 100 + 0.5)
+			return math.floor(rested / _TAGS['experience:max'](unit) * 100 + 0.5)
 		end
 	end,
 } do
@@ -54,27 +54,13 @@ local function UpdateColor(element, showHonor)
 end
 
 local function Update(self, event, unit)
-	if(self.unit ~= unit) then return end
+	if(self.unit ~= unit or unit ~= 'player') then return end
 
 	local element = self.Experience
 	if(element.PreUpdate) then element:PreUpdate(unit) end
 
-	local showHonor
-	local level = UnitLevel('player')
-	if(UnitHasVehicleUI(unit) or IsXPUserDisabled()) then
-		return element:Hide()
-	elseif(level == element.__accountMaxLevel) then
-		if(IsWatchingHonorAsXP() and element.__accountMaxLevel == MAX_PLAYER_LEVEL) then
-			element:Show()
-			showHonor = true
-			level = UnitHonorLevel(unit)
-		else
-			return element:Hide()
-		end
-	else
-		element:Show()
-	end
-
+	local showHonor = IsWatchingHonorAsXP()
+	local level = (showHonor and UnitHonorLevel or UnitLevel)(unit)
 	local cur = (showHonor and UnitHonor or UnitXP)(unit)
 	local max = (showHonor and UnitHonorMax or UnitXPMax)(unit)
 
@@ -100,7 +86,7 @@ local function Update(self, event, unit)
 	(element.OverrideUpdateColor or UpdateColor)(element, showHonor)
 
 	if(element.PostUpdate) then
-		return element:PostUpdate(unit, cur, max, exhaustion, showHonor)
+		return element:PostUpdate(unit, cur, max, exhaustion, level, showHonor)
 	end
 end
 
@@ -108,8 +94,59 @@ local function Path(self, ...)
 	return (self.Experience.Override or Update) (self, ...)
 end
 
+local function ElementEnable(self)
+	self:RegisterEvent('PLAYER_XP_UPDATE', Path)
+	self:RegisterEvent('HONOR_LEVEL_UPDATE', Path)
+	self:RegisterEvent('HONOR_PRESTIGE_UPDATE', Path)
+
+	if(self.Experience.Rested) then
+		self:RegisterEvent('UPDATE_EXHAUSTION', Path)
+	end
+
+	self.Experience:Show()
+
+	Path(self, 'ElementEnable', 'player')
+end
+
+local function ElementDisable(self)
+	self:UnregisterEvent('PLAYER_XP_UPDATE', Path)
+	self:UnregisterEvent('HONOR_LEVEL_UPDATE', Path)
+	self:UnregisterEvent('HONOR_PRESTIGE_UPDATE', Path)
+
+	if(self.Experience.Rested) then
+		self:UnregisterEvent('UPDATE_EXHAUSTION', Path)
+	end
+
+	self.Experience:Hide()
+
+	Path(self, 'ElementDisable', 'player')
+end
+
+local function Visibility(self, event, unit)
+	local element = self.Experience
+	local shouldEnable
+
+	if(not UnitHasVehicleUI('player') and not IsXPUserDisabled()) then
+		if(UnitLevel('player') ~= element.__accountMaxLevel) then
+			shouldEnable = true
+		elseif(IsWatchingHonorAsXP() and element.__accountMaxLevel == MAX_PLAYER_LEVEL) then
+			shouldEnable = true
+		end
+	end
+
+	if(shouldEnable) then
+		ElementEnable(self)
+	else
+		ElementDisable(self)
+	end
+end
+
+local function VisibilityPath(self, ...)
+	return (self.Experience.OverrideVisibility or Visibility)(self, ...)
+end
+
 local function ForceUpdate(element)
-	return Path(element.__owner, 'ForceUpdate', element.__owner.unit)
+	return VisibilityPath(element.__owner, 'ForceUpdate', element.__owner.unit)
 end
 
 local function Enable(self, unit)
@@ -126,22 +163,19 @@ local function Enable(self, unit)
 
 		element.ForceUpdate = ForceUpdate
 
-		self:RegisterEvent('PLAYER_XP_UPDATE', Path)
-		self:RegisterEvent('PLAYER_LEVEL_UP', Path, true)
-		self:RegisterEvent('DISABLE_XP_GAIN', Path, true)
-		self:RegisterEvent('ENABLE_XP_GAIN', Path, true)
-
-		self:RegisterEvent('HONOR_XP_UPDATE', Path)
-		self:RegisterEvent('HONOR_LEVEL_UPDATE', Path)
-		self:RegisterEvent('HONOR_PRESTIGE_UPDATE', Path)
+		self:RegisterEvent('PLAYER_LEVEL_UP', VisibilityPath, true)
+		self:RegisterEvent('HONOR_LEVEL_UPDATE', VisibilityPath)
+		self:RegisterEvent('DISABLE_XP_GAIN', VisibilityPath, true)
+		self:RegisterEvent('ENABLE_XP_GAIN', VisibilityPath, true)
 
 		hooksecurefunc('SetWatchingHonorAsXP', function()
-			Path(self, 'HONOR_XP_UPDATE', 'player')
+			if(self:IsElementEnabled('Experience')) then
+				VisibilityPath(self, 'SetWatchingHonorAsXP', 'player')
+			end
 		end)
 
 		local child = element.Rested
 		if(child) then
-			self:RegisterEvent('UPDATE_EXHAUSTION', Path)
 			child:SetFrameLevel(element:GetFrameLevel() - 1)
 
 			if(not child:GetStatusBarTexture()) then
@@ -160,19 +194,13 @@ end
 local function Disable(self)
 	local element = self.Experience
 	if(element) then
-		self:UnregisterEvent('PLAYER_XP_UPDATE', Path)
-		self:UnregisterEvent('PLAYER_LEVEL_UP', Path)
+		self:UnregisterEvent('PLAYER_LEVEL_UP', VisibilityPath)
+		self:UnregisterEvent('HONOR_LEVEL_UPDATE', VisibilityPath)
+		self:UnregisterEvent('DISABLE_XP_GAIN', VisibilityPath)
+		self:UnregisterEvent('ENABLE_XP_GAIN', VisibilityPath)
 
-		self:UnregisterEvent('HONOR_XP_UPDATE', Path)
-		self:UnregisterEvent('HONOR_LEVEL_UPDATE', Path)
-		self:UnregisterEvent('HONOR_PRESTIGE_UPDATE', Path)
-
-		-- Can't undo secure hooks
-
-		if(element.Rested) then
-			self:UnregisterEvent('UPDATE_EXHAUSTION', Path)
-		end
+		ElementDisable(self)
 	end
 end
 
-oUF:AddElement('Experience', Path, Enable, Disable)
+oUF:AddElement('Experience', VisibilityPath, Enable, Disable)

@@ -12,8 +12,8 @@ local npCVars = {
 	
 	nameplateLargerScale = 1,
 	nameplateMaxDistance = 60,
-	--nameplateOtherTopInset = -1,
-	--nameplateOtherBottomInset = -1,
+	nameplateOtherTopInset = -1,
+	nameplateOtherBottomInset = -1,
 
 	-- Non Select
 	nameplateMinScale = 0.8,

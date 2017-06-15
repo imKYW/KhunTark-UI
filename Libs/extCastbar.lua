@@ -5,7 +5,7 @@ local kbjStyle = {}
 
 function kbjStyle:PostCastStart(unit, name, rank, castid)
     local color
-    if self.interrupt then
+    if self.notInterruptible then
         color = { 1, 1, 1 }
     elseif UnitIsFriend(unit, "player") then
         color = { 0.1, 0.8, 0.1 }
@@ -21,7 +21,7 @@ end
 
 function kbjStyle:PostChannelStart(unit, name, rank, text)
     local color
-    if self.interrupt then
+    if self.notInterruptible then
         color = { 1, 1, 1 }
     elseif UnitIsFriend(unit, "player") then
         color = { 0.1, 0.8, 0.1 }

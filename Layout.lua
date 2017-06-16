@@ -171,12 +171,12 @@ local UnitSpecific = {
 
 		local PlayerFCF = CreateFrame("Frame", nil, self)
 		PlayerFCF:SetSize(35, 35)
-		PlayerFCF:SetPoint("BOTTOM", 0, 10)
+		PlayerFCF:SetPoint('CENTER', UIParent, 'CENTER', 0, 0)
 		for i = 1, 8 do
 			PlayerFCF[i] = PlayerFCF:CreateFontString(nil, "OVERLAY", "CombatTextFont")
 		end
 		PlayerFCF.mode = "Fountain"
-		PlayerFCF.xOffset = 30
+		--PlayerFCF.xOffset = 30
 		PlayerFCF.fontHeight = cfg.plugin.fcf.size
 		PlayerFCF.abbreviateNumbers = true
 		self.FloatingCombatFeedback = PlayerFCF

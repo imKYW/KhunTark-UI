@@ -23,6 +23,7 @@ local ActivityAuras = {
 	[146555]  = 4, -- Drum of Rage (item)
 	[178207]  = 4, -- Drum of Fury (item)
 	[230935]  = 4, -- Drum of Mountin (item)
+	[190909]  = 4, -- [ENH] 발톱의 징표
 	[242584]  = 4, -- [WEAPON] DPS 52+ : DEX
 	[243096]  = 4, -- [WEAPON] Tank 52+ : Ver
 	[229206]  = 4, -- [POT] 지속힘	
@@ -36,6 +37,8 @@ local ActivityAuras = {
 	[225726]  = 4, -- [ITEM] 매개체 화염(치타)
 	[225729]  = 4, -- [ITEM] 매개체 냉기(특화)
 	[225730]  = 4, -- [ITEM] 매개체 비전(가속)
+	[242612]  = 4, -- [ITEM] 박멸의 기계
+	[243942]  = 4, -- [ITEM] 해제되는 이성의 고서
 }
 
 local PersonalAuras = {
@@ -111,9 +114,12 @@ if playerClass == "HUNTER" then
 	PersonalAuras[186257]	= 2 -- 치타의 상 90%
 	PersonalAuras[186258]	= 2 -- 치타의 상 30%
 	PersonalAuras[118922]	= 2 -- [T3/1] 급가속
+	ActivityAuras[120694]	= 4 -- [BM] 광포한 야수
+	ActivityAuras[246252]	= 4 -- [BM T2/2] 광포한 격노
 	ActivityAuras[19574]	= 2 -- [BM] 야격
 	ActivityAuras[193530]	= 2 -- [BM] 야생의 상
 	ActivityAuras[195222]	= 4 -- [BM] 폭풍채찍(WEAPON)
+	ActivityAuras[248085]	= 4 -- [BM] 뱀의 혓바닥(LEG)
 	PersonalAuras[186265]	= 2 -- [BM] 거북의 상
 end
 

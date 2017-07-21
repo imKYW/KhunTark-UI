@@ -1,6 +1,5 @@
-
-    -- THANKS & CREDITS GOES TO Freebaser (oUF Freebgrid)
-    -- http://www.wowinterface.com/downloads/info12264-oUF_Freebgrid.html
+-- THANKS & CREDITS GOES TO Freebaser (oUF_Freebgrid)
+-- http://www.wowinterface.com/downloads/info12264-oUF_Freebgrid.html
 
 local _, ns = ...
 local oUF = ns.oUF or oUF

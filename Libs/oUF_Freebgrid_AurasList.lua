@@ -79,9 +79,9 @@ ns.auras = {
             
             -- Harjatan
             [GetSpellInfo(231998)] = 11, -- Tanker : Jagged Abrasion
-            [GetSpellInfo(234016)] = 7, -- Driven Assault 1
-            [GetSpellInfo(241600)] = 7, -- Driven Assault 2
-            [GetSpellInfo(231729)] = 4, -- Aqueous Burst
+            [GetSpellInfo(231729)] = 8, -- Aqueous Burst
+            [GetSpellInfo(234016)] = 7, -- Driven Assault
+            [GetSpellInfo(241600)] = 7, -- Sickly Fixate
             [GetSpellInfo(231770)] = 3, -- Drenched
             
             -- Mistress Sassz'ine

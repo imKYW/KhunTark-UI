@@ -422,7 +422,7 @@ local UnitSpecific = {
 		self.ReadyCheckIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
 
 		self.FreebAuras = CreateFrame('Frame', nil, self)
-		self.FreebAuras:SetSize(cfg.subUF.raid.width*0.6, cfg.subUF.raid.height*0.6)
+		self.FreebAuras:SetSize(cfg.subUF.raid.width*0.65, cfg.subUF.raid.height*0.65)
 		self.FreebAuras:SetPoint('CENTER', self.Health)
 	end,
 

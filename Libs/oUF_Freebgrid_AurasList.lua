@@ -95,14 +95,14 @@ ns.auras = {
             [GetSpellInfo(230276)] = 3, -- Jaws from the Deep
 
             -- Sisters of the Moon
-            [GetSpellInfo(236305)] = 14, -- Incorporeal Shot
-            [GetSpellInfo(236712)] = 13, -- Lunar Beacon
-            [GetSpellInfo(237561)] = 12, -- Twilight Glaive
+            [GetSpellInfo(236305)] = 13, -- Incorporeal Shot
+            [GetSpellInfo(236712)] = 12, -- Lunar Beacon
             [GetSpellInfo(239264)] = 11, -- Lunar Fire
             [GetSpellInfo(236596)] = 11, -- Rapid Shot
+            [GetSpellInfo(237561)] = 9, -- Twilight Glaive
+            [GetSpellInfo(236519)] = 8, -- Moon Burn
             [GetSpellInfo(236330)] = 7, -- Astral Vulnerability
             [GetSpellInfo(236550)] = 4, -- Discoporate
-            [GetSpellInfo(236519)] = 4, -- Moon Burn
             [GetSpellInfo(234996)] = 3, -- Suffusion Dark
             [GetSpellInfo(234995)] = 3, -- Suffusion Light
 

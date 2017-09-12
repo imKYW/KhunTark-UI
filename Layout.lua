@@ -740,7 +740,7 @@ oUF:Factory(function(self)
 	local arenaprepupdate = CreateFrame('Frame')
 	arenaprepupdate:RegisterEvent('PLAYER_LOGIN')
 	arenaprepupdate:RegisterEvent('PLAYER_ENTERING_WORLD')
-	arenaprepupdate:RegisterEvent('ARENA_OPPONENT_UPDATE')
+	--arenaprepupdate:RegisterEvent('ARENA_OPPONENT_UPDATE')
 	arenaprepupdate:RegisterEvent('ARENA_PREP_OPPONENT_SPECIALIZATIONS')
 	arenaprepupdate:SetScript('OnEvent', function(self, event)
 	    if event == 'PLAYER_LOGIN' then
@@ -754,10 +754,9 @@ oUF:Factory(function(self)
 		    end
 		]]
 	    else
-		    local numOpps = GetNumArenaOpponentSpecs()
-
+	    	local numOpps = GetNumArenaOpponentSpecs()
 		    if numOpps > 0 then
-			    for i = 1, 3 do
+			    for i = 1, numOpps do
 				    local f = arenaprep[i]
 
 				    if i <= numOpps then
@@ -769,7 +768,7 @@ oUF:Factory(function(self)
 					    end
 
 					    if class and spec then
-					    	local class_color = RAID_CLASS_COLORS[class]
+					    	local class_color = RAID_CLASS_COLORS[class] or {0.3, 0.3, 0.3}
 							f.Health:SetStatusBarColor(class_color.r, class_color.g, class_color.b)							
 							f.Power:SetStatusBarColor(class_color.r, class_color.g, class_color.b)
 						    f.Spec:SetText(spec)
@@ -781,7 +780,7 @@ oUF:Factory(function(self)
 				    end
 			    end
 		    else
-			    for i = 1, 3 do
+			    for i = 1, numOpps do
 				    arenaprep[i]:Hide()
 			    end
 		    end

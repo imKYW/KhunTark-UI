@@ -8,29 +8,17 @@ local _, class = UnitClass('player')
 local buffcolor = { r = 0.0, g = 1.0, b = 1.0 }
 
 local backdrop = {
-    bgFile = 'Interface\\Buttons\\WHITE8x8',
-    tile = true,
-    tileSize = 16,
-    edgeFile = 'Interface\\Buttons\\WHITE8x8',
-    edgeSize = 2,
-    insets = {
-        top = 2,
-        left = 2,
-        bottom = 2,
-        right = 2
-    },
+    bgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
+    edgeFile = 'Interface\\AddOns\\KBJcombatUI\\Media\\textureGlow',
+    edgeSize = 3,
+    insets = { left = 3, right = 3, top = 3, bottom = 3 },
 }
 
 local BBackdrop = {
     bgFile = 'Interface\\Buttons\\WHITE8x8',
     tile = true,
     tileSize = 16,
-    insets = {
-        top = -1,
-        left = -1,
-        bottom = -1,
-        right = -1
-    },
+    insets = { top = -1, left = -1, bottom = -1, right = -1 },
 }
 
 local GetTime = GetTime
@@ -53,9 +41,9 @@ local CreateAuraIcon = function(auras)
     if (not auras.button) then
         local button = CreateFrame('Frame', nil, auras)
         button:EnableMouse(false)
-        button:SetBackdrop(BBackdrop)
-        button:SetBackdropColor(0, 0, 0, 1)
-        button:SetBackdropBorderColor(0, 0, 0, 0)
+        --button:SetBackdrop(BBackdrop)
+        --button:SetBackdropColor(0, 0, 0, 1)
+        --button:SetBackdropBorderColor(0, 0, 0, 0)
         button:SetAllPoints(auras)
 
         local icon = button:CreateTexture(nil, 'OVERLAY')
@@ -63,7 +51,9 @@ local CreateAuraIcon = function(auras)
         icon:SetTexCoord(.1, .9, .1, .9)
 
         local overlay = CreateFrame('Frame', nil, button)
-        overlay:SetAllPoints(button)
+        --overlay:SetAllPoints(button)
+        overlay:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
+        overlay:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
         overlay:SetBackdrop(backdrop)
         overlay:SetBackdropColor(0, 0, 0, 0)
         overlay:SetBackdropBorderColor(1, 1, 1, 1)

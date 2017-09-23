@@ -309,21 +309,9 @@ function PostUpdateIcon(icons, unit, icon, index, offset)
     icon:SetScript('OnUpdate', CreateAuraTimer)
 end
 
--- PortraitTimer ------------------------------------------------------------------------
-function PortraitTimer(self, size, fontsize, sa, a, pa, x, y)
-    self.PortraitTimer = CreateFrame('Frame', nil, self.Health)
-    self.PortraitTimer:SetSize(size, size)    
-    self.PortraitTimer:SetPoint(sa, a, pa, x, y)
-    self.PortraitTimer:SetFrameStrata('MEDIUM')
-    self.PortraitTimer.bg = fBackDrop(self.PortraitTimer, self.PortraitTimer)
-    self.PortraitTimer.Icon = self.PortraitTimer:CreateTexture(nil, 'BACKGROUND')
-    self.PortraitTimer.Icon:SetAllPoints(self.PortraitTimer)
-    self.PortraitTimer.Count = self.PortraitTimer:CreateFontString(nil, 'OVERLAY')
-    self.PortraitTimer.Count:SetPoint('CENTER', self.PortraitTimer.Icon, 'TOP', 0, 0)
-    self.PortraitTimer.Count:SetTextColor(1, 1, 1)
-    self.PortraitTimer.Count:SetFont(cfg.font, fontsize*0.75, 'THINOUTLINE')
-    self.PortraitTimer.Remaining = self.PortraitTimer:CreateFontString(nil, 'OVERLAY')
-    self.PortraitTimer.Remaining:SetPoint('BOTTOM', self.PortraitTimer.Icon, 'BOTTOM', 0, 0)
-    self.PortraitTimer.Remaining:SetTextColor(1, 1, 1)
-    self.PortraitTimer.Remaining:SetFont(cfg.font, fontsize, 'THINOUTLINE')
+-- AuraTracker --------------------------------------------------------------------------
+function AuraTracker(self, size, sa, a, pa, x, y)
+    self.FreebAuras = CreateFrame('Frame', nil, self)
+    self.FreebAuras:SetSize(size, size)
+    self.FreebAuras:SetPoint(sa, a, pa, x, y)
 end

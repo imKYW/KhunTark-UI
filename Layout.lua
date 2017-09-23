@@ -187,7 +187,6 @@ local UnitSpecific = {
 		self.unit = 'target'
 
 		extCastbar(self)
-		--PortraitTimer(self, 38, 16, 'BOTTOMLEFT', self, 'TOPLEFT', 0, 5)
 		
 		self:SetSize(cfg.mainUF.player.width*0.8, cfg.mainUF.player.height)
 		--self.Health.colorClass = false
@@ -234,6 +233,8 @@ local UnitSpecific = {
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
+
+		AuraTracker(self, 32, 'BOTTOMLEFT', self, 'TOPLEFT', 0, 5)
 	end,
 
 	focus = function(self, ...)
@@ -241,7 +242,6 @@ local UnitSpecific = {
 		self.unit = 'focus'
 
 		extCastbar(self)
-		--PortraitTimer(self, 26, 11, 'RIGHT', self, 'LEFT', -5, 0)
 
 		self:SetSize(cfg.mainUF.focus.width, cfg.mainUF.focus.height)
 		self.Health:SetHeight(cfg.mainUF.focus.height)
@@ -254,6 +254,8 @@ local UnitSpecific = {
 		self.RaidTargetIndicator:SetSize(14, 14)
 		self.RaidTargetIndicator:SetAlpha(0.9)
 		self.RaidTargetIndicator:SetPoint("right", self.Health, "LEFT", -4, 0)
+
+		AuraTracker(self, cfg.mainUF.focus.height*2.2, 'RIGHT', self, 'LEFT', -5, 0)
 	end,
 
 	pet = function(self, ...)
@@ -351,6 +353,8 @@ local UnitSpecific = {
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
+
+		AuraTracker(self, cfg.subUF.party.width*1.5, 'CENTER', self, 'CENTER', 0, 0)
 	end,
 
 	partypet = function(self, ...)
@@ -421,9 +425,7 @@ local UnitSpecific = {
 		self.ReadyCheckIndicator:SetSize(32, 32)
 		self.ReadyCheckIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
 
-		self.FreebAuras = CreateFrame('Frame', nil, self)
-		self.FreebAuras:SetSize(cfg.subUF.raid.width*0.65, cfg.subUF.raid.height*0.65)
-		self.FreebAuras:SetPoint('CENTER', self.Health)
+		AuraTracker(self, cfg.subUF.raid.width*0.65, 'CENTER', self.Health)
 	end,
 
 	tank = function(self, ...)
@@ -432,7 +434,6 @@ local UnitSpecific = {
 		
 		Power(self, 'BOTTOM')
 		ctfBorder(self)
-		--PortraitTimer(self, cfg.subUF.party.height, 14, 'LEFT', self, 'RIGHT', 5, 0) -- x = -(cfg.subUF.party.height-10-(cfg.subUF.party.height/2))
 		
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
 		self.Health:SetHeight(cfg.subUF.party.height-3)
@@ -453,10 +454,6 @@ local UnitSpecific = {
 		self.RaidTargetIndicator:SetAlpha(0.9)
 		self.RaidTargetIndicator:SetPoint("LEFT", self.Health, "LEFT", 0, 0)
 
-		self.FreebAuras = CreateFrame('Frame', nil, self)
-		self.FreebAuras:SetSize(cfg.subUF.party.height, cfg.subUF.party.height)
-		self.FreebAuras:SetPoint('LEFT', self, "RIGHT", 5, 0)
-
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height
 		unitDebuff.spacing = 5
@@ -469,6 +466,8 @@ local UnitSpecific = {
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
+
+		AuraTracker(self, cfg.subUF.party.height, 'LEFT', self, 'RIGHT', 5, 0)
 	end,
 
 	boss = function(self, ...)
@@ -543,9 +542,8 @@ local UnitSpecific = {
 		
 		Power(self, 'BOTTOM')
 		--extCastbar(self)
-		ctfBorder(self)		
-		--PortraitTimer(self, 36, 16, 'CENTER', self, 'LEFT', -16, 0) -- x = -(cfg.subUF.party.height-10-(cfg.subUF.party.height/2))
-		
+		ctfBorder(self)
+
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
 		self.Health:SetHeight(cfg.subUF.party.height-3)
 		self.Power:SetHeight(2)
@@ -563,6 +561,8 @@ local UnitSpecific = {
 		t:SetPoint("TOPRIGHT", self, "TOPLEFT", -cfg.subUF.party.height-10, 0)
 		t.bg = fBackDrop(t, t)
 		self.Trinket = t
+
+		AuraTracker(self, cfg.subUF.party.height*1.5, 'LEFT', self, 'RIGHT', -16, 0)
     end,
 
     arenatarget = function(self, ...)
@@ -742,6 +742,7 @@ oUF:Factory(function(self)
 	arenaprepupdate:RegisterEvent('PLAYER_ENTERING_WORLD')
 	--arenaprepupdate:RegisterEvent('ARENA_OPPONENT_UPDATE')
 	arenaprepupdate:RegisterEvent('ARENA_PREP_OPPONENT_SPECIALIZATIONS')
+	arenaprepupdate:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 	arenaprepupdate:SetScript('OnEvent', function(self, event)
 	    if event == 'PLAYER_LOGIN' then
 		    for i = 1, 3 do
@@ -753,6 +754,10 @@ oUF:Factory(function(self)
 			    arenaprep[i]:Hide()
 		    end
 		]]
+		elseif event == 'ZONE_CHANGED_NEW_AREA' then
+		    for i = 1, 3 do
+			    arenaprep[i]:Hide()
+		    end
 	    else
 	    	local numOpps = GetNumArenaOpponentSpecs()
 		    if numOpps > 0 then

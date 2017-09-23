@@ -6,23 +6,23 @@ local oUF = ns.oUF or oUF
 -----------------------------------------------------------------------------------------
 local npCVars = {
 	-- System
-	nameplateGlobalScale = 1,
+	NameplateGlobalScale = 1,
 	NamePlateHorizontalScale = 1,
 	NamePlateVerticalScale = 1,
 	
-	nameplateLargerScale = 1,
-	nameplateMaxDistance = 60,
-	nameplateOtherTopInset = -1,
-	nameplateOtherBottomInset = -1,
+	NameplateLargerScale = 1,
+	NameplateMaxDistance = 60,
+	NameplateOtherTopInset = -1,
+	NameplateOtherBottomInset = -1,
 
 	-- Non Select
-	nameplateMinScale = 0.8,
-	nameplateMaxScale = 0.8,
-	nameplateMinAlpha = 0.6,
-	nameplateMaxAlpha = 0.6,
+	NameplateMinScale = 0.8,
+	NameplateMaxScale = 0.8,
+	NameplateMinAlpha = 0.6,
+	NameplateMaxAlpha = 0.6,
 	-- Select
-	nameplateSelectedScale = 1,
-	nameplateSelectedAlpha = 1,
+	NameplateSelectedScale = 1,
+	NameplateSelectedAlpha = 1,
 }
 
 -- Function -----------------------------------------------------------------------------
@@ -120,34 +120,20 @@ local NamePlateSpecific = function(self)
 	self.Debuffs = unitDebuff
 	self.Debuffs:SetScale(0.7) -- trick for Scale bug
 
-	--[[
-	local AuraTacker = CreateFrame('Frame', nil, self)
-	AuraTacker:SetSize(24, 24)    
-    AuraTacker:SetPoint('TOP', self.Health, 'BOTTOM', 0, -23)
-    AuraTacker:SetFrameStrata('MEDIUM')
-    AuraTacker.bg = fBackDrop(AuraTacker, AuraTacker)
-    AuraTacker.Icon = AuraTacker:CreateTexture(nil, 'BACKGROUND')
-    AuraTacker.Icon:SetAllPoints(AuraTacker)
-    AuraTacker.Remaining = AuraTacker:CreateFontString(nil, 'OVERLAY')
-    AuraTacker.Remaining:SetPoint('BOTTOM', AuraTacker.Icon, 'BOTTOM', 0, 1)
-    AuraTacker.Remaining:SetTextColor(1, 1, 1)
-    AuraTacker.Remaining:SetFont(cfg.font, 8, 'THINOUTLINE')
-    self.PortraitTimer = AuraTacker
-	]]
-	
-	--[[
 	local unitBuff = CreateFrame('Frame', nil, self)
-	unitBuff.size = 14
+	unitBuff.size = 20
 	unitBuff.spacing = 4
-	unitBuff.num = 6
+	unitBuff.num = 2
 	unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
-	unitBuff:SetPoint('LEFT', name, 'RIGHT', 5, 0)
+	unitBuff:SetPoint('LEFT', self.Health, 'RIGHT', 4, 0)
 	unitBuff.initialAnchor = 'LEFT'
 	unitBuff.PostCreateIcon = PostCreateIconSmall
 	unitBuff.PostUpdateIcon = PostUpdateIcon
-	--unitBuff.CustomFilter = CustomFilter
+	unitBuff.CustomFilter = CustomFilter
 	self.Buffs = unitBuff
-	]]
+	--self.Buffs:SetScale(0.7) -- trick for Scale bug
+
+	AuraTracker(self, 24, 'TOP', self.Health, 'BOTTOM', 0, -23)
 end
 
 -- Spawn --------------------------------------------------------------------------------

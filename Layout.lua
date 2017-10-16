@@ -8,6 +8,7 @@ auraLoader:RegisterEvent('ADDON_LOADED')
 auraLoader:SetScript('OnEvent', function(self, event, addon)
 	ActivityAuras = ActivityAuras or {}
 	PersonalAuras = PersonalAuras or {}
+	--NameplateBuffs = NameplateBuffs or {}
 	UpdateAuraList()
 end)
 
@@ -306,7 +307,6 @@ local UnitSpecific = {
 		Power(self, 'BOTTOM')
 		Phase(self)
 		ctfBorder(self)
-		--PortraitTimer(self, 34, 12, 'CENTER', self, 'CENTER', 0, 0)
 		
 		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
 		self.Health:SetHeight(cfg.subUF.party.height-3)
@@ -354,7 +354,7 @@ local UnitSpecific = {
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 
-		AuraTracker(self, cfg.subUF.party.width*1.5, 'CENTER', self, 'CENTER', 0, 0)
+		AuraTracker(self, cfg.subUF.party.height*1.4, 'CENTER', self, 'CENTER', 0, 0)
 	end,
 
 	partypet = function(self, ...)
@@ -562,7 +562,7 @@ local UnitSpecific = {
 		t.bg = fBackDrop(t, t)
 		self.Trinket = t
 
-		AuraTracker(self, cfg.subUF.party.height*1.5, 'LEFT', self, 'RIGHT', -16, 0)
+		AuraTracker(self, cfg.subUF.party.height*1.4, 'CENTER', self, 'LEFT', -(cfg.subUF.party.height/2)-5, 0)
     end,
 
     arenatarget = function(self, ...)

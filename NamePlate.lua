@@ -120,6 +120,7 @@ local NamePlateSpecific = function(self)
 	self.Debuffs = unitDebuff
 	self.Debuffs:SetScale(0.7) -- trick for Scale bug
 
+--[[
 	local unitBuff = CreateFrame('Frame', nil, self)
 	unitBuff.size = 20
 	unitBuff.spacing = 4
@@ -129,9 +130,9 @@ local NamePlateSpecific = function(self)
 	unitBuff.initialAnchor = 'LEFT'
 	unitBuff.PostCreateIcon = PostCreateIconSmall
 	unitBuff.PostUpdateIcon = PostUpdateIcon
-	unitBuff.CustomFilter = CustomFilter
+	unitBuff.CustomFilter = CustomAuraFilters.nameplate
 	self.Buffs = unitBuff
-	--self.Buffs:SetScale(0.7) -- trick for Scale bug
+]]
 
 	AuraTracker(self, 24, 'TOP', self.Health, 'BOTTOM', 0, -23)
 end

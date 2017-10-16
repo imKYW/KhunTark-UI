@@ -43,22 +43,22 @@ ns.auras = {
     -- NOTE: This does not show the aura, it needs to be in one of the other list too.
 
     ascending = {
-        [GetSpellInfo(89421)] = true, -- Wrack
+        --[GetSpellInfo(89421)] = true, -- Wrack
     },
 
     -- General debuffs
     debuffs = {
-        [GetSpellInfo(115804)] = 3, -- Mortal Wounds
-        [GetSpellInfo(51372)] = 1, -- Daze
-        [GetSpellInfo(5246)] = 2, -- Intimidating Shout
+        --[GetSpellInfo(115804)] = 3, -- Mortal Wounds
+        --[GetSpellInfo(51372)] = 1, -- Daze
+        --[GetSpellInfo(5246)] = 2, -- Intimidating Shout
         --[GetSpellInfo(6788)] = 16, -- Weakened Soul
 
-        [GetSpellInfo(1715)] = 20, -- debug
+        --[GetSpellInfo(1715)] = 20, -- debug
     },
 
     -- General buffs
     buffs = {
-        [GetSpellInfo(245725)] = 17, -- debug
+        --[GetSpellInfo(245725)] = 17, -- debug
         [GetSpellInfo(871)] = 17, -- Shield Wall
         [GetSpellInfo(61336)] = 17, -- Survival Instincts
         [GetSpellInfo(31850)] = 17, -- Ardent Defender
@@ -462,187 +462,234 @@ ns.auras = {
             --4 매즈기
             --5 슬로우
 
-            --쿨기는??
-            [GetSpellInfo(1715)] = 20, -- Trash: Rune of Disintegration
+            [GetSpellInfo(5211)]   = 15, -- Mighty Bash (Stun)
+            [GetSpellInfo(108194)] = 15, -- Asphyxiate (Stun)
+            [GetSpellInfo(199804)] = 15, --Between the Eyes (Stun)
+            [GetSpellInfo(118905)] = 15, -- Static Charge (Stun)
+            [GetSpellInfo(1833)]   = 15, -- Cheap Shot (Stun)
+            [GetSpellInfo(853)]    = 15, -- Hammer of Justice (Stun)
+            [GetSpellInfo(117526)] = 15, -- Binding Shot (Stun)
+            [GetSpellInfo(179057)] = 15, -- Chaos Nova (Stun)
+            [GetSpellInfo(207171)] = 15, -- Winter is Coming (Stun)
+            [GetSpellInfo(132169)] = 15, -- Storm Bolt (Stun)
+            [GetSpellInfo(408)]    = 15, -- Kidney Shot (Stun)
+            [GetSpellInfo(163505)] = 15, -- Rake (Stun)
+            [GetSpellInfo(119381)] = 15, -- Leg Sweep (Stun)
+            [GetSpellInfo(232055)] = 15, -- Fists of Fury (Stun)
+            [GetSpellInfo(89766)]  = 15, -- Axe Toss (Stun)
+            [GetSpellInfo(30283)]  = 15, -- Shadowfury (Stun)
+            [GetSpellInfo(200166)] = 15, -- Metamorphosis (Stun)
+            [GetSpellInfo(226943)] = 15, -- Mind Bomb (Stun)
+            [GetSpellInfo(24394)]  = 15, -- Intimidation (Stun)
+            [GetSpellInfo(211881)] = 15, -- Fel Eruption (Stun)
+            [GetSpellInfo(221562)] = 15, -- Asphyxiate, Blood Spec (Stun)
+            [GetSpellInfo(91800)]  = 15, -- Gnaw (Stun)
+            [GetSpellInfo(91797)]  = 15, -- Monstrous Blow (Stun)
+            [GetSpellInfo(205630)] = 15, -- Illidan's Grasp (Stun)
+            [GetSpellInfo(208618)] = 15, -- Illidan's Grasp (Stun)
+            [GetSpellInfo(203123)] = 15, -- Maim (Stun)
+            [GetSpellInfo(200200)] = 15, -- Holy Word: Chastise, Censure Talent (Stun)
+            [GetSpellInfo(118345)] = 15, -- Pulverize (Stun)
+            [GetSpellInfo(22703)]  = 15, -- Infernal Awakening (Stun)
+            [GetSpellInfo(132168)] = 15, -- Shockwave (Stun)
+            [GetSpellInfo(20549)]  = 15, -- War Stomp (Stun)
+            [GetSpellInfo(199085)] = 15, -- Warpath (Stun)
 
-            --[[
-            -- CCs
-            '33786',  -- Cyclone
-            '108194', -- Asphyxiate
-            '91800',  -- Gnaw
-            '47481',  -- Gnaw
-            '91797',  -- Monstrous Blow (Dark Transformation)
-            '99',     -- Incapacitating Roar
-            '163505', -- Rake Stun
-            '22570',  -- Maim
-            '5211',   -- Mighty Bash
-            '3355',   -- Freezing Trap
-            '209790', -- Freezing Arrow
-            '117526', -- Binding Shot
-            '19386',  -- Wyvern Sting
-            '24394',  -- Intimidation
-            '31661',  -- Dragon's Breath
-            '118',    -- Polymorph
-            '61305',  -- Polymorph: Black Cat
-            '28272',  -- Polymorph: Pig
-            '61721',  -- Polymorph: Rabbit
-            '61780',  -- Polymorph: Turkey
-            '28271',  -- Polymorph: Turtle
-            '161353', -- Polymorph: Polar Bear Cub
-            '213691', -- Scatter Shot
-            '82691',  -- Ring of Frost
-            '120086', -- Fists of Fury
-            '119381', -- Leg Sweep
-            '115078', -- Paralysis
-            '105421', -- Blinding Light
-            '853',    -- Hammer of Justice
-            '20066',  -- Repentance
-            '605',    -- Mind Control
-            '88625',  -- Holy Word: Chastise
-            '64044',  -- Psychic Horror
-            '8122',   -- Psychic Scream
-            '9484',   -- Shackle Undead
-            '226943', -- Mind Bomb Stun
-            '87204',  -- Sin and Punishment
-            '2094',   -- Blind
-            '1833',   -- Cheap Shot
-            '1776',   -- Gouge
-            '408',    -- Kidney Shot
-            '199804', -- Between the Eyes
-            '6770',   -- Sap
-            '51514',  -- Hex
-            '118905', -- Static Charge (Lightning Surge Totem)
-            '118345', -- Pulverize
-            '118699', -- Fear
-            '130616', -- Fear (Glyph of Fear)
-            '5484',   -- Howl of Terror
-            '6789',   -- Mortal Coil
-            '30283',  -- Shadowfury
-            '22703',  -- Infernal Awakening Stun
-            '89766',  -- Axe Toss (Felguard/Wrathguard)
-            '115268', -- Mesmerize (Shivarra)
-            '6358',   -- Seduction (Succubus)
-            '5246',   -- Intimidating Shout (aoe)
-            '132168', -- Shockwave
-            '46968',  -- Shockwave
-            '132169', -- Storm Bolt
-            '20549',  -- War Stomp
-            '224729', -- Bursting Shot
-            '7922',   -- Warbringer Charge Stun
-            '77505',  -- Earthquake Stun
-            '107079', -- Quaking Palm
-            '179057', -- Chaos Nova
-            '200166', -- Metamorphosis Stun
-            '205630', -- Illidan's Grasp
-            '208618', -- Illidans' Grasp
-            '221527', -- Imprison
-            
+            [GetSpellInfo(33786)]  = 14, -- Cyclone (Disorient)
+            [GetSpellInfo(209753)] = 14, -- Cyclone, Honor Talent (Disorient)
+            [GetSpellInfo(5246)]   = 14, -- Intimidating Shout (Disorient)
+            [GetSpellInfo(238559)] = 14, -- Bursting Shot (Disorient)
+            [GetSpellInfo(224729)] = 14, -- Bursting Shot on NPC's (Disorient)
+            [GetSpellInfo(8122)]   = 14, -- Psychic Scream (Disorient)
+            [GetSpellInfo(2094)]   = 14, -- Blind (Disorient)
+            [GetSpellInfo(5484)]   = 14, -- Howl of Terror (Disorient)
+            [GetSpellInfo(605)]    = 14, -- Mind Control (Disorient)
+            [GetSpellInfo(105421)] = 14, -- Blinding Light (Disorient)
+            [GetSpellInfo(207167)] = 14, -- Blinding Sleet (Disorient)
+            [GetSpellInfo(31661)]  = 14, -- Dragon's Breath (Disorient)
+            [GetSpellInfo(207685)] = 14, -- Sigil of Misery
+            [GetSpellInfo(198909)] = 14, -- Song of Chi-ji
+            [GetSpellInfo(202274)] = 14, -- Incendiary Brew
+            [GetSpellInfo(5782)]   = 14, -- Fear
+            [GetSpellInfo(118699)] = 14, -- Fear
+            [GetSpellInfo(130616)] = 14, -- Fear
+            [GetSpellInfo(115268)] = 14, -- Mesmerize
+            [GetSpellInfo(6358)]   = 14, -- Seduction
+
+            [GetSpellInfo(51514)]  = 13, -- Hex (Incapacitate)
+            [GetSpellInfo(211004)] = 13, -- Hex: Spider (Incapacitate)
+            [GetSpellInfo(210873)] = 13, -- Hex: Raptor (Incapacitate)
+            [GetSpellInfo(211015)] = 13, -- Hex: Cockroach (Incapacitate)
+            [GetSpellInfo(211010)] = 13, -- Hex: Snake (Incapacitate)
+            [GetSpellInfo(196942)] = 13, -- Hex (Voodoo Totem)
+            [GetSpellInfo(118)]    = 13, -- Polymorph (Incapacitate)
+            [GetSpellInfo(61305)]  = 13, -- Polymorph: Black Cat (Incapacitate)
+            [GetSpellInfo(28272)]  = 13, -- Polymorph: Pig (Incapacitate)
+            [GetSpellInfo(61721)]  = 13, -- Polymorph: Rabbit (Incapacitate)
+            [GetSpellInfo(61780)]  = 13, -- Polymorph: Turkey (Incapacitate)
+            [GetSpellInfo(28271)]  = 13, -- Polymorph: Turtle (Incapacitate)
+            [GetSpellInfo(161353)] = 13, -- Polymorph: Polar Bear Cub (Incapacitate)
+            [GetSpellInfo(126819)] = 13, -- Polymorph: Porcupine (Incapacitate)
+            [GetSpellInfo(161354)] = 13, -- Polymorph: Monkey (Incapacitate)
+            [GetSpellInfo(161355)] = 13, -- Polymorph: Penguin (Incapacitate)
+            [GetSpellInfo(161372)] = 13, -- Polymorph: Peacock (Incapacitate)
+            [GetSpellInfo(3355)]   = 13, -- Freezing Trap (Incapacitate)
+            [GetSpellInfo(203337)] = 13, -- Freezing Trap, Diamond Ice Honor Talent (Incapacitate)
+            [GetSpellInfo(115078)] = 13, -- Paralysis (Incapacitate)
+            [GetSpellInfo(213691)] = 13, -- Scatter Shot (Incapacitate)
+            [GetSpellInfo(6770)]   = 13, -- Sap (Incapacitate)
+            [GetSpellInfo(199743)] = 13, -- Parley (Incapacitate)
+            [GetSpellInfo(20066)]  = 13, -- Repentance (Incapacitate)
+            [GetSpellInfo(19386)]  = 13, -- Wyvern Sting (Incapacitate)
+            [GetSpellInfo(6789)]   = 13, -- Mortal Coil (Incapacitate)
+            [GetSpellInfo(200196)] = 13, -- Holy Word: Chastise (Incapacitate)
+            [GetSpellInfo(221527)] = 13, -- Imprison, Detainment Honor Talent (Incapacitate)
+            [GetSpellInfo(217832)] = 13, -- Imprison (Incapacitate)
+            [GetSpellInfo(99)]     = 13, -- Incapacitating Roar (Incapacitate)
+            [GetSpellInfo(82691)]  = 13, -- Ring of Frost (Incapacitate)
+            [GetSpellInfo(9484)]   = 13, -- Shackle Undead (Incapacitate)
+            [GetSpellInfo(64044)]  = 13, -- Psychic Horror (Incapacitate)
+            [GetSpellInfo(1776)]   = 13, -- Gouge (Incapacitate)
+            [GetSpellInfo(710)]    = 13, -- Banish (Incapacitate)
+            [GetSpellInfo(107079)] = 13, -- Quaking Palm (Incapacitate)
+            [GetSpellInfo(236025)] = 13, -- Enraged Maim (Incapacitate)
+
+            -- Immunities
+            [GetSpellInfo(642)]    = 10, -- Divine Shield
+            [GetSpellInfo(186265)] = 10, -- Aspect of the Turtle
+            [GetSpellInfo(45438)]  = 10, -- Ice Block
+            [GetSpellInfo(47585)]  = 10, -- Dispersion
+            [GetSpellInfo(1022)]   = 10, -- Blessing of Protection
+            [GetSpellInfo(216113)] = 10, -- Way of the Crane
+            [GetSpellInfo(31224)]  = 10, -- Cloak of Shadows
+            [GetSpellInfo(212182)] = 10, -- Smoke Bomb
+            [GetSpellInfo(212183)] = 10, -- Smoke Bomb
+            [GetSpellInfo(8178)]   = 10, -- Grounding Totem Effect
+            [GetSpellInfo(199448)] = 10, -- Blessing of Sacrifice
+
+            -- Anti CCs
+            [GetSpellInfo(23920)]  = 9, -- Spell Reflection
+            [GetSpellInfo(216890)] = 9, -- Spell Reflection (Honor Talent)
+            [GetSpellInfo(213610)] = 9, -- Holy Ward
+            [GetSpellInfo(212295)] = 9, -- Nether Ward
+            [GetSpellInfo(48707)]  = 9, -- Anti-Magic Shell
+            [GetSpellInfo(5384)]   = 9, -- Feign Death
+            [GetSpellInfo(213602)] = 9, -- Greater Fade
+
+            -- Silences
+            [GetSpellInfo(81261)]  = 8, -- Solar Beam
+            [GetSpellInfo(25046)]  = 8, -- Arcane Torrent
+            [GetSpellInfo(28730)]  = 8, -- Arcane Torrent
+            [GetSpellInfo(50613)]  = 8, -- Arcane Torrent
+            [GetSpellInfo(69179)]  = 8, -- Arcane Torrent
+            [GetSpellInfo(80483)]  = 8, -- Arcane Torrent
+            [GetSpellInfo(129597)] = 8, -- Arcane Torrent
+            [GetSpellInfo(155145)] = 8, -- Arcane Torrent
+            [GetSpellInfo(202719)] = 8, -- Arcane Torrent
+            [GetSpellInfo(202933)] = 8, -- Spider Sting
+            [GetSpellInfo(1330)]   = 8, -- Garrote
+            [GetSpellInfo(15487)]  = 8, -- Silence
+            [GetSpellInfo(199683)] = 8, -- Last Word
+            [GetSpellInfo(47476)]  = 8, -- Strangulate
+            [GetSpellInfo(31935)]  = 8, -- Avenger's Shield
+            [GetSpellInfo(204490)] = 8, -- Sigil of Silence
+
             -- Roots
-            '122',    -- Frost Nova
-            '33395',  -- Freeze
-            '339',    -- Entangling Roots
-            '170855', -- Entangling Roots (Nature's Grasp)
-            '53148',  -- Charge (Hunter)
-            '105771', -- Charge (Warrior)
-            '64695',  -- Earthgrab Totem
-            '96294',  -- Chains of Ice
-            '102359', -- Mass Entanglement
-            '114404', -- Void Tendrils
-            '116706', -- Disable
-            '135373', -- Entrapment
-            '136634', -- Narrow Escape
-            '55536',  -- Frostweave Net
-            '157997', -- Ice Nova
-            '45334',  -- Wild Charge
-            '16979',  -- Wild Charge
-            '162480', -- Steel Trap
+            [GetSpellInfo(339)]    = 7, -- Entangling Roots
+            [GetSpellInfo(122)]    = 7, -- Frost Nova
+            [GetSpellInfo(102359)] = 7, -- Mass Entanglement
+            [GetSpellInfo(64695)]  = 7, -- Earthgrab
+            [GetSpellInfo(200108)] = 7, -- Ranger's Net
+            [GetSpellInfo(212638)] = 7, -- Tracker's Net
+            [GetSpellInfo(162480)] = 7, -- Steel Trap
+            [GetSpellInfo(204085)] = 7, -- Deathchill
+            [GetSpellInfo(233582)] = 7, -- Entrenched in Flame
+            [GetSpellInfo(201158)] = 7, -- Super Sticky Tar
+            [GetSpellInfo(33395)]  = 7, -- Freeze
+            [GetSpellInfo(228600)] = 7, -- Glacial Spike
+            [GetSpellInfo(116706)] = 7, -- Disable
 
-            -- Immune
-            '19263',  -- Deterrence
-            '186265', -- Aspect of the Turtle
-            '45438',  -- Ice Block
-            '642',    -- Divine Shield    
-            '115018', -- Desecrated Ground
-            '31821',  -- Aura Mastery
-            '1022',   -- Hand of Protection
-            '47585',  -- Dispersion
-            '31224',  -- Cloak of Shadows
-            '8178',   -- Grounding Totem Effect (Grounding Totem)
-            '76577',  -- Smoke Bomb
-            '88611',  -- Smoke Bomb
-            '46924',  -- Bladestorm
-
-            -- Anti CC
-            '48792',  -- Icebound Fortitude
-            '48707',  -- Anti-Magic Shell
-            '23920',  -- Spell Reflection
-            '114028', -- Mass Spell Reflection
-            '5384',   -- Feign Death
-
-            -- Silence
-            '47476',  -- Strangulate
-            '81261',  -- Solar Beam
-            '15487',  -- Silence (Priest)
-            '1330',   -- Garrote - Silence
-            '31117',  -- Unstable Affliction Silence
-            '31935',  -- Avenger's Shield Silence
-            '28730',  -- Arcane Torrent (Mana version)
-            '80483',  -- Arcane Torrent (Focus version)
-            '25046',  -- Arcane Torrent (Energy version)
-            '50613',  -- Arcane Torrent (Runic Power version)
-            '69179',  -- Arcane Torrent (Rage version)
+            [GetSpellInfo(236077)] = 6, -- Disarm
+            [GetSpellInfo(209749)] = 6, -- Faerie Swarm (Disarm)
 
             -- Offensive Buffs
-            '51690',  -- Killing Spree
-            '13750',  -- Adrenaline Rush
-            '31884',  -- Avenging Wrath
-            '1719',   -- Battle Cry    
-            '107574', -- Avatar
-            '102543', -- Incarnation: King of the Jungle
-            '106951', -- Berserk
-            '102560', -- Incarnation: Chosen of Elune
-            '12472',  -- Icy Veins
-            '193526', -- Trueshot
-            '19574',  -- Bestial Wrath
-            '186289', -- Aspect of the Eagle
-            '51271',  -- Pillar of Frost
-            '152279', -- Breath of Sindragosa
-            '105809', -- Holy Avenger
-            '16166',  -- Elemental Mastery
-            '114050', -- Ascendance
-            '121471', -- Shadow Blades
-            '12292',  -- Bloodbath
-            '162264', -- Metamorphosis    
+            [GetSpellInfo(1719)]   = 5, -- [Warrior] Battle Cry
+            [GetSpellInfo(107574)] = 5, -- [Warrior] Avatar
+            [GetSpellInfo(12292)]  = 5, -- [Warrior] Bloodbath
+            [GetSpellInfo(31884)]  = 5, -- [Paladin] Avenging Wrath (Retribution)
+            [GetSpellInfo(19574)]  = 5, -- [Hunter] Bestial Wrath
+            [GetSpellInfo(186289)] = 5, -- [Hunter] Aspect of the Eagle
+            [GetSpellInfo(193526)] = 5, -- [Hunter] Trueshot
+            [GetSpellInfo(13750)]  = 5, -- [Rogue] Adrenaline Rush
+            [GetSpellInfo(51690)]  = 5, -- [Rogue] Killing Spree
+            [GetSpellInfo(121471)] = 5, -- [Rogue] Shadow Blades
+            [GetSpellInfo(10060)]  = 5, -- [Priest] Power Infusion
+            [GetSpellInfo(194249)] = 5, -- [Priest] Voidform
+            [GetSpellInfo(51271)]  = 5, -- [DK] Pillar of Frost
+            [GetSpellInfo(152279)] = 5, -- [DK] Breath of Sindragosa
+            [GetSpellInfo(2825)]   = 5, -- [Shaman] Bloodlust
+            [GetSpellInfo(32182)]  = 5, -- [Shaman] Heroism
+            [GetSpellInfo(16166)]  = 5, -- [Shaman] Elemental Mastery
+            [GetSpellInfo(114050)] = 5, -- [Shaman] Ascendance (Elemental)
+            [GetSpellInfo(114051)] = 5, -- [Shaman] Ascendance (Enhancement)
+            [GetSpellInfo(204361)] = 5, -- [Shaman] Bloodlust (Honor Talent)
+            [GetSpellInfo(204362)] = 5, -- [Shaman] Heroism (Honor Talent)
+            [GetSpellInfo(204945)] = 5, -- [Shaman] Doom Winds
+            [GetSpellInfo(12042)]  = 5, -- [Mage] Arcane Power
+            [GetSpellInfo(12472)]  = 5, -- [Mage] Icy Veins
+            [GetSpellInfo(190319)] = 5, -- [Mage] Combustion
+            [GetSpellInfo(198144)] = 5, -- [Mage] Ice Form
+            [GetSpellInfo(196098)] = 5, -- [Warlock] Soul Harvest
+            [GetSpellInfo(137639)] = 5, -- [Monk] Storm, Earth, and Fire
+            [GetSpellInfo(152173)] = 5, -- [Monk] Serenity
+            [GetSpellInfo(102543)] = 5, -- [Duruid] Incarnation: King of the Jungle
+            [GetSpellInfo(102560)] = 5, -- [Duruid] Incarnation: Chosen of Elune
+            [GetSpellInfo(106951)] = 5, -- [Duruid] Berserk
+            [GetSpellInfo(194223)] = 5, -- [Duruid] Celestial Alignment
+            [GetSpellInfo(162264)] = 5, -- [DH] Metamorphosis
+            [GetSpellInfo(211048)] = 5, -- [DH] Chaos Blades
 
             -- Defensive Buffs
-            '122470', -- Touch of Karma
-            '116849', -- Life Cocoon
-            '33206',  -- Pain Suppression
-            '49039',  -- Lichborne
-            '5277',   -- Evasion
-            '199754', -- Riposte
-            '108359', -- Dark Regeneration
-            '104773', -- Unending Resolve
-            '18499',  -- Berserker Rage
-            '61336',  -- Survival Instincts
-            '22812',  -- Barkskin
-            '102342', -- Iron Bark
-            '6940',   -- Hand of Sacrifice
-            '110909', -- Alter Time
-            '118038', -- Die by the Sword
-            '33891',  -- Incarnation: Tree of Life
-            '74001',  -- Combat Readiness
-            '108271', -- Astral Shift
-            '108416', -- Dark Pact
-            '47788',  -- Guardian Spirit
-            '122783', -- Diffuse Magic
-            '12975',  -- Last Stand
-            '871',    -- Shield Wall
-            '212800', -- Blur
-            '55233',  -- Vampiric Blood
-            '194679', -- Rune Tap
-            '207319', -- Corpse Shield
-            ]]
+            [GetSpellInfo(210256)] = 4, -- Blessing of Sanctuary
+            [GetSpellInfo(6940)]   = 4, -- Blessing of Sacrifice
+            [GetSpellInfo(125174)] = 4, -- Touch of Karma
+            [GetSpellInfo(47788)]  = 4, -- Guardian Spirit
+            [GetSpellInfo(197268)] = 4, -- Ray of Hope
+            [GetSpellInfo(5277)]   = 4, -- Evasion
+            [GetSpellInfo(199754)] = 4, -- Riposte
+            [GetSpellInfo(212800)] = 4, -- Blur
+            [GetSpellInfo(102342)] = 4, -- Ironbark
+            [GetSpellInfo(22812)]  = 4, -- Barkskin
+            [GetSpellInfo(117679)] = 4, -- Incarnation: Tree of Life
+            [GetSpellInfo(198065)] = 4, -- Prismatic Cloak
+            [GetSpellInfo(198111)] = 4, -- Temporal Shield
+            [GetSpellInfo(108271)] = 4, -- Astral Shift
+            [GetSpellInfo(114052)] = 4, -- Ascendance (Restoration)
+            [GetSpellInfo(207319)] = 4, -- Corpse Shield
+            [GetSpellInfo(104773)] = 4, -- Unending Resolve
+            [GetSpellInfo(48792)]  = 4, -- Icebound Fortitude
+            [GetSpellInfo(55233)]  = 4, -- Vampiric Blood
+            [GetSpellInfo(61336)]  = 4, -- Survival Instincts
+            [GetSpellInfo(116849)] = 4, -- Life Cocoon
+            [GetSpellInfo(33206)]  = 4, -- Pain Suppression
+            [GetSpellInfo(197862)] = 4, -- Archangel
+            [GetSpellInfo(31850)]  = 4, -- Ardent Defender
+            [GetSpellInfo(120954)] = 4, -- Fortifying Brew
+            [GetSpellInfo(108416)] = 4, -- Dark Pact
+            [GetSpellInfo(216331)] = 4, -- Avenging Crusader
+            [GetSpellInfo(31842)]  = 4, -- Avenging Wrath (Holy)
+            [GetSpellInfo(118038)] = 4, -- Die by the Sword
+            [GetSpellInfo(12975)]  = 4, -- Last Stand
+            [GetSpellInfo(205191)] = 4, -- Eye for an Eye
+            [GetSpellInfo(498)]    = 4, -- Divine Protection
+            [GetSpellInfo(871)]    = 4, -- Shield Wall
+            [GetSpellInfo(53480)]  = 4, -- Roar of Sacrifice
+            [GetSpellInfo(197690)] = 4, -- Defensive Stance
+
+            -- Miscellaneous
+            [GetSpellInfo(199450)] = 1, -- Ultimate Sacrifice
+            [GetSpellInfo(188501)] = 1, -- Spectral Sight
+            [GetSpellInfo(1044)]   = 1, -- Blessing of Freedom  
         },
     },
 }

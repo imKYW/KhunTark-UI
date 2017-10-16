@@ -41,7 +41,6 @@ local ActivityAuras = {
 	[225730] = 4, -- [ITEM] 매개체 비전(가속)
 	[242612] = 4, -- [ITEM] 박멸의 기계
 	[243942] = 4, -- [ITEM] 해제되는 이성의 고서
-[167385] = 4, -- [ITEM] 해제되는 이성의 고서
 }
 
 local PersonalAuras = {
@@ -52,6 +51,60 @@ local PersonalAuras = {
 	[225130] = 4, -- [ITEM] 티콘 탱 장신구
 	[228399] = 4, -- [ENH] for Tanker
 }
+
+local NameplateBuffs = {
+	-- Offensive Buffs
+	[1719]	 = 4, -- [Warrior] Battle Cry
+	[107574] = 4, -- [Warrior] Avatar
+	[12292]  = 4, -- [Warrior] Bloodbath
+	[31884]	 = 4, -- [Paladin] Avenging Wrath (Retribution)
+	[19574]  = 4, -- [Hunter] Bestial Wrath
+	[186289] = 4, -- [Hunter] Aspect of the Eagle
+	[193526] = 4, -- [Hunter] Trueshot
+	[13750]	 = 4, -- [Rogue] Adrenaline Rush
+	[51690]  = 4, -- [Rogue] Killing Spree
+	[121471] = 4, -- [Rogue] Shadow Blades
+	[10060]	 = 4, -- [Priest] Power Infusion
+	[194249] = 4, -- [Priest] Voidform
+	[51271]	 = 4, -- [DK] Pillar of Frost
+	[152279] = 4, -- [DK] Breath of Sindragosa
+	[2825]	 = 4, -- [Shaman] Bloodlust
+	[32182]	 = 4, -- [Shaman] Heroism
+	[16166]	 = 4, -- [Shaman] Elemental Mastery
+	[114050] = 4, -- [Shaman] Ascendance (Elemental)
+	[114051] = 4, -- [Shaman] Ascendance (Enhancement)
+	[204361] = 4, -- [Shaman] Bloodlust (Honor Talent)
+	[204362] = 4, -- [Shaman] Heroism (Honor Talent)
+	[204945] = 4, -- [Shaman] Doom Winds
+	[12042]  = 4, -- [Mage] Arcane Power
+	[12472]  = 4, -- [Mage] Icy Veins
+	[190319] = 4, -- [Mage] Combustion
+	[198144] = 4, -- [Mage] Ice Form
+	[196098] = 4, -- [Warlock] Soul Harvest
+	[137639] = 4, -- [Monk] Storm, Earth, and Fire
+	[152173] = 4, -- [Monk] Serenity
+	[102543] = 4, -- [Duruid] Incarnation: King of the Jungle
+	[102560] = 4, -- [Duruid] Incarnation: Chosen of Elune
+	[106951] = 4, -- [Duruid] Berserk
+	[194223] = 4, -- [Duruid] Celestial Alignment
+	[162264] = 4, -- [DH] Metamorphosis
+	[211048] = 4, -- [DH] Chaos Blades
+}
+
+-- Warrior ----------------------------------------------------------------------------------------
+if playerClass == "WARRIOR" then
+	PersonalAuras[18499]	= 2 -- Berserker Rage
+	ActivityAuras[107574]	= 2 -- [T3/3] Avatar
+	ActivityAuras[1719]		= 2 -- [ARMS] Battle Cry
+	ActivityAuras[227847]	= 2 -- [ARMS] Blade Storm
+	ActivityAuras[188923]	= 2 -- [ARMS] Cleave
+	PersonalAuras[118038]	= 2 -- [ARMS] Die by the Sword
+	PersonalAuras[209484]	= 2 -- [ARMS] Tactical Advance
+	ActivityAuras[60503]	= 2 -- [ARMS T1/2] Overpower
+	ActivityAuras[248145]	= 2 -- [ARMS LEG] HEAD Buff
+	PersonalAuras[202164]	= 2 -- [ARMS T4/2] Bounding Stride
+	PersonalAuras[197690]	= 2 -- [ARMS T4/3] Defensive Stance
+end
 
 -- Death Knight -----------------------------------------------------------------------------------
 if playerClass == "DEATHKNIGHT" then
@@ -151,12 +204,15 @@ end
 
 local activityAuraList = {}
 local personalAuraList = {}
+local nameplateBuffList = {}
 ActivityAuraList = activityAuraList
 PersonalAuraList = personalAuraList
+NameplateBuffList = nameplateBuffList
 
 UpdateAuraList = function()
 	wipe(activityAuraList)	
 	wipe(personalAuraList)
+	wipe(nameplateBuffList)
 	-- Add base auras
 	for ativityAura, activityFilter in pairs(ActivityAuras) do
 		activityAuraList[ativityAura] = activityFilter
@@ -164,12 +220,18 @@ UpdateAuraList = function()
 	for personalAura, personalFilter in pairs(PersonalAuras) do
 		personalAuraList[personalAura] = personalFilter
 	end
+	for nameplateBuff, nameplateFilter in pairs(NameplateBuffs) do
+		nameplateBuffList[nameplateBuff] = nameplateFilter
+	end
 	-- Add auras that depend on spec or PVP mode
 	for i = 1, #updateFuncs do
 		updateFuncs[i](activityAuraList)
 	end
 	for j = 1, #updateFuncs do
 		updateFuncs[j](personalAuraList)
+	end
+	for k = 1, #updateFuncs do
+		updateFuncs[k](nameplateBuffList)
 	end
 	-- Update all the things
 	for _, obj in pairs(oUF.objects) do
@@ -218,6 +280,19 @@ CustomAuraFilters = {
 			return caster and UnitIsUnit(caster, "vehicle")
 		end
 	end,
+	nameplate = function(self, unit, iconFrame, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
+		-- print("CustomAuraFilter", self.__owner:GetName(), "[unit]", unit, "[caster]", caster, "[name]", name, "[id]", spellID, "[filter]", v, caster == "vehicle")
+		local v = nameplateBuffList[spellID]
+		if v and filters[v] then
+			return filters[v](self, unit, caster)
+		elseif v then
+			return v > 0
+		else
+			return caster and UnitIsUnit(caster, "vehicle")
+		end
+	end,
+
+
 	--[[
 	party = function(self, unit, iconFrame, name, rank, icon, count, debuffType, duration, expirationTime, unitCaster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
 		local v = auraList[spellID]

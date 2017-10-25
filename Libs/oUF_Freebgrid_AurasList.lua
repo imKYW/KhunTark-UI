@@ -58,12 +58,106 @@ ns.auras = {
 
     -- General buffs
     buffs = {
-        --[GetSpellInfo(245725)] = 17, -- debug
-        [GetSpellInfo(871)] = 17, -- Shield Wall
-        [GetSpellInfo(61336)] = 17, -- Survival Instincts
-        [GetSpellInfo(31850)] = 17, -- Ardent Defender
-        [GetSpellInfo(498)] = 17, -- Divine Protection
-        [GetSpellInfo(33206)] = 17, -- Pain Suppression
+        -- Immunities
+        [GetSpellInfo(642)]    = 10, -- Divine Shield
+        [GetSpellInfo(186265)] = 10, -- Aspect of the Turtle
+        [GetSpellInfo(45438)]  = 10, -- Ice Block
+        [GetSpellInfo(47585)]  = 10, -- Dispersion
+        [GetSpellInfo(1022)]   = 10, -- Blessing of Protection
+        [GetSpellInfo(216113)] = 10, -- Way of the Crane
+        [GetSpellInfo(31224)]  = 10, -- Cloak of Shadows
+        [GetSpellInfo(212182)] = 10, -- Smoke Bomb
+        [GetSpellInfo(212183)] = 10, -- Smoke Bomb
+        [GetSpellInfo(8178)]   = 10, -- Grounding Totem Effect
+        [GetSpellInfo(199448)] = 10, -- Blessing of Sacrifice
+
+        -- Anti CCs
+        [GetSpellInfo(23920)]  = 9, -- Spell Reflection
+        [GetSpellInfo(216890)] = 9, -- Spell Reflection (Honor Talent)
+        [GetSpellInfo(213610)] = 9, -- Holy Ward
+        [GetSpellInfo(212295)] = 9, -- Nether Ward
+        [GetSpellInfo(48707)]  = 9, -- Anti-Magic Shell
+        [GetSpellInfo(5384)]   = 9, -- Feign Death
+        [GetSpellInfo(213602)] = 9, -- Greater Fade
+
+        -- Offensive Buffs
+        [GetSpellInfo(1719)]   = 5, -- [Warrior] Battle Cry
+        [GetSpellInfo(107574)] = 5, -- [Warrior] Avatar
+        [GetSpellInfo(12292)]  = 5, -- [Warrior] Bloodbath
+        [GetSpellInfo(31884)]  = 5, -- [Paladin] Avenging Wrath (Retribution)
+        [GetSpellInfo(19574)]  = 5, -- [Hunter] Bestial Wrath
+        [GetSpellInfo(186289)] = 5, -- [Hunter] Aspect of the Eagle
+        [GetSpellInfo(193526)] = 5, -- [Hunter] Trueshot
+        [GetSpellInfo(13750)]  = 5, -- [Rogue] Adrenaline Rush
+        [GetSpellInfo(51690)]  = 5, -- [Rogue] Killing Spree
+        [GetSpellInfo(121471)] = 5, -- [Rogue] Shadow Blades
+        [GetSpellInfo(10060)]  = 5, -- [Priest] Power Infusion
+        [GetSpellInfo(194249)] = 5, -- [Priest] Voidform
+        [GetSpellInfo(51271)]  = 5, -- [DK] Pillar of Frost
+        [GetSpellInfo(152279)] = 5, -- [DK] Breath of Sindragosa
+        [GetSpellInfo(2825)]   = 5, -- [Shaman] Bloodlust
+        [GetSpellInfo(32182)]  = 5, -- [Shaman] Heroism
+        [GetSpellInfo(16166)]  = 5, -- [Shaman] Elemental Mastery
+        [GetSpellInfo(114050)] = 5, -- [Shaman] Ascendance (Elemental)
+        [GetSpellInfo(114051)] = 5, -- [Shaman] Ascendance (Enhancement)
+        [GetSpellInfo(204361)] = 5, -- [Shaman] Bloodlust (Honor Talent)
+        [GetSpellInfo(204362)] = 5, -- [Shaman] Heroism (Honor Talent)
+        [GetSpellInfo(204945)] = 5, -- [Shaman] Doom Winds
+        [GetSpellInfo(12042)]  = 5, -- [Mage] Arcane Power
+        [GetSpellInfo(12472)]  = 5, -- [Mage] Icy Veins
+        [GetSpellInfo(190319)] = 5, -- [Mage] Combustion
+        [GetSpellInfo(198144)] = 5, -- [Mage] Ice Form
+        [GetSpellInfo(196098)] = 5, -- [Warlock] Soul Harvest
+        [GetSpellInfo(137639)] = 5, -- [Monk] Storm, Earth, and Fire
+        [GetSpellInfo(152173)] = 5, -- [Monk] Serenity
+        [GetSpellInfo(102543)] = 5, -- [Duruid] Incarnation: King of the Jungle
+        [GetSpellInfo(102560)] = 5, -- [Duruid] Incarnation: Chosen of Elune
+        [GetSpellInfo(106951)] = 5, -- [Duruid] Berserk
+        [GetSpellInfo(194223)] = 5, -- [Duruid] Celestial Alignment
+        [GetSpellInfo(162264)] = 5, -- [DH] Metamorphosis
+        [GetSpellInfo(211048)] = 5, -- [DH] Chaos Blades
+
+        -- Defensive Buffs
+        [GetSpellInfo(210256)] = 4, -- Blessing of Sanctuary
+        [GetSpellInfo(6940)]   = 4, -- Blessing of Sacrifice
+        [GetSpellInfo(125174)] = 4, -- Touch of Karma
+        [GetSpellInfo(47788)]  = 4, -- Guardian Spirit
+        [GetSpellInfo(197268)] = 4, -- Ray of Hope
+        [GetSpellInfo(5277)]   = 4, -- Evasion
+        [GetSpellInfo(199754)] = 4, -- Riposte
+        [GetSpellInfo(212800)] = 4, -- Blur
+        [GetSpellInfo(102342)] = 4, -- Ironbark
+        [GetSpellInfo(22812)]  = 4, -- Barkskin
+        [GetSpellInfo(117679)] = 4, -- Incarnation: Tree of Life
+        [GetSpellInfo(198065)] = 4, -- Prismatic Cloak
+        [GetSpellInfo(198111)] = 4, -- Temporal Shield
+        [GetSpellInfo(108271)] = 4, -- Astral Shift
+        [GetSpellInfo(114052)] = 4, -- Ascendance (Restoration)
+        [GetSpellInfo(207319)] = 4, -- Corpse Shield
+        [GetSpellInfo(104773)] = 4, -- Unending Resolve
+        [GetSpellInfo(48792)]  = 4, -- Icebound Fortitude
+        [GetSpellInfo(55233)]  = 4, -- Vampiric Blood
+        [GetSpellInfo(61336)]  = 4, -- Survival Instincts
+        [GetSpellInfo(116849)] = 4, -- Life Cocoon
+        [GetSpellInfo(33206)]  = 4, -- Pain Suppression
+        [GetSpellInfo(197862)] = 4, -- Archangel
+        [GetSpellInfo(31850)]  = 4, -- Ardent Defender
+        [GetSpellInfo(120954)] = 4, -- Fortifying Brew
+        [GetSpellInfo(108416)] = 4, -- Dark Pact
+        [GetSpellInfo(216331)] = 4, -- Avenging Crusader
+        [GetSpellInfo(31842)]  = 4, -- Avenging Wrath (Holy)
+        [GetSpellInfo(118038)] = 4, -- Die by the Sword
+        [GetSpellInfo(12975)]  = 4, -- Last Stand
+        [GetSpellInfo(205191)] = 4, -- Eye for an Eye
+        [GetSpellInfo(498)]    = 4, -- Divine Protection
+        [GetSpellInfo(871)]    = 4, -- Shield Wall
+        [GetSpellInfo(53480)]  = 4, -- Roar of Sacrifice
+        [GetSpellInfo(197690)] = 4, -- Defensive Stance
+
+        -- Miscellaneous
+        [GetSpellInfo(199450)] = 1, -- Ultimate Sacrifice
+        [GetSpellInfo(188501)] = 1, -- Spectral Sight
+        [GetSpellInfo(1044)]   = 1, -- Blessing of Freedom
     },
 
     -- Raid Debuffs
@@ -464,7 +558,7 @@ ns.auras = {
 
             [GetSpellInfo(5211)]   = 15, -- Mighty Bash (Stun)
             [GetSpellInfo(108194)] = 15, -- Asphyxiate (Stun)
-            [GetSpellInfo(199804)] = 15, --Between the Eyes (Stun)
+            [GetSpellInfo(199804)] = 15, -- Between the Eyes (Stun)
             [GetSpellInfo(118905)] = 15, -- Static Charge (Stun)
             [GetSpellInfo(1833)]   = 15, -- Cheap Shot (Stun)
             [GetSpellInfo(853)]    = 15, -- Hammer of Justice (Stun)
@@ -554,28 +648,6 @@ ns.auras = {
             [GetSpellInfo(107079)] = 13, -- Quaking Palm (Incapacitate)
             [GetSpellInfo(236025)] = 13, -- Enraged Maim (Incapacitate)
 
-            -- Immunities
-            [GetSpellInfo(642)]    = 10, -- Divine Shield
-            [GetSpellInfo(186265)] = 10, -- Aspect of the Turtle
-            [GetSpellInfo(45438)]  = 10, -- Ice Block
-            [GetSpellInfo(47585)]  = 10, -- Dispersion
-            [GetSpellInfo(1022)]   = 10, -- Blessing of Protection
-            [GetSpellInfo(216113)] = 10, -- Way of the Crane
-            [GetSpellInfo(31224)]  = 10, -- Cloak of Shadows
-            [GetSpellInfo(212182)] = 10, -- Smoke Bomb
-            [GetSpellInfo(212183)] = 10, -- Smoke Bomb
-            [GetSpellInfo(8178)]   = 10, -- Grounding Totem Effect
-            [GetSpellInfo(199448)] = 10, -- Blessing of Sacrifice
-
-            -- Anti CCs
-            [GetSpellInfo(23920)]  = 9, -- Spell Reflection
-            [GetSpellInfo(216890)] = 9, -- Spell Reflection (Honor Talent)
-            [GetSpellInfo(213610)] = 9, -- Holy Ward
-            [GetSpellInfo(212295)] = 9, -- Nether Ward
-            [GetSpellInfo(48707)]  = 9, -- Anti-Magic Shell
-            [GetSpellInfo(5384)]   = 9, -- Feign Death
-            [GetSpellInfo(213602)] = 9, -- Greater Fade
-
             -- Silences
             [GetSpellInfo(81261)]  = 8, -- Solar Beam
             [GetSpellInfo(25046)]  = 8, -- Arcane Torrent
@@ -610,86 +682,7 @@ ns.auras = {
             [GetSpellInfo(116706)] = 7, -- Disable
 
             [GetSpellInfo(236077)] = 6, -- Disarm
-            [GetSpellInfo(209749)] = 6, -- Faerie Swarm (Disarm)
-
-            -- Offensive Buffs
-            [GetSpellInfo(1719)]   = 5, -- [Warrior] Battle Cry
-            [GetSpellInfo(107574)] = 5, -- [Warrior] Avatar
-            [GetSpellInfo(12292)]  = 5, -- [Warrior] Bloodbath
-            [GetSpellInfo(31884)]  = 5, -- [Paladin] Avenging Wrath (Retribution)
-            [GetSpellInfo(19574)]  = 5, -- [Hunter] Bestial Wrath
-            [GetSpellInfo(186289)] = 5, -- [Hunter] Aspect of the Eagle
-            [GetSpellInfo(193526)] = 5, -- [Hunter] Trueshot
-            [GetSpellInfo(13750)]  = 5, -- [Rogue] Adrenaline Rush
-            [GetSpellInfo(51690)]  = 5, -- [Rogue] Killing Spree
-            [GetSpellInfo(121471)] = 5, -- [Rogue] Shadow Blades
-            [GetSpellInfo(10060)]  = 5, -- [Priest] Power Infusion
-            [GetSpellInfo(194249)] = 5, -- [Priest] Voidform
-            [GetSpellInfo(51271)]  = 5, -- [DK] Pillar of Frost
-            [GetSpellInfo(152279)] = 5, -- [DK] Breath of Sindragosa
-            [GetSpellInfo(2825)]   = 5, -- [Shaman] Bloodlust
-            [GetSpellInfo(32182)]  = 5, -- [Shaman] Heroism
-            [GetSpellInfo(16166)]  = 5, -- [Shaman] Elemental Mastery
-            [GetSpellInfo(114050)] = 5, -- [Shaman] Ascendance (Elemental)
-            [GetSpellInfo(114051)] = 5, -- [Shaman] Ascendance (Enhancement)
-            [GetSpellInfo(204361)] = 5, -- [Shaman] Bloodlust (Honor Talent)
-            [GetSpellInfo(204362)] = 5, -- [Shaman] Heroism (Honor Talent)
-            [GetSpellInfo(204945)] = 5, -- [Shaman] Doom Winds
-            [GetSpellInfo(12042)]  = 5, -- [Mage] Arcane Power
-            [GetSpellInfo(12472)]  = 5, -- [Mage] Icy Veins
-            [GetSpellInfo(190319)] = 5, -- [Mage] Combustion
-            [GetSpellInfo(198144)] = 5, -- [Mage] Ice Form
-            [GetSpellInfo(196098)] = 5, -- [Warlock] Soul Harvest
-            [GetSpellInfo(137639)] = 5, -- [Monk] Storm, Earth, and Fire
-            [GetSpellInfo(152173)] = 5, -- [Monk] Serenity
-            [GetSpellInfo(102543)] = 5, -- [Duruid] Incarnation: King of the Jungle
-            [GetSpellInfo(102560)] = 5, -- [Duruid] Incarnation: Chosen of Elune
-            [GetSpellInfo(106951)] = 5, -- [Duruid] Berserk
-            [GetSpellInfo(194223)] = 5, -- [Duruid] Celestial Alignment
-            [GetSpellInfo(162264)] = 5, -- [DH] Metamorphosis
-            [GetSpellInfo(211048)] = 5, -- [DH] Chaos Blades
-
-            -- Defensive Buffs
-            [GetSpellInfo(210256)] = 4, -- Blessing of Sanctuary
-            [GetSpellInfo(6940)]   = 4, -- Blessing of Sacrifice
-            [GetSpellInfo(125174)] = 4, -- Touch of Karma
-            [GetSpellInfo(47788)]  = 4, -- Guardian Spirit
-            [GetSpellInfo(197268)] = 4, -- Ray of Hope
-            [GetSpellInfo(5277)]   = 4, -- Evasion
-            [GetSpellInfo(199754)] = 4, -- Riposte
-            [GetSpellInfo(212800)] = 4, -- Blur
-            [GetSpellInfo(102342)] = 4, -- Ironbark
-            [GetSpellInfo(22812)]  = 4, -- Barkskin
-            [GetSpellInfo(117679)] = 4, -- Incarnation: Tree of Life
-            [GetSpellInfo(198065)] = 4, -- Prismatic Cloak
-            [GetSpellInfo(198111)] = 4, -- Temporal Shield
-            [GetSpellInfo(108271)] = 4, -- Astral Shift
-            [GetSpellInfo(114052)] = 4, -- Ascendance (Restoration)
-            [GetSpellInfo(207319)] = 4, -- Corpse Shield
-            [GetSpellInfo(104773)] = 4, -- Unending Resolve
-            [GetSpellInfo(48792)]  = 4, -- Icebound Fortitude
-            [GetSpellInfo(55233)]  = 4, -- Vampiric Blood
-            [GetSpellInfo(61336)]  = 4, -- Survival Instincts
-            [GetSpellInfo(116849)] = 4, -- Life Cocoon
-            [GetSpellInfo(33206)]  = 4, -- Pain Suppression
-            [GetSpellInfo(197862)] = 4, -- Archangel
-            [GetSpellInfo(31850)]  = 4, -- Ardent Defender
-            [GetSpellInfo(120954)] = 4, -- Fortifying Brew
-            [GetSpellInfo(108416)] = 4, -- Dark Pact
-            [GetSpellInfo(216331)] = 4, -- Avenging Crusader
-            [GetSpellInfo(31842)]  = 4, -- Avenging Wrath (Holy)
-            [GetSpellInfo(118038)] = 4, -- Die by the Sword
-            [GetSpellInfo(12975)]  = 4, -- Last Stand
-            [GetSpellInfo(205191)] = 4, -- Eye for an Eye
-            [GetSpellInfo(498)]    = 4, -- Divine Protection
-            [GetSpellInfo(871)]    = 4, -- Shield Wall
-            [GetSpellInfo(53480)]  = 4, -- Roar of Sacrifice
-            [GetSpellInfo(197690)] = 4, -- Defensive Stance
-
-            -- Miscellaneous
-            [GetSpellInfo(199450)] = 1, -- Ultimate Sacrifice
-            [GetSpellInfo(188501)] = 1, -- Spectral Sight
-            [GetSpellInfo(1044)]   = 1, -- Blessing of Freedom  
+            [GetSpellInfo(209749)] = 6, -- Faerie Swarm (Disarm)            
         },
     },
 }

@@ -26,6 +26,7 @@ local ActivityAuras = {
 	[190909] = 4, -- [ENH] 발톱의 징표
 	[242583] = 4, -- [WEAPON] DPS 52+ : STR
 	[242584] = 4, -- [WEAPON] DPS 52+ : DEX
+	[242586] = 4, -- [WEAPON] DPS 52+ : INT
 	[243096] = 4, -- [WEAPON] Tank 52+ : Ver
 	[188028] = 4, -- [POT] Old War
 	[229206] = 4, -- [POT] 지속힘 

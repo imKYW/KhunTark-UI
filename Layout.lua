@@ -104,8 +104,10 @@ local UnitSpecific = {
 		self.GCD = gcd
 
 		self.CombatIndicator = self.Power:CreateTexture(nil, 'OVERLAY')
-		self.CombatIndicator:SetSize(17, 17)
-		self.CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 0, 0)
+		self.CombatIndicator:SetSize(6, 6)
+		self.CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 2, 0)
+		self.CombatIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+		self.CombatIndicator:SetVertexColor(1,0,0)
 		-- TODO : Rest Highlight
 
 		-- EXP Bar

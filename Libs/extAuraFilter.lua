@@ -180,6 +180,16 @@ if playerClass == "HUNTER" then
 	PersonalAuras[186265]	= 2 -- [BM] 거북의 상
 end
 
+-- Priest -----------------------------------------------------------------------------------------
+if playerClass == "PRIEST" then
+	PersonalAuras[17]		= 2 -- 보호막
+	PersonalAuras[15286]	= 2 -- [S] 흡혈의 선물
+	PersonalAuras[65081]	= 2 -- [S T2/2] 육체와영혼
+	ActivityAuras[194249]	= 4 -- [S] 공허의 형상
+	ActivityAuras[197937]	= 2 -- [S T4/1] 머무는 광기
+	ActivityAuras[124430]	= 4 -- [S T5/3] 어둠의 통찰
+end
+
 --[[ ADD Racials / But I don't used it. cuz I played gnome only
 if playerRace == "Draenei" then
 	ActivityAuras[59545]  = 4 -- Gift of the Naaru (death knight)

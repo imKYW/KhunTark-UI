@@ -11,7 +11,7 @@ local npCVars = {
 	NamePlateVerticalScale = 1,
 	
 	NameplateLargerScale = 1,
-	NameplateMaxDistance = 60,
+	NameplateMaxDistance = 40,
 	NameplateOtherTopInset = -1,
 	NameplateOtherBottomInset = -1,
 
@@ -118,7 +118,7 @@ local NamePlateSpecific = function(self)
 	unitDebuff.PostUpdateIcon = PostUpdateIcon
 	unitDebuff.CustomFilter = CustomFilter
 	self.Debuffs = unitDebuff
-	self.Debuffs:SetScale(0.7) -- trick for Scale bug
+	self.Debuffs:SetScale(1) -- trick for Scale bug 0.7
 
 --[[
 	local unitBuff = CreateFrame('Frame', nil, self)

@@ -6,23 +6,35 @@ local oUF = ns.oUF or oUF
 -----------------------------------------------------------------------------------------
 local npCVars = {
 	-- System
-	NameplateGlobalScale = 1,
+	nameplateGlobalScale = 1,
 	NamePlateHorizontalScale = 1,
 	NamePlateVerticalScale = 1,
 	
-	NameplateLargerScale = 1,
-	NameplateMaxDistance = 40,
-	NameplateOtherTopInset = -1,
-	NameplateOtherBottomInset = -1,
+	nameplateLargerScale = 1,
+	nameplateLargeTopInset = -1,
+	nameplateLargeBottomInset = -1,
+	--nameplateOtherAtBase = 1,
+	nameplateOtherTopInset = -1,
+	nameplateOtherBottomInset = -1,
 
 	-- Non Select
-	NameplateMinScale = 0.8,
-	NameplateMaxScale = 0.8,
-	NameplateMinAlpha = 0.6,
-	NameplateMaxAlpha = 0.6,
+	nameplateMaxDistance = 60,
+	nameplateMaxScale = 1,
+	nameplateMaxScaleDistance = 40,
+	nameplateMaxAlpha = 0.8,
+	nameplateMaxAlphaDistance = 40,
+	nameplateMinScale = 0.8,
+	nameplateMinScaleDistance = 60,
+	nameplateMinAlpha = 0.8,
+	nameplateMinAlphaDistance = 60,
 	-- Select
-	NameplateSelectedScale = 1,
-	NameplateSelectedAlpha = 1,
+	nameplateSelectedScale = 1,
+	nameplateSelectedAlpha = 1,
+
+	ShowNamePlateLoseAggroFlash = 1,
+
+	--namePlateEnemySize
+	--namePlateFriendlySize
 }
 
 -- Function -----------------------------------------------------------------------------
@@ -118,7 +130,7 @@ local NamePlateSpecific = function(self)
 	unitDebuff.PostUpdateIcon = PostUpdateIcon
 	unitDebuff.CustomFilter = CustomFilter
 	self.Debuffs = unitDebuff
-	self.Debuffs:SetScale(1) -- trick for Scale bug 0.7
+	self.Debuffs:SetScale(0.7) -- trick for Scale bug
 
 --[[
 	local unitBuff = CreateFrame('Frame', nil, self)

@@ -49,6 +49,7 @@ local PersonalAuras = {
 	[33206]  = 4, -- Pain Suppression
 	[102342] = 4, -- Ironbark
 	[207472] = 4, -- [LEG] 프라다
+	[214494] = 4, -- [ITEM] 네루비안 탱 장신구
 	[225130] = 4, -- [ITEM] 티콘 탱 장신구
 	[228399] = 4, -- [ENH] for Tanker
 }
@@ -155,7 +156,7 @@ if playerClass == "MONK" then
 	PersonalAuras[124275]	= 2 -- [BM] 작은 시간차
 	PersonalAuras[124274]	= 2 -- [BM] 중간 시간차
 	PersonalAuras[124273]	= 2 -- [BM] 큰 시간차
-	--PersonalAuras[195630]	= 2 -- [BM] 교묘한 투사
+	PersonalAuras[195630]	= 2 -- [BM] 교묘한 투사
 	--PersonalAuras[214373]	= 2 -- [BM] 맥주수염
 	ActivityAuras[116768]	= 2 -- [WW] Blackout Kick! / 후려차기!
 	ActivityAuras[195321]	= 2 -- [WW] Transfer the Power / 힘전달

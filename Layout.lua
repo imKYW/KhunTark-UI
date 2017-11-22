@@ -147,7 +147,7 @@ local UnitSpecific = {
 		local personalBuff = CreateFrame('Frame', nil, self)
 		personalBuff.size = 36
 		personalBuff.spacing = 4
-		personalBuff.num = 3
+		personalBuff.num = 4
 		personalBuff:SetSize((personalBuff.size+personalBuff.spacing)*personalBuff.num-personalBuff.spacing, personalBuff.size)
 		personalBuff:SetPoint('CENTER', UIParent, 'CENTER', 75, 0)
 		personalBuff.initialAnchor = 'CENTER'            

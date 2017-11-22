@@ -140,6 +140,22 @@ function Phase(self)
 end
 
 -- Current Target/Focus -----------------------------------------------------------------
+local CurrentTarget = function(self)
+    if UnitIsUnit('target', self.unit) then
+        self.TargetBorder:Show()
+    else
+        self.TargetBorder:Hide()
+    end
+end
+
+local CurrentFocus = function(self)
+    if UnitIsUnit('focus', self.unit) then
+        self.FocusBorder:Show()
+    else
+        self.FocusBorder:Hide()
+    end
+end
+
 function ctfBorder(self)
     local ctfBackdrop = {
         bgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
@@ -169,22 +185,6 @@ function ctfBorder(self)
     self:RegisterEvent('PLAYER_FOCUS_CHANGED', CurrentFocus)
     --self:RegisterEvent('RAID_ROSTER_UPDATE', ChangedTarget)
     --self:RegisterEvent('RAID_ROSTER_UPDATE', CurrentFocus)
-end
-
-function CurrentTarget(self)
-    if UnitIsUnit('target', self.unit) then
-        self.TargetBorder:Show()
-    else
-        self.TargetBorder:Hide()
-    end
-end
-
-function CurrentFocus(self)
-    if UnitIsUnit('focus', self.unit) then
-        self.FocusBorder:Show()
-    else
-        self.FocusBorder:Hide()
-    end
 end
 
 -- Buff/Debuff/Aura Icon ----------------------------------------------------------------

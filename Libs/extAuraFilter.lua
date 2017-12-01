@@ -108,41 +108,21 @@ if playerClass == "WARRIOR" then
 	PersonalAuras[197690]	= 2 -- [ARMS T4/3] Defensive Stance
 end
 
--- Death Knight -----------------------------------------------------------------------------------
-if playerClass == "DEATHKNIGHT" then
-	ActivityAuras[53365]	= 2 -- Unholy Strength <= Rune of the Fallen Crusader
-	PersonalAuras[48707]	= 2 -- Anti-Magic Shell
-	PersonalAuras[48792]	= 2 -- Icebound Fortitude	
-	PersonalAuras[212552]	= 2 -- Wraith Walk
-	PersonalAuras[101568]	= 2 -- Dark Succor
-	--ActivityAuras[115989] = 2 -- [T1/3] Unholy Blight
-	--ActivityAuras[96268]  = 2 -- [T3/1] Death's Advance
-	--ActivityAuras[114851] = 2 -- [T4/1] Blood Charge
-	--ActivityAuras[108200] = 2 -- [T6/2] Remorseless Winter
-	--ActivityAuras[81141]  = 2 -- [Blood] Crimson Scourge
-	--ActivityAuras[81256]  = 2 -- [Blood] Dancing Rune Weapon	
-	ActivityAuras[51271]	= 2 -- [Frost] Pillar of Frost
-	ActivityAuras[194879]	= 2 -- [Frost] 얼발
-	ActivityAuras[196770]	= 2 -- [Frost] 냉겨
-	ActivityAuras[207127]	= 2 -- [Frost] 굶주린 룬무기
-	ActivityAuras[207256]	= 2 -- [Frost] 말살
-	ActivityAuras[211805]	= 2 -- [Frost] 휘몰
-	--ActivityAuras[51124]	= 2 -- [Frost] Killing Machine
-	--ActivityAuras[152279]	= 2 -- [Frost] 신드라숨결
-	PersonalAuras[207203]	= 2 -- [Frost 5/2] 보막
-	ActivityAuras[49016]	= 2 -- [Unholy] Unholy Frenzy
-	ActivityAuras[81340]	= 2 -- [Unholy] Sudden Doom
-	ActivityAuras[188290]	= 2 -- [Unholy] Death and Decay
-	ActivityAuras[215711]	= 2 -- [Unholy] Soul Reaper	
-	PersonalAuras[207319]	= 2 -- [Unholy 5/2] 시체방패
-	--PersonalAuras[49039]	= 2 -- [T2/1] Lichborne
-	--PersonalAuras[51052]	= 2 -- [T2/2] Anti-Magic Zone
-	--PersonalAuras[51460]	= 2 -- [T4/3] Runic Corruption
-	--PersonalAuras[48743]	= 2 -- [T5/1] Death Pact(Debuff)
-	--PersonalAuras[119975]	= 2 -- [T5/3] Conversion
-	--PersonalAuras[49222]	= 2 -- [Blood] Bone Shield
-	--PersonalAuras[55233]	= 2 -- [Blood] Vampiric Blood
+-- Hunter -----------------------------------------------------------------------------------------
+if playerClass == "HUNTER" then
+	PersonalAuras[186257]	= 2 -- 치타의 상 90%
+	PersonalAuras[186258]	= 2 -- 치타의 상 30%
+	PersonalAuras[118922]	= 2 -- [T3/1] 급가속
+	ActivityAuras[120694]	= 4 -- [BM] 광포한 야수
+	ActivityAuras[246252]	= 4 -- [BM T2/2] 광포한 격노
+	ActivityAuras[19574]	= 2 -- [BM] 야격
+	ActivityAuras[193530]	= 2 -- [BM] 야생의 상
+	ActivityAuras[195222]	= 4 -- [BM] 폭풍채찍(WEAPON)
+	ActivityAuras[248085]	= 4 -- [BM] 뱀의 혓바닥(LEG)
+	PersonalAuras[186265]	= 2 -- [BM] 거북의 상
 end
+
+-- Warlock ----------------------------------------------------------------------------------------
 
 -- Monk -------------------------------------------------------------------------------------------
 if playerClass == "MONK" then
@@ -165,30 +145,6 @@ if playerClass == "MONK" then
 	ActivityAuras[152173]	= 2 -- [WW] Serenity / 평온
 	PersonalAuras[125174]	= 2 -- [WW] Touch of Karma / 업보
 	PersonalAuras[195381]	= 2 -- [WW] Healing Winds / 치유의바람
-end
-
--- Hunter -----------------------------------------------------------------------------------------
-if playerClass == "HUNTER" then
-	PersonalAuras[186257]	= 2 -- 치타의 상 90%
-	PersonalAuras[186258]	= 2 -- 치타의 상 30%
-	PersonalAuras[118922]	= 2 -- [T3/1] 급가속
-	ActivityAuras[120694]	= 4 -- [BM] 광포한 야수
-	ActivityAuras[246252]	= 4 -- [BM T2/2] 광포한 격노
-	ActivityAuras[19574]	= 2 -- [BM] 야격
-	ActivityAuras[193530]	= 2 -- [BM] 야생의 상
-	ActivityAuras[195222]	= 4 -- [BM] 폭풍채찍(WEAPON)
-	ActivityAuras[248085]	= 4 -- [BM] 뱀의 혓바닥(LEG)
-	PersonalAuras[186265]	= 2 -- [BM] 거북의 상
-end
-
--- Priest -----------------------------------------------------------------------------------------
-if playerClass == "PRIEST" then
-	PersonalAuras[17]		= 2 -- 보호막
-	PersonalAuras[15286]	= 2 -- [S] 흡혈의 선물
-	PersonalAuras[65081]	= 2 -- [S T2/2] 육체와영혼
-	ActivityAuras[194249]	= 4 -- [S] 공허의 형상
-	ActivityAuras[197937]	= 2 -- [S T4/1] 머무는 광기
-	ActivityAuras[124430]	= 4 -- [S T5/3] 어둠의 통찰
 end
 
 --[[ ADD Racials / But I don't used it. cuz I played gnome only

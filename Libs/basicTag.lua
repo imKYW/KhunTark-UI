@@ -1,6 +1,14 @@
 local _, ns = ...
 local oUF = ns.oUF or oUF
 
+-- sourced from FrameXML/Constants.lua
+local SPELL_POWER_MANA = Enum.PowerType.Mana or 0
+local SPELL_POWER_COMBO_POINTS = Enum.PowerType.ComboPoints or 4
+local SPELL_POWER_SOUL_SHARDS = Enum.PowerType.SoulShards or 7
+local SPELL_POWER_CHI = Enum.PowerType.Chi or 12
+local SPELL_POWER_HOLY_POWER = Enum.PowerType.HolyPower or 9
+local SPELL_POWER_ARCANE_CHARGES = Enum.PowerType.ArcaneCharges or 16
+
 -- Tag Function -------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 
@@ -111,7 +119,7 @@ oUF.Tags.Methods['color'] = function(unit)
         return hex(1, 1, 1)
     end
 end
-oUF.Tags.Events['color'] = 'UNIT_FACTION UNIT_HEALTH' -- UNIT_REACTION
+oUF.Tags.Events['color'] = 'UNIT_FACTION UNIT_HEALTH'
 
 -- Shortcut name
 oUF.Tags.Methods['unit:name4'] = function(unit, raid)
@@ -228,7 +236,6 @@ oUF.Tags.Methods['unit:PPflex'] = function(unit)
 end
 oUF.Tags.Events['unit:PPflex'] = 'UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER'
 
---[[
 -- Player Class Resource
 oUF.Tags.Methods['player:Resource'] = function()
     local playerClass = select(2, UnitClass('player'))
@@ -264,8 +271,7 @@ oUF.Tags.Methods['player:Resource'] = function()
         return num
     end
 end
-oUF.Tags.Events['player:Resource'] = 'UNIT_POWER SPELLS_CHANGED PLAYER_SPECIALIZATION_CHANGED'
-]]
+oUF.Tags.Events['player:Resource'] = 'UNIT_POWER_UPDATE SPELLS_CHANGED PLAYER_SPECIALIZATION_CHANGED'
 
 -- Player Mana if Mana is Sub Resource
 oUF.Tags.Methods['player:SubMana'] = function()

@@ -65,11 +65,12 @@ local function Update(self, event, unit)
 				element:ClearModel()
 				element:SetUnit(unit)
 			end
-			element.guid = guid
-			element.state = isAvailable
+		else
+			SetPortraitTexture(element, unit)
 		end
-	else
-		SetPortraitTexture(element, unit)
+
+		element.guid = guid
+		element.state = isAvailable
 	end
 
 	--[[ Callback: Portrait:PostUpdate(unit)
@@ -106,6 +107,7 @@ local function Enable(self, unit)
 
 		self:RegisterEvent('UNIT_MODEL_CHANGED', Path)
 		self:RegisterEvent('UNIT_PORTRAIT_UPDATE', Path)
+		self:RegisterEvent('PORTRAITS_UPDATED', Path)
 		self:RegisterEvent('UNIT_CONNECTION', Path)
 
 		-- The quest log uses PARTY_MEMBER_{ENABLE,DISABLE} to handle updating of
@@ -130,7 +132,8 @@ local function Disable(self)
 		element:Hide()
 
 		self:UnregisterEvent('UNIT_MODEL_CHANGED', Path)
-		self:RegisterEvent('UNIT_PORTRAIT_UPDATE', Path)
+		self:UnregisterEvent('UNIT_PORTRAIT_UPDATE', Path)
+		self:UnregisterEvent('PORTRAITS_UPDATED', Path)
 		self:UnregisterEvent('PARTY_MEMBER_ENABLE', Path)
 		self:UnregisterEvent('UNIT_CONNECTION', Path)
 	end

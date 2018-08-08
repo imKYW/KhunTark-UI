@@ -127,7 +127,6 @@ local UnitSpecific = {
 		})
 		Rested:SetBackdropColor(0, 0, 0)
 
---[[
 		local ExperienceLv = cFontString(Experience, 'OVERLAY', cfg.font, 11, cfg.fontflag, 1, 1, 1)
 		ExperienceLv:SetPoint('RIGHT', Experience, 'LEFT', -1, 0)        
 		ExperienceLv:SetJustifyH('CENTER')
@@ -144,7 +143,6 @@ local UnitSpecific = {
 
 		self.Experience = Experience
 		self.Experience.Rested = Rested
-]]
 
 		local personalBuff = CreateFrame('Frame', nil, self)
 		personalBuff.size = 36

@@ -48,7 +48,6 @@ local UnitSpecific = {
 		subpower:SetPoint('LEFT', self.Power, 'RIGHT', 3, 0)        
 		self:Tag(subpower, '[player:SubMana]')
 
---[[
 		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player') then
 			local runes = CreateFrame('Frame', nil, self)
 			runes:SetSize(cfg.mainUF.player.width, 5)
@@ -87,12 +86,11 @@ local UnitSpecific = {
 			local staggerPercent = cFontString(self.Power, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'RIGHT')
 			staggerPercent:SetPoint('RIGHT', self, 'LEFT', -3, 0)        
 			self:Tag(staggerPercent, '[player:StaggerPercent]')
-		elseif class == 'DRUID' then
+		-- elseif class == 'DRUID' then
 			-- TODO : MushroomBar?
-		elseif class == 'SHAMAN' then
+		-- elseif class == 'SHAMAN' then
 			-- TODO : TotemBar? like Runebar
 		end
-		]]
 
 		-- GCD Bar
 		local class_color = RAID_CLASS_COLORS[class]

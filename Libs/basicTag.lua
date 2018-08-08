@@ -22,10 +22,11 @@ local healthColor = function(value)
     return r, g, b
 end
 
--- Power Color
-oUF.colors.power['MANA'] = { 0.37, 0.6, 1 } -- Recoloring for looks good
-oUF.colors.power['RAGE'] = { 0.9,  0.3,  0.23 } -- Recoloring for looks good
-oUF.colors.power['RUNIC_POWER'] = { 0, 0.81, 1 } -- Recoloring for looks good
+-- Power Color (Recoloring for looks good)
+oUF.colors.power['MANA'] = { 0.37, 0.6, 1 }
+oUF.colors.power['RAGE'] = { 0.9,  0.3,  0.23 }
+oUF.colors.power['RUNIC_POWER'] = { 0, 0.81, 1 }
+oUF.colors.power['RUNES'] = { 0.5, 0.33, 0.66 }
 
 local powerColor = function(unit)
     if not unit then return end    
@@ -227,13 +228,13 @@ oUF.Tags.Methods['unit:PPflex'] = function(unit)
 end
 oUF.Tags.Events['unit:PPflex'] = 'UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER'
 
+--[[
 -- Player Class Resource
 oUF.Tags.Methods['player:Resource'] = function()
     local playerClass = select(2, UnitClass('player'))
     local playerClassSpec = GetSpecializationInfo(GetSpecialization())
     local num = 0
 
---[[
     if UnitHasVehicleUI'player' then
         num = UnitPower('vehicle', SPELL_POWER_COMBO_POINTS)
     -- Soul Shard
@@ -258,13 +259,13 @@ oUF.Tags.Methods['player:Resource'] = function()
     else
         return
     end
-]]
 
     if(num > 0) then
         return num
     end
 end
 oUF.Tags.Events['player:Resource'] = 'UNIT_POWER SPELLS_CHANGED PLAYER_SPECIALIZATION_CHANGED'
+]]
 
 -- Player Mana if Mana is Sub Resource
 oUF.Tags.Methods['player:SubMana'] = function()

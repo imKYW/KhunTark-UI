@@ -210,9 +210,9 @@ local zoneDelay = function(self, elapsed)
     end
 
     if (IsInInstance()) then
-        SetMapToCurrentZone()
         local _, zoneType = IsInInstance()
-        local zone = GetCurrentMapAreaID()
+        local zone = C_Map.GetBestMapForUnit('player')
+        WorldMapFrame:SetMapID(zone)
 
         if zoneType == "pvp" or zoneType == "arena" or zone == 978 then
             instDebuffs = ns.auras.instances[9999]

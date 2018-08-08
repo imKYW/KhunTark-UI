@@ -151,28 +151,5 @@ end
 
 -- Spawn --------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
-oUF:RegisterStyle("CombaUI - NP", function(frame, unit)
-    if unit == "player" then
-        -- your player-specific code here
-    elseif unit == "boss1" then
-        -- your boss1-specific code here
-    elseif unit:match("nameplate") then
-    	-- set size and points
-        frame:SetSize(128, 16)
-        frame:SetPoint("CENTER", 0, 0)
-
-        -- health bar
-        local health = CreateFrame("StatusBar", nil, frame)
-        health:SetAllPoints()
-        health:SetStatusBarTexture(cfg.texture)
-        frame.Health = health
-
-        -- frame background
-        local bg = frame:CreateTexture(nil, "BACKGROUND")
-        bg:SetAllPoints(health)
-        bg:SetStatusBarTexture(cfg.texture)
-		bg.multiplier = 0.4
-    end
-end)
-oUF:SpawnNamePlates("CombaUI_NP", nil, npCVars)
---oUF:SpawnNamePlates(name, nil, npCVars)
+oUF:RegisterStyle(name.."Nameplate", NamePlateSpecific)
+oUF:SpawnNamePlates(name.."Nameplate", name, nil, npCVars)

@@ -110,7 +110,7 @@ oUF.Tags.Methods['color'] = function(unit)
         return hex(1, 1, 1)
     end
 end
-oUF.Tags.Events['color'] = 'UNIT_REACTION UNIT_HEALTH'
+oUF.Tags.Events['color'] = 'UNIT_FACTION UNIT_HEALTH' -- UNIT_REACTION
 
 -- Shortcut name
 oUF.Tags.Methods['unit:name4'] = function(unit, raid)
@@ -233,6 +233,7 @@ oUF.Tags.Methods['player:Resource'] = function()
     local playerClassSpec = GetSpecializationInfo(GetSpecialization())
     local num = 0
 
+--[[
     if UnitHasVehicleUI'player' then
         num = UnitPower('vehicle', SPELL_POWER_COMBO_POINTS)
     -- Soul Shard
@@ -257,6 +258,7 @@ oUF.Tags.Methods['player:Resource'] = function()
     else
         return
     end
+]]
 
     if(num > 0) then
         return num

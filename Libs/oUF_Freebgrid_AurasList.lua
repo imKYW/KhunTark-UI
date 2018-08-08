@@ -58,6 +58,7 @@ ns.auras = {
 
     -- General buffs
     buffs = {
+        --[[ temp remove
         -- Immunities
         [GetSpellInfo(642)]    = 10, -- Divine Shield
         [GetSpellInfo(186265)] = 10, -- Aspect of the Turtle
@@ -158,6 +159,7 @@ ns.auras = {
         [GetSpellInfo(199450)] = 1, -- Ultimate Sacrifice
         [GetSpellInfo(188501)] = 1, -- Spectral Sight
         [GetSpellInfo(1044)]   = 1, -- Blessing of Freedom
+        ]]
     },
 
     -- Raid Debuffs
@@ -549,6 +551,9 @@ ns.auras = {
         },
 
         [L['PVP']] = {
+
+
+        --[[ temp remove
             -- Higher up = higher display priority
             --1 무적기
             --2 부분무적기
@@ -682,7 +687,9 @@ ns.auras = {
             [GetSpellInfo(116706)] = 7, -- Disable
 
             [GetSpellInfo(236077)] = 6, -- Disarm
-            [GetSpellInfo(209749)] = 6, -- Faerie Swarm (Disarm)            
+            [GetSpellInfo(209749)] = 6, -- Faerie Swarm (Disarm)    
+
+            ]]        
         },
     },
 }

@@ -41,13 +41,14 @@ local UnitSpecific = {
 		local ptext = cFontString(self.Power, nil, cfg.bfont, 9, cfg.fontflag, 1, 1, 1, 'CENTER')
 		ptext:SetPoint('CENTER', self.Power, 'CENTER', 1, -1)        
 		self:Tag(ptext, '[unit:PPflex]')
-		local cres = cFontString(self.Power, nil, cfg.bfont, 26, cfg.fontflag, 1, 1, 1, 'RIGHT')
-		cres:SetPoint('RIGHT', self, 'LEFT', -3, 0)        
-		self:Tag(cres, '[color][player:Resource]')
+		--local cres = cFontString(self.Power, nil, cfg.bfont, 26, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		--cres:SetPoint('RIGHT', self, 'LEFT', -3, 0)        
+		--self:Tag(cres, '[color][player:Resource]')
 		local subpower = cFontString(self.Power, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
 		subpower:SetPoint('LEFT', self.Power, 'RIGHT', 3, 0)        
 		self:Tag(subpower, '[player:SubMana]')
 
+--[[
 		if class == 'DEATHKNIGHT' and not UnitHasVehicleUI('player') then
 			local runes = CreateFrame('Frame', nil, self)
 			runes:SetSize(cfg.mainUF.player.width, 5)
@@ -91,6 +92,7 @@ local UnitSpecific = {
 		elseif class == 'SHAMAN' then
 			-- TODO : TotemBar? like Runebar
 		end
+		]]
 
 		-- GCD Bar
 		local class_color = RAID_CLASS_COLORS[class]
@@ -127,6 +129,7 @@ local UnitSpecific = {
 		})
 		Rested:SetBackdropColor(0, 0, 0)
 
+--[[
 		local ExperienceLv = cFontString(Experience, 'OVERLAY', cfg.font, 11, cfg.fontflag, 1, 1, 1)
 		ExperienceLv:SetPoint('RIGHT', Experience, 'LEFT', -1, 0)        
 		ExperienceLv:SetJustifyH('CENTER')
@@ -143,6 +146,7 @@ local UnitSpecific = {
 
 		self.Experience = Experience
 		self.Experience.Rested = Rested
+]]
 
 		local personalBuff = CreateFrame('Frame', nil, self)
 		personalBuff.size = 36

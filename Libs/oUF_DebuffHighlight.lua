@@ -56,7 +56,7 @@ local function GetDebuffType(unit, filter)
 	if not UnitCanAssist("player", unit) then return nil end
 	local i = 1
 	while true do
-		local _, _, texture, _, debufftype = UnitAura(unit, i, "HARMFUL")
+		local _, texture, _, debufftype = UnitAura(unit, i, "HARMFUL")
 		if not texture then break end
 		if debufftype and dispellist[debufftype] then
 			return debufftype, texture

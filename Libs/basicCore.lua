@@ -13,7 +13,7 @@ CombatTextFont:SetShadowOffset(0,0)
 CombatTextFont:SetShadowColor(0,0,0,0.4)
 
 -- Frame Backdrop -----------------------------------------------------------------------
-function fBackDrop(parent, anchor) 
+function fBackDrop(parent, anchor)
     local f = CreateFrame('Frame', nil, parent)
     f:SetFrameLevel(parent:GetFrameLevel()-1 or 0)
     f:SetPoint('TOPLEFT', anchor, 'TOPLEFT', -3, 3)
@@ -118,9 +118,9 @@ function Power(self, direction) -- TOP else BOTTOM
 
     p.Smooth = true
     p.colorPower = true
-    
+
     if unit == 'player' and powerType ~= 0 then p.frequentUpdates = true end
-     
+
     self.Power = p
     self.Power.bg = pbg
 end
@@ -232,15 +232,15 @@ function PostCreateIconSmall(auras, button)
     btnC:SetFontObject(nil)
     btnC:SetFont(cfg.aurafont, 8, cfg.fontflag)
     btnC:SetTextColor(1, 1, 1)
-    
+
     auras.disableCooldown = true
     auras.showDebuffType = true
-    
+
     button.overlay:SetTexture(nil)
     button.icon:SetTexCoord(.1, .9, .1, .9)
     button:SetBackdrop(backdrop)
     button:SetBackdropColor(0, 0, 0, 1)
-    
+
     button.glow = CreateFrame('Frame', nil, button)
     button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
     button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
@@ -248,7 +248,7 @@ function PostCreateIconSmall(auras, button)
     button.glow:SetBackdrop({bgFile = '', edgeFile = cfg.glow, edgeSize = 4,
     insets = { left = 3, right = 3, top = 3, bottom = 3 },
     })
-    
+
     local remaining = cFontString(button, 'OVERLAY', cfg.aurafont, 8, cfg.fontflag, 1, 1, 1)
     remaining:SetPoint('TOPLEFT')
     button.remaining = remaining
@@ -261,15 +261,15 @@ function PostCreateIconNormal(auras, button)
     btnC:SetFontObject(nil)
     btnC:SetFont(cfg.aurafont, 10, cfg.fontflag)
     btnC:SetTextColor(1, 1, 1)
-    
+
     auras.disableCooldown = true
     auras.showDebuffType = true
-    
+
     button.overlay:SetTexture(nil)
     button.icon:SetTexCoord(.1, .9, .1, .9)
     button:SetBackdrop(backdrop)
     button:SetBackdropColor(0, 0, 0, 1)
-    
+
     button.glow = CreateFrame('Frame', nil, button)
     button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
     button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
@@ -277,7 +277,7 @@ function PostCreateIconNormal(auras, button)
     button.glow:SetBackdrop({bgFile = '', edgeFile = cfg.glow, edgeSize = 4,
     insets = { left = 3, right = 3, top = 3, bottom = 3 },
     })
-    
+
     local remaining = cFontString(button, 'OVERLAY', cfg.font, 12, cfg.fontflag, 1, 1, 1)
     remaining:SetPoint('TOPLEFT', 1, 0)
     button.remaining = remaining
@@ -296,14 +296,14 @@ function PostUpdateIcon(icons, unit, icon, index, offset)
     else
         icon.remaining:Hide()
     end
-    
+
     local r,g,b = icon.overlay:GetVertexColor()
     if icon.isDebuff then
         icon.glow:SetBackdropBorderColor(r, g, b, 1)
-    else 
+    else
         icon.glow:SetBackdropBorderColor(0, 0, 0, 1)
-    end 
-    
+    end
+
     icon.duration = duration
     icon.expires = expirationTime
     icon:SetScript('OnUpdate', CreateAuraTimer)

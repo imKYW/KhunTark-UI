@@ -7,8 +7,8 @@ cfg.texture = 'Interface\\AddOns\\KBJcombatUI\\Media\\texture'
 cfg.symbol = 'Interface\\AddOns\\KBJcombatUI\\Media\\symbol.ttf'
 cfg.glow = 'Interface\\AddOns\\KBJcombatUI\\Media\\textureGlow'
 
--- Font ( fontStd is FRIZQT__ + koverwatch )
-cfg.font = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontStd.ttf'
+-- Font ( "Fonts\\FRIZQT__.ttf" was rebuild font FRIZQT__ + koverwatch )
+cfg.font = 'Fonts\\FRIZQT__.ttf'
 cfg.bfont = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf'
 cfg.aurafont = 'Interface\\AddOns\\KBJcombatUI\\Media\\pixel.ttf'
 cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'

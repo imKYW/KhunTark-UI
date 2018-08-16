@@ -13,7 +13,7 @@ local SPELL_POWER_ARCANE_CHARGES = Enum.PowerType.ArcaneCharges or 16
 -----------------------------------------------------------------------------------------
 
 -- Gradation Health Color
-local healthColor = function(value)    
+local healthColor = function(value)
     local r, g, b = 0, 0, 0
 
     if value > 0 then value = value / 100

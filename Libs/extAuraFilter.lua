@@ -29,7 +29,7 @@ local ActivityAuras = {
 	[242586] = 4, -- [WEAPON] DPS 52+ : INT
 	[243096] = 4, -- [WEAPON] Tank 52+ : Ver
 	[188028] = 4, -- [POT] Old War
-	[229206] = 4, -- [POT] 지속힘 
+	[229206] = 4, -- [POT] 지속힘
 	[208052] = 4, -- [LEG] 세푸즈
 	[224149] = 4, -- [SET] 별비셋
 	[214128] = 4, -- [ITEM] 시간의 파편
@@ -92,6 +92,19 @@ local NameplateBuffs = {
 	[162264] = 4, -- [DH] Metamorphosis
 	[211048] = 4, -- [DH] Chaos Blades
 }
+
+-- DeathKnight ----------------------------------------------------------------------------------------
+if playerClass == "DEATHKNIGHT" then
+	-- [General]
+	PersonalAuras[48707]	= 2 -- 대마보
+	PersonalAuras[48792]	= 2 -- 얼인
+	-- [Frost]
+	ActivityAuras[51271]	= 2 -- 얼음 기둥
+	ActivityAuras[196770]	= 2 -- 냉혹한 겨울
+	PersonalAuras[101568]	= 2 -- 어둠의 원조
+	-- [Blood]
+	-- [Unholy]
+end
 
 -- Warrior ----------------------------------------------------------------------------------------
 if playerClass == "WARRIOR" then
@@ -178,7 +191,7 @@ PersonalAuraList = personalAuraList
 NameplateBuffList = nameplateBuffList
 
 UpdateAuraList = function()
-	wipe(activityAuraList)	
+	wipe(activityAuraList)
 	wipe(personalAuraList)
 	wipe(nameplateBuffList)
 	-- Add base auras
@@ -226,7 +239,7 @@ local filters = {
 }
 
 CustomAuraFilters = {
-	activity = function(self, unit, iconFrame, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
+	activity = function(self, unit, iconFrame, name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
 		-- print("CustomAuraFilter", self.__owner:GetName(), "[unit]", unit, "[caster]", caster, "[name]", name, "[id]", spellID, "[filter]", v, caster == "vehicle")
 		local v = activityAuraList[spellID]
 		if v and filters[v] then
@@ -237,7 +250,7 @@ CustomAuraFilters = {
 			return caster and UnitIsUnit(caster, "vehicle")
 		end
 	end,
-	personal = function(self, unit, iconFrame, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
+	personal = function(self, unit, iconFrame, name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
 		-- print("CustomAuraFilter", self.__owner:GetName(), "[unit]", unit, "[caster]", caster, "[name]", name, "[id]", spellID, "[filter]", v, caster == "vehicle")
 		local v = personalAuraList[spellID]
 		if v and filters[v] then
@@ -248,7 +261,7 @@ CustomAuraFilters = {
 			return caster and UnitIsUnit(caster, "vehicle")
 		end
 	end,
-	nameplate = function(self, unit, iconFrame, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
+	nameplate = function(self, unit, iconFrame, name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
 		-- print("CustomAuraFilter", self.__owner:GetName(), "[unit]", unit, "[caster]", caster, "[name]", name, "[id]", spellID, "[filter]", v, caster == "vehicle")
 		local v = nameplateBuffList[spellID]
 		if v and filters[v] then

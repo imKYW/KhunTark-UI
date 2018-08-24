@@ -37,7 +37,7 @@ oUF.colors.power['RUNIC_POWER'] = { 0, 0.81, 1 }
 oUF.colors.power['RUNES'] = { 0.5, 0.33, 0.66 }
 
 local powerColor = function(unit)
-    if not unit then return end    
+    if not unit then return end
     local _, power, r, g, b = UnitPowerType(unit)
     local color = PowerBarColor[power]
 
@@ -140,7 +140,7 @@ end
 oUF.Tags.Events['unit:name10'] = 'UNIT_NAME_UPDATE'
 
 -- LV + Classification
-oUF.Tags.Methods['unit:lv'] = function(unit) 
+oUF.Tags.Methods['unit:lv'] = function(unit)
     local level = UnitLevel(unit)
     local classification = UnitClassification(unit)
     local color = GetQuestDifficultyColor(level)
@@ -258,7 +258,7 @@ oUF.Tags.Methods['player:Resource'] = function()
     elseif playerClassSpec == 269 then -- Monk Windwalker
         num = UnitPower('player', SPELL_POWER_CHI)
     -- Holy Power
-    elseif playerClassSpec == 70 then -- Paladin Retribution 
+    elseif playerClassSpec == 70 then -- Paladin Retribution
         num = UnitPower('player', SPELL_POWER_HOLY_POWER)
     -- Arcane Charge
     elseif playerClassSpec == 62 then -- Mage Arcane
@@ -301,7 +301,7 @@ oUF.Tags.Methods['player:StaggerPercent'] = function()
         return
     end
 end
-oUF.Tags.Events['player:StaggerPercent'] = 'UNIT_AURA PLAYER_SPECIALIZATION_CHANGED'
+oUF.Tags.Events['player:StaggerPercent'] = 'UNIT_AURA UNIT_DISPLAYPOWER PLAYER_SPECIALIZATION_CHANGED PLAYER_TALENT_UPDATE'
 
 -- Current Stagger for Monk BM
 oUF.Tags.Methods['player:StaggerCurrent'] = function()
@@ -311,4 +311,4 @@ oUF.Tags.Methods['player:StaggerCurrent'] = function()
         return
     end
 end
-oUF.Tags.Events['player:StaggerCurrent'] = 'UNIT_AURA PLAYER_SPECIALIZATION_CHANGED'
+oUF.Tags.Events['player:StaggerCurrent'] = 'UNIT_AURA UNIT_DISPLAYPOWER PLAYER_SPECIALIZATION_CHANGED PLAYER_TALENT_UPDATE'

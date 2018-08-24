@@ -35,7 +35,7 @@ for tag, func in next, {
 	end,
 	['experience:tnl'] = function(unit)
 		return math_floor(_TAGS['experience:max'](unit) - _TAGS['experience:cur'](unit))
-	end,	
+	end,
 	['experience:currested'] = function()
 		if(not WatchingHonor()) then
 			return GetXPExhaustion()

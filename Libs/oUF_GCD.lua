@@ -2,17 +2,16 @@ local _, ns = ...
 local oUF = ns.oUF or oUF
 
 local referenceSpells = {
-    49892,      -- Death Coil (Death Knight)
-    66215,      -- Blood Strike (Death Knight)
-    1978,       -- Serpent Sting (Hunter)
-    585,        -- Smite (Priest)
-    19740,      -- Blessing of Might (Paladin)
-    172,        -- Corruption (Warlock)
-    5504,       -- Conjure Water (Mage)
-    772,        -- Rend (Warrior)
-    331,        -- Healing Wave (Shaman)
-    1752,       -- Sinister Strike (Rogue)
-    5176,       -- Wrath (Druid)
+    5308,   -- Warrior
+    20217,  -- Paladin
+    1978,   -- Hunter
+    1752,   -- Rogue
+    588,    -- Priest
+    47541,  -- Death Knight
+    52127,  -- Shaman
+    118,    -- Mage
+    686,    -- Warlock
+    17057,  -- Druid
 }
 
 local GetTime = GetTime
@@ -47,8 +46,7 @@ local Init = function()
     end
 
     if spellid == nil then
-        -- XXX: print some error ..
-        print ("Foo!")
+        print ("KBJcombatUI Debug : [GCD] Unable to find reference spell")
     end
 
     return spellid
@@ -84,7 +82,7 @@ local Update = function(self, event, unit)
         if (not start) then return end
         if (not dur) then dur = 0 end
 
-        if (dur == 0) then
+        if (dur == 0) then -- start == 0
             self.GCD:Hide()
         else
             self.GCD.starttime = start

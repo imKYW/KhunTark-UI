@@ -2,16 +2,17 @@ local _, ns = ...
 local oUF = ns.oUF or oUF
 
 local referenceSpells = {
-    5308,   -- Warrior
-    20217,  -- Paladin
-    1978,   -- Hunter
-    1752,   -- Rogue
-    588,    -- Priest
-    47541,  -- Death Knight
-    52127,  -- Shaman
-    118,    -- Mage
-    686,    -- Warlock
-    17057,  -- Druid
+    5308,       -- Warrior
+    20217,      -- Paladin
+    1978,       -- Hunter
+    1752,       -- Rogue
+    588,        -- Priest
+    47541,      -- Death Knight
+    52127,      -- Shaman
+    118,        -- Mage
+    686,        -- Warlock
+    17057,      -- Druid
+    100780,     -- Monk
 }
 
 local GetTime = GetTime

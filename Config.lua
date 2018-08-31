@@ -33,7 +33,7 @@ cfg.subUF = {
 	party = {
 		width = 80,
 		height = 25,
-		position = { sa = 'BOTTOMRIGHT', a = UIParent, pa = 'CENTER', x = -270, y = -70 },
+		position = { sa = 'BOTTOMRIGHT', a = UIParent, pa = 'CENTER', x = -405, y = -70 },
 	},
 	raid = {
 		width = 44,
@@ -88,14 +88,14 @@ cfg.plugin = {
 -- Unit Frames Options
 -----------------------------
 cfg.options = {
-	disableRaidFrameManager = true,	-- disable default compact Raid Manager 
+	disableRaidFrameManager = true,	-- disable default compact Raid Manager
 	ResurrectIcon = true,
 	--TotemBar = false,
 	--MushroomBar = true,
 }
 
 -----------------------------
--- Auras 
+-- Auras
 -----------------------------
 cfg.aura = {
 	-- player
@@ -105,7 +105,7 @@ cfg.aura = {
 	target_debuffs = true,
 	target_debuffs_num = 18,
 	target_buffs = true,
-	target_buffs_num = 8,		
+	target_buffs_num = 8,
 	-- focus
 	focus_debuffs = true,
 	focus_debuffs_num = 12,
@@ -122,7 +122,7 @@ cfg.aura = {
 	-- party
 	party_buffs = true,
 	party_buffs_num = 4,
-	
+
 	onlyShowPlayer = false,         -- only show player debuffs on target
 	disableCooldown = true,         -- hide omniCC
 	font = 'Interface\\AddOns\\KBJcombatUI\\Media\\pixel.ttf',
@@ -131,7 +131,7 @@ cfg.aura = {
 }
 
 -----------------------------
--- Plugins 
+-- Plugins
 -----------------------------
 --FloatingCombatText
 
@@ -229,6 +229,6 @@ cfg.spellIDs = {
 	          {3411, {0.89, 0.1, 0.1}, 'TOPRIGHT'},   -- Intervene
 	          },
  }
- 
+
 
 ns.cfg = cfg

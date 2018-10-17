@@ -13,6 +13,7 @@ local referenceSpells = {
     686,        -- Warlock
     17057,      -- Druid
     100780,     -- Monk
+    162243,     -- Demon Hunter
 }
 
 local GetTime = GetTime

@@ -291,7 +291,8 @@ oUF.Tags.Events['player:SubMana'] = 'UNIT_POWER_FREQUENT UNIT_MAXPOWER PLAYER_SP
 
 -- Stagger% for Monk BM
 oUF.Tags.Methods['player:StaggerPercent'] = function()
-    local stagger = UnitStagger("player") / UnitHealthMax("player") * 100
+    local curStagger = UnitStagger("player") or 0
+    local stagger = curStagger / UnitHealthMax("player") * 100
     local staggerText = scNumber(stagger)
 
     if stagger >= 60 then return hex(1, 0.42, 0.42)..staggerText
@@ -302,10 +303,11 @@ oUF.Tags.Methods['player:StaggerPercent'] = function()
     end
 end
 oUF.Tags.Events['player:StaggerPercent'] = 'UNIT_AURA UNIT_DISPLAYPOWER PLAYER_SPECIALIZATION_CHANGED PLAYER_TALENT_UPDATE'
+-- UNIT_DISPLAYPOWER PLAYER_TALENT_UPDATE PLAYER_ENTERING_WORLD PLAYER_SPECIALIZATION_CHANGED UNIT_DISPLAYPOWER UNIT_EXITED_VEHICLE
 
 -- Current Stagger for Monk BM
 oUF.Tags.Methods['player:StaggerCurrent'] = function()
-    local stagger = UnitStagger("player")
+    local stagger = UnitStagger("player") or 0
     if stagger > 0 then return scNumber(stagger)
     else
         return

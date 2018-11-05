@@ -146,7 +146,7 @@ local NamePlateSpecific = function(self)
 	self.Buffs = unitBuff
 ]]
 
-	--AuraTracker(self, 24, 'TOP', self.Health, 'BOTTOM', 0, -20)
+	AuraTracker(self, 24, 'TOP', self.Health, 'BOTTOM', 0, -20)
 end
 
 -- Spawn --------------------------------------------------------------------------------

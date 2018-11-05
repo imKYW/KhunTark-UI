@@ -179,7 +179,7 @@ checkTalents:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
 checkTalents:RegisterEvent('CHARACTER_POINTS_CHANGED')
 checkTalents:SetScript('OnEvent', function()
     if (MultiCheck(class, 'SHAMAN', 'PALADIN', 'DRUID', 'PRIEST', 'MONK')) then
-        local spec = GetSpecialization()
+        local spec = _G.GetSpecialization()
         if (class == 'SHAMAN') then
             dispelClass[class].Magic = spec == 3 and true
         elseif (class == 'PALADIN') then
@@ -209,8 +209,8 @@ local zoneDelay = function(self, elapsed)
         return
     end
 
-    if (IsInInstance()) then
-        local _, zoneType = IsInInstance()
+    if (_G.IsInInstance()) then
+        local _, zoneType = _G.IsInInstance()
         local zone = C_Map.GetBestMapForUnit('player')
         WorldMapFrame:SetMapID(zone)
 
@@ -277,7 +277,7 @@ local AuraTimerAsc = function(self, elapsed)
 
     self.elapsed = 0
 
-    local timeLeft = self.expires - GetTime()
+    local timeLeft = self.expires - _G.GetTime()
     if (timeLeft <= 0) then
         self.remaining:SetText(nil)
     else
@@ -295,7 +295,7 @@ local AuraTimer = function(self, elapsed)
 
     self.elapsed = 0
 
-    local timeLeft = self.expires - GetTime()
+    local timeLeft = self.expires - _G.GetTime()
     if (timeLeft <= 0) then
         self.remaining:SetText(nil)
     else
@@ -333,7 +333,8 @@ local Update = function(self, event, unit)
 
     local index = 1
     while true do
-        local name, rank, texture, count, dtype, duration, expires, caster = UnitDebuff(unit, index)
+
+        local name, texture, count, dtype, duration, expires, caster = UnitDebuff(unit, index)
         if (not name) then
             break
         end
@@ -368,7 +369,8 @@ local Update = function(self, event, unit)
 
     index = 1
     while true do
-        local name, rank, texture, count, dtype, duration, expires, caster = UnitBuff(unit, index)
+        local name, texture, count, dtype, duration, expires, caster = UnitBuff(unit, index)
+
         if (not name) then
             break
         end

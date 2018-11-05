@@ -50,11 +50,12 @@ A.auras = {
         --[GetSpellInfo(5246)] = 2, -- Intimidating Shout
         --[GetSpellInfo(6788)] = 16, -- Weakened Soul
 
-        --[GetSpellInfo(1715)] = 20, -- debug
+        [GetSpellInfo(205708)] = 20, -- debug
     },
 
     -- General buffs
     buffs = {
+        [GetSpellInfo(1459)] = 20, -- debug
     },
 
     -- Raid Debuffs

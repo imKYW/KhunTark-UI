@@ -237,7 +237,7 @@ local UnitSpecific = {
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 
-		--AuraTracker(self, 32, 'BOTTOMLEFT', self, 'TOPLEFT', 0, 5)
+		AuraTracker(self, 32, 'BOTTOMLEFT', self, 'TOPLEFT', 0, 5)
 	end,
 
 	focus = function(self, ...)
@@ -258,7 +258,7 @@ local UnitSpecific = {
 		self.RaidTargetIndicator:SetAlpha(0.9)
 		self.RaidTargetIndicator:SetPoint("right", self.Health, "LEFT", -4, 0)
 
-		--AuraTracker(self, cfg.mainUF.focus.height*2.2, 'RIGHT', self, 'LEFT', -5, 0)
+		AuraTracker(self, cfg.mainUF.focus.height*2.2, 'RIGHT', self, 'LEFT', -5, 0)
 	end,
 
 	pet = function(self, ...)
@@ -358,7 +358,7 @@ local UnitSpecific = {
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 
-		--AuraTracker(self, cfg.subUF.party.height*1.4, 'CENTER', self, 'CENTER', 0, 0)
+		AuraTracker(self, cfg.subUF.party.height*1.4, 'CENTER', self, 'CENTER', 0, 0)
 	end,
 
 	partypet = function(self, ...)
@@ -429,7 +429,7 @@ local UnitSpecific = {
 		self.ReadyCheckIndicator:SetSize(32, 32)
 		self.ReadyCheckIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
 
-		--AuraTracker(self, cfg.subUF.raid.width*0.65, 'CENTER', self.Health)
+		AuraTracker(self, cfg.subUF.raid.width*0.65, 'CENTER', self.Health)
 	end,
 
 	tank = function(self, ...)
@@ -472,7 +472,7 @@ local UnitSpecific = {
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 
-		--AuraTracker(self, cfg.subUF.party.height, 'LEFT', self, 'RIGHT', 5, 0)
+		AuraTracker(self, cfg.subUF.party.height, 'LEFT', self, 'RIGHT', 5, 0)
 	end,
 
 	boss = function(self, ...)

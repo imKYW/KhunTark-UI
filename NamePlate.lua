@@ -9,7 +9,7 @@ local npCVars = {
 	nameplateGlobalScale = 1,
 	NamePlateHorizontalScale = 1,
 	NamePlateVerticalScale = 1,
-	
+
 	nameplateLargerScale = 1,
 	nameplateLargeTopInset = -1,
 	nameplateLargeBottomInset = -1,
@@ -88,7 +88,7 @@ local npHealth = function(self)
 		self:RegisterEvent("UNIT_THREAT_SITUATION_UPDATE", npUpdateThreat)
 		self:RegisterEvent("UNIT_THREAT_LIST_UPDATE", npUpdateThreat)
 	end
-	return h	
+	return h
 end
 
 -- Layout -------------------------------------------------------------------------------
@@ -146,7 +146,7 @@ local NamePlateSpecific = function(self)
 	self.Buffs = unitBuff
 ]]
 
-	AuraTracker(self, 24, 'TOP', self.Health, 'BOTTOM', 0, -20)
+	--AuraTracker(self, 24, 'TOP', self.Health, 'BOTTOM', 0, -20)
 end
 
 -- Spawn --------------------------------------------------------------------------------

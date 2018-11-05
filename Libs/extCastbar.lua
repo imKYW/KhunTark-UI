@@ -52,7 +52,7 @@ function extCastbar(self)
     castbarBG:SetAllPoints()
     fBackDrop(castbar, castbar)
 
-    local castbarIcon = castbar:CreateTexture(nil, 'BACKGROUND', nil, -8)    
+    local castbarIcon = castbar:CreateTexture(nil, 'BACKGROUND', nil, -8)
     castbarIcon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
     fBackDrop(castbar, castbarIcon)
     local castbarName = castbar:CreateFontString(nil, nil)
@@ -95,12 +95,12 @@ function extCastbar(self)
         castbar:SetPoint(cfg.castbar.focus.position.sa, cfg.castbar.focus.position.a, cfg.castbar.focus.position.pa, cfg.castbar.focus.position.x, cfg.castbar.focus.position.y)
         castbarIcon:SetSize(cfg.castbar.focus.height, cfg.castbar.focus.height)
         castbarIcon:SetPoint('RIGHT', castbar, 'LEFT', -3, 0)
-        castbarName:SetFont(cfg.font, 10, cfg.fontflag)
+        castbarName:SetFont(cfg.font, 11, cfg.fontflag)
         castbarName:SetJustifyH('LEFT')
-        castbarName:SetPoint('LEFT', castbar, 'LEFT', 1, 0.5)
-        castbarTime:SetFont(cfg.bfont, 10, cfg.fontflag)
+        castbarName:SetPoint('LEFT', castbar, 'LEFT', 1, 0)
+        castbarTime:SetFont(cfg.bfont, 11, cfg.fontflag)
         castbarTime:SetJustifyH('RIGHT')
-        castbarTime:SetPoint('RIGHT', castbar, 'RIGHT', 0, 0.5)
+        castbarTime:SetPoint('RIGHT', castbar, 'RIGHT', 0, 0)
         castbarShield:SetSize(cfg.castbar.focus.height*4, cfg.castbar.focus.height*4)
         castbarShield:SetPoint("CENTER", castbarIcon, "CENTER", 0, 1)
     elseif self.unit == 'nameplate' then
@@ -136,6 +136,6 @@ function extCastbar(self)
     self.Castbar.Time = castbarTime
     self.Castbar.Icon = castbarIcon
     self.Castbar.Shield = castbarShield
-    self.Castbar.Spark = castbarSpark    
+    self.Castbar.Spark = castbarSpark
     self.Castbar.SafeZone = castbarSafeZone
 end

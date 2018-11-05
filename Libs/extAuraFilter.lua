@@ -85,10 +85,6 @@ if playerClass == "DEATHKNIGHT" then
     PersonalAuras[212552]   = 2 -- 망령 걸음
 
     ActivityAuras[188290]   = 2 -- [B] 죽음과 부패
-    PersonalAuras[194844]   = 2 -- [B] 뼈폭풍
-    PersonalAuras[55233]    = 2 -- [B] 흡혈
-    PersonalAuras[81256]    = 2 -- [B] 춤추는 룬 무기
-    PersonalAuras[195181]   = 2 -- [B] 뼈보호막
 
     ActivityAuras[51124]    = 2 -- [F] 도살기
     ActivityAuras[59052]    = 2 -- [F] 단단한 얼음

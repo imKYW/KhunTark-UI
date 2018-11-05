@@ -14,6 +14,8 @@ Libs\oUF_Smooth.lua
 Libs\oUF_DebuffHighlight.lua
 Libs\oUF_Experience.lua
 Libs\oUF_GCD.lua
+Libs\oUF_Freebgrid_Auras.lua
+Libs\oUF_Freebgrid_AurasList.lua
 Libs\oUF_Trinkets.lua
 Libs\oUF_PVPSpecIcons.lua
 Libs\oUF_FloatingCombatFeedback.lua

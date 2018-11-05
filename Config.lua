@@ -60,14 +60,14 @@ cfg.castbar = {
 		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -73 },
 	},
 	target = {
-		width = 140,
-		height = 18,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = 100 },
+		width = 450,
+		height = 36,
+		position = { sa = 'TOP', a = UIParent, pa = 'TOP', x = 0, y = -70 },
 	},
 	focus = {
-		width = 120,
-		height = 13,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 10, y = 78 },
+		width = 140,
+		height = 18,
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = 78 },
 	},
 	arena = {
 		width = 100,

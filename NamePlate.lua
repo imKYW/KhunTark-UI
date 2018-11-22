@@ -1,6 +1,6 @@
-local name, ns = ...
-local cfg = ns.cfg
-local oUF = ns.oUF or oUF
+local A, L = ...
+local cfg = L.cfg
+local oUF = L.oUF or oUF
 
 -- NamePlateCVars -----------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
@@ -19,9 +19,9 @@ local npCVars = {
 
 	-- Non Select
 	nameplateMaxDistance = 40,
-	nameplateMaxScale = 1,
+	nameplateMaxScale = 0.8,
 	nameplateMaxScaleDistance = 10,
-	nameplateMaxAlpha = 0.8,
+	nameplateMaxAlpha = 0.9,
 	nameplateMaxAlphaDistance = 10,
 	nameplateMinScale = 0.8,
 	nameplateMinScaleDistance = 40,
@@ -50,7 +50,7 @@ local npPostUpdateHealth = function(self, unit, min, max)
 end
 
 local npUpdateThreat = function(self, event, unit)
-	if event == "PLAYER_ENTER_COMBAT" or event == "PLAYER_LEAVE_COMBAT" then
+	if event == "PLAYER_ENTER_COMBAT" or event == "PLAYER_LEAVE_COMBAT" or event == "UNIT_THREAT_SITUATION_UPDATE" or event == "UNIT_THREAT_LIST_UPDATE" then
 	elseif self.unit ~= unit then
 		return
 	end
@@ -99,7 +99,7 @@ local NamePlateSpecific = function(self)
 	fBackDrop(self,self)
 	extCastbar(self)
 
-	self:SetSize(80, 8)
+	self:SetSize(cfg.mainUF.nameplate.width, cfg.mainUF.nameplate.height)
 	self:SetPoint('CENTER')
 	self.Health = npHealth(self)
 
@@ -118,19 +118,24 @@ local NamePlateSpecific = function(self)
 	self.RaidTargetIndicator:SetAlpha(0.9)
 	self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
+	local targetMe = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 0.1, 0.1, 'LEFT')
+	targetMe:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
+	self:Tag(targetMe, '[unit:TargetMe]')
+
 	local unitDebuff = CreateFrame('Frame', nil, self)
-	unitDebuff.size = 16
-	unitDebuff.spacing = 4
 	unitDebuff.num = 6
-	unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-	unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', -1, 24)
+	unitDebuff.spacing = 4
+	unitDebuff.size = (cfg.mainUF.nameplate.width-(unitDebuff.spacing*(unitDebuff.num-1)))/unitDebuff.num
+	--unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
+	unitDebuff:SetSize(cfg.mainUF.nameplate.width, unitDebuff.size)
+	unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', -1, 20)
 	unitDebuff.initialAnchor = 'TOPLEFT'
 	unitDebuff.onlyShowPlayer = true
-	unitDebuff.PostCreateIcon = PostCreateIconSmall
+	unitDebuff.PostCreateIcon = PostCreateIconNP
 	unitDebuff.PostUpdateIcon = PostUpdateIcon
 	unitDebuff.CustomFilter = CustomFilter
 	self.Debuffs = unitDebuff
-	self.Debuffs:SetScale(0.7) -- trick for Scale bug
+	--self.Debuffs:SetScale(0.7) -- trick for Scale bug
 
 --[[
 	local unitBuff = CreateFrame('Frame', nil, self)
@@ -151,6 +156,6 @@ end
 
 -- Spawn --------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
-oUF:RegisterStyle(name.."Nameplate", NamePlateSpecific)
-oUF:SetActiveStyle(name.."Nameplate")
-oUF:SpawnNamePlates(name.."Nameplate", nil, npCVars)
+oUF:RegisterStyle(A.."Nameplate", NamePlateSpecific)
+oUF:SetActiveStyle(A.."Nameplate")
+oUF:SpawnNamePlates(A.."Nameplate", nil, npCVars)

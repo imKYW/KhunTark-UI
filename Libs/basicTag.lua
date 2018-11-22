@@ -236,6 +236,18 @@ oUF.Tags.Methods['unit:PPflex'] = function(unit)
 end
 oUF.Tags.Events['unit:PPflex'] = 'UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER'
 
+-- Unit's Target is ME!
+oUF.Tags.Methods['unit:TargetMe'] = function(unit)
+    local isTargetPlayer = UnitIsUnit(unit.."target", "player")
+
+    if isTargetPlayer then
+        return "!!"
+    else
+        return ""
+    end
+end
+oUF.Tags.Events['unit:TargetMe'] = 'NAME_PLATE_CREATED NAME_PLATE_UNIT_ADDED NAME_PLATE_UNIT_REMOVED UNIT_AURA UNIT_HEALTH UNIT_THREAT_SITUATION_UPDATE UNIT_THREAT_LIST_UPDATE'
+
 -- Player Class Resource
 oUF.Tags.Methods['player:Resource'] = function()
     local playerClass = select(2, UnitClass('player'))

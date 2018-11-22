@@ -225,6 +225,35 @@ local CreateAuraTimer = function(self, elapsed)
     end
 end
 
+function PostCreateIconNP(auras, button)
+    local btnC = button.count
+    btnC:ClearAllPoints()
+    btnC:SetPoint('CENTER', button, 'BOTTOMRIGHT', 1, 0)
+    btnC:SetFontObject(nil)
+    btnC:SetFont(cfg.aurafont, 8, cfg.fontflag)
+    btnC:SetTextColor(1, 1, 1)
+
+    auras.disableCooldown = true
+    auras.showDebuffType = true
+
+    button.overlay:SetTexture(nil)
+    button.icon:SetTexCoord(.1, .9, .1, .9)
+    button:SetBackdrop(backdrop)
+    button:SetBackdropColor(0, 0, 0, 1)
+
+    button.glow = CreateFrame('Frame', nil, button)
+    button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
+    button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
+    button.glow:SetFrameLevel(button:GetFrameLevel()-1)
+    button.glow:SetBackdrop({bgFile = '', edgeFile = cfg.glow, edgeSize = 4,
+    insets = { left = 3, right = 3, top = 3, bottom = 3 },
+    })
+
+    local remaining = cFontString(button, 'OVERLAY', cfg.aurafont, 6, cfg.fontflag, 1, 1, 1)
+    remaining:SetPoint('TOPLEFT')
+    button.remaining = remaining
+end
+
 function PostCreateIconSmall(auras, button)
     local btnC = button.count
     btnC:ClearAllPoints()

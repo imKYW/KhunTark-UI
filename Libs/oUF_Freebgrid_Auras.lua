@@ -96,70 +96,70 @@ end
 
 local dispelClass = {
     PRIEST = {
-        -- Disease = true,
         Magic = true,
-        -- Poison = true,
         -- Curse = true,
+        -- Poison = true,
+        Disease = true,
     },
     SHAMAN = {
-        Curse = true,
         -- Magic = true,
-        -- Disease = true,
+        Curse = true,
         -- Poison = true,
+        -- Disease = true,
     },
     PALADIN = {
-        Poison = true,
-        Disease = true,
         -- Magic = true,
-        -- Disease = true,
-    },
-    MAGE = {
-        Curse = true,
-        -- Poison = true,
-        -- Disease = true,
-        -- Magic = true,
-    },
-    MONK = {
         -- Curse = true,
         Poison = true,
         Disease = true,
+    },
+    MONK = {
         -- Magic = true,
+        -- Curse = true,
+        Poison = true,
+        Disease = true,
     },
     DRUID = {
+        -- Magic = true,
         Curse = true,
         Poison = true,
-        -- Magic = true,
         -- Disease = true,
     },
     --[[
     WARRIOR = {
+        Magic = true,
         Curse = true,
         Poison = true,
-        Magic = true,
         Disease = true,
     },
+    MAGE = {
+        -- Magic = true,
+        Curse = true,
+        -- Poison = true,
+        -- Disease = true,
+    },
     DEATHKNIGHT = {
+        Magic = true,
         Curse = true,
         Poison = true,
-        Magic = true,
         Disease = true,
     },
     HUNTER = {
+        Magic = true,
         Curse = true,
         Poison = true,
-        Magic = true,
         Disease = true,
     },
     WARLOCK = {
+        Magic = true,
         Curse = true,
         Poison = true,
-        Magic = true,
         Disease = true,
     },
     ROGUE = {
+        Magic = true,
         Curse = true,
         Poison = true,
-        Magic = true,
         Disease = true,
     },
     --]]
@@ -211,13 +211,16 @@ local zoneDelay = function(self, elapsed)
 
     if (_G.IsInInstance()) then
         local _, zoneType = _G.IsInInstance()
-        local zone = C_Map.GetBestMapForUnit('player')
-        WorldMapFrame:SetMapID(zone)
 
-        if zoneType == "pvp" or zoneType == "arena" or zone == 978 then
+        if zoneType == "pvp" or zoneType == "arena" then
             instDebuffs = ns.auras.instances[9999]
-        elseif (ns.auras.instances[zone]) then
-            instDebuffs = ns.auras.instances[zone]
+        else
+            local zone = _G.C_Map.GetBestMapForUnit("player") or 0
+            if (ns.auras.instances[zone]) then
+                instDebuffs = ns.auras.instances[zone]
+            else
+                instDebuffs = {}
+            end
         end
     else
         instDebuffs = {}

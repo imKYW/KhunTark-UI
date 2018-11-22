@@ -144,6 +144,7 @@ local UnitSpecific = {
 		self.Experience = Experience
 		self.Experience.Rested = Rested
 
+		--[[
 		local personalBuff = CreateFrame('Frame', nil, self)
 		personalBuff.size = 36
 		personalBuff.spacing = 4
@@ -171,6 +172,7 @@ local UnitSpecific = {
 		activityBuff.PostUpdateIcon = PostUpdateIcon
 		activityBuff.CustomFilter = CustomAuraFilters.activity
 		self.Buffs = activityBuff
+		]]
 
 		local PlayerFCF = CreateFrame("Frame", nil, self)
 		PlayerFCF:SetSize(35, 35)

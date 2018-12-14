@@ -8,7 +8,7 @@ local referenceSpells = {
     1752,       -- Rogue
     588,        -- Priest
     47541,      -- Death Knight
-    52127,      -- Shaman
+    2645,       -- Shaman
     118,        -- Mage
     686,        -- Warlock
     17057,      -- Druid

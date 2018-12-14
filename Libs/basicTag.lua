@@ -58,14 +58,14 @@ end
 
 -- Shortcut Number
 local scNumber = function(value)
-    if value >= 1e10 then
-        return ('%.fb'):format(value / 1e9)
-    elseif value >= 1e7 then
-        return ('%.fm'):format(value / 1e6)
-    elseif value >= 1e6 then
-        return ('%.1fm'):format(value / 1e6)
-    elseif (value >= 1e3) then
-        return ('%.fk'):format(value / 1e3)
+    if value >= 1E10 then
+        return ('%.fb'):format(value / 1E9)
+    elseif value >= 1E7 then
+        return ('%.fm'):format(value / 1E6)
+    elseif value >= 1E6 then
+        return ('%.1fm'):format(value / 1E6)
+    elseif (value >= 1E3) then
+        return ('%.fk'):format(value / 1E3)
     else
         return ('%d'):format(value)
     end
@@ -119,7 +119,7 @@ oUF.Tags.Methods['color'] = function(unit)
         return hex(1, 1, 1)
     end
 end
-oUF.Tags.Events['color'] = 'UNIT_FACTION UNIT_HEALTH'
+oUF.Tags.Events['color'] = 'UNIT_FACTION'
 
 -- Shortcut name
 oUF.Tags.Methods['unit:name4'] = function(unit, raid)
@@ -180,45 +180,47 @@ oUF.Tags.Events['unit:classification'] = 'UNIT_NAME_UPDATE'
 
 -- Color HP%
 oUF.Tags.Methods['unit:HPpercent'] = function(unit)
-    local min, max = UnitHealth(unit), UnitHealthMax(unit)
-
     if UnitIsDead(unit) then
         return "|cff666666Dead|r"
     elseif UnitIsGhost(unit) then
         return "|cff666666Ghost|r"
     elseif not UnitIsConnected(unit) then
         return "|cffe50000Offline|r"
-    else
-        local healthValue = math.floor(min/max*100+.5)
-        return hex(healthColor(healthValue))..healthValue
     end
+
+    local min, max = UnitHealth(unit), UnitHealthMax(unit)
+    local healthValue = 0
+    if max > 0 then healthValue = math.floor(min/max*100) end -- min/max*100+.5
+    return hex(healthColor(healthValue))..healthValue
 end
-oUF.Tags.Events['unit:HPpercent'] = 'UNIT_HEALTH UNIT_CONNECTION'
+oUF.Tags.Events['unit:HPpercent'] = 'UNIT_HEALTH UNIT_CONNECTION UNIT_HEALTH_FREQUENT UNIT_MAXHEALTH'
 
 -- Current HP
 oUF.Tags.Methods['unit:HPcurrent'] = function(unit)
     return scNumber(UnitHealth(unit))
 end
-oUF.Tags.Events['unit:HPcurrent'] = 'UNIT_HEALTH UNIT_CONNECTION'
+oUF.Tags.Events['unit:HPcurrent'] = 'UNIT_HEALTH_FREQUENT UNIT_MAXHEALTH'
 
 -- Current HP if HP = 100%, not Color HP%
 oUF.Tags.Methods['unit:HPmix'] = function(unit)
-    local min, max = UnitHealth(unit), UnitHealthMax(unit)
-
     if UnitIsDead(unit) then
         return "|cff666666Dead|r"
     elseif UnitIsGhost(unit) then
         return "|cff666666Ghost|r"
     elseif not UnitIsConnected(unit) then
         return "|cffe50000Offline|r"
-    elseif (min < max) then
-        local healthValue = math.floor(min / max * 100 + 0.5)
+    end
+
+    local min, max = UnitHealth(unit), UnitHealthMax(unit)
+    local healthValue = 0
+    if (max > 0) and (min < max) then
+        healthValue = math.floor(min/max*100) -- min/max*100+.5
         return hex(healthColor(healthValue))..healthValue
     else
         return scNumber(min)
     end
 end
-oUF.Tags.Events['unit:HPmix'] = 'UNIT_HEALTH UNIT_CONNECTION'
+oUF.Tags.Events['unit:HPmix'] = 'UNIT_HEALTH UNIT_CONNECTION UNIT_HEALTH_FREQUENT UNIT_MAXHEALTH'
 
 -- PP% if Using % power, not Current PP
 oUF.Tags.Methods['unit:PPflex'] = function(unit)

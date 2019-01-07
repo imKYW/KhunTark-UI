@@ -293,8 +293,8 @@ oUF.Tags.Methods['player:SubMana'] = function()
 
     if playerClassSpec == 263 -- Shaman Elemental
     or playerClassSpec == 262 -- Shaman Enhancement
-    or playerClassSpec == 104 -- Druid Feral
-    or playerClassSpec == 103 -- Druid Guardian
+    or playerClassSpec == 104 -- Druid Guardian
+    or playerClassSpec == 103 -- Druid Feral
     or playerClassSpec == 102 -- Druid Balance
     or playerClassSpec == 258 -- Priest Shadow
         then

@@ -101,7 +101,7 @@ local NamePlateSpecific = function(self)
 	self:SetPoint('CENTER')
 	self.Health = npHealth(self)
 
-	AbsorbBar(self, 'RIGHT')
+	HealthPrediction(self)
 	extCastbar(self)
 
 	local name = cFontString(self.Health, nil, cfg.font, 8, cfg.fontflag, 1, 1, 1, 'CENTER')
@@ -110,7 +110,7 @@ local NamePlateSpecific = function(self)
 	local classification = cFontString(self.Health, nil, cfg.bfont, 9, cfg.fontflag, 1, 0.75, 0, 'LEFT')
 	classification:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
 	self:Tag(classification, '[unit:classification]')
-	local htext = cFontString(self.AbsorbBar, nil, cfg.bfont, 7, cfg.fontflag, 1, 1, 1, 'RIGHT')
+	local htext = cFontString(self.Health, nil, cfg.bfont, 7, cfg.fontflag, 1, 1, 1, 'RIGHT')
 	htext:SetPoint('RIGHT', self.Health, 'BOTTOMRIGHT', 0, 0)
 	self:Tag(htext, '[unit:HPpercent]%')
 

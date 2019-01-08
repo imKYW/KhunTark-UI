@@ -10,7 +10,6 @@ oUF\oUF.xml
 
 Config.lua
 
-Libs\oUF_AbsorbBar.lua
 Libs\oUF_Smooth.lua
 Libs\oUF_DebuffHighlight.lua
 Libs\oUF_Experience.lua

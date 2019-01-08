@@ -143,31 +143,36 @@ function AbsorbBar(self, direction) -- RIGHT else
 end
 
 function HealthPrediction(self)
-    self.Health.frequentUpdates = true
-
-    -- Position and size
     local myBar = CreateFrame('StatusBar', nil, self.Health)
     myBar:SetPoint('TOP')
     myBar:SetPoint('BOTTOM')
     myBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
+    myBar:SetStatusBarTexture(cfg.absorb)
+    myBar:SetStatusBarColor(0.1, 1, 0.5, 0.5)
     myBar:SetWidth(200)
 
     local otherBar = CreateFrame('StatusBar', nil, self.Health)
     otherBar:SetPoint('TOP')
     otherBar:SetPoint('BOTTOM')
-    otherBar:SetPoint('LEFT', myBar:GetStatusBarTexture(), 'RIGHT')
+    otherBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
+    otherBar:SetStatusBarTexture(cfg.absorb)
+    otherBar:SetStatusBarColor(0.1, 1, 0.5, 0.5)
     otherBar:SetWidth(200)
 
     local absorbBar = CreateFrame('StatusBar', nil, self.Health)
     absorbBar:SetPoint('TOP')
     absorbBar:SetPoint('BOTTOM')
-    absorbBar:SetPoint('LEFT', otherBar:GetStatusBarTexture(), 'RIGHT')
+    absorbBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
+    absorbBar:SetStatusBarTexture(cfg.absorb)
+    absorbBar:SetStatusBarColor(0.1, 1, 1, 0.5)
     absorbBar:SetWidth(200)
 
     local healAbsorbBar = CreateFrame('StatusBar', nil, self.Health)
     healAbsorbBar:SetPoint('TOP')
     healAbsorbBar:SetPoint('BOTTOM')
     healAbsorbBar:SetPoint('RIGHT', self.Health:GetStatusBarTexture())
+    healAbsorbBar:SetStatusBarTexture(cfg.absorb)
+    healAbsorbBar:SetStatusBarColor(1, 0.1, 0.5, 0.7)
     healAbsorbBar:SetWidth(200)
     healAbsorbBar:SetReverseFill(true)
 

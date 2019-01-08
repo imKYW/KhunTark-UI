@@ -29,14 +29,14 @@ local UnitSpecific = {
 		self.unit = 'player'
 
 		Power(self, 'BOTTOM')
-		AbsorbBar(self, 'RIGHT')
+		HealthPrediction(self)
 		extCastbar(self)
 
 		self:SetSize(cfg.mainUF.player.width, cfg.mainUF.player.height)
 		self.Health:SetHeight(cfg.mainUF.player.height-4)
 		self.Power:SetHeight(3)
 
-		local htext = cFontString(self.AbsorbBar, nil, cfg.bfont, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		local htext = cFontString(self.Health, nil, cfg.bfont, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
 		htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
 		self:Tag(htext, '[unit:HPpercent]')
 		local ptext = cFontString(self.Power, nil, cfg.bfont, 9, cfg.fontflag, 1, 1, 1, 'CENTER')
@@ -192,7 +192,7 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'target'
 
-		AbsorbBar(self, 'RIGHT')
+		HealthPrediction(self)
 		extCastbar(self)
 
 		self:SetSize(cfg.mainUF.player.width*0.8, cfg.mainUF.player.height)
@@ -207,7 +207,7 @@ local UnitSpecific = {
 		local hptext = cFontString(self.Health, nil, cfg.bfont, 16, cfg.fontflag, 1, 1, 1, 'LEFT')
 		hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
 		self:Tag(hptext, '[unit:HPpercent]')
-		local hctext = cFontString(self.AbsorbBar, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		local hctext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
 		hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
 		self:Tag(hctext, '[unit:HPcurrent]')
 

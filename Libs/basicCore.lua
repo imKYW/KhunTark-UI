@@ -142,6 +142,60 @@ function AbsorbBar(self, direction) -- RIGHT else
     self.AbsorbBar = ab
 end
 
+function HealthPrediction(self)
+    self.Health.frequentUpdates = true
+
+    -- Position and size
+    local myBar = CreateFrame('StatusBar', nil, self.Health)
+    myBar:SetPoint('TOP')
+    myBar:SetPoint('BOTTOM')
+    myBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
+    myBar:SetWidth(200)
+
+    local otherBar = CreateFrame('StatusBar', nil, self.Health)
+    otherBar:SetPoint('TOP')
+    otherBar:SetPoint('BOTTOM')
+    otherBar:SetPoint('LEFT', myBar:GetStatusBarTexture(), 'RIGHT')
+    otherBar:SetWidth(200)
+
+    local absorbBar = CreateFrame('StatusBar', nil, self.Health)
+    absorbBar:SetPoint('TOP')
+    absorbBar:SetPoint('BOTTOM')
+    absorbBar:SetPoint('LEFT', otherBar:GetStatusBarTexture(), 'RIGHT')
+    absorbBar:SetWidth(200)
+
+    local healAbsorbBar = CreateFrame('StatusBar', nil, self.Health)
+    healAbsorbBar:SetPoint('TOP')
+    healAbsorbBar:SetPoint('BOTTOM')
+    healAbsorbBar:SetPoint('RIGHT', self.Health:GetStatusBarTexture())
+    healAbsorbBar:SetWidth(200)
+    healAbsorbBar:SetReverseFill(true)
+
+    local overAbsorb = self.Health:CreateTexture(nil, "OVERLAY")
+    overAbsorb:SetPoint('TOP')
+    overAbsorb:SetPoint('BOTTOM')
+    overAbsorb:SetPoint('LEFT', self.Health, 'RIGHT')
+    overAbsorb:SetWidth(5)
+
+    local overHealAbsorb = self.Health:CreateTexture(nil, "OVERLAY")
+    overHealAbsorb:SetPoint('TOP')
+    overHealAbsorb:SetPoint('BOTTOM')
+    overHealAbsorb:SetPoint('RIGHT', self.Health, 'LEFT')
+    overHealAbsorb:SetWidth(5)
+
+    -- Register with oUF
+    self.HealthPrediction = {
+        myBar = myBar,
+        otherBar = otherBar,
+        absorbBar = absorbBar,
+        healAbsorbBar = healAbsorbBar,
+        overAbsorb = overAbsorb,
+        overHealAbsorb = overHealAbsorb,
+        maxOverflow = 1.05,
+        frequentUpdates = true,
+    }
+end
+
 -- PhaseIndicator -----------------------------------------------------------------------
 function Phase(self)
     local pi = CreateFrame('Frame', nil, self.Health)

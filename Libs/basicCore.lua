@@ -79,7 +79,7 @@ function Health(self)
     local hbg = h:CreateTexture(nil, 'BACKGROUND')
     hbg:SetAllPoints(h)
     hbg:SetTexture(cfg.texture)
-    hbg.multiplier = 0.4
+    hbg.multiplier = 0.3
 
     local hl = h:CreateTexture(nil, 'OVERLAY')
     hl:SetAllPoints(h)
@@ -123,6 +123,23 @@ function Power(self, direction) -- TOP else BOTTOM
 
     self.Power = p
     self.Power.bg = pbg
+end
+
+function AbsorbBar(self, direction) -- RIGHT else
+    self.Health.frequentUpdates = true
+
+    local ab = CreateFrame("StatusBar", nil, self.Health)
+    ab:SetAllPoints()
+    ab:SetOrientation("HORIZONTAL")
+    ab:SetStatusBarTexture(cfg.absorb)
+    ab:SetStatusBarColor(0.1, 1, 1, 0.7)
+    if direction == 'RIGHT' then
+        ab:SetReverseFill(true)
+    else
+        ab:SetReverseFill(false)
+    end
+
+    self.AbsorbBar = ab
 end
 
 -- PhaseIndicator -----------------------------------------------------------------------

@@ -95,13 +95,14 @@ end
 -----------------------------------------------------------------------------------------
 local NamePlateSpecific = function(self)
 	self.unit = 'nameplate'
-
 	fBackDrop(self,self)
-	extCastbar(self)
 
 	self:SetSize(cfg.mainUF.nameplate.width, cfg.mainUF.nameplate.height)
 	self:SetPoint('CENTER')
 	self.Health = npHealth(self)
+
+	AbsorbBar(self, 'RIGHT')
+	extCastbar(self)
 
 	local name = cFontString(self.Health, nil, cfg.font, 8, cfg.fontflag, 1, 1, 1, 'CENTER')
 	name:SetPoint('BOTTOM', self.Health, 'TOP', 0, 3)
@@ -109,7 +110,7 @@ local NamePlateSpecific = function(self)
 	local classification = cFontString(self.Health, nil, cfg.bfont, 9, cfg.fontflag, 1, 0.75, 0, 'LEFT')
 	classification:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
 	self:Tag(classification, '[unit:classification]')
-	local htext = cFontString(self.Health, nil, cfg.bfont, 7, cfg.fontflag, 1, 1, 1, 'RIGHT')
+	local htext = cFontString(self.AbsorbBar, nil, cfg.bfont, 7, cfg.fontflag, 1, 1, 1, 'RIGHT')
 	htext:SetPoint('RIGHT', self.Health, 'BOTTOMRIGHT', 0, 0)
 	self:Tag(htext, '[unit:HPpercent]%')
 
@@ -118,8 +119,8 @@ local NamePlateSpecific = function(self)
 	self.RaidTargetIndicator:SetAlpha(0.9)
 	self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
-	local targetMe = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 0.1, 0.1, 'LEFT')
-	targetMe:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
+	local targetMe = cFontString(self.Health, nil, cfg.bfont, 14, cfg.fontflag, 1, 0.1, 0.1, 'LEFT')
+	targetMe:SetPoint('CENTER', self.Health, 'CENTER', 0, 0)
 	self:Tag(targetMe, '[unit:TargetMe]')
 
 	local unitDebuff = CreateFrame('Frame', nil, self)

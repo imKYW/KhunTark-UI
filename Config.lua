@@ -6,6 +6,7 @@ local cfg = CreateFrame('Frame')
 cfg.texture = 'Interface\\AddOns\\KBJcombatUI\\Media\\texture'
 cfg.symbol = 'Interface\\AddOns\\KBJcombatUI\\Media\\symbol.ttf'
 cfg.glow = 'Interface\\AddOns\\KBJcombatUI\\Media\\textureGlow'
+cfg.absorb = 'Interface\\AddOns\\KBJcombatUI\\Media\\absorb'
 
 -- Font ( "Fonts\\FRIZQT__.ttf" was rebuild font FRIZQT__ + koverwatch )
 cfg.font = 'Fonts\\FRIZQT__.ttf'

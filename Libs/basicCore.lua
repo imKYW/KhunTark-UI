@@ -181,10 +181,10 @@ function ctfBorder(self)
     self.TargetBorder = ctBorder
     self.FocusBorder = cfBorder
 
-    self:RegisterEvent('PLAYER_TARGET_CHANGED', CurrentTarget)
-    self:RegisterEvent('PLAYER_FOCUS_CHANGED', CurrentFocus)
-    --self:RegisterEvent('RAID_ROSTER_UPDATE', ChangedTarget)
-    --self:RegisterEvent('RAID_ROSTER_UPDATE', CurrentFocus)
+    self:RegisterEvent('PLAYER_TARGET_CHANGED', CurrentTarget, true)
+    self:RegisterEvent('PLAYER_FOCUS_CHANGED', CurrentFocus, true)
+    self:RegisterEvent('GROUP_ROSTER_UPDATE', ChangedTarget, true)
+    self:RegisterEvent('GROUP_ROSTER_UPDATE', CurrentFocus, true)
 end
 
 -- Buff/Debuff/Aura Icon ----------------------------------------------------------------

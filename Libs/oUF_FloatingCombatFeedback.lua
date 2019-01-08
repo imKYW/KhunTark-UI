@@ -230,7 +230,7 @@ local function Enable(self)
 
 	element:SetScript("OnShow", onShow)
 
-	self:RegisterEvent("UNIT_COMBAT", Path)
+	self:RegisterEvent("UNIT_COMBAT", Path, true)
 
 	return true
 end

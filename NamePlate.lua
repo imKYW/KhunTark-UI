@@ -83,8 +83,8 @@ local npHealth = function(self)
 	h.PostUpdate = npPostUpdateHealth
 
 	if h.colorThreat then
-		self:RegisterEvent("PLAYER_ENTER_COMBAT", npUpdateThreat)
-		self:RegisterEvent("PLAYER_LEAVE_COMBAT", npUpdateThreat)
+		self:RegisterEvent("PLAYER_ENTER_COMBAT", npUpdateThreat, true)
+		self:RegisterEvent("PLAYER_LEAVE_COMBAT", npUpdateThreat, true)
 		self:RegisterEvent("UNIT_THREAT_SITUATION_UPDATE", npUpdateThreat)
 		self:RegisterEvent("UNIT_THREAT_LIST_UPDATE", npUpdateThreat)
 	end

@@ -68,13 +68,13 @@ end
 local function Update(object, event, unit)
 	if object.unit ~= unit  then return end
 	local debuffType, texture  = GetDebuffType(unit, object.DebuffHighlightFilter)
-	local color = DebuffTypeColor[debuffType] 
+	local color = DebuffTypeColor[debuffType]
 	local s = UnitThreatSituation(object.unit)
 	if s and s > 1 then
 		r, g, b = GetThreatStatusColor(s)
 		object.fBackDrop:SetBackdropBorderColor(r, g, b)
-	elseif debuffType and CanDispel[playerClass]then	
-		object.fBackDrop:SetBackdropBorderColor(color.r, color.g, color.b, object.DebuffHighlightAlpha or 1)	
+	elseif debuffType and CanDispel[playerClass]then
+		object.fBackDrop:SetBackdropBorderColor(color.r, color.g, color.b, object.DebuffHighlightAlpha or 1)
 	else
 		object.fBackDrop:SetBackdropBorderColor(0, 0, 0)
 	end
@@ -85,12 +85,12 @@ local function Enable(object)
 	if not object.DebuffHighlightBackdrop and not object.DebuffHighlightBackdropBorder and not object.DebuffHighlight then
 		return
 	end
-	
+
 	object:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', Update)
 	object:RegisterEvent("UNIT_AURA", Update)
 	object:RegisterEvent("PLAYER_ENTERING_WORLD", CheckSpec)
-	object:RegisterEvent("PLAYER_TALENT_UPDATE", CheckSpec)
-	
+	object:RegisterEvent("PLAYER_TALENT_UPDATE", CheckSpec, true)
+
 	return true
 end
 

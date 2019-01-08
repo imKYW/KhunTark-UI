@@ -174,9 +174,9 @@ local dispelPriority = {
 
 local checkTalents = CreateFrame('Frame')
 checkTalents:RegisterEvent('PLAYER_ENTERING_WORLD')
-checkTalents:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED')
 checkTalents:RegisterEvent('PLAYER_SPECIALIZATION_CHANGED')
-checkTalents:RegisterEvent('CHARACTER_POINTS_CHANGED')
+checkTalents:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED', true)
+checkTalents:RegisterEvent('CHARACTER_POINTS_CHANGED', true)
 checkTalents:SetScript('OnEvent', function()
     if (MultiCheck(class, 'SHAMAN', 'PALADIN', 'DRUID', 'PRIEST', 'MONK')) then
         local spec = _G.GetSpecialization()
@@ -232,7 +232,7 @@ end
 
 local getZone = CreateFrame('Frame')
 getZone:RegisterEvent('PLAYER_ENTERING_WORLD')
-getZone:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+getZone:RegisterEvent('ZONE_CHANGED_NEW_AREA', true)
 getZone:SetScript('OnEvent', function(self, event)
 
         -- Delay just in case zone data hasn't loaded

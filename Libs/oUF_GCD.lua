@@ -101,7 +101,7 @@ local Enable = function(self)
         self.GCD.duration = 0
         self.GCD:SetMinMaxValues(0, 1)
 
-        self:RegisterEvent('ACTIONBAR_UPDATE_COOLDOWN', Update)
+        self:RegisterEvent('ACTIONBAR_UPDATE_COOLDOWN', Update, true)
         self.GCD:SetScript('OnHide', OnHideGCD)
         self.GCD:SetScript('OnShow', OnShowGCD)
     end

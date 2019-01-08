@@ -86,9 +86,9 @@ local function Enable(object)
 		return
 	end
 
-	object:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', Update)
-	object:RegisterEvent("UNIT_AURA", Update)
 	object:RegisterEvent("PLAYER_ENTERING_WORLD", CheckSpec)
+	object:RegisterEvent("UNIT_AURA", Update)
+	object:RegisterEvent('UNIT_THREAT_SITUATION_UPDATE', Update)
 	object:RegisterEvent("PLAYER_TALENT_UPDATE", CheckSpec, true)
 
 	return true

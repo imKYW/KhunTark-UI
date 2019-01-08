@@ -183,8 +183,6 @@ function ctfBorder(self)
 
     self:RegisterEvent('PLAYER_TARGET_CHANGED', CurrentTarget, true)
     self:RegisterEvent('PLAYER_FOCUS_CHANGED', CurrentFocus, true)
-    self:RegisterEvent('GROUP_ROSTER_UPDATE', ChangedTarget, true)
-    self:RegisterEvent('GROUP_ROSTER_UPDATE', CurrentFocus, true)
 end
 
 -- Buff/Debuff/Aura Icon ----------------------------------------------------------------

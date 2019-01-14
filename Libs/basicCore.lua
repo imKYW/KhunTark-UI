@@ -125,30 +125,13 @@ function Power(self, direction) -- TOP else BOTTOM
     self.Power.bg = pbg
 end
 
-function AbsorbBar(self, direction) -- RIGHT else
-    self.Health.frequentUpdates = true
-
-    local ab = CreateFrame("StatusBar", nil, self.Health)
-    ab:SetAllPoints()
-    ab:SetOrientation("HORIZONTAL")
-    ab:SetStatusBarTexture(cfg.absorb)
-    ab:SetStatusBarColor(0.1, 1, 1, 0.7)
-    if direction == 'RIGHT' then
-        ab:SetReverseFill(true)
-    else
-        ab:SetReverseFill(false)
-    end
-
-    self.AbsorbBar = ab
-end
-
 function HealthPrediction(self)
     local myBar = CreateFrame('StatusBar', nil, self.Health)
     myBar:SetPoint('TOP')
     myBar:SetPoint('BOTTOM')
     myBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
     myBar:SetStatusBarTexture(cfg.absorb)
-    myBar:SetStatusBarColor(0.1, 1, 0.5, 0.5)
+    myBar:SetStatusBarColor(0.1, 1, 0.3, 0.5)
     myBar:SetWidth(200)
 
     local otherBar = CreateFrame('StatusBar', nil, self.Health)
@@ -156,7 +139,7 @@ function HealthPrediction(self)
     otherBar:SetPoint('BOTTOM')
     otherBar:SetPoint('LEFT', self.Health:GetStatusBarTexture(), 'RIGHT')
     otherBar:SetStatusBarTexture(cfg.absorb)
-    otherBar:SetStatusBarColor(0.1, 1, 0.5, 0.5)
+    otherBar:SetStatusBarColor(0.1, 1, 0.3, 0.5)
     otherBar:SetWidth(200)
 
     local absorbBar = CreateFrame('StatusBar', nil, self.Health)
@@ -172,7 +155,7 @@ function HealthPrediction(self)
     healAbsorbBar:SetPoint('BOTTOM')
     healAbsorbBar:SetPoint('RIGHT', self.Health:GetStatusBarTexture())
     healAbsorbBar:SetStatusBarTexture(cfg.absorb)
-    healAbsorbBar:SetStatusBarColor(1, 0.1, 0.5, 0.7)
+    healAbsorbBar:SetStatusBarColor(0.1, 0.1, 0.1, 0.6)
     healAbsorbBar:SetWidth(200)
     healAbsorbBar:SetReverseFill(true)
 

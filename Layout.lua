@@ -93,7 +93,7 @@ local UnitSpecific = {
 			-- TODO : TotemBar? like Runebar
 		end
 
-		-- GCD Bar
+		--[[ GCD Bar
 		local class_color = RAID_CLASS_COLORS[class]
 		local gcd = cStatusbar(self, cfg.texture, nil, cfg.mainUF.player.width, 3, class_color.r, class_color.g, class_color.b, 1)
 		gcd:SetPoint(cfg.castbar.player.position.sa, cfg.castbar.player.position.a, cfg.castbar.player.position.pa, cfg.castbar.player.position.x, cfg.castbar.player.position.y-cfg.castbar.player.height)
@@ -103,6 +103,7 @@ local UnitSpecific = {
 		gcd.bg:SetTexture(cfg.texture)
 		gcd.bg:SetVertexColor(class_color.r, class_color.g, class_color.b, 0.4)
 		self.GCD = gcd
+		]]
 
 		self.CombatIndicator = self.Power:CreateTexture(nil, 'OVERLAY')
 		self.CombatIndicator:SetSize(6, 6)

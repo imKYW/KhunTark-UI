@@ -198,6 +198,39 @@ function Phase(self)
     self.PhaseIndicator = pi
 end
 
+-- SummonIndicator ----------------------------------------------------------------------
+local function UpdateSummon(self, event)
+    local element = self.SummonIndicator
+    local icon = element.Icon
+
+    local status = C_IncomingSummon.IncomingSummonStatus(self.unit)
+    if(status == Enum.SummonStatus.None) then
+        element:Hide()
+    else
+        element:Show()
+
+        if(status == Enum.SummonStatus.Pending) then
+            icon:SetVertexColor(1, 1, 1)
+            icon:SetDesaturated(false)
+            element.tooltip = INCOMING_SUMMON_TOOLTIP_SUMMON_PENDING
+        elseif(status == Enum.SummonStatus.Accepted) then
+            icon:SetVertexColor(0, 1, 0)
+            icon:SetDesaturated(true)
+            element.tooltip = INCOMING_SUMMON_TOOLTIP_SUMMON_ACCEPTED
+        elseif(status == Enum.SummonStatus.Declined) then
+            icon:SetVertexColor(1, 0.3, 0.3)
+            icon:SetDesaturated(true)
+            element.tooltip = INCOMING_SUMMON_TOOLTIP_SUMMON_DECLINED
+        end
+    end
+end
+
+local function OnSummonEnter(self)
+    GameTooltip:SetOwner(self, 'ANCHOR_BOTTOMLEFT')
+    GameTooltip:SetText(self.tooltip)
+    GameTooltip:Show()
+end
+
 -- Current Target/Focus -----------------------------------------------------------------
 local CurrentTarget = function(self)
     if UnitIsUnit('target', self.unit) then

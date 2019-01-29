@@ -322,6 +322,7 @@ local UnitSpecific = {
 		self.Health:SetReverseFill(true)
 		self.Power:SetHeight(2)
 		self.Power:SetReverseFill(true)
+		self.Range = {}
 
 		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 2, 2)
@@ -349,6 +350,19 @@ local UnitSpecific = {
 		self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 		self.ReadyCheckIndicator:SetSize(22, 22)
 		self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+
+		local Summon = CreateFrame('Frame', nil, self)
+		Summon:SetPoint('RIGHT', self, 'LEFT')
+		Summon:SetSize(32, 32)
+		Summon:SetScript('OnLeave', GameTooltip_Hide)
+		Summon:SetScript('OnEnter', OnSummonEnter)
+		Summon.Override = UpdateSummon
+		self.SummonIndicator = Summon
+
+		local SummonIcon = Summon:CreateTexture(nil, 'OVERLAY')
+		SummonIcon:SetAllPoints()
+		SummonIcon:SetAtlas('Raid-Icon-SummonPending')
+		Summon.Icon = SummonIcon
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height

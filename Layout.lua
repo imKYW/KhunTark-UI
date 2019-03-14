@@ -351,6 +351,7 @@ local UnitSpecific = {
 		self.ReadyCheckIndicator:SetSize(22, 22)
 		self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
+        --[[
 		local Summon = CreateFrame('Frame', nil, self)
 		Summon:SetPoint('RIGHT', self, 'LEFT')
 		Summon:SetSize(32, 32)
@@ -363,6 +364,7 @@ local UnitSpecific = {
 		SummonIcon:SetAllPoints()
 		SummonIcon:SetAtlas('Raid-Icon-SummonPending')
 		Summon.Icon = SummonIcon
+        ]]
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height

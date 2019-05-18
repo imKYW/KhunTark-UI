@@ -350,21 +350,12 @@ local UnitSpecific = {
 		self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 		self.ReadyCheckIndicator:SetSize(22, 22)
 		self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
-
-        --[[
-		local Summon = CreateFrame('Frame', nil, self)
-		Summon:SetPoint('RIGHT', self, 'LEFT')
-		Summon:SetSize(32, 32)
-		Summon:SetScript('OnLeave', GameTooltip_Hide)
-		Summon:SetScript('OnEnter', OnSummonEnter)
-		Summon.Override = UpdateSummon
-		self.SummonIndicator = Summon
-
-		local SummonIcon = Summon:CreateTexture(nil, 'OVERLAY')
-		SummonIcon:SetAllPoints()
-		SummonIcon:SetAtlas('Raid-Icon-SummonPending')
-		Summon.Icon = SummonIcon
-        ]]
+		self.ResurrectIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.ResurrectIndicator:SetSize(16, 16)
+		self.ResurrectIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.SummonIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.SummonIndicator:SetSize(32, 32)
+		self.SummonIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
 		unitDebuff.size = cfg.subUF.party.height
@@ -449,6 +440,12 @@ local UnitSpecific = {
 		self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 		self.ReadyCheckIndicator:SetSize(32, 32)
 		self.ReadyCheckIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
+		self.ResurrectIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.ResurrectIndicator:SetSize(16, 16)
+		self.ResurrectIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.SummonIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.SummonIndicator:SetSize(32, 32)
+		self.SummonIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
 		AuraTracker(self, cfg.subUF.raid.width*0.65, 'CENTER', self.Health)
 	end,

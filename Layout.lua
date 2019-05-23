@@ -557,6 +557,75 @@ local UnitSpecific = {
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 	end,
+
+--[[
+-- DEBUG
+    debugparty = function(self, ...)
+        Shared(self, ...)
+        self.unit = 'target'
+
+        Power(self, 'BOTTOM')
+        Phase(self)
+        ctfBorder(self)
+
+        self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
+        self.Health:SetPoint("TOPLEFT")
+        self.Health:SetPoint("TOPRIGHT")
+        self.Health:SetHeight(cfg.subUF.party.height-3)
+        self.Health:SetReverseFill(true)
+        self.Power:SetHeight(2)
+        self.Power:SetReverseFill(true)
+        self.Range = {}
+
+        local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
+        name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 2, 2)
+        self:Tag(name, '[color][name]')
+        local htext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        htext:SetPoint('LEFT', self.Health, 'LEFT')
+        htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
+        self:Tag(htext, '[unit:HPmix]')
+
+        self.DebuffHighlight = true
+
+        self.LeaderIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        self.LeaderIndicator:SetSize(11, 11)
+        self.LeaderIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
+        self.AssistantIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        self.AssistantIndicator:SetSize(11, 11)
+        self.AssistantIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
+        self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        self.RaidTargetIndicator:SetSize(18, 18)
+        self.RaidTargetIndicator:SetAlpha(0.9)
+        self.RaidTargetIndicator:SetPoint("LEFT", self.Health, "LEFT", 1, 0)
+        self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        self.GroupRoleIndicator:SetSize(10, 10)
+        self.GroupRoleIndicator:SetPoint("CENTER", self.Health, "TOPLEFT", 6, -6)
+        self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        self.ReadyCheckIndicator:SetSize(22, 22)
+        self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+        self.ResurrectIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        self.ResurrectIndicator:SetSize(16, 16)
+        self.ResurrectIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+        self.SummonIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        self.SummonIndicator:SetSize(32, 32)
+        self.SummonIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+
+        local unitDebuff = CreateFrame('Frame', nil, self)
+        unitDebuff.size = cfg.subUF.party.height
+        unitDebuff.spacing = 5
+        unitDebuff.num = 4
+        unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
+        unitDebuff:SetPoint('RIGHT', self, 'LEFT', -5, 0)
+        unitDebuff.initialAnchor = 'RIGHT'
+        unitDebuff['growth-x'] = 'LEFT'
+        unitDebuff.PostCreateIcon = PostCreateIconSmall
+        unitDebuff.PostUpdateIcon = PostUpdateIcon
+        --unitDebuff.CustomFilter = CustomFilter
+        self.Debuffs = unitDebuff
+
+        AuraTracker(self, cfg.subUF.party.height*1.4, 'CENTER', self, 'CENTER', 0, 0)
+    end,
+]]
 }
 
 oUF:RegisterStyle('CombaUI', Shared)
@@ -644,6 +713,13 @@ oUF:Factory(function(self)
 	for i = 1, MAX_BOSS_FRAMES do
 		spawnHelper(self, 'boss'..i, cfg.subUF.boss.position.sa, cfg.subUF.boss.position.a, cfg.subUF.boss.position.pa, cfg.subUF.boss.position.x, cfg.subUF.boss.position.y-43+(43*i))
 	end
+
+--[[
+    -- DEBUG
+    for i = 1, 5 do
+        spawnHelper(self, 'debugparty'..i, cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y-43+(43*i))
+    end
+]]
 end)
 
 ----------------------------------------------------------------------------------------
@@ -651,25 +727,40 @@ end)
 ----------------------------------------------------------------------------------------
 -- For testing /run oUFAbu.TestArena()
 function TUF()
-	--oUF_CombaUIBoss1:Show(); oUF_CombaUIBoss1.Hide = function() end oUF_CombaUIBoss1.unit = "target"
-	--oUF_CombaUIBoss2:Show(); oUF_CombaUIBoss2.Hide = function() end oUF_CombaUIBoss2.unit = "target"
-	oUF_Party:Show(); oUF_Party.Hide = function() end oUF_Party.unit = "target"
-	oUF_PartyPets:Show(); oUF_PartyPets.Hide = function() end oUF_PartyPets.unit = "target"
-	oUF_PartyTargets:Show(); oUF_PartyTargets.Hide = function() end oUF_PartyTargets.unit = "target"
+	oUF_CombaUIBoss1:Show(); oUF_CombaUIBoss1.Hide = function() end oUF_CombaUIBoss1.unit = "target"
+	oUF_CombaUIBoss2:Show(); oUF_CombaUIBoss2.Hide = function() end oUF_CombaUIBoss2.unit = "target"
+    oUF_CombaUIBoss3:Show(); oUF_CombaUIBoss3.Hide = function() end oUF_CombaUIBoss3.unit = "target"
+	--oUF_Party:Show(); oUF_Party.Hide = function() end oUF_Party.unit = "target"
+	--oUF_PartyPets:Show(); oUF_PartyPets.Hide = function() end oUF_PartyPets.unit = "target"
+	--oUF_PartyTargets:Show(); oUF_PartyTargets.Hide = function() end oUF_PartyTargets.unit = "target"
 
 	--oUF_MainTank:Show(); oUF_MainTank.Hide = function() end oUF_MainTank.unit = "target"
+
+    oUF_CombaUIDebugparty1:Show(); oUF_CombaUIDebugparty1.Hide = function() end oUF_CombaUIDebugparty1.unit = "target"
+    oUF_CombaUIDebugparty2:Show(); oUF_CombaUIDebugparty2.Hide = function() end oUF_CombaUIDebugparty2.unit = "target"
+    oUF_CombaUIDebugparty3:Show(); oUF_CombaUIDebugparty3.Hide = function() end oUF_CombaUIDebugparty3.unit = "target"
+    oUF_CombaUIDebugparty4:Show(); oUF_CombaUIDebugparty4.Hide = function() end oUF_CombaUIDebugparty4.unit = "target"
+    oUF_CombaUIDebugparty5:Show(); oUF_CombaUIDebugparty5.Hide = function() end oUF_CombaUIDebugparty5.unit = "target"
 
 	local time = 0
 	local f = CreateFrame("Frame")
 	f:SetScript("OnUpdate", function(self, elapsed)
 		time = time + elapsed
 		if time > 5 then
-			--oUF_CombaUIBoss1:UpdateAllElements("ForceUpdate")
-			--oUF_CombaUIBoss2:UpdateAllElements("ForceUpdate")
-			--oUF_Party:UpdateAllElements("ForceUpdate")
-			--oUF_PartyPets:UpdateAllElements("ForceUpdate")
-			--oUF_PartyTargets:UpdateAllElements("ForceUpdate")
+			oUF_CombaUIBoss1:UpdateAllElements("ForceUpdate") -- OnUpdate RefreshUnit
+			oUF_CombaUIBoss2:UpdateAllElements("ForceUpdate")
+            oUF_CombaUIBoss3:UpdateAllElements("ForceUpdate")
+			--oUF_Party:UpdateAllElements("RefreshUnit")
+			--oUF_Party1Pets:UpdateAllElements("ForceUpdate")
+			--oUF_Party1Targets:UpdateAllElements("ForceUpdate")
 			--oUF_MainTank:UpdateAllElements("ForceUpdate")
+
+            oUF_CombaUIDebugparty1:UpdateAllElements("ForceUpdate") -- OnUpdate RefreshUnit
+            oUF_CombaUIDebugparty2:UpdateAllElements("ForceUpdate") -- OnUpdate RefreshUnit
+            oUF_CombaUIDebugparty3:UpdateAllElements("ForceUpdate") -- OnUpdate RefreshUnit
+            oUF_CombaUIDebugparty4:UpdateAllElements("ForceUpdate") -- OnUpdate RefreshUnit
+            oUF_CombaUIDebugparty5:UpdateAllElements("ForceUpdate") -- OnUpdate RefreshUnit
+
 			time = 0
 		end
 	end)

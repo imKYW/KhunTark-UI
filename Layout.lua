@@ -105,6 +105,12 @@ local UnitSpecific = {
 		self.GCD = gcd
 		]]
 
+		self.RestingIndicator = self:CreateTexture(nil, 'OVERLAY')
+		self.RestingIndicator:SetSize(6, 6)
+		self.RestingIndicator:SetPoint('LEFT', self.Health, 'LEFT', 2, 0)
+		self.RestingIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+		self.RestingIndicator:SetVertexColor(0, 0.39, 0.88)
+
 		self.CombatIndicator = self.Power:CreateTexture(nil, 'OVERLAY')
 		self.CombatIndicator:SetSize(6, 6)
 		self.CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 2, 0)

@@ -267,7 +267,7 @@ local UnitSpecific = {
 		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 		self.RaidTargetIndicator:SetSize(14, 14)
 		self.RaidTargetIndicator:SetAlpha(0.9)
-		self.RaidTargetIndicator:SetPoint("right", self.Health, "LEFT", -4, 0)
+		self.RaidTargetIndicator:SetPoint("RIGHT", self.Health, "LEFT", -4, 0)
 
 		AuraTracker(self, cfg.mainUF.focus.height*2.2, 'RIGHT', self, 'LEFT', -5, 0)
 	end,
@@ -564,8 +564,7 @@ local UnitSpecific = {
 		self.Debuffs = unitDebuff
 	end,
 
---[[
--- DEBUG
+	-- DEBUG
     debugparty = function(self, ...)
         Shared(self, ...)
         self.unit = 'target'
@@ -631,7 +630,6 @@ local UnitSpecific = {
 
         AuraTracker(self, cfg.subUF.party.height*1.4, 'CENTER', self, 'CENTER', 0, 0)
     end,
-]]
 }
 
 oUF:RegisterStyle('CombaUI', Shared)
@@ -720,12 +718,10 @@ oUF:Factory(function(self)
 		spawnHelper(self, 'boss'..i, cfg.subUF.boss.position.sa, cfg.subUF.boss.position.a, cfg.subUF.boss.position.pa, cfg.subUF.boss.position.x, cfg.subUF.boss.position.y-43+(43*i))
 	end
 
---[[
     -- DEBUG
     for i = 1, 5 do
         spawnHelper(self, 'debugparty'..i, cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y-43+(43*i))
     end
-]]
 end)
 
 ----------------------------------------------------------------------------------------

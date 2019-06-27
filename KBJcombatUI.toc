@@ -1,6 +1,6 @@
-## Interface: 80100
+## Interface: 80200
 ## Title: KBJ CombatUI
-## Version: 8.1.0.5
+## Version: 8.2.0.2
 ## Author: Kimbanjang
 ## Notes: UI for focusing combat
 ## RequiredDeps: Blizzard_CombatText

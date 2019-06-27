@@ -59,11 +59,13 @@ end
 
 local npHealth = function(self)
 	local h = CreateFrame("StatusBar", nil, self)
-	h:SetStatusBarTexture(cfg.texture)
 	h:SetAllPoints()
+	h:SetStatusBarTexture(cfg.texture)
 
 	local hbg = h:CreateTexture(nil, "BACKGROUND")
 	hbg:SetAllPoints(h)
+	hbg:SetPoint("TOPLEFT", h ,"TOPLEFT", 0, 0)
+	hbg:SetPoint("BOTTOMRIGHT", h ,"BOTTOMRIGHT", 0, 0)
 	hbg:SetTexture(cfg.texture)
 	hbg.multiplier = 0.4
 

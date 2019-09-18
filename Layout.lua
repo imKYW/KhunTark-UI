@@ -506,22 +506,26 @@ local UnitSpecific = {
 		Power(self, 'BOTTOM')
 		ctfBorder(self)
 
-		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
-		self.Health:SetHeight(cfg.subUF.party.height-3)
-		self.Power:SetHeight(2)
+		self:SetSize(cfg.subUF.boss.width, cfg.subUF.boss.height)
+		self.Health:SetHeight(cfg.subUF.boss.height-5)
+		self.Power:SetHeight(4)
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 2)
 		self:Tag(name, '[color][name]')
 
-		local htext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'LEFT')
-		htext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
-		self:Tag(htext, '[unit:HPmix]')
+		local hptext = cFontString(self.Health, nil, cfg.bfont, 20, cfg.fontflag, 1, 1, 1, 'LEFT')
+		hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
+		self:Tag(hptext, '[unit:HPpercent]')
+
+		local hctext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
+		hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
+		self:Tag(hctext, '[unit:HPcurrent]')
 
 		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidTargetIndicator:SetSize(18, 18)
+		self.RaidTargetIndicator:SetSize(22, 22)
 		self.RaidTargetIndicator:SetAlpha(0.9)
-		self.RaidTargetIndicator:SetPoint("RIGHT", self.Health, "RIGHT", -1, 0)
+		self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
 	    --[[
 	    local altp = createStatusbar(self, cfg.texture, nil, cfg.AlternativePower.boss.height, cfg.AlternativePower.boss.width, 1, 1, 1, 1)
@@ -539,7 +543,7 @@ local UnitSpecific = {
         ]]
 
 		local unitBuff = CreateFrame('Frame', nil, self)
-		unitBuff.size = cfg.subUF.party.height
+		unitBuff.size = cfg.subUF.boss.height
 		unitBuff.spacing = 5
 		unitBuff.num = 2
 		unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
@@ -551,8 +555,9 @@ local UnitSpecific = {
 		unitBuff.PostUpdateIcon = PostUpdateIcon
 		self.Buffs = unitBuff
 
+		--[[
 		local unitDebuff = CreateFrame('Frame', nil, self)
-		unitDebuff.size = cfg.subUF.party.height
+		unitDebuff.size = cfg.subUF.boss.height
 		unitDebuff.spacing = 5
 		unitDebuff.num = 5
 		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
@@ -562,6 +567,7 @@ local UnitSpecific = {
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
+		]]
 	end,
 
 	-- DEBUG
@@ -665,7 +671,11 @@ oUF:Factory(function(self)
 		'yOffset', 18,
 		'point', 'BOTTOM',
 		'groupBy', 'ASSIGNEDROLE',
-		'groupingOrder', 'TANK,HEALER,DAMAGER'
+		'groupingOrder', 'TANK,HEALER,DAMAGER',
+		'oUF-initialConfigFunction', [[
+			self:SetHeight(25)
+			self:SetWidth(80)
+		]]
 	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
 	self:SetActiveStyle('CombaUI - Partypet')
@@ -703,7 +713,11 @@ oUF:Factory(function(self)
 		'maxColumns', 5,
 		'unitsPerColumn', 7,
 		'columnSpacing', 5,
-		'columnAnchorPoint', 'LEFT'
+		'columnAnchorPoint', 'LEFT',
+		'oUF-initialConfigFunction', [[
+			self:SetHeight(44)
+			self:SetWidth(44)
+		]]
 	):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
 
 	self:SetActiveStyle('CombaUI - Tank')
@@ -715,7 +729,7 @@ oUF:Factory(function(self)
 	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
 	for i = 1, MAX_BOSS_FRAMES do
-		spawnHelper(self, 'boss'..i, cfg.subUF.boss.position.sa, cfg.subUF.boss.position.a, cfg.subUF.boss.position.pa, cfg.subUF.boss.position.x, cfg.subUF.boss.position.y-43+(43*i))
+		spawnHelper(self, 'boss'..i, cfg.subUF.boss.position.sa, cfg.subUF.boss.position.a, cfg.subUF.boss.position.pa, cfg.subUF.boss.position.x, cfg.subUF.boss.position.y-55+(55*i))
 	end
 
     -- DEBUG

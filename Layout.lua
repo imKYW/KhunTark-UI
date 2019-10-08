@@ -36,6 +36,8 @@ local UnitSpecific = {
 		self.Health:SetHeight(cfg.mainUF.player.height-4)
 		self.Power:SetHeight(3)
 
+    	self.Health.colorClass = true
+
 		local htext = cFontString(self.Health, nil, cfg.bfont, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
 		htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
 		self:Tag(htext, '[unit:HPpercent]')
@@ -203,10 +205,10 @@ local UnitSpecific = {
 		extCastbar(self)
 
 		self:SetSize(cfg.mainUF.player.width*0.8, cfg.mainUF.player.height)
-		--self.Health.colorClass = false
-		--self.Health.colorReaction = false
 		--self.Health.colorHealth = true
-		--self.Health.colorSmooth = true
+
+    	self.Health.colorClass = true
+    	self.Health.colorReaction = true
 
 		local name = cFontString(self.Health, nil, cfg.font, 13, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)
@@ -260,12 +262,15 @@ local UnitSpecific = {
 		self:SetSize(cfg.mainUF.focus.width, cfg.mainUF.focus.height)
 		self.Health:SetHeight(cfg.mainUF.focus.height)
 
+		self.Health.colorClass = true
+    	self.Health.colorReaction = true
+
 		local name = cFontString(self.Health, nil, cfg.font, 13, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)
 		self:Tag(name, '[color][name]')
 
 		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidTargetIndicator:SetSize(14, 14)
+		self.RaidTargetIndicator:SetSize(16, 16)
 		self.RaidTargetIndicator:SetAlpha(0.9)
 		self.RaidTargetIndicator:SetPoint("RIGHT", self.Health, "LEFT", -4, 0)
 
@@ -276,11 +281,9 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'pet'
 
-		self:SetSize(cfg.mainUF.player.width/3, 2)
-		self.Health.colorClass = false
-		self.Health.colorReaction = false
+		self:SetSize(cfg.mainUF.player.width/3, 4)
+
 		self.Health.colorHealth = true
-		self.Health.colorSmooth = true
 	end,
 
 	targettarget = function(self, ...)
@@ -288,10 +291,7 @@ local UnitSpecific = {
 		self.unit = 'targettarget'
 
 		self:SetSize((cfg.mainUF.player.width*0.8)/3, 6)
-		self.Health.colorClass = false
-    	self.Health.colorReaction = false
 		self.Health.colorHealth = true
-		self.Health.colorSmooth = true
 
 		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
 	    name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0.5)
@@ -303,10 +303,7 @@ local UnitSpecific = {
 		self.unit = 'focustarget'
 
 		self:SetSize((cfg.mainUF.player.width*0.8)/3, 6)
-		self.Health.colorClass = false
-    	self.Health.colorReaction = false
 		self.Health.colorHealth = true
-		self.Health.colorSmooth = true
 
 		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
 	    name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0.5)
@@ -317,66 +314,66 @@ local UnitSpecific = {
 		Shared(self, ...)
 		self.unit = 'party'
 
+		HealthPrediction(self)
 		Power(self, 'BOTTOM')
 		Phase(self)
 		ctfBorder(self)
 
-		self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
-		self.Health:SetPoint("TOPLEFT")
-		self.Health:SetPoint("TOPRIGHT")
-		self.Health:SetHeight(cfg.subUF.party.height-3)
-		self.Health:SetReverseFill(true)
-		self.Power:SetHeight(2)
-		self.Power:SetReverseFill(true)
-		self.Range = {}
+        self:SetSize(cfg.subUF.party.width, cfg.subUF.party.height)
+        self.Health:SetHeight(cfg.subUF.party.height-3)
+        self.Power:SetHeight(2)
+        self.Range = {}
 
-		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
-		name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 2, 2)
-		self:Tag(name, '[color][name]')
-		local htext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'RIGHT')
-		htext:SetPoint('LEFT', self.Health, 'LEFT')
-		htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
-		self:Tag(htext, '[unit:HPmix]')
+		self.Health.colorReaction = true
+		self.Health.colorDisconnected = true
+
+        local name = cFontString(self.Health, nil, cfg.font, 10, nil, 1, 1, 1, 'CENTER')
+        name:SetPoint('TOP', self.Health, 'TOP', 0, -1)
+		name:SetShadowOffset(1, -1)
+        self:Tag(name, '[color][name]')
+        local htext = cFontString(self.Health, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'LEFT')
+        htext:SetPoint('BOTTOMLEFT', self.Health, 'BOTTOMLEFT', 1, 1)
+        self:Tag(htext, '[unit:HPmix]')
 
 		self.DebuffHighlight = true
 
 		self.LeaderIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 		self.LeaderIndicator:SetSize(11, 11)
-		self.LeaderIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
+		self.LeaderIndicator:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 0)
 		self.AssistantIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 		self.AssistantIndicator:SetSize(11, 11)
 		self.AssistantIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
-		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-		self.RaidTargetIndicator:SetSize(18, 18)
-		self.RaidTargetIndicator:SetAlpha(0.9)
-		self.RaidTargetIndicator:SetPoint("LEFT", self.Health, "LEFT", 1, 0)
 		self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 		self.GroupRoleIndicator:SetSize(10, 10)
-		self.GroupRoleIndicator:SetPoint("CENTER", self.Health, "TOPLEFT", 6, -6)
+		self.GroupRoleIndicator:SetPoint("TOPLEFT", self.Health, "TOPLEFT", 1, -1)
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(20, 20)
+		self.RaidTargetIndicator:SetAlpha(0.7)
+		self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 		self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-		self.ReadyCheckIndicator:SetSize(22, 22)
-		self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.ReadyCheckIndicator:SetSize(24, 24)
+		self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "TOP", 0, 8)
 		self.ResurrectIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-		self.ResurrectIndicator:SetSize(16, 16)
+		self.ResurrectIndicator:SetSize(22, 22)
 		self.ResurrectIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 		self.SummonIndicator = self.Health:CreateTexture(nil, "OVERLAY")
 		self.SummonIndicator:SetSize(32, 32)
 		self.SummonIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
 		local unitDebuff = CreateFrame('Frame', nil, self)
-		unitDebuff.size = cfg.subUF.party.height
-		unitDebuff.spacing = 5
-		unitDebuff.num = 4
-		unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-		unitDebuff:SetPoint('RIGHT', self, 'LEFT', -5, 0)
-		unitDebuff.initialAnchor = 'RIGHT'
-		unitDebuff['growth-x'] = 'LEFT'
+		unitDebuff.spacing = 3
+		unitDebuff.num = 9 -- 3*3
+		unitDebuff.size = (cfg.subUF.party.width-unitDebuff.spacing*2)/3
+		unitDebuff:SetSize(cfg.subUF.party.width, unitDebuff.size*3+unitDebuff.spacing*2)
+		unitDebuff:SetPoint('TOPLEFT', self, 'BOTTOMLEFT', 0, -8)
+		unitDebuff.initialAnchor = 'TOPLEFT'
+		unitDebuff['growth-y'] = 'DOWN'
 		unitDebuff.PostCreateIcon = PostCreateIconSmall
 		unitDebuff.PostUpdateIcon = PostUpdateIcon
 		--unitDebuff.CustomFilter = CustomFilter
 		self.Debuffs = unitDebuff
 
-		AuraTracker(self, cfg.subUF.party.height*1.4, 'CENTER', self, 'CENTER', 0, 0)
+		AuraTracker(self, cfg.subUF.party.height*0.7, 'CENTER', self.Health, 'CENTER', 0, 0)
 	end,
 
 	partypet = function(self, ...)
@@ -384,27 +381,25 @@ local UnitSpecific = {
 		self.unit = 'partypet'
 
 		self:SetSize(cfg.subUF.party.width/3, 2)
-		self.Health.colorClass = false
-		self.Health.colorReaction = false
 		self.Health.colorHealth = true
-		self.Health.colorSmooth = true
 	end,
 
 	partytarget = function(self, ...)
 		Shared(self, ...)
 		self.unit = 'partytarget'
 
-		self:SetSize(3, 10)
-		self.Health:SetHeight(10)
-		self.Health:SetOrientation("VERTICAL")
-		self.Health.colorClass = false
-    	self.Health.colorReaction = false
+		self:SetSize(cfg.subUF.party.width, 5)
+		self.Health:SetHeight(5)
 		self.Health.colorHealth = true
-		self.Health.colorSmooth = true
 
-		local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
-	    name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0.5)
-		self:Tag(name, '[color][name]')
+		local name = cFontString(self.Health, nil, cfg.font, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
+	    name:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 2)
+		self:Tag(name, '[color][unit:name8]')
+
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(12, 12)
+		self.RaidTargetIndicator:SetAlpha(0.9)
+		self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 	end,
 
 	raid = function(self, ...)
@@ -420,6 +415,8 @@ local UnitSpecific = {
 		self.Health:SetHeight(cfg.subUF.raid.height-3)
 		self.Health:SetOrientation("VERTICAL")
 		self.Power:SetHeight(2)
+
+		self.Health.colorReaction = true
 
 		local name = cFontString(self.Health, nil, cfg.bfont, 10, 'none', 1, 1, 1)
 		name:SetPoint('TOPLEFT', 1, 0)
@@ -469,6 +466,8 @@ local UnitSpecific = {
 		self.Power:SetHeight(2)
 		self.Power:SetReverseFill(true)
 
+		self.Health.colorClass = true
+
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
 		name:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 2, 2)
 		self:Tag(name, '[color][name]')
@@ -509,6 +508,8 @@ local UnitSpecific = {
 		self:SetSize(cfg.subUF.boss.width, cfg.subUF.boss.height)
 		self.Health:SetHeight(cfg.subUF.boss.height-5)
 		self.Power:SetHeight(4)
+
+		self.Health.colorReaction = true
 
 		local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
 		name:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 2)
@@ -583,44 +584,45 @@ local UnitSpecific = {
         self.Health:SetPoint("TOPLEFT")
         self.Health:SetPoint("TOPRIGHT")
         self.Health:SetHeight(cfg.subUF.party.height-3)
-        self.Health:SetReverseFill(true)
         self.Power:SetHeight(2)
-        self.Power:SetReverseFill(true)
         self.Range = {}
 
-        local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
-        name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 2, 2)
+        self.Health.colorClass = false
+
+        local name = cFontString(self.Health, nil, cfg.font, 10, nil, 1, 1, 1, 'CENTER')
+        name:SetPoint('TOP', self.Health, 'TOP', 0, -1)
+		name:SetShadowOffset(1, -1)
         self:Tag(name, '[color][name]')
-        local htext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        htext:SetPoint('LEFT', self.Health, 'LEFT')
-        htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
+        local htext = cFontString(self.Health, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'LEFT')
+        htext:SetPoint('BOTTOMLEFT', self.Health, 'BOTTOMLEFT', 1, 1)
         self:Tag(htext, '[unit:HPmix]')
 
-        self.DebuffHighlight = true
+		self.DebuffHighlight = true
 
-        self.LeaderIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.LeaderIndicator:SetSize(11, 11)
-        self.LeaderIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
-        self.AssistantIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.AssistantIndicator:SetSize(11, 11)
-        self.AssistantIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
-        self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.RaidTargetIndicator:SetSize(18, 18)
-        self.RaidTargetIndicator:SetAlpha(0.9)
-        self.RaidTargetIndicator:SetPoint("LEFT", self.Health, "LEFT", 1, 0)
-        self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.GroupRoleIndicator:SetSize(10, 10)
-        self.GroupRoleIndicator:SetPoint("CENTER", self.Health, "TOPLEFT", 6, -6)
-        self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.ReadyCheckIndicator:SetSize(22, 22)
-        self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
-        self.ResurrectIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.ResurrectIndicator:SetSize(16, 16)
-        self.ResurrectIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
-        self.SummonIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.SummonIndicator:SetSize(32, 32)
-        self.SummonIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.LeaderIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.LeaderIndicator:SetSize(11, 11)
+		self.LeaderIndicator:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", 0, 0)
+		self.AssistantIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.AssistantIndicator:SetSize(11, 11)
+		self.AssistantIndicator:SetPoint("CENTER", self, "TOPLEFT", 4, 5)
+		self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.RaidTargetIndicator:SetSize(17, 17)
+		self.RaidTargetIndicator:SetAlpha(0.9)
+		self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.GroupRoleIndicator:SetSize(10, 10)
+		self.GroupRoleIndicator:SetPoint("TOPLEFT", self.Health, "TOPLEFT", 1, -1)
+		self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.ReadyCheckIndicator:SetSize(22, 22)
+		self.ReadyCheckIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.ResurrectIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.ResurrectIndicator:SetSize(16, 16)
+		self.ResurrectIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+		self.SummonIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+		self.SummonIndicator:SetSize(32, 32)
+		self.SummonIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
+        --[[
         local unitDebuff = CreateFrame('Frame', nil, self)
         unitDebuff.size = cfg.subUF.party.height
         unitDebuff.spacing = 5
@@ -633,8 +635,9 @@ local UnitSpecific = {
         unitDebuff.PostUpdateIcon = PostUpdateIcon
         --unitDebuff.CustomFilter = CustomFilter
         self.Debuffs = unitDebuff
+        ]]
 
-        AuraTracker(self, cfg.subUF.party.height*1.4, 'CENTER', self, 'CENTER', 0, 0)
+        AuraTracker(self, cfg.subUF.party.height*0.8, 'CENTER', self, 'CENTER', 0, 0)
     end,
 }
 
@@ -668,39 +671,52 @@ oUF:Factory(function(self)
 	self:SetActiveStyle('CombaUI - Party') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
 	self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
-		'yOffset', 18,
-		'point', 'BOTTOM',
+		'xOffset', 10,
+		'point', 'LEFT',
 		'groupBy', 'ASSIGNEDROLE',
 		'groupingOrder', 'TANK,HEALER,DAMAGER',
+		"initial-width", cfg.subUF.party.width,
+		"initial-height", cfg.subUF.party.height,
 		'oUF-initialConfigFunction', [[
-			self:SetHeight(25)
-			self:SetWidth(80)
+			local header = self:GetParent()
+			self:SetWidth(header:GetAttribute("initial-width"))
+			self:SetHeight(header:GetAttribute("initial-height"))
 		]]
 	):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
 	self:SetActiveStyle('CombaUI - Partypet')
 	self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
-		'yOffset', 16+cfg.subUF.party.height,
-		'point', 'BOTTOM',
+		'xOffset', 70,
+		'point', 'LEFT',
 		'groupBy', 'ASSIGNEDROLE',
-		'groupingOrder', 'TANK,HEALER,DAMAGER',
-		'oUF-initialConfigFunction', ([[
+		'groupingOrder', 'HEALER,TANK,DAMAGER',
+		"initial-width", cfg.subUF.party.width/3,
+		"initial-height", 4,
+		'oUF-initialConfigFunction', [[
+			local header = self:GetParent()
 			self:SetAttribute('unitsuffix', 'pet')
-		]])
-	):SetPoint("TOPRIGHT", 'oUF_Party', "TOPRIGHT", 0, 5)
+			self:SetWidth(header:GetAttribute("initial-width"))
+			self:SetHeight(header:GetAttribute("initial-height"))
+		]]
+	):SetPoint("BOTTOMRIGHT", 'oUF_Party', "TOPRIGHT", 0, 4)
 
 	self:SetActiveStyle('CombaUI - Partytarget')
 	self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
 		'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
-		'yOffset', 8+cfg.subUF.party.height,
-		'point', 'BOTTOM',
+		'xOffset', 10,
+		'point', 'LEFT',
 		'groupBy', 'ASSIGNEDROLE',
-		'groupingOrder', 'TANK,HEALER,DAMAGER',
-		'oUF-initialConfigFunction', ([[
+		'groupingOrder', 'HEALER,TANK,DAMAGER',
+		"initial-width", cfg.subUF.party.width,
+		"initial-height", 5,
+		'oUF-initialConfigFunction', [[
+			local header = self:GetParent()
 			self:SetAttribute('unitsuffix', 'target')
-		]])
-	):SetPoint('BOTTOMLEFT', 'oUF_Party', 'BOTTOMRIGHT', 5, 0)
+			self:SetWidth(header:GetAttribute("initial-width"))
+			self:SetHeight(header:GetAttribute("initial-height"))
+		]]
+	):SetPoint('BOTTOM', 'oUF_Party', 'TOP', 0, 15)
 
 	self:SetActiveStyle('CombaUI - Raid')
 	self:SpawnHeader('oUF_Raid', nil, 'custom show',
@@ -734,7 +750,7 @@ oUF:Factory(function(self)
 
     -- DEBUG
     for i = 1, 5 do
-        spawnHelper(self, 'debugparty'..i, cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y-43+(43*i))
+        spawnHelper(self, 'debugparty'..i, "BOTTOM", UIParent, "BOTTOM", -200-100+(100*i), cfg.subUF.party.position.y)
     end
 end)
 

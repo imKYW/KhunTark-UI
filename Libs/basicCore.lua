@@ -1,6 +1,8 @@
 local name, ns = ...
 local cfg = ns.cfg
 
+local oUF = ns.oUF or oUF
+
 --[[ Temp
 PetCastingBarFrame:UnregisterAllEvents()
 PetCastingBarFrame.Show = function() end
@@ -60,7 +62,7 @@ function OnLeaveHL(self)
 end
 
 -- Health / Power -----------------------------------------------------------------------
-local PostUpdateHealth = function(health, unit)
+local function PostUpdateHealth(health, unit)
     if UnitIsDead(unit) then
         health:SetValue(0)
     elseif UnitIsGhost(unit) then
@@ -88,14 +90,13 @@ function Health(self)
     hl:SetBlendMode('ADD')
     hl:Hide()
 
+    h.frequentUpdates = true
+    h.colorDisconnected = true
+    h.colorHealth = true
     h.Smooth = true
-    h.colorClass = true
-    h.colorReaction = true
-    h.frequentUpdates = false
 
     self.Health = h
     self.Health.bg = hbg
-    self.Health.PostUpdate = PostUpdateHealth
     self.Highlight = hl
 end
 
@@ -179,7 +180,7 @@ function HealthPrediction(self)
         healAbsorbBar = healAbsorbBar,
         overAbsorb = overAbsorb,
         overHealAbsorb = overHealAbsorb,
-        maxOverflow = 1.05,
+        maxOverflow = 1,
         frequentUpdates = true,
     }
 end

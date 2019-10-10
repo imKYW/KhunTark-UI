@@ -43,7 +43,7 @@ cfg.subUF = {
 	raid = {
 		width = 44,
 		height = 44,
-		position = { sa = 'TOPLEFT', a = UIParent, pa = 'TOPLEFT', x = 15, y = -100 },
+		position = { sa = 'TOPLEFT', a = UIParent, pa = 'TOPLEFT', x = 17, y = -310 },
 	},
 	boss = { -- arena
 		width = 118,

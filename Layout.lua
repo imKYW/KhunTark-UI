@@ -416,6 +416,7 @@ local UnitSpecific = {
 		self.Health:SetOrientation("VERTICAL")
 		self.Power:SetHeight(2)
 
+		self.Health.colorClass = true
 		self.Health.colorReaction = true
 
 		local name = cFontString(self.Health, nil, cfg.bfont, 10, 'none', 1, 1, 1)
@@ -724,15 +725,19 @@ oUF:Factory(function(self)
 		'xoffset', 5,
 		'yOffset', -12,
 		'point', 'TOP',
-		'groupBy', 'ASSIGNEDROLE',
-		'groupingOrder', 'HEALER,TANK,DAMAGER',
-		'maxColumns', 5,
-		'unitsPerColumn', 7,
+		"groupFilter", "1,2,3,4,5,6,7,8",
+		"groupingOrder", "1,2,3,4,5,6,7,8",
+		'groupBy', 'GROUP',
+		'maxColumns', 8,
+		'unitsPerColumn', 5,
 		'columnSpacing', 5,
 		'columnAnchorPoint', 'LEFT',
+		"initial-width", cfg.subUF.raid.width,
+		"initial-height", cfg.subUF.raid.height,
 		'oUF-initialConfigFunction', [[
-			self:SetHeight(44)
-			self:SetWidth(44)
+			local header = self:GetParent()
+			self:SetWidth(header:GetAttribute("initial-width"))
+			self:SetHeight(header:GetAttribute("initial-height"))
 		]]
 	):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
 

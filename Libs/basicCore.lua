@@ -77,11 +77,13 @@ function Health(self)
     h:SetPoint('TOP')
     h:SetPoint('LEFT')
     h:SetPoint('RIGHT')
+    h:SetStatusBarColor(0.15, 0.65, 0.15)
 
     local hbg = h:CreateTexture(nil, 'BACKGROUND')
     hbg:SetAllPoints(h)
     hbg:SetTexture(cfg.texture)
     hbg.multiplier = 0.3
+    hbg:SetVertexColor(0.15*hbg.multiplier, 0.65*hbg.multiplier, 0.15*hbg.multiplier)
 
     local hl = h:CreateTexture(nil, 'OVERLAY')
     hl:SetAllPoints(h)
@@ -92,7 +94,6 @@ function Health(self)
 
     h.frequentUpdates = true
     h.colorDisconnected = true
-    h.colorHealth = true
     h.Smooth = true
 
     self.Health = h

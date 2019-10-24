@@ -25,7 +25,7 @@ cfg.mainUF = {  -- Anchor is Player unitframe
 	focus = {
 		width = 50,
 		height = 12,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 150, y = 66 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 200, y = 66 },
 	},
 	nameplate = {
 		width = 90,
@@ -46,9 +46,9 @@ cfg.subUF = {
 		position = { sa = 'TOPLEFT', a = UIParent, pa = 'TOPLEFT', x = 17, y = -310 },
 	},
 	boss = { -- arena
-		width = 118,
+		width = 105,
 		height = 36,
-		position = { sa = 'BOTTOMLEFT', a = UIParent, pa = 'CENTER', x = 300, y = 120 },
+		position = { sa = 'BOTTOMLEFT', a = UIParent, pa = 'CENTER', x = 320, y = 93 },
 	},
 	tank = {
 		width = 90,

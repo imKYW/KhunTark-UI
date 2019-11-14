@@ -553,11 +553,11 @@ local UnitSpecific = {
         self.RaidTargetIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
 
         local unitDebuff = CreateFrame('Frame', nil, self)
-        unitDebuff.size = cfg.subUF.party.height
-        unitDebuff.spacing = 5
-        unitDebuff.num = 5
+        unitDebuff.size = cfg.mainUF.focus.height*1.8
+        unitDebuff.spacing = 4
+        unitDebuff.num = 3
         unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-        unitDebuff:SetPoint('RIGHT', self, 'LEFT', -5, 0)
+        unitDebuff:SetPoint('BOTTOMRIGHT', self, 'BOTTOMLEFT', -5, 0)
         unitDebuff.initialAnchor = 'RIGHT'
         unitDebuff['growth-x'] = 'LEFT'
         unitDebuff.PostCreateIcon = PostCreateIconSmall
@@ -565,7 +565,7 @@ local UnitSpecific = {
         --unitDebuff.CustomFilter = CustomFilter
         self.Debuffs = unitDebuff
 
-        AuraTracker(self, cfg.subUF.party.height, 'LEFT', self, 'RIGHT', 5, 0)
+        AuraTracker(self, cfg.mainUF.focus.height*2, 'CENTER', self.Health, 'CENTER', 0, 0)
     end,
 
     boss = function(self, ...)
@@ -740,8 +740,8 @@ oUF:Factory(function(self)
     ):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
 
     self:SetActiveStyle('CombaUI - Arenaparty') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
-    self:SpawnHeader('oUF_Arenaparty', nil, 'custom [group:party,nogroup:raid][@party3,noexists]show; hide',
-        'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
+    self:SpawnHeader('oUF_Arenaparty', nil, 'custom [@party3,exists,group:party]hide; show',
+        'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'yOffset', -18,
         'point', 'TOP',
         'groupBy', 'ASSIGNEDROLE',

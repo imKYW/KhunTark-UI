@@ -669,7 +669,7 @@ oUF:Factory(function(self)
 
    self:SetActiveStyle('CombaUI - Party') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
     self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
-        'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
+        'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 10,
         'point', 'LEFT',
         'groupBy', 'ASSIGNEDROLE',
@@ -685,7 +685,7 @@ oUF:Factory(function(self)
 
     self:SetActiveStyle('CombaUI - Partypet')
     self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
-        'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', true,
+        'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 70,
         'point', 'LEFT',
         'groupBy', 'ASSIGNEDROLE',
@@ -718,7 +718,7 @@ oUF:Factory(function(self)
     ):SetPoint('BOTTOM', 'oUF_Party', 'TOP', 0, 15)
 
     self:SetActiveStyle('CombaUI - Raid')
-    self:SpawnHeader('oUF_Raid', nil, 'custom show',
+    self:SpawnHeader('oUF_Raid', nil, 'custom [@raid4,exists]show; hide',
         'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
         'xoffset', 5,
         'yOffset', -12,

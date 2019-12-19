@@ -368,7 +368,7 @@ local UnitSpecific = {
         --unitDebuff.CustomFilter = CustomFilter
         self.Debuffs = unitDebuff
 
-        AuraTracker(self, cfg.subUF.party.height*0.7, 'CENTER', self.Health, 'CENTER', 0, 0)
+        AuraTracker(self, cfg.subUF.party.height*1.1, 'CENTER', self.Health, 'CENTER', 0, 0)
     end,
 
     partypet = function(self, ...)
@@ -403,32 +403,36 @@ local UnitSpecific = {
         Power(self, 'BOTTOM')
         ctfBorder(self)
 
-        self:SetSize(cfg.subUF.boss.width, cfg.mainUF.focus.height)
-        self.Health:SetHeight(cfg.mainUF.focus.height-2)
-        self.Power:SetHeight(1)
+        self:SetSize(cfg.subUF.boss.width, 28)
+        self.Health:SetHeight(28-3)
+        self.Power:SetHeight(2)
+
+        self.Health.colorClass = true
 
         local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        name:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 0, 2)
+        name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 2, 1)
         self:Tag(name, '[color][name]')
 
-        local hptext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
-        hptext:SetPoint('LEFT', self, 'LEFT', 1, 0)
+        local hptext = cFontString(self.Health, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'LEFT')
+        hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 1)
         self:Tag(hptext, '[unit:HPpercent]')
 
         local hctext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        hctext:SetPoint('RIGHT', self, 'RIGHT', 0, 0)
+        hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 0)
         self:Tag(hctext, '[unit:HPcurrent]')
 
         self.LeaderIndicator = self.Health:CreateTexture(nil, "OVERLAY")
         self.LeaderIndicator:SetSize(11, 11)
-        self.LeaderIndicator:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 12, 2)
+        self.LeaderIndicator:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 0)
         self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
         self.GroupRoleIndicator:SetSize(10, 10)
-        self.GroupRoleIndicator:SetPoint("BOTTOMLEFT", self.Health, "TOPLEFT", 0, 2)
+        self.GroupRoleIndicator:SetPoint("TOPRIGHT", self.Health, "TOPRIGHT", -1, -1)
         self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.RaidTargetIndicator:SetSize(16, 16)
+        self.RaidTargetIndicator:SetSize(12, 12)
         self.RaidTargetIndicator:SetAlpha(0.9)
-        self.RaidTargetIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
+        self.RaidTargetIndicator:SetPoint("LEFT", name, "RIGHT", 0, 0)
+
+        AuraTracker(self, 32, 'CENTER', self, 'CENTER', 0, 0)
         --[[
         local altp = createStatusbar(self, cfg.texture, nil, cfg.AlternativePower.boss.height, cfg.AlternativePower.boss.width, 1, 1, 1, 1)
         altp:SetPoint(unpack(cfg.AlternativePower.boss.pos))
@@ -470,6 +474,20 @@ local UnitSpecific = {
         --unitDebuff.CustomFilter = CustomFilter
         self.Debuffs = unitDebuff
         ]]
+    end,
+
+    arenapartytarget = function(self, ...)
+        Shared(self, ...)
+        --self.unit = 'partytarget'
+
+        self:SetSize(70, 14)
+        self.Health:SetHeight(14)
+
+        self.Health.colorClass = true
+
+        local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
+        name:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
+        self:Tag(name, '[unit:name8]')
     end,
 
     raid = function(self, ...)
@@ -668,7 +686,7 @@ oUF:Factory(function(self)
     spawnHelper(self, 'focustarget', 'TOPRIGHT', 'oUF_CombaUIFocus','BOTTOMRIGHT', 0, -7)
 
    self:SetActiveStyle('CombaUI - Party') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
-    self:SpawnHeader('oUF_Party', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
+    self:SpawnHeader('oUF_Party', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
         'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 10,
         'point', 'LEFT',
@@ -684,7 +702,7 @@ oUF:Factory(function(self)
     ):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
     self:SetActiveStyle('CombaUI - Partypet')
-    self:SpawnHeader('oUF_PartyPets', nil, 'custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide',
+    self:SpawnHeader('oUF_PartyPets', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
         'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 70,
         'point', 'LEFT',
@@ -701,7 +719,7 @@ oUF:Factory(function(self)
     ):SetPoint("BOTTOMRIGHT", 'oUF_Party', "TOPRIGHT", 0, 4)
 
     self:SetActiveStyle('CombaUI - Partytarget')
-    self:SpawnHeader('oUF_PartyTargets', nil, 'custom [group:party,nogroup:raid][@party4,noexists]show; hide',
+    self:SpawnHeader('oUF_PartyTargets', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
         'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 10,
         'point', 'LEFT',
@@ -740,9 +758,9 @@ oUF:Factory(function(self)
     ):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
 
     self:SetActiveStyle('CombaUI - Arenaparty') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
-    self:SpawnHeader('oUF_Arenaparty', nil, 'custom [@party3,exists,group:party]hide; show',
-        'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
-        'yOffset', -18,
+    self:SpawnHeader('oUF_Arenaparty', nil, 'custom [@raid4,exists]hide;[group:raid][@raid4,noexists]show; hide', -- [@party3,exists]hide;
+        'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
+        'yOffset', -13,
         'point', 'TOP',
         'groupBy', 'ASSIGNEDROLE',
         'groupingOrder', 'HEALER,TANK,DAMAGER',
@@ -754,6 +772,23 @@ oUF:Factory(function(self)
             self:SetHeight(header:GetAttribute("initial-height"))
         ]]
     ):SetPoint("TOPLEFT", 'oUF_CombaUIFocus', "TOPRIGHT", 95, 0)
+
+    self:SetActiveStyle('CombaUI - Arenapartytarget')
+    self:SpawnHeader('oUF_ArenapartyTargets', nil, 'custom [@raid4,exists]hide;[group:raid][@raid4,noexists]show; hide', -- [@party3,exists]hide;
+        'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
+        'yOffset', -27,
+        'point', 'TOP',
+        'groupBy', 'ASSIGNEDROLE',
+        'groupingOrder', 'HEALER,TANK,DAMAGER',
+        "initial-width", 70,
+        "initial-height", 14,
+        'oUF-initialConfigFunction', [[
+            local header = self:GetParent()
+            self:SetAttribute('unitsuffix', 'target')
+            self:SetWidth(header:GetAttribute("initial-width"))
+            self:SetHeight(header:GetAttribute("initial-height"))
+        ]]
+    ):SetPoint('BOTTOMLEFT', 'oUF_Arenaparty', 'BOTTOMRIGHT', 4, 0)
 
     self:SetActiveStyle('CombaUI - Tank')
     self:SpawnHeader('oUF_MainTank', nil, 'raid',

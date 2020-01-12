@@ -707,7 +707,7 @@ oUF:Factory(function(self)
         'xOffset', 70,
         'point', 'LEFT',
         'groupBy', 'ASSIGNEDROLE',
-        'groupingOrder', 'HEALER,TANK,DAMAGER',
+        'groupingOrder', 'TANK,HEALER,DAMAGER',
         "initial-width", cfg.subUF.party.width/3,
         "initial-height", 4,
         'oUF-initialConfigFunction', [[
@@ -724,7 +724,7 @@ oUF:Factory(function(self)
         'xOffset', 10,
         'point', 'LEFT',
         'groupBy', 'ASSIGNEDROLE',
-        'groupingOrder', 'HEALER,TANK,DAMAGER',
+        'groupingOrder', 'TANK,HEALER,DAMAGER',
         "initial-width", cfg.subUF.party.width,
         "initial-height", 5,
         'oUF-initialConfigFunction', [[

@@ -18,9 +18,9 @@ cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'
 -- Main Group (player, target, focus, pet, targettarget, focustarget)
 cfg.mainUF = {  -- Anchor is Player unitframe
 	player = {
-		width = 100,
-		height = 20,
-		position = { sa = 'TOP', a = UIParent, pa = 'CENTER', x = 0, y = -100 },
+		width = 128,
+		height = 26,
+		position = { sa = 'TOP', a = UIParent, pa = 'CENTER', x = 0, y = -120 },
 	},
 	focus = {
 		width = 50,
@@ -60,13 +60,13 @@ cfg.subUF = {
 -- Castbars -----------------------------------------------------------------------------
 cfg.castbar = {
 	player = {
-		width = 100,
+		width = 128,
 		height = 14,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -73 },
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -85 },
 	},
 	target = {
-		width = 450,
-		height = 36,
+		width = 480,
+		height = 42,
 		position = { sa = 'TOP', a = UIParent, pa = 'TOP', x = 0, y = -70 },
 	},
 	focus = {

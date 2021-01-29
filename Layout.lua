@@ -38,14 +38,14 @@ local UnitSpecific = {
 
         self.Health.colorClass = true
 
-        local htext = cFontString(self.Health, nil, cfg.bfont, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        htext:SetPoint('RIGHT', self.Health, 'RIGHT', 1, 0)
+        local htext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        htext:SetPoint('RIGHT', self.Health, 'RIGHT', 0, 0)
         self:Tag(htext, '[unit:HPpercent]')
-        local ptext = cFontString(self.Power, nil, cfg.bfont, 9, cfg.fontflag, 1, 1, 1, 'CENTER')
-        ptext:SetPoint('CENTER', self.Power, 'CENTER', 1, -1)
+        local ptext = cFontString(self.Power, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'CENTER')
+        ptext:SetPoint('CENTER', self.Power, 'CENTER', 0, 0)
         self:Tag(ptext, '[unit:PPflex]')
-        local cres = cFontString(self.Power, nil, cfg.bfont, 26, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        cres:SetPoint('RIGHT', self, 'LEFT', -3, 0)
+        local cres = cFontString(self.Power, nil, cfg.bfont, 28, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        cres:SetPoint('TOPRIGHT', self, 'TOPLEFT', -3, 3)
         self:Tag(cres, '[color][player:Resource]')
         local subpower = cFontString(self.Power, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
         subpower:SetPoint('LEFT', self.Power, 'RIGHT', 3, 0)
@@ -109,21 +109,21 @@ local UnitSpecific = {
 
         self.RestingIndicator = self.Health:CreateTexture(nil, 'OVERLAY')
         self.RestingIndicator:SetSize(6, 6)
-        self.RestingIndicator:SetPoint('LEFT', self.Health, 'LEFT', 2, 0)
+        self.RestingIndicator:SetPoint('LEFT', self.Health, 'LEFT', 3, 0)
         self.RestingIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
         self.RestingIndicator:SetVertexColor(0,0.4,0.9)
 
         self.CombatIndicator = self.Health:CreateTexture(nil, 'OVERLAY')
         self.CombatIndicator:SetSize(6, 6)
-        self.CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 2, 0)
+        self.CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 3, 0)
         self.CombatIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
         self.CombatIndicator:SetVertexColor(1,0,0)
         -- TODO : Rest Highlight
 
         -- EXP Bar
         local Experience = CreateFrame('StatusBar', nil, self, 'AnimatedStatusBarTemplate')
-        Experience:SetPoint('TOP', UIParent, 'TOP',0, -5)
-        Experience:SetSize(300, 8)
+        Experience:SetPoint('TOP', UIParent, 'TOP',0, -10)
+        Experience:SetSize(330, 11)
         Experience:SetStatusBarTexture(cfg.texture)
         Experience.bg = fBackDrop(Experience, Experience)
 
@@ -137,12 +137,12 @@ local UnitSpecific = {
         })
         Rested:SetBackdropColor(0, 0, 0)
 
-        local ExperienceLv = cFontString(Experience, 'OVERLAY', cfg.font, 11, cfg.fontflag, 1, 1, 1)
+        local ExperienceLv = cFontString(Experience, 'OVERLAY', cfg.font, 13, cfg.fontflag, 1, 1, 1)
         ExperienceLv:SetPoint('RIGHT', Experience, 'LEFT', -1, 0)
         ExperienceLv:SetJustifyH('CENTER')
         self:Tag(ExperienceLv, 'Lv [level]')
 
-        local ExperienceInfo = cFontString(Experience, 'OVERLAY', cfg.font, 9, cfg.fontflag, 1, 1, 1)
+        local ExperienceInfo = cFontString(Experience, 'OVERLAY', cfg.font, 10, cfg.fontflag, 1, 1, 1)
         ExperienceInfo:SetPoint('CENTER', Experience, 'CENTER', 0, 0)
         ExperienceInfo:SetJustifyH('CENTER')
         self:Tag(ExperienceInfo, '[experience:per]% / TNL : [experience:tnl] (Rest : [experience:perrested]%)')
@@ -185,14 +185,14 @@ local UnitSpecific = {
         ]]
 
         local PlayerFCF = CreateFrame("Frame", nil, self)
-        PlayerFCF:SetSize(35, 35)
-        PlayerFCF:SetPoint('CENTER', UIParent, 'CENTER', 0, 0)
+        PlayerFCF:SetSize(34, 34)
+        PlayerFCF:SetPoint('CENTER', UIParent, 'CENTER', 0, -100)
         for i = 1, 8 do
             PlayerFCF[i] = PlayerFCF:CreateFontString(nil, "OVERLAY", "CombatTextFont")
         end
         PlayerFCF.mode = "Fountain"
         --PlayerFCF.xOffset = 30
-        PlayerFCF.fontHeight = cfg.plugin.fcf.size
+        PlayerFCF.fontHeight = cfg.plugin.fcf.size*1.5
         PlayerFCF.abbreviateNumbers = true
         self.FloatingCombatFeedback = PlayerFCF
     end,
@@ -210,23 +210,23 @@ local UnitSpecific = {
         self.Health.colorClass = true
         self.Health.colorReaction = true
 
-        local name = cFontString(self.Health, nil, cfg.font, 13, cfg.fontflag, 1, 1, 1, 'LEFT')
+        local name = cFontString(self.Health, nil, cfg.font, 15, cfg.fontflag, 1, 1, 1, 'LEFT')
         name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)
         self:Tag(name, '[unit:lv] [color][name]')
-        local hptext = cFontString(self.Health, nil, cfg.bfont, 16, cfg.fontflag, 1, 1, 1, 'LEFT')
+        local hptext = cFontString(self.Health, nil, cfg.bfont, 20, cfg.fontflag, 1, 1, 1, 'LEFT')
         hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
         self:Tag(hptext, '[unit:HPpercent]')
-        local hctext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        local hctext = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
         hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
         self:Tag(hctext, '[unit:HPcurrent]')
 
         self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.RaidTargetIndicator:SetSize(16, 16)
+        self.RaidTargetIndicator:SetSize(22, 22)
         self.RaidTargetIndicator:SetAlpha(0.9)
         self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
         local unitBuff = CreateFrame('Frame', nil, self)
-        unitBuff.size = 14
+        unitBuff.size = 16
         unitBuff.spacing = 4
         unitBuff.num = 6
         unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
@@ -281,7 +281,7 @@ local UnitSpecific = {
         Shared(self, ...)
         self.unit = 'pet'
 
-        self:SetSize(cfg.mainUF.player.width/3, 4)
+        self:SetSize(cfg.mainUF.player.width/0.25, 3)
 
         self.Health.colorHealth = true
     end,

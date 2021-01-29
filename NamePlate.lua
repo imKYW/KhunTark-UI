@@ -99,21 +99,21 @@ local NamePlateSpecific = function(self)
 	self.unit = 'nameplate'
 	fBackDrop(self,self)
 
-	self:SetSize(cfg.mainUF.nameplate.width, cfg.mainUF.nameplate.height)
+	self:SetSize(cfg.UF.nameplate.width, cfg.UF.nameplate.height)
 	self:SetPoint('CENTER')
 	self.Health = npHealth(self)
 
 	HealthPrediction(self)
 	extCastbar(self)
 
-	local name = cFontString(self.Health, nil, cfg.font, 8, cfg.fontflag, 1, 1, 1, 'CENTER')
-	name:SetPoint('BOTTOM', self.Health, 'TOP', 0, 3)
+	local name = cFontString(self.Health, nil, cfg.font, 9, cfg.fontflag, 1, 1, 1, 'CENTER')
+	name:SetPoint('BOTTOM', self.Health, 'TOP', 0, 2)
 	self:Tag(name, '[color][name]')
-	local classification = cFontString(self.Health, nil, cfg.bfont, 9, cfg.fontflag, 1, 0.75, 0, 'LEFT')
+	local classification = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 0.75, 0, 'LEFT')
 	classification:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
 	self:Tag(classification, '[unit:classification]')
-	local htext = cFontString(self.Health, nil, cfg.bfont, 7, cfg.fontflag, 1, 1, 1, 'RIGHT')
-	htext:SetPoint('RIGHT', self.Health, 'BOTTOMRIGHT', 0, 0)
+	local htext = cFontString(self.Health, nil, cfg.bfont, 9, cfg.fontflag, 1, 1, 1, 'RIGHT')
+	htext:SetPoint('RIGHT', self.Health, 'RIGHT', 0, 0)
 	self:Tag(htext, '[unit:HPpercent]%')
 
 	self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
@@ -128,9 +128,9 @@ local NamePlateSpecific = function(self)
 	local unitDebuff = CreateFrame('Frame', nil, self)
 	unitDebuff.num = 6
 	unitDebuff.spacing = 4
-	unitDebuff.size = (cfg.mainUF.nameplate.width-(unitDebuff.spacing*(unitDebuff.num-1)))/unitDebuff.num
+	unitDebuff.size = (cfg.UF.nameplate.width-(unitDebuff.spacing*(unitDebuff.num-1)))/unitDebuff.num
 	--unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-	unitDebuff:SetSize(cfg.mainUF.nameplate.width, unitDebuff.size)
+	unitDebuff:SetSize(cfg.UF.nameplate.width, unitDebuff.size)
 	unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', -1, 20)
 	unitDebuff.initialAnchor = 'TOPLEFT'
 	unitDebuff.onlyShowPlayer = true

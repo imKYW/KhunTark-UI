@@ -16,7 +16,7 @@ cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'
 
 -- Unit Frames --------------------------------------------------------------------------
 -- Main Group (player, target, focus, pet, targettarget, focustarget)
-cfg.mainUF = {  -- Anchor is Player unitframe
+cfg.UF = {  -- Anchor is Player unitframe
 	player = {
 		width = 128,
 		height = 26,
@@ -28,27 +28,27 @@ cfg.mainUF = {  -- Anchor is Player unitframe
 		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 200, y = 66 },
 	},
 	nameplate = {
-		width = 90,
-		height = 10,
+		width = 100,
+		height = 12,
 	},
 }
 
 -- Sub Group (party, raid, boss, tank, arena, partytarget, tanktarget, arenatarget)
 cfg.subUF = {
 	party = {
-		width = 90,
-		height = 44,
-		position = { sa = 'BOTTOM', a = UIParent, pa = 'BOTTOM', x = 0, y = 254 },
+		width = 108,
+		height = 52,
+		position = { sa = 'BOTTOM', a = UIParent, pa = 'BOTTOM', x = 0, y = 251 },
 	},
 	raid = {
-		width = 44,
-		height = 44,
+		width = 52,
+		height = 52,
 		position = { sa = 'TOPLEFT', a = UIParent, pa = 'TOPLEFT', x = 17, y = -310 },
 	},
 	boss = { -- arena
-		width = 105,
+		width = 120,
 		height = 36,
-		position = { sa = 'BOTTOMLEFT', a = UIParent, pa = 'CENTER', x = 320, y = 93 },
+		position = { sa = 'BOTTOMLEFT', a = UIParent, pa = 'CENTER', x = 320, y = 102 },
 	},
 	tank = {
 		width = 90,
@@ -61,8 +61,8 @@ cfg.subUF = {
 cfg.castbar = {
 	player = {
 		width = 128,
-		height = 14,
-		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -85 },
+		height = 15,
+		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 0, y = -84 },
 	},
 	target = {
 		width = 480,
@@ -76,7 +76,7 @@ cfg.castbar = {
 	},
 	arena = {
 		width = 100,
-		height = 14,
+		height = 15,
 		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = -120, y = -100 },
 	},
 }

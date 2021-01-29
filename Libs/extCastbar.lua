@@ -62,7 +62,7 @@ function extCastbar(self)
     castbarTime:SetShadowOffset(0, 0)
     castbarTime:SetTextColor(1, 1, 1)
     local castbarShield = castbar:CreateTexture(nil, "OVERLAY")
-    castbarShield:SetTexture("Interface\\AddOns\\KBJcombatUI\\Media\\shieldAura.tga")
+    castbarShield:SetTexture("Interface\\AddOns\\KhunTark-UI\\Media\\shieldAura.tga")
 
     if self.unit == 'player' then
         castbar:SetSize(cfg.castbar.player.width, cfg.castbar.player.height)

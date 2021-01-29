@@ -3,15 +3,15 @@ local cfg = CreateFrame('Frame')
 
 -- Media ------------------------------------------------------------------------------------------
 -- Texture
-cfg.texture = 'Interface\\AddOns\\KBJcombatUI\\Media\\texture'
-cfg.symbol = 'Interface\\AddOns\\KBJcombatUI\\Media\\symbol.ttf'
-cfg.glow = 'Interface\\AddOns\\KBJcombatUI\\Media\\textureGlow'
-cfg.absorb = 'Interface\\AddOns\\KBJcombatUI\\Media\\absorb'
+cfg.texture = 'Interface\\AddOns\\KhunTark-UI\\Media\\texture'
+cfg.symbol = 'Interface\\AddOns\\KhunTark-UI\\Media\\symbol.ttf'
+cfg.glow = 'Interface\\AddOns\\KhunTark-UI\\Media\\textureGlow'
+cfg.absorb = 'Interface\\AddOns\\KhunTark-UI\\Media\\absorb'
 
 -- Font ( "Fonts\\FRIZQT__.ttf" was rebuild font FRIZQT__ + koverwatch )
 cfg.font = 'Fonts\\FRIZQT__.ttf'
-cfg.bfont = 'Interface\\AddOns\\KBJcombatUI\\Media\\fontThick.ttf'
-cfg.aurafont = 'Interface\\AddOns\\KBJcombatUI\\Media\\pixel.ttf'
+cfg.bfont = 'Interface\\AddOns\\KhunTark-UI\\Media\\fontThick.ttf'
+cfg.aurafont = 'Interface\\AddOns\\KhunTark-UI\\Media\\pixel.ttf'
 cfg.shadowoffsetX, cfg.shadowoffsetY, cfg.fontflag = 0, 0, 'THINOUTLINE'
 
 -- Unit Frames --------------------------------------------------------------------------
@@ -130,7 +130,7 @@ cfg.aura = {
 
 	onlyShowPlayer = false,         -- only show player debuffs on target
 	disableCooldown = true,         -- hide omniCC
-	font = 'Interface\\AddOns\\KBJcombatUI\\Media\\pixel.ttf',
+	font = 'Interface\\AddOns\\KhunTark-UI\\Media\\pixel.ttf',
 	fontsize = 8,
 	fontflag = 'Outlinemonochrome',
 }

@@ -48,7 +48,7 @@ local Init = function()
     end
 
     if spellid == nil then
-        print ("KBJcombatUI Debug : [GCD] Unable to find reference spell")
+        print ("KhunTark-UI Debug : [GCD] Unable to find reference spell")
     end
 
     return spellid

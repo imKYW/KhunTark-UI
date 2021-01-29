@@ -16,7 +16,7 @@ CombatTextFont:SetShadowColor(0,0,0,0.4)
 
 -- Frame Backdrop -----------------------------------------------------------------------
 function fBackDrop(parent, anchor)
-    local f = CreateFrame('Frame', nil, parent)
+    local f = CreateFrame('Frame', nil, parent, 'BackdropTemplate')
     f:SetFrameLevel(parent:GetFrameLevel()-1 or 0)
     f:SetPoint('TOPLEFT', anchor, 'TOPLEFT', -3, 3)
     f:SetPoint('BOTTOMRIGHT', anchor, 'BOTTOMRIGHT', 3, -3)
@@ -255,7 +255,7 @@ function ctfBorder(self)
         insets = { left = -2, right = -2, top = -2, bottom = -2 }
     }
 
-    local ctBorder = CreateFrame('Frame', nil, self)
+    local ctBorder = CreateFrame('Frame', nil, self, 'BackdropTemplate')
     ctBorder:SetPoint('TOPLEFT', self, 'TOPLEFT')
     ctBorder:SetPoint('BOTTOMRIGHT', self, 'BOTTOMRIGHT')
     ctBorder:SetBackdrop(ctfBackdrop)
@@ -263,7 +263,7 @@ function ctfBorder(self)
     ctBorder:SetFrameLevel(1)
     ctBorder:Hide()
 
-    local cfBorder = CreateFrame('Frame', nil, self)
+    local cfBorder = CreateFrame('Frame', nil, self, 'BackdropTemplate')
     cfBorder:SetPoint('TOPLEFT', self, 'TOPLEFT')
     cfBorder:SetPoint('BOTTOMRIGHT', self, 'BOTTOMRIGHT')
     cfBorder:SetBackdrop(ctfBackdrop)
@@ -327,12 +327,13 @@ function PostCreateIconNP(auras, button)
     auras.disableCooldown = true
     auras.showDebuffType = true
 
+    Mixin(button, BackdropTemplateMixin)
     button.overlay:SetTexture(nil)
     button.icon:SetTexCoord(.1, .9, .1, .9)
     button:SetBackdrop(backdrop)
     button:SetBackdropColor(0, 0, 0, 1)
 
-    button.glow = CreateFrame('Frame', nil, button)
+    button.glow = CreateFrame('Frame', nil, button, 'BackdropTemplate')
     button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
     button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
     button.glow:SetFrameLevel(button:GetFrameLevel()-1)
@@ -356,12 +357,13 @@ function PostCreateIconSmall(auras, button)
     auras.disableCooldown = true
     auras.showDebuffType = true
 
+    Mixin(button, BackdropTemplateMixin)
     button.overlay:SetTexture(nil)
     button.icon:SetTexCoord(.1, .9, .1, .9)
     button:SetBackdrop(backdrop)
     button:SetBackdropColor(0, 0, 0, 1)
 
-    button.glow = CreateFrame('Frame', nil, button)
+    button.glow = CreateFrame('Frame', nil, button, 'BackdropTemplate')
     button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
     button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
     button.glow:SetFrameLevel(button:GetFrameLevel()-1)
@@ -385,12 +387,13 @@ function PostCreateIconNormal(auras, button)
     auras.disableCooldown = true
     auras.showDebuffType = true
 
+    Mixin(button, BackdropTemplateMixin)
     button.overlay:SetTexture(nil)
     button.icon:SetTexCoord(.1, .9, .1, .9)
     button:SetBackdrop(backdrop)
     button:SetBackdropColor(0, 0, 0, 1)
 
-    button.glow = CreateFrame('Frame', nil, button)
+    button.glow = CreateFrame('Frame', nil, button, 'BackdropTemplate')
     button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
     button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
     button.glow:SetFrameLevel(button:GetFrameLevel()-1)

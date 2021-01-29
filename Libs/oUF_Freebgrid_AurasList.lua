@@ -86,7 +86,7 @@ L.auras = {
         [GetSpellInfo(45438)]  = 10, -- Ice Block
         [GetSpellInfo(47585)]  = 10, -- Dispersion
         [GetSpellInfo(1022)]   = 10, -- Blessing of Protection
-        [GetSpellInfo(216113)] = 10, -- Way of the Crane
+        --[GetSpellInfo(216113)] = 10, -- Way of the Crane
         [GetSpellInfo(31224)]  = 10, -- Cloak of Shadows
         [GetSpellInfo(212182)] = 10, -- Smoke Bomb
         [GetSpellInfo(212183)] = 10, -- Smoke Bomb
@@ -95,7 +95,7 @@ L.auras = {
 
         -- Anti CCs
         [GetSpellInfo(23920)]  = 9, -- Spell Reflection
-        [GetSpellInfo(216890)] = 9, -- Spell Reflection (Honor Talent)
+        --[GetSpellInfo(216890)] = 9, -- Spell Reflection (Honor Talent)
         [GetSpellInfo(213610)] = 9, -- Holy Ward
         [GetSpellInfo(212295)] = 9, -- Nether Ward
         [GetSpellInfo(48707)]  = 9, -- Anti-Magic Shell
@@ -105,11 +105,11 @@ L.auras = {
         -- Offensive Buffs
         [GetSpellInfo(1719)]   = 5, -- [Warrior] Battle Cry
         [GetSpellInfo(107574)] = 5, -- [Warrior] Avatar
-        [GetSpellInfo(12292)]  = 5, -- [Warrior] Bloodbath
+        --[GetSpellInfo(12292)]  = 5, -- [Warrior] Bloodbath
         [GetSpellInfo(31884)]  = 5, -- [Paladin] Avenging Wrath (Retribution)
         [GetSpellInfo(19574)]  = 5, -- [Hunter] Bestial Wrath
         [GetSpellInfo(186289)] = 5, -- [Hunter] Aspect of the Eagle
-        [GetSpellInfo(193526)] = 5, -- [Hunter] Trueshot
+        --[GetSpellInfo(193526)] = 5, -- [Hunter] Trueshot
         [GetSpellInfo(13750)]  = 5, -- [Rogue] Adrenaline Rush
         [GetSpellInfo(51690)]  = 5, -- [Rogue] Killing Spree
         [GetSpellInfo(121471)] = 5, -- [Rogue] Shadow Blades
@@ -249,7 +249,7 @@ L.auras = {
             [GetSpellInfo(202244)] = 1, -- Overrun
             [GetSpellInfo(99)]     = 1, -- Incapacitating Roar
             [GetSpellInfo(33786)]  = 1, -- Cyclone
-            [GetSpellInfo(209753)] = 1, -- Cyclone Balance
+            --[GetSpellInfo(209753)] = 1, -- Cyclone Balance
             [GetSpellInfo(45334)]  = 1, -- Immobilized
             [GetSpellInfo(102359)] = 1, -- Mass Entanglement
             [GetSpellInfo(339)]    = 1, -- Entangling Roots
@@ -365,7 +365,7 @@ L.auras = {
 
             --Warrior
             [GetSpellInfo(5246)]   = 1, -- Intimidating Shout
-            [GetSpellInfo(7922)]   = 1, -- Warbringer
+            --[GetSpellInfo(7922)]   = 1, -- Warbringer
             [GetSpellInfo(132169)] = 1, -- Storm Bolt
             [GetSpellInfo(132168)] = 1, -- Shockwave
             [GetSpellInfo(199085)] = 1, -- Warpath

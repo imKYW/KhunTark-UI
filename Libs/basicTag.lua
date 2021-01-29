@@ -193,13 +193,13 @@ oUF.Tags.Methods['unit:HPpercent'] = function(unit)
     if max > 0 then healthValue = math.floor(min/max*100) end -- min/max*100+.5
     return hex(healthColor(healthValue))..healthValue
 end
-oUF.Tags.Events['unit:HPpercent'] = 'UNIT_HEALTH UNIT_CONNECTION UNIT_HEALTH_FREQUENT UNIT_MAXHEALTH'
+oUF.Tags.Events['unit:HPpercent'] = 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION'
 
 -- Current HP
 oUF.Tags.Methods['unit:HPcurrent'] = function(unit)
     return scNumber(UnitHealth(unit))
 end
-oUF.Tags.Events['unit:HPcurrent'] = 'UNIT_HEALTH_FREQUENT UNIT_MAXHEALTH'
+oUF.Tags.Events['unit:HPcurrent'] = 'UNIT_HEALTH UNIT_MAXHEALTH'
 
 -- Current HP if HP = 100%, not Color HP%
 oUF.Tags.Methods['unit:HPmix'] = function(unit)
@@ -220,7 +220,7 @@ oUF.Tags.Methods['unit:HPmix'] = function(unit)
         return scNumber(min)
     end
 end
-oUF.Tags.Events['unit:HPmix'] = 'UNIT_HEALTH UNIT_CONNECTION UNIT_HEALTH_FREQUENT UNIT_MAXHEALTH'
+oUF.Tags.Events['unit:HPmix'] = 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION'
 
 -- PP% if Using % power, not Current PP
 oUF.Tags.Methods['unit:PPflex'] = function(unit)

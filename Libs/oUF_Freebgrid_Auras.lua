@@ -9,7 +9,7 @@ local buffcolor = { r = 0.0, g = 1.0, b = 1.0 }
 
 local backdrop = {
     bgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
-    edgeFile = 'Interface\\AddOns\\KBJcombatUI\\Media\\textureGlow',
+    edgeFile = 'Interface\\AddOns\\KhunTark-UI\\Media\\textureGlow',
     edgeSize = 3,
     insets = { left = 3, right = 3, top = 3, bottom = 3 },
 }
@@ -50,7 +50,7 @@ local CreateAuraIcon = function(auras)
         icon:SetAllPoints(button)
         icon:SetTexCoord(.1, .9, .1, .9)
 
-        local overlay = CreateFrame('Frame', nil, button)
+        local overlay = CreateFrame('Frame', nil, button, 'BackdropTemplate')
         --overlay:SetAllPoints(button)
         overlay:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
         overlay:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)

@@ -127,7 +127,7 @@ local UnitSpecific = {
         Experience:SetStatusBarTexture(cfg.texture)
         Experience.bg = fBackDrop(Experience, Experience)
 
-        local Rested = CreateFrame('StatusBar', nil, Experience)
+        local Rested = CreateFrame('StatusBar', nil, Experience, 'BackdropTemplate')
         Rested:SetAllPoints()
         Rested:SetStatusBarTexture(cfg.texture)
         Rested:SetAlpha(0.7)

@@ -101,7 +101,7 @@ function extCastbar(self)
         castbarTime:SetFont(cfg.bfont, 11, cfg.fontflag)
         castbarTime:SetJustifyH('RIGHT')
         castbarTime:SetPoint('RIGHT', castbar, 'RIGHT', 0, 0)
-        castbarShield:SetSize(cfg.castbar.focus.height*4, cfg.castbar.focus.height*4)
+        castbarShield:SetSize(cfg.castbar.focus.height*2.7, cfg.castbar.focus.height*2.7)
         castbarShield:SetPoint("CENTER", castbarIcon, "CENTER", 0, 1)
     elseif self.unit == 'nameplate' then
         castbar:SetSize(100, 7)

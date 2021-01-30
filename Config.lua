@@ -48,7 +48,7 @@ cfg.subUF = {
 	boss = { -- arena
 		width = 120,
 		height = 36,
-		position = { sa = 'BOTTOMLEFT', a = UIParent, pa = 'CENTER', x = 320, y = 102 },
+		position = { sa = 'BOTTOMLEFT', a = UIParent, pa = 'CENTER', x = 324, y = 102 },
 	},
 	tank = {
 		width = 90,

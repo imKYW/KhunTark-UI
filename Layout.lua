@@ -474,12 +474,12 @@ local UnitSpecific = {
         self.Health.colorClass = true
         self.Health.colorReaction = true
 
-        local name = cFontString(self.Health, nil, cfg.bfont, 10, 'none', 1, 1, 1)
+        local name = cFontString(self.Health, nil, cfg.bfont, 11, 'none', 1, 1, 1)
         name:SetPoint('TOPLEFT', 1, 0)
         name:SetShadowOffset(1, -1)
         name:SetJustifyH('LEFT')
         self:Tag(name, '[unit:name4]')
-        local htext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1)
+        local htext = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 1, 1)
         htext:SetPoint('BOTTOMRIGHT', 2, 0)
         htext:SetJustifyH('RIGHT')
         self:Tag(htext, '[unit:HPpercent]')
@@ -494,13 +494,13 @@ local UnitSpecific = {
         self.RaidTargetIndicator:SetSize(16, 16)
         self.RaidTargetIndicator:SetPoint("CENTER", self, "LEFT", 0, 0)
         self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.GroupRoleIndicator:SetSize(10, 10)
+        self.GroupRoleIndicator:SetSize(11, 11)
         self.GroupRoleIndicator:SetPoint("CENTER", self, "TOPRIGHT", -6, -6)
         self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
         self.ReadyCheckIndicator:SetSize(32, 32)
         self.ReadyCheckIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
         self.ResurrectIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.ResurrectIndicator:SetSize(16, 16)
+        self.ResurrectIndicator:SetSize(20, 20)
         self.ResurrectIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
         self.SummonIndicator = self.Health:CreateTexture(nil, "OVERLAY")
         self.SummonIndicator:SetSize(32, 32)
@@ -513,15 +513,10 @@ local UnitSpecific = {
         Shared(self, ...)
         self.unit = 'tank'
 
-        Power(self, 'BOTTOM')
-        ctfBorder(self)
-
         self:SetSize(cfg.subUF.boss.width, cfg.UF.focus.height)
-        self.Health:SetHeight(cfg.UF.focus.height-2)
-        self.Power:SetHeight(1)
 
         local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        name:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 0, 2)
+        name:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 0, 3)
         self:Tag(name, '[color][name]')
 
         local hptext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
@@ -542,9 +537,9 @@ local UnitSpecific = {
         unitDebuff.spacing = 4
         unitDebuff.num = 3
         unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-        unitDebuff:SetPoint('BOTTOMRIGHT', self, 'BOTTOMLEFT', -5, 0)
-        unitDebuff.initialAnchor = 'RIGHT'
-        unitDebuff['growth-x'] = 'LEFT'
+        unitDebuff:SetPoint('BOTTOMLEFT', self, 'BOTTOMRIGHT', 5, 0)
+        unitDebuff.initialAnchor = 'LEFT'
+        --unitDebuff['growth-x'] = 'RIGHT'
         unitDebuff.PostCreateIcon = PostCreateIconSmall
         unitDebuff.PostUpdateIcon = PostUpdateIcon
         --unitDebuff.CustomFilter = CustomFilter
@@ -656,8 +651,8 @@ oUF:Factory(function(self)
     spawnHelper(self, 'focustarget', 'TOPRIGHT', 'oUF_KTuiFocus','BOTTOMRIGHT', 0, -7)
 
    self:SetActiveStyle('KTui-Party')
-    self:SpawnHeader('oUF_Party', nil, 'raid, party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
-        'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', false,
+    self:SpawnHeader('oUF_Party', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
+        'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 10,
         'point', 'LEFT',
         'groupBy', 'ASSIGNEDROLE',
@@ -672,8 +667,8 @@ oUF:Factory(function(self)
     ):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
     self:SetActiveStyle('KTui-Partypet')
-    self:SpawnHeader('oUF_PartyPets', nil, 'raid, party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
-        'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', false,
+    self:SpawnHeader('oUF_PartyPets', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
+        'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 84,
         'point', 'LEFT',
         'groupBy', 'ASSIGNEDROLE',
@@ -689,8 +684,8 @@ oUF:Factory(function(self)
     ):SetPoint("BOTTOMRIGHT", 'oUF_Party', "TOPRIGHT", 0, 4)
 
     self:SetActiveStyle('KTui-Partytarget')
-    self:SpawnHeader('oUF_PartyTargets', nil, 'raid, party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
-        'showParty', true, 'showPlayer', true, 'showSolo', true, 'showRaid', false,
+    self:SpawnHeader('oUF_PartyTargets', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
+        'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 10,
         'point', 'LEFT',
         'groupBy', 'ASSIGNEDROLE',
@@ -764,7 +759,7 @@ oUF:Factory(function(self)
     self:SpawnHeader('oUF_MainTank', nil, 'raid',
         'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
         'groupFilter', 'MAINTANK',
-        'yOffset', -18,
+        'yOffset', -24,
         'point', 'TOP',
         "initial-width", cfg.subUF.boss.width,
         "initial-height", cfg.UF.focus.height,
@@ -773,9 +768,9 @@ oUF:Factory(function(self)
             self:SetWidth(header:GetAttribute("initial-width"))
             self:SetHeight(header:GetAttribute("initial-height"))
         ]]
-    ):SetPoint("TOPLEFT", 'oUF_KTuiFocus', "TOPRIGHT", 95, 0)
+    ):SetPoint("TOPLEFT", 'oUF_KTuiFocus', "TOPRIGHT", 102, 0)
 
     for i = 1, MAX_BOSS_FRAMES do
-        spawnHelper(self, 'boss'..i, 'TOPLEFT', 'oUF_KTuiFocus', 'TOPRIGHT', 95, 55-55+(55*i))
+        spawnHelper(self, 'boss'..i, 'TOPLEFT', 'oUF_KTuiFocus', 'TOPRIGHT', 102, 60-60+(60*i))
     end
 end)

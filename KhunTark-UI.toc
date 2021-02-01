@@ -1,7 +1,7 @@
-## Interface: 80300
-## Title: KBJ CombatUI
-## Author: Kimbanjang
+## Interface: 90002
+## Title: KhunTark's UI
 ## Notes: UI for focusing combat
+## Author: Thunday-Tichondrius/Frostmourne
 ## RequiredDeps: Blizzard_CombatText
 ## LoadWith: Blizzard_CombatText
 

@@ -118,7 +118,7 @@ local UnitSpecific = {
         local Rested = CreateFrame('StatusBar', nil, Experience, 'BackdropTemplate')
         Rested:SetAllPoints()
         Rested:SetStatusBarTexture(cfg.texture)
-        Rested:SetAlpha(0.7)
+        Rested:SetAlpha(1)
         Rested:SetBackdrop({
             bgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
             insets = {top = -1, left = -1, bottom = -1, right = -1},

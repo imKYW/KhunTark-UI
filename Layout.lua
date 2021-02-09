@@ -474,13 +474,13 @@ local UnitSpecific = {
         self.Health.colorClass = true
         self.Health.colorReaction = true
 
-        local name = cFontString(self.Health, nil, cfg.bfont, 11, 'none', 1, 1, 1)
-        name:SetPoint('TOPLEFT', 1, 0)
+        local name = cFontString(self.Health, nil, cfg.font, 11, 'none', 1, 1, 1)
+        name:SetPoint('TOPLEFT', 1, -1)
         name:SetShadowOffset(1, -1)
         name:SetJustifyH('LEFT')
         self:Tag(name, '[unit:name4]')
         local htext = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 1, 1)
-        htext:SetPoint('BOTTOMRIGHT', 2, 0)
+        htext:SetPoint('BOTTOMRIGHT', 1, 1)
         htext:SetJustifyH('RIGHT')
         self:Tag(htext, '[unit:HPpercent]')
 
@@ -494,8 +494,8 @@ local UnitSpecific = {
         self.RaidTargetIndicator:SetSize(16, 16)
         self.RaidTargetIndicator:SetPoint("CENTER", self, "LEFT", 0, 0)
         self.GroupRoleIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.GroupRoleIndicator:SetSize(11, 11)
-        self.GroupRoleIndicator:SetPoint("CENTER", self, "TOPRIGHT", -6, -6)
+        self.GroupRoleIndicator:SetSize(12, 12)
+        self.GroupRoleIndicator:SetPoint("CENTER", self, "TOPRIGHT", -7, -7)
         self.ReadyCheckIndicator = self.Health:CreateTexture(nil, "OVERLAY")
         self.ReadyCheckIndicator:SetSize(32, 32)
         self.ReadyCheckIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)

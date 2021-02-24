@@ -35,7 +35,7 @@ local Instance = {
     --['Underrot'] = 1114,
 
     -- PVP
-    ['PVP'] = 9999,
+    ['PVP'] = 9999, --9999
     --[[
     936     Freehold
     1015    Waycrest Manor

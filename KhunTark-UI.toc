@@ -1,7 +1,7 @@
 ## Interface: 90002
 ## Title: KhunTark's UI
 ## Notes: UI for focusing combat
-## Author: Thunday-Tichondrius/Frostmourne
+## Author: KhunTark
 ## RequiredDeps: Blizzard_CombatText
 ## LoadWith: Blizzard_CombatText
 

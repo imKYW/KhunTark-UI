@@ -14,8 +14,8 @@ local npCVars = {
 	nameplateLargeTopInset = -1,
 	nameplateLargeBottomInset = -1,
 	--nameplateOtherAtBase = 1,
-	nameplateOtherTopInset = -1,
-	nameplateOtherBottomInset = -1,
+	nameplateOtherTopInset = 0.05,
+	nameplateOtherBottomInset = 0.05,
 
 	-- Non Select
 	nameplateMaxDistance = 40,

@@ -319,7 +319,7 @@ end
 function PostCreateIconNP(auras, button)
     local btnC = button.count
     btnC:ClearAllPoints()
-    btnC:SetPoint('CENTER', button, 'BOTTOMRIGHT', 1, 0)
+    btnC:SetPoint('CENTER', button, 'BOTTOMRIGHT', -1, 1)
     btnC:SetFontObject(nil)
     btnC:SetFont(cfg.aurafont, 8, cfg.fontflag)
     btnC:SetTextColor(1, 1, 1)
@@ -341,7 +341,7 @@ function PostCreateIconNP(auras, button)
     insets = { left = 3, right = 3, top = 3, bottom = 3 },
     })
 
-    local remaining = cFontString(button, 'OVERLAY', cfg.aurafont, 6, cfg.fontflag, 1, 1, 1)
+    local remaining = cFontString(button, 'OVERLAY', cfg.aurafont, 8, cfg.fontflag, 1, 1, 1)
     remaining:SetPoint('TOPLEFT')
     button.remaining = remaining
 end

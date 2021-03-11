@@ -106,13 +106,13 @@ local NamePlateSpecific = function(self)
 	HealthPrediction(self)
 	extCastbar(self)
 
-	local name = cFontString(self.Health, nil, cfg.font, 9, cfg.fontflag, 1, 1, 1, 'CENTER')
-	name:SetPoint('BOTTOM', self.Health, 'TOP', 0, 2)
+	local name = cFontString(self.Health, nil, cfg.font, 9, cfg.fontflag, 1, 1, 1, 'LEFT')
+	name:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 2)
 	self:Tag(name, '[color][name]')
-	local classification = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 0.75, 0, 'LEFT')
-	classification:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
+	local classification = cFontString(self.Health, nil, cfg.bfont, 12, cfg.fontflag, 1, 0.75, 0, 'LEFT')
+	classification:SetPoint('LEFT', self.Health, 'LEFT', 2, 0)
 	self:Tag(classification, '[unit:classification]')
-	local htext = cFontString(self.Health, nil, cfg.bfont, 9, cfg.fontflag, 1, 1, 1, 'RIGHT')
+	local htext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
 	htext:SetPoint('RIGHT', self.Health, 'RIGHT', 0, 0)
 	self:Tag(htext, '[unit:HPpercent]%')
 
@@ -126,19 +126,17 @@ local NamePlateSpecific = function(self)
 	self:Tag(targetMe, '[unit:TargetMe]')
 
 	local unitDebuff = CreateFrame('Frame', nil, self)
-	unitDebuff.num = 6
+	unitDebuff.num = 5
 	unitDebuff.spacing = 4
 	unitDebuff.size = (cfg.UF.nameplate.width-(unitDebuff.spacing*(unitDebuff.num-1)))/unitDebuff.num
-	--unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
 	unitDebuff:SetSize(cfg.UF.nameplate.width, unitDebuff.size)
-	unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', -1, 20)
+	unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 15)
 	unitDebuff.initialAnchor = 'TOPLEFT'
 	unitDebuff.onlyShowPlayer = true
 	unitDebuff.PostCreateIcon = PostCreateIconNP
 	unitDebuff.PostUpdateIcon = PostUpdateIcon
 	unitDebuff.CustomFilter = CustomFilter
 	self.Debuffs = unitDebuff
-	--self.Debuffs:SetScale(0.7) -- trick for Scale bug
 
 --[[
 	local unitBuff = CreateFrame('Frame', nil, self)

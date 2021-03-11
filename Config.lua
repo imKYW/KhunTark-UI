@@ -28,8 +28,8 @@ cfg.UF = {  -- Anchor is Player unitframe
 		position = { sa = 'CENTER', a = UIParent, pa = 'CENTER', x = 200, y = 66 },
 	},
 	nameplate = {
-		width = 100,
-		height = 12,
+		width = 110,
+		height = 14,
 	},
 }
 

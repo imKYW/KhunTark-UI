@@ -29,12 +29,18 @@ local ActivityAuras = {
     [273992] = 4, -- [ITEM] 잔달라의 문장
     [274430] = 4, -- [ITEM] 쉴 틈 없이 똑딱거리는 시계 : 가속
     [274431] = 4, -- [ITEM] 쉴 틈 없이 똑딱거리는 시계 : 특화
+    [197690] = 4,
+    [6673] = 4,
+    [335152] = 4,
 }
 
 local PersonalAuras = {
     [1022]   = 4, -- Hand of Protection
     [33206]  = 4, -- Pain Suppression
     [102342] = 4, -- Ironbark
+    [197690] = 4,
+    [6673] = 4,
+    [335152] = 4,
 }
 
 local NameplateBuffs = {
@@ -227,7 +233,7 @@ local filters = {
 }
 
 CustomAuraFilters = {
-    activity = function(self, unit, iconFrame, name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
+    activity = function(self, unit, _,_,_,_,_,_,_, caster, _,_, spellID)
         -- print("CustomAuraFilter", self.__owner:GetName(), "[unit]", unit, "[caster]", caster, "[name]", name, "[id]", spellID, "[filter]", v, caster == "vehicle")
         local v = activityAuraList[spellID]
         if v and filters[v] then

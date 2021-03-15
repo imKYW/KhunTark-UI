@@ -142,11 +142,11 @@ local UnitSpecific = {
         self.Experience = Experience
         self.Experience.Rested = Rested
 
-        --[[
         local personalBuff = CreateFrame('Frame', nil, self)
         personalBuff.size = 36
         personalBuff.spacing = 4
         personalBuff.num = 4
+        personalBuff.setCenterposition = true
         personalBuff:SetSize((personalBuff.size+personalBuff.spacing)*personalBuff.num-personalBuff.spacing, personalBuff.size)
         personalBuff:SetPoint('CENTER', UIParent, 'CENTER', 75, 0)
         personalBuff.initialAnchor = 'CENTER'
@@ -170,7 +170,6 @@ local UnitSpecific = {
         activityBuff.PostUpdateIcon = PostUpdateIcon
         activityBuff.CustomFilter = CustomAuraFilters.activity
         self.Buffs = activityBuff
-        ]]
 
         local PlayerFCF = CreateFrame("Frame", nil, self)
         PlayerFCF:SetSize(34, 34)

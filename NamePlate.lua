@@ -37,6 +37,7 @@ local npCVars = {
 	--namePlateFriendlySize
 }
 
+
 -- Function -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------
 local npPostUpdateHealth = function(self, unit, min, max)
@@ -70,15 +71,14 @@ local npHealth = function(self)
 	hbg.multiplier = 0.4
 
 	h.Smooth = true
-	h.colorTapping = true
 	h.colorDisconnected = false
-	h.colorReaction = true
-	h.colorClass = true
-	h.colorHealth = true
-	h.frequentUpdates = true
-
+	h.colorTapping = false
 	h.colorThreat = true
 	h.colorThreatInvers = true
+	h.colorClass = true
+	h.colorReaction = true
+	h.colorHealth = true
+	h.frequentUpdates = true
 
 	-- hooks
 	h.bg = hbg
@@ -97,6 +97,7 @@ end
 -----------------------------------------------------------------------------------------
 local NamePlateSpecific = function(self)
 	self.unit = 'nameplate'
+
 	fBackDrop(self,self)
 
 	self:SetSize(cfg.UF.nameplate.width, cfg.UF.nameplate.height)

@@ -15,32 +15,26 @@ local updateFuncs = {} -- functions to call to add/remove auras
 local BaseAuras = {}
 
 local ActivityAuras = {
-    [2825]   = 4, -- Bloodlust (shaman H)
-    [32182]  = 4, -- Heroism (shaman A)
-    [80353]  = 4, -- Time Warp (mage)
-    [90355]  = 4, -- Ancient Hysteria (core hound)
-    [160452] = 4, -- Netherwinds (nether ray)
-    [146555] = 4, -- Drum of Rage (item)
-    [178207] = 4, -- Drum of Fury (item)
-    [230935] = 4, -- Drum of Mountin (item)
-    [229206] = 4, -- [POT] 지속힘
-    [273842] = 4, -- [Azerite] 심연의 비밀 : 흰색
-    [273843] = 4, -- [Azerite] 심연의 비밀 : 검은색
-    [273992] = 4, -- [ITEM] 잔달라의 문장
-    [274430] = 4, -- [ITEM] 쉴 틈 없이 똑딱거리는 시계 : 가속
-    [274431] = 4, -- [ITEM] 쉴 틈 없이 똑딱거리는 시계 : 특화
-    [197690] = 4,
-    [6673] = 4,
-    [335152] = 4,
+    --[2825]   = 4, -- Bloodlust (shaman H)
+    --[32182]  = 4, -- Heroism (shaman A)
+    --[80353]  = 4, -- Time Warp (mage)
+    --[90355]  = 4, -- Ancient Hysteria (core hound)
+    --[160452] = 4, -- Netherwinds (nether ray)
+    --[146555] = 4, -- Drum of Rage (item)
+    --[178207] = 4, -- Drum of Fury (item)
+    --[230935] = 4, -- Drum of Mountin (item)
+    --[229206] = 4, -- [POT] 지속힘
+    --[273842] = 4, -- [Azerite] 심연의 비밀 : 흰색
+    --[273843] = 4, -- [Azerite] 심연의 비밀 : 검은색
+    --[273992] = 4, -- [ITEM] 잔달라의 문장
+    --[274430] = 4, -- [ITEM] 쉴 틈 없이 똑딱거리는 시계 : 가속
+    --[274431] = 4, -- [ITEM] 쉴 틈 없이 똑딱거리는 시계 : 특화
 }
 
 local PersonalAuras = {
-    [1022]   = 4, -- Hand of Protection
-    [33206]  = 4, -- Pain Suppression
-    [102342] = 4, -- Ironbark
-    [197690] = 4,
-    [6673] = 4,
-    [335152] = 4,
+    --[1022]   = 4, -- Hand of Protection
+    --[33206]  = 4, -- Pain Suppression
+    --[102342] = 4, -- Ironbark
 }
 
 local NameplateBuffs = {
@@ -146,12 +140,12 @@ if playerClass == "WARRIOR" then
     ActivityAuras[1719]     = 2 -- [ARMS] Battle Cry
     ActivityAuras[227847]   = 2 -- [ARMS] Blade Storm
     ActivityAuras[188923]   = 2 -- [ARMS] Cleave
-    PersonalAuras[118038]   = 2 -- [ARMS] Die by the Sword
+    --PersonalAuras[118038]   = 2 -- [ARMS] Die by the Sword
     PersonalAuras[209484]   = 2 -- [ARMS] Tactical Advance
     ActivityAuras[60503]    = 2 -- [ARMS T1/2] Overpower
     ActivityAuras[248145]   = 2 -- [ARMS LEG] HEAD Buff
     PersonalAuras[202164]   = 2 -- [ARMS T4/2] Bounding Stride
-    PersonalAuras[197690]   = 2 -- [ARMS T4/3] Defensive Stance
+    --PersonalAuras[197690]   = 2 -- [ARMS T4/3] Defensive Stance
 end
 
 --[[ ADD Racials / But I don't used it. cuz I played gnome only

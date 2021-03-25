@@ -256,7 +256,7 @@ oUF.Tags.Methods['player:Resource'] = function()
     local playerClassSpec = GetSpecializationInfo(GetSpecialization())
     local num = 0
 
-    if UnitHasVehicleUI'player' then
+    if UnitHasVehicleUI('player') then
         num = UnitPower('vehicle', SPELL_POWER_COMBO_POINTS)
     -- Soul Shard
     elseif playerClass == 'WARLOCK' then

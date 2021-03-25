@@ -7,10 +7,10 @@ StatusBar widget.
 ## Widgets
 
 - `Experience`
-	A statusbar which displays the player's current experience or honor until the next level.  
+	A statusbar which displays the player's current experience or honor until the next level.
 	Has drop-in support for `AnimatedStatusBarTemplate`.
 - `Experience.Rested`
-	An optional background-layered statusbar which displays the exhaustion the player current has.  
+	An optional background-layered statusbar which displays the exhaustion the player current has.
 	**Must** be parented to the `Experience` widget if used.
 
 ## Options
@@ -28,7 +28,7 @@ StatusBar widget.
 
 ## Colors
 
-This plug-in adds colors for experience (normal and rested) as well as honor.  
+This plug-in adds colors for experience (normal and rested) as well as honor.
 Accessible through `oUF.colors.experience` and `oUF.colors.honor`.
 
 ## Notes
@@ -281,7 +281,7 @@ local function Path(self, ...)
 	--[[ Overrides:header
 	### element.Override(_self, event, unit_)
 
-	Used to completely override the internal update function.  
+	Used to completely override the internal update function.
 	Overriding this function also disables the [Callbacks](Callbacks).
 
 	- `self`  - the parent object
@@ -346,7 +346,7 @@ local function VisibilityPath(self, ...)
 	--[[ Overrides:header
 	### element.OverrideVisibility(_self, event, unit_)
 
-	Used to completely override the element's visibility update process.  
+	Used to completely override the element's visibility update process.
 	The internal function is also responsible for (un)registering events related to the updates.
 
 	- `self`  - the parent object

@@ -72,41 +72,50 @@ local UnitSpecific = {
                 i=i-1
             end
             self.Runes = runes
-        elseif class == 'MONK' and not UnitHasVehicleUI('player') then
-            local stagger = CreateFrame('StatusBar', nil, self)
-            stagger:SetSize(cfg.UF.player.width, 5)
-            stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
-            stagger.bg = fBackDrop(stagger, stagger)
-            stagger.bg = stagger:CreateTexture(nil, 'BACKGROUND')
-            stagger.bg:SetAllPoints(stagger)
-            stagger.bg:SetTexture(cfg.texture)
-            stagger.bg.multiplier = 0.3
-            self.Stagger = stagger
-
-            local staggerCurrent = cFontString(self.Stagger, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
-            staggerCurrent:SetPoint('LEFT', self.Stagger, 'LEFT', 1, 0)
-            self:Tag(staggerCurrent, '[player:StaggerCurrent]')
-            local staggerPercent = cFontString(self.Power, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'RIGHT')
-            staggerPercent:SetPoint('RIGHT', self, 'LEFT', -3, 0)
-            self:Tag(staggerPercent, '[player:StaggerPercent]')
+        -- elseif class == 'MONK' and not UnitHasVehicleUI('player') then
+        --     local stagger = CreateFrame('StatusBar', nil, self)
+        --     stagger:SetSize(cfg.UF.player.width, 5)
+        --     stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
+        --     stagger.bg = fBackDrop(stagger, stagger)
+        --     stagger.bg = stagger:CreateTexture(nil, 'BACKGROUND')
+        --     stagger.bg:SetAllPoints(stagger)
+        --     stagger.bg:SetTexture(cfg.texture)
+        --     stagger.bg.multiplier = 0.3
+        --     self.Stagger = stagger
+--
+        --     local staggerCurrent = cFontString(self.Stagger, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
+        --     staggerCurrent:SetPoint('LEFT', self.Stagger, 'LEFT', 1, 0)
+        --     self:Tag(staggerCurrent, '[player:StaggerCurrent]')
+        --     local staggerPercent = cFontString(self.Power, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        --     staggerPercent:SetPoint('RIGHT', self, 'LEFT', -3, 0)
+        --     self:Tag(staggerPercent, '[player:StaggerPercent]')
         -- elseif class == 'DRUID' then
             -- TODO : MushroomBar?
         -- elseif class == 'SHAMAN' then
             -- TODO : TotemBar? like Runebar
         end
 
-        self.RestingIndicator = self.Health:CreateTexture(nil, 'OVERLAY')
-        self.RestingIndicator:SetSize(6, 6)
-        self.RestingIndicator:SetPoint('LEFT', self.Health, 'LEFT', 3, 0)
-        self.RestingIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
-        self.RestingIndicator:SetVertexColor(0,0.4,0.9)
+        local RestingIndicator = self.Health:CreateTexture(nil, 'OVERLAY')
+        RestingIndicator:SetSize(6, 6)
+        RestingIndicator:SetPoint('LEFT', self.Health, 'LEFT', 3, 0)
+        RestingIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+        RestingIndicator:SetVertexColor(0,0.4,0.9)
+        self.RestingIndicator = RestingIndicator
 
-        self.CombatIndicator = self.Health:CreateTexture(nil, 'OVERLAY')
-        self.CombatIndicator:SetSize(6, 6)
-        self.CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 3, 0)
-        self.CombatIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
-        self.CombatIndicator:SetVertexColor(1,0,0)
+        local CombatIndicator = self.Health:CreateTexture(nil, 'OVERLAY')
+        CombatIndicator:SetSize(6, 6)
+        CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 3, 0)
+        CombatIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+        CombatIndicator:SetVertexColor(1,0,0)
+        self.CombatIndicator = CombatIndicator
         -- TODO : Rest Highlight
+
+        local VehicleIndicator = self.Health:CreateTexture(nil, 'OVERLAY')
+        VehicleIndicator:SetSize(6, 6)
+        VehicleIndicator:SetPoint('TOPLEFT', self.Health, 'TOPLEFT', 3, -1)
+        VehicleIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+        VehicleIndicator:SetVertexColor(0,0,0)
+        self.VehicleIndicator = VehicleIndicator
 
         -- EXP Bar
         local Experience = CreateFrame('StatusBar', nil, self, 'AnimatedStatusBarTemplate')
@@ -214,10 +223,11 @@ local UnitSpecific = {
         hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
         self:Tag(hctext, '[unit:HPcurrent]')
 
-        self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.RaidTargetIndicator:SetSize(22, 22)
-        self.RaidTargetIndicator:SetAlpha(0.9)
-        self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+        local RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        RaidTargetIndicator:SetSize(22, 22)
+        RaidTargetIndicator:SetAlpha(0.9)
+        RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+        self.RaidTargetIndicator = RaidTargetIndicator
 
         local unitBuff = CreateFrame('Frame', nil, self)
         unitBuff.size = 16
@@ -263,10 +273,11 @@ local UnitSpecific = {
         name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)
         self:Tag(name, '[color][name]')
 
-        self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.RaidTargetIndicator:SetSize(14, 14)
-        self.RaidTargetIndicator:SetAlpha(0.9)
-        self.RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+        local RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
+        RaidTargetIndicator:SetSize(14, 14)
+        RaidTargetIndicator:SetAlpha(0.9)
+        RaidTargetIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
+        self.RaidTargetIndicator = RaidTargetIndicator
 
         AuraTracker(self, cfg.UF.player.height*1.2, 'RIGHT', self, 'LEFT', -5, 0)
     end,

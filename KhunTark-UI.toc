@@ -1,4 +1,4 @@
-## Interface: 90002
+## Interface: 90005
 ## Title: KhunTark's UI
 ## Notes: UI for focusing combat
 ## Author: KhunTark
@@ -9,10 +9,10 @@ oUF\oUF.xml
 
 Config.lua
 
+Libs\oUF_VehicleIndicator.lua
 Libs\oUF_Smooth.lua
 Libs\oUF_DebuffHighlight.lua
 Libs\oUF_Experience.lua
-Libs\oUF_GCD.lua
 Libs\oUF_Freebgrid_Auras.lua
 Libs\oUF_Freebgrid_AurasList.lua
 Libs\oUF_Trinkets.lua

@@ -3,7 +3,7 @@ local oUF = ns.oUF or oUF
 
 local function Update(self, event)
 	local element = self.VehicleIndicator
-	local isVehicle = UnitHasVehicleUI('player') --UnitInVehicle UnitHasVehicleUI
+	local isVehicle = UnitHasVehicleUI('player') or UnitInVehicle('player')--UnitInVehicle UnitHasVehicleUI
 
 	if (element.PreUpdate) then
 		element:PreUpdate()
@@ -36,7 +36,6 @@ local function Enable(self, unit)
 
 		self:RegisterEvent('UNIT_ENTERED_VEHICLE', Path, true)
 		self:RegisterEvent('UNIT_EXITED_VEHICLE', Path, true)
-		self:RegisterEvent('UNIT_PET', Path, true)
 
 		if(element:IsObjectType('Texture') and not element:GetTexture()) then
 			element:SetTexture([[Interface\ChatFrame\ChatFrameBackground]])
@@ -54,7 +53,6 @@ local function Disable(self)
 
 		self:UnregisterEvent('UNIT_ENTERED_VEHICLE', Path)
 		self:UnregisterEvent('UNIT_EXITED_VEHICLE', Path)
-		self:UnregisterEvent('UNIT_PET', Path)
 	end
 end
 

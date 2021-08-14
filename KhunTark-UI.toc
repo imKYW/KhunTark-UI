@@ -24,4 +24,3 @@ Libs\extAuraFilter.lua
 Libs\extCastbar.lua
 
 Layout.lua
-NamePlate.lua

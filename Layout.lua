@@ -72,23 +72,23 @@ local UnitSpecific = {
                 i=i-1
             end
             self.Runes = runes
-        -- elseif class == 'MONK' and not UnitHasVehicleUI('player') then
-        --     local stagger = CreateFrame('StatusBar', nil, self)
-        --     stagger:SetSize(cfg.UF.player.width, 5)
-        --     stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -4)
-        --     stagger.bg = fBackDrop(stagger, stagger)
-        --     stagger.bg = stagger:CreateTexture(nil, 'BACKGROUND')
-        --     stagger.bg:SetAllPoints(stagger)
-        --     stagger.bg:SetTexture(cfg.texture)
-        --     stagger.bg.multiplier = 0.3
-        --     self.Stagger = stagger
---
-        --     local staggerCurrent = cFontString(self.Stagger, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
-        --     staggerCurrent:SetPoint('LEFT', self.Stagger, 'LEFT', 1, 0)
-        --     self:Tag(staggerCurrent, '[player:StaggerCurrent]')
-        --     local staggerPercent = cFontString(self.Power, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        --     staggerPercent:SetPoint('RIGHT', self, 'LEFT', -3, 0)
-        --     self:Tag(staggerPercent, '[player:StaggerPercent]')
+        elseif class == 'MONK' and not UnitHasVehicleUI('player') then
+            local stagger = CreateFrame('StatusBar', nil, self)
+            stagger:SetSize(cfg.UF.player.width, 5)
+            stagger:SetPoint('TOP', self.Power, 'BOTTOM', 0, -8)
+            stagger.bg = fBackDrop(stagger, stagger)
+            stagger.bg = stagger:CreateTexture(nil, 'BACKGROUND')
+            stagger.bg:SetAllPoints(stagger)
+            stagger.bg:SetTexture(cfg.texture)
+            stagger.bg.multiplier = 0.3
+            self.Stagger = stagger
+
+            local staggerCurrent = cFontString(self.Stagger, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
+            staggerCurrent:SetPoint('LEFT', self.Stagger, 'LEFT', 1, 0)
+            self:Tag(staggerCurrent, '[player:StaggerCurrent]')
+            local staggerPercent = cFontString(self.Power, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'RIGHT')
+            staggerPercent:SetPoint('RIGHT', self, 'LEFT', -3, 0)
+            self:Tag(staggerPercent, '[player:StaggerPercent]')
         -- elseif class == 'DRUID' then
             -- TODO : MushroomBar?
         -- elseif class == 'SHAMAN' then

@@ -96,25 +96,25 @@ end
 
 -- Monk -------------------------------------------------------------------------------------------
 if playerClass == "MONK" then
-    PersonalAuras[119085]   = 2 -- [BM/WW/MW] Chi Torpedo / 기공탄
-    PersonalAuras[116841]   = 2 -- [BM/WW/MW] Tiger's Lust / 범의 욕망
-    PersonalAuras[122278]   = 2 -- [BM/WW/MW] Dampen Harm / 해악 감퇴
-    PersonalAuras[116847]   = 2 -- [BM/WW] 비취 돌풍
+    --PersonalAuras[119085]   = 2 -- [BM/WW/MW] Chi Torpedo / 기공탄
+    --PersonalAuras[116841]   = 2 -- [BM/WW/MW] Tiger's Lust / 범의 욕망
+    --PersonalAuras[122278]   = 2 -- [BM/WW/MW] Dampen Harm / 해악 감퇴
+    --PersonalAuras[116847]   = 2 -- [BM/WW] 비취 돌풍
 
-    ActivityAuras[195630]   = 2 -- [BM] 교묘한 투사
-    PersonalAuras[115176]   = 2 -- [BM] 명상
-    PersonalAuras[120954]   = 2 -- [BM] 강화주
-    PersonalAuras[124275]   = 2 -- [BM] 작은 시간차
-    PersonalAuras[124274]   = 2 -- [BM] 중간 시간차
-    PersonalAuras[124273]   = 2 -- [BM] 큰 시간차
-    PersonalAuras[215479]   = 2 -- [BM] 무쇠 가죽주
+    --ActivityAuras[195630]   = 2 -- [BM] 교묘한 투사
+    --PersonalAuras[115176]   = 2 -- [BM] 명상
+    --PersonalAuras[120954]   = 2 -- [BM] 강화주
+    --PersonalAuras[124275]   = 2 -- [BM] 작은 시간차
+    --PersonalAuras[124274]   = 2 -- [BM] 중간 시간차
+    --PersonalAuras[124273]   = 2 -- [BM] 큰 시간차
+    --PersonalAuras[215479]   = 2 -- [BM] 무쇠 가죽주
 
-    ActivityAuras[116768]   = 2 -- [WW] Blackout Kick! / 후려차기!
+    --ActivityAuras[116768]   = 2 -- [WW] Blackout Kick! / 후려차기!
     ActivityAuras[195321]   = 2 -- [WW] Transfer the Power / 힘전달
-    ActivityAuras[196741]   = 2 -- [WW] Hit Combo / 연계타격
+    --ActivityAuras[196741]   = 2 -- [WW] Hit Combo / 연계타격
     PersonalAuras[122783]   = 2 -- [WW] Diffuse Magic / 마법 해소
-    PersonalAuras[125174]   = 2 -- [WW] Touch of Karma / 업보의 손아귀
-    PersonalAuras[137639]   = 2 -- [WW] Storm, Earth, and Fire / 폭대불
+    --PersonalAuras[125174]   = 2 -- [WW] Touch of Karma / 업보의 손아귀
+    --PersonalAuras[137639]   = 2 -- [WW] Storm, Earth, and Fire / 폭대불
     PersonalAuras[152173]   = 2 -- [WW] Serenity / 평온
     PersonalAuras[195381]   = 2 -- [WW] Healing Winds / 치유의 바람
 end

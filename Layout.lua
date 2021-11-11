@@ -155,9 +155,8 @@ local UnitSpecific = {
         personalBuff.size = 36
         personalBuff.spacing = 4
         personalBuff.num = 4
-        personalBuff.setCenterposition = true
         personalBuff:SetSize((personalBuff.size+personalBuff.spacing)*personalBuff.num-personalBuff.spacing, personalBuff.size)
-        personalBuff:SetPoint('CENTER', UIParent, 'CENTER', 75, 0)
+        personalBuff:SetPoint('CENTER', UIParent, 'CENTER', 75, -15)
         personalBuff.initialAnchor = 'CENTER'
         personalBuff['growth-x'] = 'RIGHT'
         personalBuff['growth-y'] = 'DOWN'
@@ -171,7 +170,7 @@ local UnitSpecific = {
         activityBuff.spacing = 4
         activityBuff.num = 10
         activityBuff:SetSize((activityBuff.size+activityBuff.spacing)*(activityBuff.num/2)-activityBuff.spacing, activityBuff.size*2+activityBuff.spacing)
-        activityBuff:SetPoint('CENTER', UIParent, 'CENTER', -75, 0)
+        activityBuff:SetPoint('CENTER', UIParent, 'CENTER', -75, -15)
         activityBuff.initialAnchor = 'CENTER'
         activityBuff['growth-x'] = 'LEFT'
         activityBuff['growth-y'] = 'DOWN'

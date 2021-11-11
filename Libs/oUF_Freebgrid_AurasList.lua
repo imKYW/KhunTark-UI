@@ -1,6 +1,3 @@
--- THANKS & CREDITS GOES TO Freebaser (oUF_Freebgrid)
--- http://www.wowinterface.com/downloads/info12264-oUF_Freebgrid.html
-
 local _, L = ...
 local oUF = L.oUF or oUF
 
@@ -21,8 +18,9 @@ end
 -- find out the instance ID by typing this in the chat "/run print(C_Map.GetBestMapForUnit("player"))"
 -- Note: Just must be in this instance, when you run the script above
 local Instance = {
-    -- BfA Raids
-    -- BfA Instances
+    -- SL Raids
+    ['지배의 성소'] = 936,
+    -- SL Instances
     ['Freehold'] = 936,
     --['Shrine of the Storm'] = 1114,
     --['Siege of Boralus'] = 1114,

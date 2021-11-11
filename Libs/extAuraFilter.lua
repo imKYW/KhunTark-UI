@@ -92,6 +92,12 @@ if playerClass == "DEATHKNIGHT" then
     PersonalAuras[51271]    = 2 -- [F] 얼음 기둥
     PersonalAuras[101568]   = 2 -- [F] 어둠의 원조
     PersonalAuras[196770]   = 2 -- [F] 냉혹한 겨울
+
+    -- Test
+    PersonalAuras[345464]    = 2 -- 얼인
+    PersonalAuras[227723]    = 2 -- 얼인
+    PersonalAuras[55233]    = 2 -- 얼인
+    PersonalAuras[194679]    = 2 -- 얼인
 end
 
 -- Monk -------------------------------------------------------------------------------------------
@@ -146,6 +152,13 @@ if playerClass == "WARRIOR" then
     ActivityAuras[248145]   = 2 -- [ARMS LEG] HEAD Buff
     PersonalAuras[202164]   = 2 -- [ARMS T4/2] Bounding Stride
     --PersonalAuras[197690]   = 2 -- [ARMS T4/3] Defensive Stance
+end
+
+if playerClass == "ROGUE" then
+    --PersonalAuras[345464]    = 2 -- Berserker Rage
+    --PersonalAuras[354018]    = 2 -- Berserker Rage
+    --ActivityAuras[345464]    = 2 -- Berserker Rage
+    --ActivityAuras[354018]    = 2 -- Berserker Rage
 end
 
 --[[ ADD Racials / But I don't used it. cuz I played gnome only

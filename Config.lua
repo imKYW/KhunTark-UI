@@ -38,7 +38,7 @@ cfg.subUF = {
 	party = {
 		width = 108,
 		height = 52,
-		position = { sa = 'BOTTOM', a = UIParent, pa = 'BOTTOM', x = 0, y = 251 },
+		position = { sa = 'BOTTOM', a = UIParent, pa = 'BOTTOM', x = 0, y = 210 },
 	},
 	raid = {
 		width = 52,

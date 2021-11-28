@@ -16,7 +16,7 @@ CombatTextFont:SetShadowColor(0,0,0,0.4)
 
 -- Frame Backdrop -----------------------------------------------------------------------
 function fBackDrop(parent, anchor)
-    local f = CreateFrame('Frame', nil, parent, 'BackdropTemplate')
+    local f = CreateFrame('Frame', nil, parent, BackdropTemplateMixin and 'BackdropTemplate')
     f:SetFrameLevel(parent:GetFrameLevel()-1 or 0)
     f:SetPoint('TOPLEFT', anchor, 'TOPLEFT', -3, 3)
     f:SetPoint('BOTTOMRIGHT', anchor, 'BOTTOMRIGHT', 3, -3)
@@ -62,13 +62,13 @@ function OnLeaveHL(self)
 end
 
 -- Health / Power -----------------------------------------------------------------------
-local function PostUpdateHealth(health, unit)
+local function PostUpdate(resourseType, unit)
     if UnitIsDead(unit) then
-        health:SetValue(0)
+        resourseType:SetValue(0)
     elseif UnitIsGhost(unit) then
-        health:SetValue(0)
+        resourseType:SetValue(0)
     elseif not UnitIsConnected(unit) then
-        health:SetValue(0)
+        resourseType:SetValue(0)
     end
 end
 
@@ -77,11 +77,13 @@ function Health(self)
     h:SetPoint('TOP')
     h:SetPoint('LEFT')
     h:SetPoint('RIGHT')
+    h:SetStatusBarColor(0, 0.6, 0.1)
 
     local hbg = h:CreateTexture(nil, 'BACKGROUND')
     hbg:SetAllPoints(h)
     hbg:SetTexture(cfg.texture)
-    hbg.multiplier = 0.3
+    hbg:SetVertexColor(0.3, 0.3, 0.3, 0.3)
+    --hbg.multiplier = 0.2
 
     local hl = h:CreateTexture(nil, 'OVERLAY')
     hl:SetAllPoints(h)
@@ -90,14 +92,13 @@ function Health(self)
     hl:SetBlendMode('ADD')
     hl:Hide()
 
-    --h.colorDisconnected = true
-    h.colorReaction = true
     h.frequentUpdates = true
     h.Smooth = true
 
     self.Health = h
     self.Health.bg = hbg
     self.Highlight = hl
+    self.Health.PostUpdate = PostUpdate
 end
 
 function Power(self, direction) -- TOP else BOTTOM
@@ -117,16 +118,19 @@ function Power(self, direction) -- TOP else BOTTOM
     pbg:SetTexture(cfg.texture)
     pbg.multiplier = 0.4
 
-    p.Smooth = true
     p.colorPower = true
+    p.Smooth = true
 
     if unit == 'player' and powerType ~= 0 then p.frequentUpdates = true end
 
     self.Power = p
     self.Power.bg = pbg
+    self.Power.PostUpdate = PostUpdate
 end
 
 function HealthPrediction(self)
+    if not self.Health then return end
+
     local myBar = CreateFrame('StatusBar', nil, self.Health)
     myBar:SetPoint('TOP')
     myBar:SetPoint('BOTTOM')
@@ -154,7 +158,7 @@ function HealthPrediction(self)
     local healAbsorbBar = CreateFrame('StatusBar', nil, self.Health)
     healAbsorbBar:SetPoint('TOP')
     healAbsorbBar:SetPoint('BOTTOM')
-    healAbsorbBar:SetPoint('RIGHT', self.Health:GetStatusBarTexture())
+    healAbsorbBar:SetPoint('RIGHT', self.Health:GetStatusBarTexture(), 'LEFT')
     healAbsorbBar:SetStatusBarTexture(cfg.absorb)
     healAbsorbBar:SetStatusBarColor(0.1, 0.1, 0.1, 0.6)
     healAbsorbBar:SetWidth(200)
@@ -180,7 +184,7 @@ function HealthPrediction(self)
         healAbsorbBar = healAbsorbBar,
         overAbsorb = overAbsorb,
         overHealAbsorb = overHealAbsorb,
-        maxOverflow = 1,
+        maxOverflow = 1.05,
         frequentUpdates = true,
     }
 end
@@ -255,7 +259,7 @@ function ctfBorder(self)
         insets = { left = -2, right = -2, top = -2, bottom = -2 }
     }
 
-    local ctBorder = CreateFrame('Frame', nil, self, 'BackdropTemplate')
+    local ctBorder = CreateFrame('Frame', nil, self, BackdropTemplateMixin and 'BackdropTemplate')
     ctBorder:SetPoint('TOPLEFT', self, 'TOPLEFT')
     ctBorder:SetPoint('BOTTOMRIGHT', self, 'BOTTOMRIGHT')
     ctBorder:SetBackdrop(ctfBackdrop)
@@ -263,7 +267,7 @@ function ctfBorder(self)
     ctBorder:SetFrameLevel(1)
     ctBorder:Hide()
 
-    local cfBorder = CreateFrame('Frame', nil, self, 'BackdropTemplate')
+    local cfBorder = CreateFrame('Frame', nil, self, BackdropTemplateMixin and 'BackdropTemplate')
     cfBorder:SetPoint('TOPLEFT', self, 'TOPLEFT')
     cfBorder:SetPoint('BOTTOMRIGHT', self, 'BOTTOMRIGHT')
     cfBorder:SetBackdrop(ctfBackdrop)
@@ -333,7 +337,7 @@ function PostCreateIconNP(auras, button)
     button:SetBackdrop(backdrop)
     button:SetBackdropColor(0, 0, 0, 1)
 
-    button.glow = CreateFrame('Frame', nil, button, 'BackdropTemplate')
+    button.glow = CreateFrame('Frame', nil, button, BackdropTemplateMixin and 'BackdropTemplate')
     button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
     button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
     button.glow:SetFrameLevel(button:GetFrameLevel()-1)
@@ -363,7 +367,7 @@ function PostCreateIconSmall(auras, button)
     button:SetBackdrop(backdrop)
     button:SetBackdropColor(0, 0, 0, 1)
 
-    button.glow = CreateFrame('Frame', nil, button, 'BackdropTemplate')
+    button.glow = CreateFrame('Frame', nil, button, BackdropTemplateMixin and 'BackdropTemplate')
     button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
     button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
     button.glow:SetFrameLevel(button:GetFrameLevel()-1)
@@ -393,7 +397,7 @@ function PostCreateIconNormal(auras, button)
     button:SetBackdrop(backdrop)
     button:SetBackdropColor(0, 0, 0, 1)
 
-    button.glow = CreateFrame('Frame', nil, button, 'BackdropTemplate')
+    button.glow = CreateFrame('Frame', nil, button, BackdropTemplateMixin and 'BackdropTemplate')
     button.glow:SetPoint('TOPLEFT', button, 'TOPLEFT', -3, 3)
     button.glow:SetPoint('BOTTOMRIGHT', button, 'BOTTOMRIGHT', 3, -3)
     button.glow:SetFrameLevel(button:GetFrameLevel()-1)

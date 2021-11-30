@@ -103,10 +103,29 @@ local UnitSpecific = {
         self.RestingIndicator = RestingIndicator
 
         local CombatIndicator = self.Health:CreateTexture(nil, 'OVERLAY')
-        CombatIndicator:SetSize(6, 6)
-        CombatIndicator:SetPoint('LEFT', self.Health, 'LEFT', 3, 0)
-        CombatIndicator:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
-        CombatIndicator:SetVertexColor(1,0,0)
+
+        local CombatIndicator = CreateFrame("Frame", "KTUI_CombatIndicator", UIParent, BackdropTemplateMixin and 'BackdropTemplate')
+        CombatIndicator:SetSize(16, 16)
+        CombatIndicator:SetBackdrop({
+            edgeFile = 'Interface\\AddOns\\KhunTark-UI\\Media\\textureGlow', edgeSize = 3,
+            bgFile = 'Interface\\ChatFrame\\ChatFrameBackground',
+            insets = { left = 3, right = 3, top = 3, bottom = 3 } })
+        CombatIndicator:SetBackdropColor(1, 0, 0)
+        CombatIndicator:SetBackdropBorderColor(0, 0, 0)
+        CombatIndicator:SetPoint('CENTER', UIParent, 'CENTER', 0, -12)
+
+        --CombatIndicator:CreateFontString("CombatIndicator_Point", "OVERLAY")
+        --CombatIndicator_Point:SetFont('Interface\\AddOns\\KhunTark-!Lib\\Fonts\\D2Coding.ttf', 16, 'MONOCHROMEOUTLINE')
+        --CombatIndicator_Point:SetText("+")
+        --CombatIndicator_Point:SetPoint("CENTER", CombatIndicator, "CENTER", 0, 0)
+        --CombatIndicator_Point:SetJustifyH("CENTER")
+        --CombatIndicator_Point:Show()
+
+        --local CombatIndicator_Point = CombatIndicator:CreateTexture(nil, 'OVERLAY')
+        --CombatIndicator_Point:SetSize(4, 4)
+        --CombatIndicator_Point:SetPoint("TOPLEFT", CombatIndicator, "TOPLEFT", 5, -5)
+        --CombatIndicator_Point:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
+        --CombatIndicator_Point:SetVertexColor(1, 1, 1)
         self.CombatIndicator = CombatIndicator
         -- TODO : Rest Highlight
 

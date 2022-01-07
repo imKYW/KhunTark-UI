@@ -31,7 +31,7 @@ local ActivityAuras = {
     --[274431] = 4, -- [ITEM] 쉴 틈 없이 똑딱거리는 시계 : 특화
 }
 
-local PersonalAuras = {
+local Auras_Proc = {
     --[1022]   = 4, -- Hand of Protection
     --[33206]  = 4, -- Pain Suppression
     --[102342] = 4, -- Ironbark
@@ -76,87 +76,104 @@ local NameplateBuffs = {
     [211048] = 4, -- [DH] Chaos Blades
 }
 
+local NameplateDebuffs = {
+    -- Offensive Buffs
+}
+
 -- DeathKnight ----------------------------------------------------------------------------------------
 if playerClass == "DEATHKNIGHT" then
     ActivityAuras[53365]    = 2 -- 마부 : 타락한 성전사
-    PersonalAuras[48265]    = 2 -- 죽음의 진군
-    PersonalAuras[48707]    = 2 -- 대마보
-    PersonalAuras[48792]    = 2 -- 얼인
-    PersonalAuras[212552]   = 2 -- 망령 걸음
+    Auras_Proc[48265]    = 2 -- 죽음의 진군
+    Auras_Proc[48707]    = 2 -- 대마보
+    Auras_Proc[48792]    = 2 -- 얼인
+    Auras_Proc[212552]   = 2 -- 망령 걸음
 
     ActivityAuras[188290]   = 2 -- [B] 죽음과 부패
 
     ActivityAuras[51124]    = 2 -- [F] 도살기
     ActivityAuras[59052]    = 2 -- [F] 단단한 얼음
     ActivityAuras[281209]   = 2 -- [F] 차가운 마음
-    PersonalAuras[51271]    = 2 -- [F] 얼음 기둥
-    PersonalAuras[101568]   = 2 -- [F] 어둠의 원조
-    PersonalAuras[196770]   = 2 -- [F] 냉혹한 겨울
+    Auras_Proc[51271]    = 2 -- [F] 얼음 기둥
+    Auras_Proc[101568]   = 2 -- [F] 어둠의 원조
+    Auras_Proc[196770]   = 2 -- [F] 냉혹한 겨울
 
     -- Test
-    PersonalAuras[345464]    = 2 -- 얼인
-    PersonalAuras[227723]    = 2 -- 얼인
-    PersonalAuras[55233]    = 2 -- 얼인
-    PersonalAuras[194679]    = 2 -- 얼인
+    Auras_Proc[345464]    = 2 -- 얼인
+    Auras_Proc[227723]    = 2 -- 얼인
+    Auras_Proc[55233]    = 2 -- 얼인
+    Auras_Proc[194679]    = 2 -- 얼인
 end
 
 -- Monk -------------------------------------------------------------------------------------------
 if playerClass == "MONK" then
-    --PersonalAuras[119085]   = 2 -- [BM/WW/MW] Chi Torpedo / 기공탄
-    --PersonalAuras[116841]   = 2 -- [BM/WW/MW] Tiger's Lust / 범의 욕망
-    --PersonalAuras[122278]   = 2 -- [BM/WW/MW] Dampen Harm / 해악 감퇴
-    --PersonalAuras[116847]   = 2 -- [BM/WW] 비취 돌풍
+    --Auras_Proc[119085]   = 2 -- [BM/WW/MW] Chi Torpedo / 기공탄
+    --Auras_Proc[116841]   = 2 -- [BM/WW/MW] Tiger's Lust / 범의 욕망
+    --Auras_Proc[122278]   = 2 -- [BM/WW/MW] Dampen Harm / 해악 감퇴
+    --Auras_Proc[116847]   = 2 -- [BM/WW] 비취 돌풍
 
     --ActivityAuras[195630]   = 2 -- [BM] 교묘한 투사
-    --PersonalAuras[115176]   = 2 -- [BM] 명상
-    --PersonalAuras[120954]   = 2 -- [BM] 강화주
-    --PersonalAuras[124275]   = 2 -- [BM] 작은 시간차
-    --PersonalAuras[124274]   = 2 -- [BM] 중간 시간차
-    --PersonalAuras[124273]   = 2 -- [BM] 큰 시간차
-    --PersonalAuras[215479]   = 2 -- [BM] 무쇠 가죽주
+    --Auras_Proc[115176]   = 2 -- [BM] 명상
+    --Auras_Proc[120954]   = 2 -- [BM] 강화주
+    --Auras_Proc[124275]   = 2 -- [BM] 작은 시간차
+    --Auras_Proc[124274]   = 2 -- [BM] 중간 시간차
+    --Auras_Proc[124273]   = 2 -- [BM] 큰 시간차
+    --Auras_Proc[215479]   = 2 -- [BM] 무쇠 가죽주
 
     --ActivityAuras[116768]   = 2 -- [WW] Blackout Kick! / 후려차기!
     ActivityAuras[195321]   = 2 -- [WW] Transfer the Power / 힘전달
     --ActivityAuras[196741]   = 2 -- [WW] Hit Combo / 연계타격
-    PersonalAuras[122783]   = 2 -- [WW] Diffuse Magic / 마법 해소
-    --PersonalAuras[125174]   = 2 -- [WW] Touch of Karma / 업보의 손아귀
-    --PersonalAuras[137639]   = 2 -- [WW] Storm, Earth, and Fire / 폭대불
-    PersonalAuras[152173]   = 2 -- [WW] Serenity / 평온
-    PersonalAuras[195381]   = 2 -- [WW] Healing Winds / 치유의 바람
+    Auras_Proc[122783]   = 2 -- [WW] Diffuse Magic / 마법 해소
+    --Auras_Proc[125174]   = 2 -- [WW] Touch of Karma / 업보의 손아귀
+    --Auras_Proc[137639]   = 2 -- [WW] Storm, Earth, and Fire / 폭대불
+    Auras_Proc[152173]   = 2 -- [WW] Serenity / 평온
+    Auras_Proc[195381]   = 2 -- [WW] Healing Winds / 치유의 바람
+
+    NameplateDebuffs[116095] = 2 -- [Monk] 결박
+    NameplateDebuffs[116706] = 2 -- [Monk] 결박 이불
+    NameplateDebuffs[325216] = 2 -- [Monk] 골분주
 end
 
 -- Hunter -----------------------------------------------------------------------------------------
 if playerClass == "HUNTER" then
-    PersonalAuras[186257]   = 2 -- 치타의 상 90%
-    PersonalAuras[186258]   = 2 -- 치타의 상 30%
-    PersonalAuras[118922]   = 2 -- [T3/1] 급가속
-    ActivityAuras[120694]   = 4 -- [BM] 광포한 야수
-    ActivityAuras[246252]   = 4 -- [BM T2/2] 광포한 격노
-    ActivityAuras[19574]    = 2 -- [BM] 야격
-    ActivityAuras[193530]   = 2 -- [BM] 야생의 상
-    ActivityAuras[195222]   = 4 -- [BM] 폭풍채찍(WEAPON)
-    ActivityAuras[248085]   = 4 -- [BM] 뱀의 혓바닥(LEG)
-    PersonalAuras[186265]   = 2 -- [BM] 거북의 상
+    --Auras_Proc[186257]   = 2 -- 치타의 상 90%
+    --Auras_Proc[186258]   = 2 -- 치타의 상 30%
+    --Auras_Proc[118922]   = 2 -- [T3/1] 급가속
+    --ActivityAuras[120694]   = 4 -- [BM] 광포한 야수
+    --ActivityAuras[246252]   = 4 -- [BM T2/2] 광포한 격노
+    --ActivityAuras[19574]    = 2 -- [BM] 야격
+    --ActivityAuras[193530]   = 2 -- [BM] 야생의 상
+    --ActivityAuras[195222]   = 4 -- [BM] 폭풍채찍(WEAPON)
+    --ActivityAuras[248085]   = 4 -- [BM] 뱀의 혓바닥(LEG)
+    --Auras_Proc[186265]   = 2 -- [BM] 거북의 상
 end
 
 -- Warrior ----------------------------------------------------------------------------------------
 if playerClass == "WARRIOR" then
-    PersonalAuras[18499]    = 2 -- Berserker Rage
+    Auras_Proc[ 18499]   = 2 -- 광전사의 격노
+    Auras_Proc[190456]   = 2 -- 고통 감내
+    Auras_Proc[  7384]   = 2 -- [무기] 제압
+    Auras_Proc[260708]   = 2 -- [무기] 휩쓸기 일격
+    Auras_Proc[ 52437]   = 2 -- [무기 1/3] 급살
+    Auras_Proc[197690]   = 2 -- [무기 4/3] 방어 태세
+
+
+
     ActivityAuras[107574]   = 2 -- [T3/3] Avatar
     ActivityAuras[1719]     = 2 -- [ARMS] Battle Cry
     ActivityAuras[227847]   = 2 -- [ARMS] Blade Storm
     ActivityAuras[188923]   = 2 -- [ARMS] Cleave
-    --PersonalAuras[118038]   = 2 -- [ARMS] Die by the Sword
-    PersonalAuras[209484]   = 2 -- [ARMS] Tactical Advance
+    --Auras_Proc[118038]   = 2 -- [ARMS] Die by the Sword
     ActivityAuras[60503]    = 2 -- [ARMS T1/2] Overpower
     ActivityAuras[248145]   = 2 -- [ARMS LEG] HEAD Buff
-    PersonalAuras[202164]   = 2 -- [ARMS T4/2] Bounding Stride
-    --PersonalAuras[197690]   = 2 -- [ARMS T4/3] Defensive Stance
+
+    NameplateDebuffs[1715] = 2 -- [Monk] 무력화
+    NameplateDebuffs[208086] = 2 -- [Monk] 거인의 강타
+    NameplateDebuffs[115804] = 2 -- [Monk] 골분주
 end
 
 if playerClass == "ROGUE" then
-    --PersonalAuras[345464]    = 2 -- Berserker Rage
-    --PersonalAuras[354018]    = 2 -- Berserker Rage
+    --Auras_Proc[345464]    = 2 -- Berserker Rage
+    --Auras_Proc[354018]    = 2 -- Berserker Rage
     --ActivityAuras[345464]    = 2 -- Berserker Rage
     --ActivityAuras[354018]    = 2 -- Berserker Rage
 end
@@ -172,9 +189,9 @@ if playerRace == "Draenei" then
     ActivityAuras[59547]  = 4 -- Gift of the Naaru (shaman)
     ActivityAuras[28880]  = 4 -- Gift of the Naaru (warrior)
 elseif playerRace == "Dwarf" then
-    PersonalAuras[20594]  = 4 -- Stoneform
+    Auras_Proc[20594]  = 4 -- Stoneform
 elseif playerRace == "NightElf" then
-    PersonalAuras[58984]  = 4 -- Shadowmeld
+    Auras_Proc[58984]  = 4 -- Shadowmeld
 elseif playerRace == "Orc" then
     ActivityAuras[20572]  = 4 -- Blood Fury (attack power)
     ActivityAuras[33702]  = 4 -- Blood Fury (spell power)
@@ -185,35 +202,35 @@ end
 ]]
 
 local activityAuraList = {}
-local personalAuraList = {}
-local nameplateBuffList = {}
+local procAuraList = {}
+local nameplateDebuffList = {}
 ActivityAuraList = activityAuraList
-PersonalAuraList = personalAuraList
-NameplateBuffList = nameplateBuffList
+PersonalAuraList = procAuraList
+NameplateDebuffList = nameplateDebuffList
 
 UpdateAuraList = function()
     wipe(activityAuraList)
-    wipe(personalAuraList)
-    wipe(nameplateBuffList)
+    wipe(procAuraList)
+    wipe(nameplateDebuffList)
     -- Add base auras
     for ativityAura, activityFilter in pairs(ActivityAuras) do
         activityAuraList[ativityAura] = activityFilter
     end
-    for personalAura, personalFilter in pairs(PersonalAuras) do
-        personalAuraList[personalAura] = personalFilter
+    for personalAura, personalFilter in pairs(Auras_Proc) do
+        procAuraList[personalAura] = personalFilter
     end
-    for nameplateBuff, nameplateFilter in pairs(NameplateBuffs) do
-        nameplateBuffList[nameplateBuff] = nameplateFilter
+    for nameplateDebuff, nameplateFilter in pairs(NameplateDebuffs) do
+        nameplateDebuffList[nameplateDebuff] = nameplateFilter
     end
     -- Add auras that depend on spec or PVP mode
     for i = 1, #updateFuncs do
         updateFuncs[i](activityAuraList)
     end
     for j = 1, #updateFuncs do
-        updateFuncs[j](personalAuraList)
+        updateFuncs[j](procAuraList)
     end
     for k = 1, #updateFuncs do
-        updateFuncs[k](nameplateBuffList)
+        updateFuncs[k](nameplateDebuffList)
     end
     -- Update all the things
     for _, obj in pairs(oUF.objects) do
@@ -251,9 +268,9 @@ CustomAuraFilters = {
             return caster and UnitIsUnit(caster, "vehicle")
         end
     end,
-    personal = function(self, unit, iconFrame, name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
+    proc = function(self, unit, iconFrame, name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
         -- print("CustomAuraFilter", self.__owner:GetName(), "[unit]", unit, "[caster]", caster, "[name]", name, "[id]", spellID, "[filter]", v, caster == "vehicle")
-        local v = personalAuraList[spellID]
+        local v = procAuraList[spellID]
         if v and filters[v] then
             return filters[v](self, unit, caster)
         elseif v then
@@ -262,9 +279,9 @@ CustomAuraFilters = {
             return caster and UnitIsUnit(caster, "vehicle")
         end
     end,
-    nameplate = function(self, unit, iconFrame, name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
+    nameplateDebuff = function(self, unit, iconFrame, name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)
         -- print("CustomAuraFilter", self.__owner:GetName(), "[unit]", unit, "[caster]", caster, "[name]", name, "[id]", spellID, "[filter]", v, caster == "vehicle")
-        local v = nameplateBuffList[spellID]
+        local v = nameplateDebuffList[spellID]
         if v and filters[v] then
             return filters[v](self, unit, caster)
         elseif v then
@@ -273,7 +290,6 @@ CustomAuraFilters = {
             return caster and UnitIsUnit(caster, "vehicle")
         end
     end,
-
 
     --[[
     party = function(self, unit, iconFrame, name, rank, icon, count, debuffType, duration, expirationTime, unitCaster, isStealable, shouldConsolidate, spellID, canApplyAura, isBossDebuff, isCastByPlayer, value1, value2, value3)

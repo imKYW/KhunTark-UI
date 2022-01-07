@@ -7,8 +7,8 @@ local auraLoader = CreateFrame('Frame')
 auraLoader:RegisterEvent('ADDON_LOADED')
 auraLoader:SetScript('OnEvent', function(self, event, addon)
     ActivityAuras = ActivityAuras or {}
-    PersonalAuras = PersonalAuras or {}
-    --NameplateBuffs = NameplateBuffs or {}
+    Auras_Proc = Auras_Proc or {}
+    NameplateDebuffs = NameplateDebuffs or {}
     UpdateAuraList()
 end)
 
@@ -112,7 +112,7 @@ local UnitSpecific = {
             insets = { left = 3, right = 3, top = 3, bottom = 3 } })
         CombatIndicator:SetBackdropColor(1, 0, 0)
         CombatIndicator:SetBackdropBorderColor(0, 0, 0)
-        CombatIndicator:SetPoint('CENTER', UIParent, 'CENTER', 0, -12)
+        CombatIndicator:SetPoint('CENTER', UIParent, 'CENTER', 0, -10)
 
         --CombatIndicator:CreateFontString("CombatIndicator_Point", "OVERLAY")
         --CombatIndicator_Point:SetFont('Interface\\AddOns\\KhunTark-!Lib\\Fonts\\D2Coding.ttf', 16, 'MONOCHROMEOUTLINE')
@@ -170,33 +170,35 @@ local UnitSpecific = {
         self.Experience = Experience
         self.Experience.Rested = Rested
 
-        local personalBuff = CreateFrame('Frame', nil, self)
-        personalBuff.size = 36
-        personalBuff.spacing = 4
-        personalBuff.num = 4
-        personalBuff:SetSize((personalBuff.size+personalBuff.spacing)*personalBuff.num-personalBuff.spacing, personalBuff.size)
-        personalBuff:SetPoint('CENTER', UIParent, 'CENTER', 75, -15)
-        personalBuff.initialAnchor = 'CENTER'
-        personalBuff['growth-x'] = 'RIGHT'
-        personalBuff['growth-y'] = 'DOWN'
-        personalBuff.PostCreateIcon = PostCreateIconNormal
-        personalBuff.PostUpdateIcon = PostUpdateIcon
-        personalBuff.CustomFilter = CustomAuraFilters.personal
-        self.Auras = personalBuff
+        --local personalBuff = CreateFrame('Frame', nil, self)
+        --personalBuff.disableMouse = true
+        --personalBuff.size = 52
+        --personalBuff.spacing = 4
+        --personalBuff.num = 4
+        --personalBuff:SetSize((personalBuff.size+personalBuff.spacing)*personalBuff.num-personalBuff.spacing, personalBuff.size)
+        --personalBuff:SetPoint('CENTER', UIParent, 'CENTER', 75, -15)
+        --personalBuff.initialAnchor = 'CENTER'
+        --personalBuff['growth-x'] = 'RIGHT'
+        --personalBuff['growth-y'] = 'DOWN'
+        --personalBuff.PostCreateIcon = PostCreateIconNormal
+        --personalBuff.PostUpdateIcon = PostUpdateIcon
+        --personalBuff.CustomFilter = CustomAuraFilters.activity
+        --self.Auras = personalBuff
 
-        local activityBuff = CreateFrame('Frame', nil, self)
-        activityBuff.size = 30
-        activityBuff.spacing = 4
-        activityBuff.num = 10
-        activityBuff:SetSize((activityBuff.size+activityBuff.spacing)*(activityBuff.num/2)-activityBuff.spacing, activityBuff.size*2+activityBuff.spacing)
-        activityBuff:SetPoint('CENTER', UIParent, 'CENTER', -75, -15)
-        activityBuff.initialAnchor = 'CENTER'
-        activityBuff['growth-x'] = 'LEFT'
-        activityBuff['growth-y'] = 'DOWN'
-        activityBuff.PostCreateIcon = PostCreateIconNormal
-        activityBuff.PostUpdateIcon = PostUpdateIcon
-        activityBuff.CustomFilter = CustomAuraFilters.activity
-        self.Buffs = activityBuff
+        local procBuff = CreateFrame('Frame', nil, self)
+        procBuff.size = 42
+        procBuff.spacing = 4
+        procBuff.num = 5
+        procBuff:SetSize((procBuff.size+procBuff.spacing)*procBuff.num-procBuff.spacing, procBuff.size)
+        procBuff:SetPoint('BOTTOMRIGHT', UIParent, 'CENTER', -99, 42)
+        procBuff.initialAnchor = 'BOTTOMRIGHT'
+        procBuff['growth-x'] = 'LEFT'
+        procBuff['growth-y'] = 'DOWN'
+        procBuff.disableMouse = true
+        procBuff.PostCreateIcon = PostCreateIconNormal
+        procBuff.PostUpdateIcon = PostUpdateIcon
+        procBuff.CustomFilter = CustomAuraFilters.proc
+        self.Buffs = procBuff
 
         local PlayerFCF = CreateFrame("Frame", nil, self)
         PlayerFCF:SetSize(34, 34)

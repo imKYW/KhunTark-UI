@@ -127,16 +127,16 @@ local NamePlateSpecific = function(self)
 	self:Tag(targetMe, '[unit:TargetMe]')
 
 	local unitDebuff = CreateFrame('Frame', nil, self)
-	unitDebuff.num = 5
+	unitDebuff.num = 6
 	unitDebuff.spacing = 4
 	unitDebuff.size = (cfg.UF.nameplate.width-(unitDebuff.spacing*(unitDebuff.num-1)))/unitDebuff.num
 	unitDebuff:SetSize(cfg.UF.nameplate.width, unitDebuff.size)
-	unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 15)
+	unitDebuff:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 28)
 	unitDebuff.initialAnchor = 'TOPLEFT'
 	unitDebuff.onlyShowPlayer = true
 	unitDebuff.PostCreateIcon = PostCreateIconNP
 	unitDebuff.PostUpdateIcon = PostUpdateIcon
-	unitDebuff.CustomFilter = CustomFilter
+	unitDebuff.CustomFilter = CustomAuraFilters.nameplateDebuff
 	self.Debuffs = unitDebuff
 
 --[[
@@ -153,7 +153,7 @@ local NamePlateSpecific = function(self)
 	self.Buffs = unitBuff
 ]]
 
-	AuraTracker(self, 24, 'TOP', self.Health, 'BOTTOM', 0, -20)
+	AuraTracker(self, 30, 'TOP', self.Health, 'BOTTOM', 0, -20)
 end
 
 -- Spawn --------------------------------------------------------------------------------

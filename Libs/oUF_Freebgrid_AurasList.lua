@@ -299,8 +299,6 @@ L.auras = {
             [GetSpellInfo(202274)] = 1, -- Incendiary Brew
             [GetSpellInfo(233759)] = 1, -- Grapple Weapon
             [GetSpellInfo(123407)] = 1, -- Spinning Fire Blossom
-            [GetSpellInfo(116706)] = 1, -- Disable
-            [GetSpellInfo(232055)] = 1, -- Fists of Fury (it's this one or the other)
 
             --Paladin
             [GetSpellInfo(853)]    = 1, -- Hammer of Justice

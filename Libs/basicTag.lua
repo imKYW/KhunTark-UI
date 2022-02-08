@@ -64,8 +64,10 @@ local scNumber = function(value)
         return ('%.fm'):format(value / 1E6)
     elseif value >= 1E6 then
         return ('%.1fm'):format(value / 1E6)
-    elseif (value >= 1E3) then
+    elseif (value >= 1E5) then
         return ('%.fk'):format(value / 1E3)
+    elseif (value >= 1E3) then
+        return ('%.1fk'):format(value / 1E3)
     else
         return ('%d'):format(value)
     end
@@ -190,7 +192,10 @@ oUF.Tags.Methods['unit:HPpercent'] = function(unit)
 
     local min, max = UnitHealth(unit), UnitHealthMax(unit)
     local healthValue = 0
-    if max > 0 then healthValue = math.floor(min/max*100) end -- min/max*100+.5
+    local underDot = 1
+    if max > 0 then
+        healthValue = math.ceil(min/max*10^(underDot+2))/10^underDot -- min/max*100+.5
+    end
     return hex(healthColor(healthValue))..healthValue
 end
 oUF.Tags.Events['unit:HPpercent'] = 'UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION'
@@ -213,8 +218,9 @@ oUF.Tags.Methods['unit:HPmix'] = function(unit)
 
     local min, max = UnitHealth(unit), UnitHealthMax(unit)
     local healthValue = 0
+    local underDot = 1
     if (max > 0) and (min < max) then
-        healthValue = math.floor(min/max*100) -- min/max*100+.5
+        healthValue = math.ceil(min/max*10^(underDot+2))/10^underDot -- min/max*100+.5
         return hex(healthColor(healthValue))..healthValue
     else
         return scNumber(min)

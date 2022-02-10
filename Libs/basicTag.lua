@@ -192,9 +192,13 @@ oUF.Tags.Methods['unit:HPpercent'] = function(unit)
 
     local min, max = UnitHealth(unit), UnitHealthMax(unit)
     local healthValue = 0
-    local underDot = 1
     if max > 0 then
-        healthValue = math.ceil(min/max*10^(underDot+2))/10^underDot -- min/max*100+.5
+        healthValue = min/max
+        if healthValue < 0.1 then
+            healthValue = math.floor(healthValue*1E4+0.5)/1E2
+        else
+            healthValue = math.floor(healthValue*1E3+0.5)/10
+        end
     end
     return hex(healthColor(healthValue))..healthValue
 end
@@ -218,9 +222,13 @@ oUF.Tags.Methods['unit:HPmix'] = function(unit)
 
     local min, max = UnitHealth(unit), UnitHealthMax(unit)
     local healthValue = 0
-    local underDot = 1
     if (max > 0) and (min < max) then
-        healthValue = math.ceil(min/max*10^(underDot+2))/10^underDot -- min/max*100+.5
+        healthValue = min/max
+        if healthValue < 0.1 then
+            healthValue = math.floor(healthValue*1E4+0.5)/1E2
+        else
+            healthValue = math.floor(healthValue*1E3+0.5)/10
+        end
         return hex(healthColor(healthValue))..healthValue
     else
         return scNumber(min)

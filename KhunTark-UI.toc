@@ -1,4 +1,4 @@
-## Interface: 90105
+## Interface: 90200
 ## Title: KhunTark's UI
 ## Notes: UI for focusing combat
 ## Author: KhunTark

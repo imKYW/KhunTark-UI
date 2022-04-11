@@ -153,10 +153,11 @@ if playerClass == "WARRIOR" then
     Auras_Proc[190456]   = 2 -- 고통 감내
     Auras_Proc[  7384]   = 2 -- [무기] 제압
     Auras_Proc[260708]   = 2 -- [무기] 휩쓸기 일격
-    Auras_Proc[ 52437]   = 2 -- [무기 1/3] 급살
+    Auras_Proc[ 52437]   = 2 -- [무기 1/2] 급살
+    Auras_Proc[184362]   = 2 -- [분전] 격노
+    Auras_Proc[280776]   = 2 -- [분전 1/2] 급살
+    Auras_Proc[335082]   = 2 -- [분전 3/2] 광기
     --Auras_Proc[197690]   = 2 -- [무기 4/3] 방어 태세
-
-
 
     ActivityAuras[107574]   = 2 -- [T3/3] Avatar
     ActivityAuras[1719]     = 2 -- [ARMS] Battle Cry

@@ -125,18 +125,18 @@ local dispelClass = {
         Poison = true,
         -- Disease = true,
     },
+    MAGE = {
+        -- Magic = true,
+        Curse = true,
+        -- Poison = true,
+        -- Disease = true,
+    },
     --[[
     WARRIOR = {
         Magic = true,
         Curse = true,
         Poison = true,
         Disease = true,
-    },
-    MAGE = {
-        -- Magic = true,
-        Curse = true,
-        -- Poison = true,
-        -- Disease = true,
     },
     DEATHKNIGHT = {
         Magic = true,
@@ -166,10 +166,10 @@ local dispelClass = {
 }
 
 local dispelPriority = {
-    Magic = 5,
-    Curse = 4,
-    Poison = 3,
-    Disease = 2,
+    Magic   = 5,
+    Curse   = 4,
+    Disease = 3,
+    Poison  = 2,
 }
 
 local checkTalents = CreateFrame('Frame')

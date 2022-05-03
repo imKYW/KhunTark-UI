@@ -236,7 +236,7 @@ local UnitSpecific = {
         local name = cFontString(self.Health, nil, cfg.font, 15, cfg.fontflag, 1, 1, 1, 'LEFT')
         name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)
         self:Tag(name, '[unit:lv] [color][name]')
-        local hptext = cFontString(self.Health, nil, cfg.bfont, 20, cfg.fontflag, 1, 1, 1, 'LEFT')
+        local hptext = cFontString(self.Health, nil, cfg.bfont, 22, cfg.fontflag, 1, 1, 1, 'LEFT')
         hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
         self:Tag(hptext, '[unit:HPpercent]')
         local hctext = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
@@ -400,22 +400,22 @@ local UnitSpecific = {
         Power(self, 'BOTTOM')
         ctfBorder(self)
 
-        self:SetSize(cfg.subUF.boss.width, 28)
-        self.Health:SetHeight(28-3)
+        self:SetSize(cfg.subUF.boss.width, 23)
+        self.Health:SetHeight(23-3)
         self.Power:SetHeight(2)
 
         self.Health.colorClass = true
 
         local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 2, 1)
+        name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 3, 1)
         self:Tag(name, '[color][name]')
 
-        local hptext = cFontString(self.Health, nil, cfg.bfont, 14, cfg.fontflag, 1, 1, 1, 'LEFT')
-        hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 1)
+        local hptext = cFontString(self.Health, nil, cfg.bfont, 15, cfg.fontflag, 1, 1, 1, 'LEFT')
+        hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
         self:Tag(hptext, '[unit:HPpercent]')
 
-        local hctext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 0)
+        local hctext = cFontString(self.Health, nil, cfg.bfont, 9, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
         self:Tag(hctext, '[unit:HPcurrent]')
 
         self.LeaderIndicator = self.Health:CreateTexture(nil, "OVERLAY")
@@ -589,15 +589,15 @@ local UnitSpecific = {
         self.Health:SetHeight(cfg.subUF.boss.height-4)
         self.Power:SetHeight(3)
 
-        local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
-        name:SetPoint('BOTTOMLEFT', self.Health, 'TOPLEFT', 0, 2)
+        local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
+        name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 3, 1)
         self:Tag(name, '[color][name]')
 
-        local hptext = cFontString(self.Health, nil, cfg.bfont, 22, cfg.fontflag, 1, 1, 1, 'LEFT')
+        local hptext = cFontString(self.Health, nil, cfg.bfont, 24, cfg.fontflag, 1, 1, 1, 'LEFT')
         hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
         self:Tag(hptext, '[unit:HPpercent]')
 
-        local hctext = cFontString(self.Health, nil, cfg.bfont, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        local hctext = cFontString(self.Health, nil, cfg.bfont, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
         hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
         self:Tag(hctext, '[unit:HPcurrent]')
 
@@ -655,15 +655,15 @@ UnitSpecific.partypet = UnitSpecific.pet
 -- RegisterStyle : Shared ----------------------------------------------------------------
 oUF:RegisterStyle('KTui', Shared)
 for unit,layout in next, UnitSpecific do
-    oUF:RegisterStyle('KTui-' .. unit:gsub("^%l", string.upper), layout)
+    oUF:RegisterStyle('KTui_' .. unit:gsub("^%l", string.upper), layout)
 end
 
 -- Spawn Helper -------------------------------------------------------------------------
 local spawnHelper = function(self, unit, ...)
     if(UnitSpecific[unit]) then
-        self:SetActiveStyle('KTui-' .. unit:gsub('^%l', string.upper))
+        self:SetActiveStyle('KTui_' .. unit:gsub('^%l', string.upper))
     elseif(UnitSpecific[unit:match('[^%d]+')]) then
-        self:SetActiveStyle('KTui-' .. unit:match('[^%d]+'):gsub('^%l', string.upper))
+        self:SetActiveStyle('KTui_' .. unit:match('[^%d]+'):gsub('^%l', string.upper))
     else
         self:SetActiveStyle('KTui')
     end
@@ -674,13 +674,13 @@ end
 
 oUF:Factory(function(self)
     spawnHelper(self, 'player', cfg.UF.player.position.sa, cfg.UF.player.position.a, cfg.UF.player.position.pa, cfg.UF.player.position.x, cfg.UF.player.position.y)
-    spawnHelper(self, 'pet', 'BOTTOMRIGHT', 'oUF_KTuiPlayer', 'TOPRIGHT', 0, 5)
-    spawnHelper(self, 'target', 'LEFT', 'oUF_KTuiPlayer', 'RIGHT', 10, 0)
-    spawnHelper(self, 'targettarget', 'BOTTOMRIGHT', 'oUF_KTuiTarget', 'TOPRIGHT', 0, 5)
+    spawnHelper(self, 'pet', 'BOTTOMRIGHT', 'oUF_KTui_Player', 'TOPRIGHT', 0, 5)
+    spawnHelper(self, 'target', 'LEFT', 'oUF_KTui_Player', 'RIGHT', 10, 0)
+    spawnHelper(self, 'targettarget', 'BOTTOMRIGHT', 'oUF_KTui_Target', 'TOPRIGHT', 0, 5)
     spawnHelper(self, 'focus', cfg.UF.focus.position.sa, cfg.UF.focus.position.a, cfg.UF.focus.position.pa, cfg.UF.focus.position.x, cfg.UF.focus.position.y)
-    spawnHelper(self, 'focustarget', 'TOPRIGHT', 'oUF_KTuiFocus','BOTTOMRIGHT', 0, -7)
+    spawnHelper(self, 'focustarget', 'TOPRIGHT', 'oUF_KTui_Focus','BOTTOMRIGHT', 0, -7)
 
-   self:SetActiveStyle('KTui-Party')
+    self:SetActiveStyle('KTui_Party')
     self:SpawnHeader('oUF_Party', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
         'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 10,
@@ -696,7 +696,7 @@ oUF:Factory(function(self)
         ]]
     ):SetPoint(cfg.subUF.party.position.sa, cfg.subUF.party.position.a, cfg.subUF.party.position.pa, cfg.subUF.party.position.x, cfg.subUF.party.position.y)
 
-    self:SetActiveStyle('KTui-Partypet')
+    self:SetActiveStyle('KTui_Partypet')
     self:SpawnHeader('oUF_PartyPets', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
         'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 84,
@@ -713,7 +713,7 @@ oUF:Factory(function(self)
         ]]
     ):SetPoint("BOTTOMRIGHT", 'oUF_Party', "TOPRIGHT", 0, 4)
 
-    self:SetActiveStyle('KTui-Partytarget')
+    self:SetActiveStyle('KTui_Partytarget')
     self:SpawnHeader('oUF_PartyTargets', nil, 'party', --'custom [group:raid]hide;[group:party,nogroup:raid]show; hide',
         'showParty', true, 'showPlayer', true, 'showSolo', false, 'showRaid', false,
         'xOffset', 10,
@@ -730,7 +730,7 @@ oUF:Factory(function(self)
         ]]
     ):SetPoint('BOTTOM', 'oUF_Party', 'TOP', 0, 14)
 
-    self:SetActiveStyle('KTui-Raid')
+    self:SetActiveStyle('KTui_Raid')
     self:SpawnHeader('oUF_Raid', nil, 'custom [@raid4,exists]show; hide',
         'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
         'xoffset', 5,
@@ -752,7 +752,7 @@ oUF:Factory(function(self)
         ]]
     ):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
 
-    self:SetActiveStyle('KTui-Arenaparty') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
+    self:SetActiveStyle('KTui_Arenaparty') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
     self:SpawnHeader('oUF_Arenaparty', nil, 'custom [@raid4,exists]hide;[group:raid][@raid4,noexists]show; hide', -- [@party3,exists]hide;
         'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
         'yOffset', -13,
@@ -766,9 +766,9 @@ oUF:Factory(function(self)
             self:SetWidth(header:GetAttribute("initial-width"))
             self:SetHeight(header:GetAttribute("initial-height"))
         ]]
-    ):SetPoint("TOPLEFT", 'oUF_KTuiFocus', "TOPRIGHT", 95, 0)
+    ):SetPoint("TOPLEFT", 'oUF_KTui_Focus', "TOPRIGHT", 102, 0)
 
-    self:SetActiveStyle('KTui-Arenapartytarget')
+    self:SetActiveStyle('KTui_Arenapartytarget')
     self:SpawnHeader('oUF_ArenapartyTargets', nil, 'custom [@raid4,exists]hide;[group:raid][@raid4,noexists]show; hide', -- [@party3,exists]hide;
         'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
         'yOffset', -27,
@@ -785,7 +785,7 @@ oUF:Factory(function(self)
         ]]
     ):SetPoint('BOTTOMLEFT', 'oUF_Arenaparty', 'BOTTOMRIGHT', 4, 0)
 
-    self:SetActiveStyle('KTui-Tank')
+    self:SetActiveStyle('KTui_Tank')
     self:SpawnHeader('oUF_MainTank', nil, 'raid',
         'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
         'groupFilter', 'MAINTANK',
@@ -798,9 +798,77 @@ oUF:Factory(function(self)
             self:SetWidth(header:GetAttribute("initial-width"))
             self:SetHeight(header:GetAttribute("initial-height"))
         ]]
-    ):SetPoint("TOPLEFT", 'oUF_KTuiFocus', "TOPRIGHT", 102, 0)
+    ):SetPoint("TOPLEFT", 'oUF_KTui_Focus', "TOPRIGHT", 102, 0)
+
+    for i = 1, 3 do
+        spawnHelper(self, 'tank'..i, 'LEFT', 'oUF_KTui_Focus', 'RIGHT', 102, 32-(32*i))
+    end
 
     for i = 1, MAX_BOSS_FRAMES do
-        spawnHelper(self, 'boss'..i, 'TOPLEFT', 'oUF_KTuiFocus', 'TOPRIGHT', 102, 60-60+(60*i))
+        spawnHelper(self, 'boss'..i, 'TOPLEFT', 'oUF_KTui_Focus', 'TOPRIGHT', 102, 60-60+(60*i))
     end
+
+    for i = 1, 3 do
+        spawnHelper(self, 'arenaparty'..i, 'LEFT', 'oUF_KTui_Focus', 'RIGHT', 102, 32-(32*i))
+    end
+
+    --for i = 1, 3 do
+    --    spawnHelper(self, 'arenapartytarget'..i, 'LEFT', 'oUF_KTui_Focus', 'RIGHT', 102, 32-(32*i))
+    --end
 end)
+
+----------------------------------------------------------------------------------------
+--  Test UnitFrames(by community)
+----------------------------------------------------------------------------------------
+-- For testing /run oUFAbu.TestArena()
+function TUF()
+
+    oUF_KTui_Pet:Show(); oUF_KTui_Pet.Hide = function() end oUF_KTui_Pet.unit = "target"
+    --oUF_KTui_Tank1:Show(); oUF_KTui_Tank1.Hide = function() end oUF_KTui_Tank1.unit = "target"
+    --oUF_KTui_Tank2:Show(); oUF_KTui_Tank2.Hide = function() end oUF_KTui_Tank2.unit = "target"
+    --oUF_KTui_Tank3:Show(); oUF_KTui_Tank3.Hide = function() end oUF_KTui_Tank3.unit = "target"
+    oUF_KTui_Boss1:Show(); oUF_KTui_Boss1.Hide = function() end oUF_KTui_Boss1.unit = "target"
+    oUF_KTui_Boss2:Show(); oUF_KTui_Boss2.Hide = function() end oUF_KTui_Boss2.unit = "target"
+    oUF_KTui_Boss3:Show(); oUF_KTui_Boss3.Hide = function() end oUF_KTui_Boss3.unit = "target"
+    oUF_KTui_Arenaparty1:Show(); oUF_KTui_Arenaparty1.Hide = function() end oUF_KTui_Arenaparty1.unit = "target"
+    oUF_KTui_Arenaparty2:Show(); oUF_KTui_Arenaparty2.Hide = function() end oUF_KTui_Arenaparty2.unit = "target"
+    oUF_KTui_Arenaparty3:Show(); oUF_KTui_Arenaparty3.Hide = function() end oUF_KTui_Arenaparty3.unit = "target"
+    --oUF_KTui_Arenapartytarget1:Show(); oUF_KTui_Arenapartytarget1.Hide = function() end oUF_KTui_Arenapartytarget1.unit = "target"
+    --oUF_KTui_Arenapartytarget2:Show(); oUF_KTui_Arenapartytarget2.Hide = function() end oUF_KTui_Arenapartytarget2.unit = "target"
+    --oUF_KTui_Arenapartytarget3:Show(); oUF_KTui_Arenapartytarget3.Hide = function() end oUF_KTui_Arenapartytarget3.unit = "target"
+
+    --oUF_KTui_Party:Show(); oUF_KTui_Party.Hide = function() end oUF_KTui_Party.unit = "target"
+    --oUF_PartyPets:Show(); oUF_PartyPets.Hide = function() end oUF_PartyPets.unit = "target"
+    --oUF_PartyTargets:Show(); oUF_PartyTargets.Hide = function() end oUF_PartyTargets.unit = "target"
+    --oUF_MainTank:Show(); oUF_MainTank.Hide = function() end oUF_MainTank.unit = "target"
+
+
+
+    local time = 0
+    local f = CreateFrame("Frame")
+    f:SetScript("OnUpdate", function(self, elapsed)
+        time = time + elapsed
+        if time > 5 then
+            oUF_KTui_Pet:UpdateAllElements("ForceUpdate") -- OnUpdate RefreshUnit
+            --oUF_KTui_Tank1:UpdateAllElements("ForceUpdate")
+            --oUF_KTui_Tank2:UpdateAllElements("ForceUpdate")
+            --oUF_KTui_Tank3:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Boss1:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Boss2:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Boss3:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Arenaparty1:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Arenaparty2:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Arenaparty3:UpdateAllElements("ForceUpdate")
+            --oUF_KTui_Arenapartytarget1:UpdateAllElements("ForceUpdate")
+            --oUF_KTui_Arenapartytarget2:UpdateAllElements("ForceUpdate")
+            --oUF_KTui_Arenapartytarget3:UpdateAllElements("ForceUpdate")
+
+            --oUF_Party:UpdateAllElements("RefreshUnit")
+            --oUF_Party1Pets:UpdateAllElements("ForceUpdate")
+            --oUF_Party1Targets:UpdateAllElements("ForceUpdate")
+            --oUF_MainTank:UpdateAllElements("ForceUpdate")
+
+            time = 0
+        end
+    end)
+end

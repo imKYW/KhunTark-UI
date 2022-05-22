@@ -2,10 +2,10 @@ local _, ns = ...
 local oUF = ns.oUF or oUF
 
 local Update = function(self, event, unit)
-	if event == 'ARENA_OPPONENT_UPDATE' and unit ~= self.unit then return; end
+	if event == 'ARENA_OPPONENT_UPDATE' and unit ~= self.unit then return end
 	local specIcon = self.PVPSpecIcon
 
-	local _, instanceType = IsInInstance();
+	local _, instanceType = IsInInstance()
 	specIcon.instanceType = instanceType
 
 	if(specIcon.PreUpdate) then specIcon:PreUpdate(event) end
@@ -15,7 +15,7 @@ local Update = function(self, event, unit)
 		local ID = self.unit:match('arena(%d)') or self:GetID() or 0
 		local specID = GetArenaOpponentSpec(tonumber(ID))
 		if specID and specID > 0 then
-			local _, _, _, icon = GetSpecializationInfoByID(specID);
+			local _,_,_, icon = GetSpecializationInfoByID(specID)
 			specIcon.Icon:SetTexture(icon)
 		else
 			specIcon.Icon:SetTexture([[INTERFACE\ICONS\INV_MISC_QUESTIONMARK]])
@@ -46,6 +46,7 @@ local Enable = function(self)
 			specIcon.Icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
 		end
 		specIcon:Show()
+
 		return true
 	end
 end
@@ -56,6 +57,7 @@ local Disable = function(self)
 		self:UnregisterEvent("ARENA_PREP_OPPONENT_SPECIALIZATIONS", Update)
 		self:UnregisterEvent("ARENA_OPPONENT_UPDATE", Update)
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD", Update)
+
 		specIcon:Hide()
 	end
 end

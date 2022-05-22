@@ -37,6 +37,21 @@ local Auras_Proc = {
     --[102342] = 4, -- Ironbark
 }
 
+local Auras_Arena = {
+    --[1022]   = 1, -- Hand of Protection
+    --[33206]  = 1, -- Pain Suppression
+    --[102342] = 1, -- Ironbark
+    -- 사제 보호막
+    -- 사제 소생
+    -- 사제 그거
+    -- 드루 도트힐
+    -- 드루 세나리온
+    -- 운무 그서
+    -- 주술사 대보
+    -- 전사 고감
+
+}
+
 local NameplateBuffs = {
     -- Offensive Buffs
     [1719]   = 4, -- [Warrior] Battle Cry

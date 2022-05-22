@@ -252,7 +252,7 @@ local UnitSpecific = {
         local unitBuff = CreateFrame('Frame', nil, self)
         unitBuff.size = 16
         unitBuff.spacing = 4
-        unitBuff.num = 6
+        unitBuff.num = 8
         unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
         unitBuff:SetPoint('LEFT', name, 'RIGHT', 5, 0)
         unitBuff.initialAnchor = 'LEFT'
@@ -291,7 +291,7 @@ local UnitSpecific = {
 
         local name = cFontString(self.Health, nil, cfg.font, 13, cfg.fontflag, 1, 1, 1, 'LEFT')
         name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0)
-        self:Tag(name, '[color][name]')
+        self:Tag(name, '[color][unit:name8]')
 
         local RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
         RaidTargetIndicator:SetSize(14, 14)
@@ -309,7 +309,7 @@ local UnitSpecific = {
 
         local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
         name:SetPoint('LEFT', self.Health, 'RIGHT', 3, 0.5)
-        self:Tag(name, '[color][name]')
+        self:Tag(name, '[color][unit:name8]')
     end,
 
     party = function(self, ...)
@@ -400,20 +400,18 @@ local UnitSpecific = {
         Power(self, 'BOTTOM')
         ctfBorder(self)
 
-        self:SetSize(cfg.subUF.boss.width, 23)
-        self.Health:SetHeight(23-3)
+        self:SetSize(120, cfg.UF.player.height)
+        self.Health:SetHeight(cfg.UF.player.height-3)
         self.Power:SetHeight(2)
 
         self.Health.colorClass = true
 
-        local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        local name = cFontString(self.Health, nil, cfg.font, 9, cfg.fontflag, 1, 1, 1, 'RIGHT')
         name:SetPoint('TOPLEFT', self.Health, 'TOPRIGHT', 3, 1)
         self:Tag(name, '[color][name]')
-
-        local hptext = cFontString(self.Health, nil, cfg.bfont, 15, cfg.fontflag, 1, 1, 1, 'LEFT')
+        local hptext = cFontString(self.Health, nil, cfg.bfont, 18, cfg.fontflag, 1, 1, 1, 'LEFT')
         hptext:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
         self:Tag(hptext, '[unit:HPpercent]')
-
         local hctext = cFontString(self.Health, nil, cfg.bfont, 9, cfg.fontflag, 1, 1, 1, 'RIGHT')
         hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
         self:Tag(hctext, '[unit:HPcurrent]')
@@ -430,59 +428,17 @@ local UnitSpecific = {
         self.RaidTargetIndicator:SetPoint("LEFT", name, "RIGHT", 0, 0)
 
         AuraTracker(self, 32, 'CENTER', self, 'CENTER', 0, 0)
-        --[[
-        local altp = createStatusbar(self, cfg.texture, nil, cfg.AlternativePower.boss.height, cfg.AlternativePower.boss.width, 1, 1, 1, 1)
-        altp:SetPoint(unpack(cfg.AlternativePower.boss.pos))
-        altp.bd = framebd(altp, altp)
-        altp.bg = altp:CreateTexture(nil, 'BORDER')
-        altp.bg:SetAllPoints(altp)
-        altp.bg:SetTexture(cfg.texture)
-        altp.bg:SetVertexColor(1, 1, 1, 0.3)
-        altp.Text = fs(altp, 'OVERLAY', cfg.aura.font, cfg.aura.fontsize, cfg.aura.fontflag, 1, 1, 1)
-        altp.Text:SetPoint('CENTER')
-        self:Tag(altp.Text, '[altpower]')
-        altp:EnableMouse(true)
-        self.AlternativePower = altp
-        ]]
-
-        --local unitBuff = CreateFrame('Frame', nil, self)
-        --unitBuff.size = cfg.subUF.boss.height
-        --unitBuff.spacing = 5
-        --unitBuff.num = 2
-        --unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
-        --unitBuff:SetPoint('RIGHT', self, 'LEFT', -5, 0)
-        ----unitBuff:SetAlpha(0.7)
-        --unitBuff.initialAnchor = 'RIGHT'
-        --unitBuff['growth-x'] = 'LEFT'
-        --unitBuff.PostCreateIcon = PostCreateIconSmall
-        --unitBuff.PostUpdateIcon = PostUpdateIcon
-        --self.Buffs = unitBuff
-
-        --[[
-        local unitDebuff = CreateFrame('Frame', nil, self)
-        unitDebuff.size = cfg.subUF.boss.height
-        unitDebuff.spacing = 5
-        unitDebuff.num = 5
-        unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-        unitDebuff:SetPoint('LEFT', self, 'RIGHT', 5, 0)
-        --unitDebuff:SetAlpha(0.7)
-        unitDebuff.PostCreateIcon = PostCreateIconSmall
-        unitDebuff.PostUpdateIcon = PostUpdateIcon
-        --unitDebuff.CustomFilter = CustomFilter
-        self.Debuffs = unitDebuff
-        ]]
     end,
 
     arenapartytarget = function(self, ...)
         Shared(self, ...)
-        --self.unit = 'partytarget'
 
-        self:SetSize(70, 14)
-        self.Health:SetHeight(14)
+        self:SetSize(60, cfg.UF.player.height-11)
+        self.Health:SetHeight(cfg.UF.player.height-11)
 
         self.Health.colorClass = true
 
-        local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'LEFT')
+        local name = cFontString(self.Health, nil, cfg.font, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
         name:SetPoint('LEFT', self.Health, 'LEFT', 1, 0)
         self:Tag(name, '[unit:name8]')
     end,
@@ -537,45 +493,6 @@ local UnitSpecific = {
         self.SummonIndicator:SetPoint("CENTER", self.Health, "CENTER", 0, 0)
 
         AuraTracker(self, cfg.subUF.raid.width*0.65, 'CENTER', self.Health)
-    end,
-
-    tank = function(self, ...)
-        Shared(self, ...)
-        self.unit = 'tank'
-
-        self:SetSize(cfg.subUF.boss.width, cfg.UF.focus.height)
-
-        local name = cFontString(self.Health, nil, cfg.font, 11, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        name:SetPoint('BOTTOMRIGHT', self.Health, 'TOPRIGHT', 0, 3)
-        self:Tag(name, '[color][name]')
-
-        local hptext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'LEFT')
-        hptext:SetPoint('LEFT', self, 'LEFT', 1, 0)
-        self:Tag(hptext, '[unit:HPpercent]')
-
-        local hctext = cFontString(self.Health, nil, cfg.bfont, 10, cfg.fontflag, 1, 1, 1, 'RIGHT')
-        hctext:SetPoint('RIGHT', self, 'RIGHT', 0, 0)
-        self:Tag(hctext, '[unit:HPcurrent]')
-
-        self.RaidTargetIndicator = self.Health:CreateTexture(nil, "OVERLAY")
-        self.RaidTargetIndicator:SetSize(16, 16)
-        self.RaidTargetIndicator:SetAlpha(0.9)
-        self.RaidTargetIndicator:SetPoint("CENTER", self, "CENTER", 0, 0)
-
-        local unitDebuff = CreateFrame('Frame', nil, self)
-        unitDebuff.size = cfg.UF.focus.height*1.8
-        unitDebuff.spacing = 4
-        unitDebuff.num = 3
-        unitDebuff:SetSize(unitDebuff.size*unitDebuff.num+unitDebuff.spacing*(unitDebuff.num-1), unitDebuff.size)
-        unitDebuff:SetPoint('BOTTOMLEFT', self, 'BOTTOMRIGHT', 5, 0)
-        unitDebuff.initialAnchor = 'LEFT'
-        --unitDebuff['growth-x'] = 'RIGHT'
-        unitDebuff.PostCreateIcon = PostCreateIconSmall
-        unitDebuff.PostUpdateIcon = PostUpdateIcon
-        --unitDebuff.CustomFilter = CustomFilter
-        self.Debuffs = unitDebuff
-
-        AuraTracker(self, cfg.UF.focus.height*2, 'CENTER', self.Health, 'CENTER', 0, 0)
     end,
 
     boss = function(self, ...)
@@ -647,6 +564,80 @@ local UnitSpecific = {
         --unitDebuff.CustomFilter = CustomFilter
         self.Debuffs = unitDebuff
         ]]
+    end,
+
+    arena = function(self, ...)
+        Shared(self, ...)
+        self.unit = 'arena'
+        self:SetAttribute("type2", "focus")
+
+        Power(self, 'BOTTOM')
+        --extCastbar(self)
+        ctfBorder(self)
+
+        self:SetSize(cfg.subUF.boss.width, cfg.subUF.boss.height)
+        self.Health:SetHeight(cfg.subUF.boss.height-4)
+        self.Power:SetHeight(3)
+
+        local name = cFontString(self.Health, nil, cfg.font, 12, cfg.fontflag, 1, 1, 1, 'LEFT')
+        name:SetPoint('LEFT', self.Health, 'TOPRIGHT', 3, 0)
+        self:Tag(name, '[color][name]')
+        local hptext = cFontString(self.Health, nil, cfg.bfont, 24, cfg.fontflag, 1, 1, 1, 'LEFT')
+        hptext:SetPoint('LEFT', self.Health, 'LEFT', 3, 0)
+        self:Tag(hptext, '[unit:HPpercent]')
+        local hctext = cFontString(self.Health, nil, cfg.bfont, 12, cfg.fontflag, 1, 1, 1, 'RIGHT')
+        hctext:SetPoint('BOTTOMRIGHT', self.Health, 'BOTTOMRIGHT', 1, 1)
+        self:Tag(hctext, '[unit:HPcurrent]')
+
+        local unitBuff = CreateFrame('Frame', nil, self)
+        unitBuff.size = cfg.subUF.boss.height-8
+        unitBuff.spacing = 5
+        unitBuff.num = 4
+        unitBuff:SetSize(unitBuff.size*unitBuff.num+unitBuff.spacing*(unitBuff.num-1), unitBuff.size)
+        unitBuff:SetPoint('BOTTOMLEFT', self, 'BOTTOMRIGHT', 5+unitBuff.size+unitBuff.spacing, 0)
+        --unitBuff:SetAlpha(0.7)
+        unitBuff.initialAnchor = 'LEFT'
+        unitBuff['growth-x'] = 'RIGHT'
+        unitBuff.PostCreateIcon = PostCreateIconSmall
+        unitBuff.PostUpdateIcon = PostUpdateIcon
+        self.Buffs = unitBuff
+
+        --[[
+        local arenaBuff = CreateFrame('Frame', nil, self)
+        arenaBuff.size = 42
+        arenaBuff.spacing = 4
+        arenaBuff.num = 5
+        arenaBuff:SetSize((arenaBuff.size+arenaBuff.spacing)*arenaBuff.num-arenaBuff.spacing, arenaBuff.size)
+        arenaBuff:SetPoint('BOTTOMRIGHT', UIParent, 'CENTER', -99, 42)
+        arenaBuff.initialAnchor = 'BOTTOMRIGHT'
+        arenaBuff['growth-x'] = 'LEFT'
+        arenaBuff['growth-y'] = 'RIGHT'
+        arenaBuff.disableMouse = true
+        arenaBuff.PostCreateIcon = PostCreateIconNormal
+        arenaBuff.PostUpdateIcon = PostUpdateIcon
+        arenaBuff.CustomFilter = CustomAuraFilters.proc
+        self.Buffs = arenaBuff
+        ]]
+
+        local pvpTrinket = CreateFrame('Frame', nil, self)
+        pvpTrinket:SetSize(cfg.subUF.boss.height, cfg.subUF.boss.height)
+        pvpTrinket:SetPoint("TOPRIGHT", self, "TOPLEFT", -5, 0)
+        --pvpTrinket:SetPoint("TOPRIGHT", self, "TOPLEFT", -cfg.subUF.boss.height-10, 0)
+        pvpTrinket.bg = fBackDrop(pvpTrinket, pvpTrinket)
+        self.Trinket = pvpTrinket
+    end,
+
+    arenatargets = function(self, ...)
+        Shared(self, ...)
+
+        self:SetSize(38, 12)
+        self.Health:SetHeight(12)
+
+        self.Health.colorClass = true
+
+        local name = cFontString(self.Health, nil, cfg.font, 10, cfg.fontflag, 1, 1, 1, 'CENTER')
+        name:SetPoint('CENTER', self.Health, 'CENTER', 1, 0)
+        self:Tag(name, '[unit:name5]')
     end,
 }
 UnitSpecific.focustarget = UnitSpecific.targettarget
@@ -752,15 +743,16 @@ oUF:Factory(function(self)
         ]]
     ):SetPoint(cfg.subUF.raid.position.sa, cfg.subUF.raid.position.a, cfg.subUF.raid.position.pa, cfg.subUF.raid.position.x, cfg.subUF.raid.position.y)
 
+--custom [@raid4,exists]hide;[group:raid][@raid4,noexists]show; hide
     self:SetActiveStyle('KTui_Arenaparty') -- custom [group:party,nogroup:raid][@raid4,noexists,group:raid]show; hide
-    self:SpawnHeader('oUF_Arenaparty', nil, 'custom [@raid4,exists]hide;[group:raid][@raid4,noexists]show; hide', -- [@party3,exists]hide;
+    self:SpawnHeader('oUF_Arenaparty', nil, 'raid', -- [@party3,exists]hide;
         'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
         'yOffset', -13,
         'point', 'TOP',
         'groupBy', 'ASSIGNEDROLE',
         'groupingOrder', 'HEALER,TANK,DAMAGER',
-        "initial-width", cfg.subUF.boss.width,
-        "initial-height", cfg.UF.focus.height,
+        "initial-width", 120,
+        "initial-height", 26,
         'oUF-initialConfigFunction', [[
             local header = self:GetParent()
             self:SetWidth(header:GetAttribute("initial-width"))
@@ -768,15 +760,16 @@ oUF:Factory(function(self)
         ]]
     ):SetPoint("TOPLEFT", 'oUF_KTui_Focus', "TOPRIGHT", 102, 0)
 
+--custom [@raid4,exists]hide;[group:raid][@raid4,noexists]show; hide
     self:SetActiveStyle('KTui_Arenapartytarget')
-    self:SpawnHeader('oUF_ArenapartyTargets', nil, 'custom [@raid4,exists]hide;[group:raid][@raid4,noexists]show; hide', -- [@party3,exists]hide;
+    self:SpawnHeader('oUF_ArenapartyTargets', nil, 'raid', -- [@party3,exists]hide;
         'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
-        'yOffset', -27,
+        'yOffset', -24,
         'point', 'TOP',
         'groupBy', 'ASSIGNEDROLE',
         'groupingOrder', 'HEALER,TANK,DAMAGER',
-        "initial-width", 70,
-        "initial-height", 14,
+        "initial-width", 60,
+        "initial-height", 15,
         'oUF-initialConfigFunction', [[
             local header = self:GetParent()
             self:SetAttribute('unitsuffix', 'target')
@@ -785,36 +778,122 @@ oUF:Factory(function(self)
         ]]
     ):SetPoint('BOTTOMLEFT', 'oUF_Arenaparty', 'BOTTOMRIGHT', 4, 0)
 
-    self:SetActiveStyle('KTui_Tank')
-    self:SpawnHeader('oUF_MainTank', nil, 'raid',
-        'showParty', false, 'showPlayer', true, 'showSolo', false, 'showRaid', true,
-        'groupFilter', 'MAINTANK',
-        'yOffset', -24,
-        'point', 'TOP',
-        "initial-width", cfg.subUF.boss.width,
-        "initial-height", cfg.UF.focus.height,
-        'oUF-initialConfigFunction', [[
-            local header = self:GetParent()
-            self:SetWidth(header:GetAttribute("initial-width"))
-            self:SetHeight(header:GetAttribute("initial-height"))
-        ]]
-    ):SetPoint("TOPLEFT", 'oUF_KTui_Focus', "TOPRIGHT", 102, 0)
-
-    for i = 1, 3 do
-        spawnHelper(self, 'tank'..i, 'LEFT', 'oUF_KTui_Focus', 'RIGHT', 102, 32-(32*i))
-    end
-
     for i = 1, MAX_BOSS_FRAMES do
         spawnHelper(self, 'boss'..i, 'TOPLEFT', 'oUF_KTui_Focus', 'TOPRIGHT', 102, 60-60+(60*i))
     end
 
+    local arena = {}
+    local arenatarget = {}
+    local arenaprep = {}
+
+    self:RegisterStyle('oUF_KTui_Arena', UnitSpecific.arena)
+    self:SetActiveStyle('oUF_KTui_Arena')
     for i = 1, 3 do
-        spawnHelper(self, 'arenaparty'..i, 'LEFT', 'oUF_KTui_Focus', 'RIGHT', 102, 32-(32*i))
+        arena[i] = self:Spawn('arena'..i, 'oUF_KTui_Arena'..i)
+        arena[i]:SetAttribute('oUF-enableArenaPrep', false)
+        arena[i]:SetPoint('TOPLEFT', oUF_KTui_Focus, 'TOPRIGHT', 102, 60-60+(60*i))
     end
 
-    --for i = 1, 3 do
-    --    spawnHelper(self, 'arenapartytarget'..i, 'LEFT', 'oUF_KTui_Focus', 'RIGHT', 102, 32-(32*i))
-    --end
+    self:RegisterStyle('oUF_KTui_ArenaTarget', UnitSpecific.arenatargets)
+    self:SetActiveStyle('oUF_KTui_ArenaTarget')
+    for i = 1, 3 do
+        arenatarget[i] = self:Spawn('arena'..i..'target', 'oUF_KTui_Arena'..i..'Target')
+        arenatarget[i]:SetFrameStrata('HIGH')
+        arenatarget[i]:SetPoint('RIGHT', arena[i], 'TOPRIGHT', -5, 0)
+    end
+
+    -- ArenaPrep
+    for i = 1, 3 do
+        arenaprep[i] = CreateFrame('Frame', 'oUF_KTui_ArenaPrep'..i, UIParent, BackdropTemplateMixin and "BackdropTemplate")
+        arenaprep[i]:SetAllPoints(_G['oUF_KTui_Arena'..i])
+        arenaprep[i]:SetFrameStrata('BACKGROUND')
+        arenaprep[i].bg = fBackDrop(arenaprep[i], arenaprep[i])
+        arenaprep[i].bg:SetBackdropColor(0, 0, 0, 0.5)
+        arenaprep[i].bg:SetBackdropBorderColor(0, 0, 0, 0.5)
+
+        arenaprep[i].Health = CreateFrame('StatusBar', nil, arenaprep[i], BackdropTemplateMixin and "BackdropTemplate")
+        --arenaprep[i].Health:SetAllPoints()
+        arenaprep[i].Health:SetSize(cfg.subUF.boss.width, cfg.subUF.boss.height-4)
+        arenaprep[i].Health:SetPoint('TOP', arenaprep[i], 'TOP', 0, 0)
+        arenaprep[i].Health:SetStatusBarTexture(cfg.texture)
+
+        arenaprep[i].Power = CreateFrame('StatusBar', nil, arenaprep[i], BackdropTemplateMixin and "BackdropTemplate")
+        --arenaprep[i].Power:SetAllPoints()
+        arenaprep[i].Power:SetSize(cfg.subUF.boss.width, 3)
+        arenaprep[i].Power:SetPoint('BOTTOM', arenaprep[i], 'BOTTOM', 0, 0)
+        arenaprep[i].Power:SetStatusBarTexture(cfg.texture)
+
+        arenaprep[i].Spec = cFontString(arenaprep[i].Health, 'OVERLAY', cfg.font, 16, cfg.fontflag, 1, 1, 1, 'CENTER')
+        arenaprep[i].Spec:SetPoint('CENTER')
+        arenaprep[i].Spec:SetJustifyH('CENTER')
+
+        arenaprep[i].SpecIcon = CreateFrame('Frame', nil, arenaprep[i], BackdropTemplateMixin and "BackdropTemplate")
+        arenaprep[i].SpecIcon:SetSize(cfg.subUF.boss.height-8,cfg.subUF.boss.height-8)
+        arenaprep[i].SpecIcon:SetPoint("BOTTOMLEFT", arena[i], "BOTTOMRIGHT", 5, 0)
+        arenaprep[i].SpecIcon.icon = arenaprep[i].SpecIcon:CreateTexture(nil, 'OVERLAY')
+        arenaprep[i].SpecIcon.icon:SetAllPoints(arenaprep[i].SpecIcon)
+        arenaprep[i].SpecIcon.icon:SetTexture([[INTERFACE\ICONS\INV_MISC_QUESTIONMARK]])
+        arenaprep[i].SpecIcon.bg = fBackDrop(arenaprep[i].SpecIcon, arenaprep[i].SpecIcon)
+
+        arenaprep[i]:Hide()
+    end
+
+    -- ArenaPrep Update
+    local arenaprepupdate = CreateFrame('Frame')
+    arenaprepupdate:RegisterEvent('PLAYER_LOGIN')
+    arenaprepupdate:RegisterEvent('PLAYER_ENTERING_WORLD')
+    --arenaprepupdate:RegisterEvent('ARENA_OPPONENT_UPDATE')
+    arenaprepupdate:RegisterEvent('ARENA_PREP_OPPONENT_SPECIALIZATIONS')
+    --arenaprepupdate:RegisterEvent('ZONE_CHANGED_NEW_AREA')
+    arenaprepupdate:SetScript('OnEvent', function(self, event)
+        if event == 'PLAYER_LOGIN' then
+            for i = 1, 3 do
+                arenaprep[i]:SetAllPoints(_G['oUF_KTui_Arena'..i])
+            end
+        --[[ Used Trick
+        elseif event == 'ARENA_OPPONENT_UPDATE' then
+            for i = 1, 5 do
+                arenaprep[i]:Hide()
+            end
+        ]]
+        --[[ Used Trick
+        elseif event == 'ZONE_CHANGED_NEW_AREA' then
+            for i = 1, 3 do
+                arenaprep[i]:Hide()
+            end
+        ]]
+        else
+            local numOpps = GetNumArenaOpponentSpecs()
+            if numOpps > 0 then
+                for i = 1, 3 do
+                    if i <= numOpps then
+                        local s = GetArenaOpponentSpec(i)
+                        local _, spec, class, texture = nil, 'UNKNOWN', 'UNKNOWN', nil
+
+                        if s and s > 0 then
+                            _, spec, _, texture, _, class, classLocale = GetSpecializationInfoByID(s)
+                        end
+                        if class and spec then
+                            local class_color = RAID_CLASS_COLORS[class] or {0.3, 0.3, 0.3}
+                            arenaprep[i].Health:SetStatusBarColor(class_color.r, class_color.g, class_color.b)
+                            arenaprep[i].Power:SetStatusBarColor(class_color.r, class_color.g, class_color.b)
+                            arenaprep[i].Spec:SetText(spec..'-'..classLocale)
+                            if texture then
+                                arenaprep[i].SpecIcon.icon:SetTexture(texture)
+                            end
+                            arenaprep[i]:Show()
+                        end
+                    else
+                        arenaprep[i]:Hide()
+                    end
+                end
+            else
+                for i = 1, 3 do
+                    arenaprep[i]:Hide()
+                end
+            end
+        end
+    end)
 end)
 
 ----------------------------------------------------------------------------------------
@@ -822,20 +901,21 @@ end)
 ----------------------------------------------------------------------------------------
 -- For testing /run oUFAbu.TestArena()
 function TUF()
-
     oUF_KTui_Pet:Show(); oUF_KTui_Pet.Hide = function() end oUF_KTui_Pet.unit = "target"
-    --oUF_KTui_Tank1:Show(); oUF_KTui_Tank1.Hide = function() end oUF_KTui_Tank1.unit = "target"
-    --oUF_KTui_Tank2:Show(); oUF_KTui_Tank2.Hide = function() end oUF_KTui_Tank2.unit = "target"
-    --oUF_KTui_Tank3:Show(); oUF_KTui_Tank3.Hide = function() end oUF_KTui_Tank3.unit = "target"
-    oUF_KTui_Boss1:Show(); oUF_KTui_Boss1.Hide = function() end oUF_KTui_Boss1.unit = "target"
-    oUF_KTui_Boss2:Show(); oUF_KTui_Boss2.Hide = function() end oUF_KTui_Boss2.unit = "target"
-    oUF_KTui_Boss3:Show(); oUF_KTui_Boss3.Hide = function() end oUF_KTui_Boss3.unit = "target"
-    oUF_KTui_Arenaparty1:Show(); oUF_KTui_Arenaparty1.Hide = function() end oUF_KTui_Arenaparty1.unit = "target"
-    oUF_KTui_Arenaparty2:Show(); oUF_KTui_Arenaparty2.Hide = function() end oUF_KTui_Arenaparty2.unit = "target"
-    oUF_KTui_Arenaparty3:Show(); oUF_KTui_Arenaparty3.Hide = function() end oUF_KTui_Arenaparty3.unit = "target"
-    --oUF_KTui_Arenapartytarget1:Show(); oUF_KTui_Arenapartytarget1.Hide = function() end oUF_KTui_Arenapartytarget1.unit = "target"
-    --oUF_KTui_Arenapartytarget2:Show(); oUF_KTui_Arenapartytarget2.Hide = function() end oUF_KTui_Arenapartytarget2.unit = "target"
-    --oUF_KTui_Arenapartytarget3:Show(); oUF_KTui_Arenapartytarget3.Hide = function() end oUF_KTui_Arenapartytarget3.unit = "target"
+    --oUF_KTui_Boss1:Show(); oUF_KTui_Boss1.Hide = function() end oUF_KTui_Boss1.unit = "target"
+    --oUF_KTui_Boss2:Show(); oUF_KTui_Boss2.Hide = function() end oUF_KTui_Boss2.unit = "target"
+    --oUF_KTui_Boss3:Show(); oUF_KTui_Boss3.Hide = function() end oUF_KTui_Boss3.unit = "target"
+
+    oUF_KTui_ArenaPrep1:Show(); oUF_KTui_ArenaPrep1.Hide = function() end oUF_KTui_ArenaPrep1.unit = "target"
+    oUF_KTui_ArenaPrep2:Show(); oUF_KTui_ArenaPrep2.Hide = function() end oUF_KTui_ArenaPrep2.unit = "target"
+    oUF_KTui_ArenaPrep3:Show(); oUF_KTui_ArenaPrep3.Hide = function() end oUF_KTui_ArenaPrep3.unit = "target"
+
+    oUF_KTui_Arena1:Show(); oUF_KTui_Arena1.Hide = function() end oUF_KTui_Arena1.unit = "target"
+    oUF_KTui_Arena2:Show(); oUF_KTui_Arena2.Hide = function() end oUF_KTui_Arena2.unit = "target"
+    oUF_KTui_Arena3:Show(); oUF_KTui_Arena3.Hide = function() end oUF_KTui_Arena3.unit = "target"
+    oUF_KTui_Arena1Target:Show(); oUF_KTui_Arena1Target.Hide = function() end oUF_KTui_Arena1Target.unit = "target"
+    oUF_KTui_Arena2Target:Show(); oUF_KTui_Arena2Target.Hide = function() end oUF_KTui_Arena2Target.unit = "target"
+    oUF_KTui_Arena3Target:Show(); oUF_KTui_Arena3Target.Hide = function() end oUF_KTui_Arena3Target.unit = "target"
 
     --oUF_KTui_Party:Show(); oUF_KTui_Party.Hide = function() end oUF_KTui_Party.unit = "target"
     --oUF_PartyPets:Show(); oUF_PartyPets.Hide = function() end oUF_PartyPets.unit = "target"
@@ -850,18 +930,16 @@ function TUF()
         time = time + elapsed
         if time > 5 then
             oUF_KTui_Pet:UpdateAllElements("ForceUpdate") -- OnUpdate RefreshUnit
-            --oUF_KTui_Tank1:UpdateAllElements("ForceUpdate")
-            --oUF_KTui_Tank2:UpdateAllElements("ForceUpdate")
-            --oUF_KTui_Tank3:UpdateAllElements("ForceUpdate")
-            oUF_KTui_Boss1:UpdateAllElements("ForceUpdate")
-            oUF_KTui_Boss2:UpdateAllElements("ForceUpdate")
-            oUF_KTui_Boss3:UpdateAllElements("ForceUpdate")
-            oUF_KTui_Arenaparty1:UpdateAllElements("ForceUpdate")
-            oUF_KTui_Arenaparty2:UpdateAllElements("ForceUpdate")
-            oUF_KTui_Arenaparty3:UpdateAllElements("ForceUpdate")
-            --oUF_KTui_Arenapartytarget1:UpdateAllElements("ForceUpdate")
-            --oUF_KTui_Arenapartytarget2:UpdateAllElements("ForceUpdate")
-            --oUF_KTui_Arenapartytarget3:UpdateAllElements("ForceUpdate")
+            --oUF_KTui_Boss1:UpdateAllElements("ForceUpdate")
+            --oUF_KTui_Boss2:UpdateAllElements("ForceUpdate")
+            --oUF_KTui_Boss3:UpdateAllElements("ForceUpdate")
+
+            oUF_KTui_Arena1:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Arena2:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Arena3:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Arena1Target:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Arena2Target:UpdateAllElements("ForceUpdate")
+            oUF_KTui_Arena3Target:UpdateAllElements("ForceUpdate")
 
             --oUF_Party:UpdateAllElements("RefreshUnit")
             --oUF_Party1Pets:UpdateAllElements("ForceUpdate")

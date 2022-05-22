@@ -3,34 +3,33 @@ local oUF = ns.oUF or oUF
 
 local Update = function(self, event, ...)
 	local _, instanceType = IsInInstance()
-	
+
 	if instanceType ~= 'arena' then
 		self.Trinket.Icon:SetTexture("Interface\\Icons\\Ability_pvp_gladiatormedallion")
 		self.Trinket:Hide()
-		
+
 		return
 	else
 		self.Trinket:Show()
 	end
 
-	if(self.Trinket.PreUpdate) then self.Trinket:PreUpdate(event, ...) end
+	if (self.Trinket.PreUpdate) then self.Trinket:PreUpdate(event, ...) end
 
 	if event == "ARENA_COOLDOWNS_UPDATE" then
 		local unit = ...
 		local tunit = self.unit
-		
+
 		if self.unit == unit then
 			C_PvP.RequestCrowdControlSpell(unit)
-
 			local spellID, startTime, duration = C_PvP.GetArenaCrowdControlInfo(unit)
 
 			if spellID and startTime ~= 0 and duration ~= 0 then
-				CooldownFrame_Set(self.Trinket.cooldownFrame, startTime / 1000, duration / 1000, 1)
+				CooldownFrame_Set(self.Trinket.cooldownFrame, startTime/1000, duration/1000, 1)
 			end
 		end
 	elseif event == "ARENA_CROWD_CONTROL_SPELL_UPDATE" then
 		local unit, spellID = ...
-		
+
 		if self.unit == unit then
 			local _, _, spellTexture = GetSpellInfo(spellID)
 
@@ -40,7 +39,7 @@ local Update = function(self, event, ...)
 		CooldownFrame_Set(self.Trinket.cooldownFrame, 1, 1, 1)
 	end
 
-	if(self.Trinket.PostUpdate) then self.Trinket:PostUpdate(event, ...) end
+	if (self.Trinket.PostUpdate) then self.Trinket:PostUpdate(event, ...) end
 end
 
 local Enable = function(self)
@@ -48,7 +47,7 @@ local Enable = function(self)
 		self:RegisterEvent("ARENA_COOLDOWNS_UPDATE", Update, true)
 		self:RegisterEvent("PLAYER_ENTERING_WORLD", Update, true)
 		self:RegisterEvent("ARENA_CROWD_CONTROL_SPELL_UPDATE", Update, true)
-		
+
 		if not self.Trinket.cooldownFrame then
 			self.Trinket.cooldownFrame = CreateFrame("Cooldown", nil, self.Trinket)
 			self.Trinket.cooldownFrame:SetAllPoints(self.Trinket)
@@ -70,6 +69,7 @@ local Disable = function(self)
 		self:UnregisterEvent("ARENA_COOLDOWNS_UPDATE", Update)
 		self:UnregisterEvent("PLAYER_ENTERING_WORLD", Update)
 		self:UnregisterEvent("ARENA_CROWD_CONTROL_SPELL_UPDATE", Update)
+
 		self.Trinket:Hide()
 	end
 end

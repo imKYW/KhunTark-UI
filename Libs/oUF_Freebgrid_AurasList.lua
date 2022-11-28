@@ -19,13 +19,13 @@ end
 -- Note: Just must be in this instance, when you run the script above
 local Instance = {
     -- SL Raids
-    ['지배의 성소'] = 936,
+    --['지배의 성소'] = 936,
     -- SL Instances
-    ['Freehold'] = 936,
+    --['Freehold'] = 936,
     --['Shrine of the Storm'] = 1114,
     --['Siege of Boralus'] = 1114,
     --['Tol Dagor'] = 1114,
-    ['Waycrest Manor'] = 1015,
+    --['Waycrest Manor'] = 1015,
     --['Atal'Dazar'] = 1114,
     --['King's Rest'] = 1114,
     --['Motherlode'] = 1114,
@@ -98,7 +98,7 @@ L.auras = {
         [GetSpellInfo(212295)] = 9, -- Nether Ward
         [GetSpellInfo(48707)]  = 9, -- Anti-Magic Shell
         [GetSpellInfo(5384)]   = 9, -- Feign Death
-        [GetSpellInfo(213602)] = 9, -- Greater Fade
+        --[GetSpellInfo(213602)] = 9, -- Greater Fade
 
         -- Offensive Buffs
         [GetSpellInfo(1719)]   = 5, -- [Warrior] Battle Cry
@@ -182,196 +182,196 @@ L.auras = {
 
     -- Instance Debuffs
     instances = {
-        [Instance['Freehold']] = {
-        },
+    --[Instance['Freehold']] = {
+    --},
 
-        [Instance['Waycrest Manor']] = {
-            [GetSpellInfo(260703)] = 1, -- Unstable Runic Mark
-            [GetSpellInfo(263905)] = 1, -- Marking Cleave
-            [GetSpellInfo(265880)] = 1, -- Dread Mark
-            [GetSpellInfo(265882)] = 1, -- Lingering Dread
-            [GetSpellInfo(264105)] = 1, -- Runic Mark
-            [GetSpellInfo(264050)] = 1, -- Infected Thorn
-            [GetSpellInfo(261440)] = 1, -- Virulent Pathogen
-            [GetSpellInfo(263891)] = 1, -- Grasping Thorns
-            [GetSpellInfo(264378)] = 1, -- Fragment Soul
-            [GetSpellInfo(266035)] = 1, -- Bone Splinter
-            [GetSpellInfo(266036)] = 1, -- Drain Essence
-            [GetSpellInfo(260907)] = 1, -- Soul Manipulation
-            [GetSpellInfo(260741)] = 1, -- Jagged Nettles
-            [GetSpellInfo(264556)] = 1, -- Tearing Strike
-            [GetSpellInfo(265760)] = 1, -- Thorned Barrage
-            [GetSpellInfo(260551)] = 1, -- Soul Thorns
-            [GetSpellInfo(263943)] = 1, -- Etch
-            [GetSpellInfo(265881)] = 1, -- Decaying Touch
-            [GetSpellInfo(261438)] = 1, -- Wasting Strike
-            [GetSpellInfo(268202)] = 1, -- Death Lens
-            [GetSpellInfo(278456)] = 1, -- Infest
-        },
+    --[Instance['Waycrest Manor']] = {
+    --    [GetSpellInfo(260703)] = 1, -- Unstable Runic Mark
+    --    [GetSpellInfo(263905)] = 1, -- Marking Cleave
+    --    [GetSpellInfo(265880)] = 1, -- Dread Mark
+    --    [GetSpellInfo(265882)] = 1, -- Lingering Dread
+    --    [GetSpellInfo(264105)] = 1, -- Runic Mark
+    --    [GetSpellInfo(264050)] = 1, -- Infected Thorn
+    --    [GetSpellInfo(261440)] = 1, -- Virulent Pathogen
+    --    [GetSpellInfo(263891)] = 1, -- Grasping Thorns
+    --    [GetSpellInfo(264378)] = 1, -- Fragment Soul
+    --    [GetSpellInfo(266035)] = 1, -- Bone Splinter
+    --    [GetSpellInfo(266036)] = 1, -- Drain Essence
+    --    [GetSpellInfo(260907)] = 1, -- Soul Manipulation
+    --    [GetSpellInfo(260741)] = 1, -- Jagged Nettles
+    --    [GetSpellInfo(264556)] = 1, -- Tearing Strike
+    --    [GetSpellInfo(265760)] = 1, -- Thorned Barrage
+    --    [GetSpellInfo(260551)] = 1, -- Soul Thorns
+    --    [GetSpellInfo(263943)] = 1, -- Etch
+    --    [GetSpellInfo(265881)] = 1, -- Decaying Touch
+    --    [GetSpellInfo(261438)] = 1, -- Wasting Strike
+    --    [GetSpellInfo(268202)] = 1, -- Death Lens
+    --    [GetSpellInfo(278456)] = 1, -- Infest
+    --},
 
-        [Instance['PVP']] = {
-            --Death Knight
-            [GetSpellInfo(47476)]  = 1, -- Strangulate
-            [GetSpellInfo(108194)] = 1, -- Asphyxiate UH
-            [GetSpellInfo(221562)] = 1, -- Asphyxiate Blood
-            [GetSpellInfo(207171)] = 1, -- Winter is Coming
-            [GetSpellInfo(206961)] = 1, -- Tremble Before Me
-            [GetSpellInfo(207167)] = 1, -- Blinding Sleet
-            [GetSpellInfo(212540)] = 1, -- Flesh Hook (Pet)
-            [GetSpellInfo(91807)]  = 1, -- Shambling Rush (Pet)
-            [GetSpellInfo(204085)] = 1, -- Deathchill
-            [GetSpellInfo(233395)] = 1, -- Frozen Center
-            [GetSpellInfo(212332)] = 1, -- Smash (Pet)
-            [GetSpellInfo(212337)] = 1, -- Powerful Smash (Pet)
-            [GetSpellInfo(91800)]  = 1, -- Gnaw (Pet)
-            [GetSpellInfo(91797)]  = 1, -- Monstrous Blow (Pet)
-            [GetSpellInfo(210141)] = 1, -- Zombie Explosion
+    [Instance['PVP']] = {
+    --    --Death Knight
+    --    [GetSpellInfo(47476)]  = 1, -- Strangulate
+    --    [GetSpellInfo(108194)] = 1, -- Asphyxiate UH
+    --    [GetSpellInfo(221562)] = 1, -- Asphyxiate Blood
+    --    [GetSpellInfo(207171)] = 1, -- Winter is Coming
+    --    [GetSpellInfo(206961)] = 1, -- Tremble Before Me
+    --    [GetSpellInfo(207167)] = 1, -- Blinding Sleet
+    --    [GetSpellInfo(212540)] = 1, -- Flesh Hook (Pet)
+    --    [GetSpellInfo(91807)]  = 1, -- Shambling Rush (Pet)
+    --    [GetSpellInfo(204085)] = 1, -- Deathchill
+    --    [GetSpellInfo(233395)] = 1, -- Frozen Center
+    --    [GetSpellInfo(212332)] = 1, -- Smash (Pet)
+    --    [GetSpellInfo(212337)] = 1, -- Powerful Smash (Pet)
+    --    [GetSpellInfo(91800)]  = 1, -- Gnaw (Pet)
+    --    [GetSpellInfo(91797)]  = 1, -- Monstrous Blow (Pet)
+    --    [GetSpellInfo(210141)] = 1, -- Zombie Explosion
 
-            --Demon Hunter
-            [GetSpellInfo(207685)] = 1, -- Sigil of Misery
-            [GetSpellInfo(217832)] = 1, -- Imprison
-            [GetSpellInfo(221527)] = 1, -- Imprison (Banished version)
-            [GetSpellInfo(204490)] = 1, -- Sigil of Silence
-            [GetSpellInfo(179057)] = 1, -- Chaos Nova
-            [GetSpellInfo(211881)] = 1, -- Fel Eruption
-            [GetSpellInfo(205630)] = 1, -- Illidan's Grasp
-            [GetSpellInfo(208618)] = 1, -- Illidan's Grasp (Afterward)
-            [GetSpellInfo(213491)] = 1, -- Demonic Trample (it's this one or the other)
-            [GetSpellInfo(208645)] = 1, -- Demonic Trample
+    --    --Demon Hunter
+    --    [GetSpellInfo(207685)] = 1, -- Sigil of Misery
+    --    [GetSpellInfo(217832)] = 1, -- Imprison
+    --    [GetSpellInfo(221527)] = 1, -- Imprison (Banished version)
+    --    [GetSpellInfo(204490)] = 1, -- Sigil of Silence
+    --    [GetSpellInfo(179057)] = 1, -- Chaos Nova
+    --    [GetSpellInfo(211881)] = 1, -- Fel Eruption
+    --    [GetSpellInfo(205630)] = 1, -- Illidan's Grasp
+    --    [GetSpellInfo(208618)] = 1, -- Illidan's Grasp (Afterward)
+    --    [GetSpellInfo(213491)] = 1, -- Demonic Trample (it's this one or the other)
+    --    [GetSpellInfo(208645)] = 1, -- Demonic Trample
 
-            --Druid
-            [GetSpellInfo(81261)]  = 1, -- Solar Beam
-            [GetSpellInfo(5211)]   = 1, -- Mighty Bash
-            [GetSpellInfo(163505)] = 1, -- Rake
-            [GetSpellInfo(203123)] = 1, -- Maim
-            [GetSpellInfo(202244)] = 1, -- Overrun
-            [GetSpellInfo(99)]     = 1, -- Incapacitating Roar
-            [GetSpellInfo(33786)]  = 1, -- Cyclone
-            --[GetSpellInfo(209753)] = 1, -- Cyclone Balance
-            [GetSpellInfo(45334)]  = 1, -- Immobilized
-            [GetSpellInfo(102359)] = 1, -- Mass Entanglement
-            [GetSpellInfo(339)]    = 1, -- Entangling Roots
-            [GetSpellInfo(2637)]   = 1, -- Hibernate
+    --    --Druid
+    --    [GetSpellInfo(81261)]  = 1, -- Solar Beam
+    --    [GetSpellInfo(5211)]   = 1, -- Mighty Bash
+    --    [GetSpellInfo(163505)] = 1, -- Rake
+    --    [GetSpellInfo(203123)] = 1, -- Maim
+    --    [GetSpellInfo(202244)] = 1, -- Overrun
+    --    [GetSpellInfo(99)]     = 1, -- Incapacitating Roar
+    --    [GetSpellInfo(33786)]  = 1, -- Cyclone
+    --    --[GetSpellInfo(209753)] = 1, -- Cyclone Balance
+    --    [GetSpellInfo(45334)]  = 1, -- Immobilized
+    --    [GetSpellInfo(102359)] = 1, -- Mass Entanglement
+    --    [GetSpellInfo(339)]    = 1, -- Entangling Roots
+    --    [GetSpellInfo(2637)]   = 1, -- Hibernate
 
-            --Hunter
-            [GetSpellInfo(202933)] = 1, -- Spider Sting (it's this one or the other)
-            [GetSpellInfo(233022)] = 1, -- Spider Sting
-            [GetSpellInfo(213691)] = 1, -- Scatter Shot
-            [GetSpellInfo(19386)]  = 1, -- Wyvern Sting
-            [GetSpellInfo(3355)]   = 1, -- Freezing Trap
-            [GetSpellInfo(203337)] = 1, -- Freezing Trap (Survival PvPT)
-            [GetSpellInfo(209790)] = 1, -- Freezing Arrow
-            [GetSpellInfo(24394)]  = 1, -- Intimidation
-            [GetSpellInfo(117526)] = 1, -- Binding Shot
-            [GetSpellInfo(190927)] = 1, -- Harpoon
-            [GetSpellInfo(201158)] = 1, -- Super Sticky Tar
-            [GetSpellInfo(162480)] = 1, -- Steel Trap
-            [GetSpellInfo(212638)] = 1, -- Tracker's Net
-            [GetSpellInfo(200108)] = 1, -- Ranger's Net
+    --    --Hunter
+    --    [GetSpellInfo(202933)] = 1, -- Spider Sting (it's this one or the other)
+    --    [GetSpellInfo(233022)] = 1, -- Spider Sting
+    --    [GetSpellInfo(213691)] = 1, -- Scatter Shot
+    --    [GetSpellInfo(19386)]  = 1, -- Wyvern Sting
+    --    [GetSpellInfo(3355)]   = 1, -- Freezing Trap
+    --    [GetSpellInfo(203337)] = 1, -- Freezing Trap (Survival PvPT)
+    --    [GetSpellInfo(209790)] = 1, -- Freezing Arrow
+    --    [GetSpellInfo(24394)]  = 1, -- Intimidation
+    --    [GetSpellInfo(117526)] = 1, -- Binding Shot
+    --    [GetSpellInfo(190927)] = 1, -- Harpoon
+    --    [GetSpellInfo(201158)] = 1, -- Super Sticky Tar
+    --    [GetSpellInfo(162480)] = 1, -- Steel Trap
+    --    [GetSpellInfo(212638)] = 1, -- Tracker's Net
+    --    [GetSpellInfo(200108)] = 1, -- Ranger's Net
 
-            --Mage
-            [GetSpellInfo(61721)]  = 1, -- Rabbit (Poly)
-            [GetSpellInfo(61305)]  = 1, -- Black Cat (Poly)
-            [GetSpellInfo(28272)]  = 1, -- Pig (Poly)
-            [GetSpellInfo(28271)]  = 1, -- Turtle (Poly)
-            [GetSpellInfo(126819)] = 1, -- Porcupine (Poly)
-            [GetSpellInfo(161354)] = 1, -- Monkey (Poly)
-            [GetSpellInfo(161353)] = 1, -- Polar bear (Poly)
-            [GetSpellInfo(61780)]  = 1,  -- Turkey (Poly)
-            [GetSpellInfo(161355)] = 1, -- Penguin (Poly)
-            [GetSpellInfo(161372)] = 1, -- Peacock (Poly)
-            [GetSpellInfo(277787)] = 1, -- Direhorn (Poly)
-            [GetSpellInfo(277792)] = 1, -- Bumblebee (Poly)
-            [GetSpellInfo(118)]    = 1, -- Polymorph
-            [GetSpellInfo(82691)]  = 1, -- Ring of Frost
-            [GetSpellInfo(31661)]  = 1, -- Dragon's Breath
-            [GetSpellInfo(122)]    = 1, -- Frost Nova
-            [GetSpellInfo(33395)]  = 1, -- Freeze
-            [GetSpellInfo(157997)] = 1, -- Ice Nova
-            [GetSpellInfo(228600)] = 1, -- Glacial Spike
-            [GetSpellInfo(198121)] = 1, -- Forstbite
+    --    --Mage
+    --    [GetSpellInfo(61721)]  = 1, -- Rabbit (Poly)
+    --    [GetSpellInfo(61305)]  = 1, -- Black Cat (Poly)
+    --    [GetSpellInfo(28272)]  = 1, -- Pig (Poly)
+    --    [GetSpellInfo(28271)]  = 1, -- Turtle (Poly)
+    --    [GetSpellInfo(126819)] = 1, -- Porcupine (Poly)
+    --    [GetSpellInfo(161354)] = 1, -- Monkey (Poly)
+    --    [GetSpellInfo(161353)] = 1, -- Polar bear (Poly)
+    --    [GetSpellInfo(61780)]  = 1,  -- Turkey (Poly)
+    --    [GetSpellInfo(161355)] = 1, -- Penguin (Poly)
+    --    [GetSpellInfo(161372)] = 1, -- Peacock (Poly)
+    --    [GetSpellInfo(277787)] = 1, -- Direhorn (Poly)
+    --    [GetSpellInfo(277792)] = 1, -- Bumblebee (Poly)
+    --    [GetSpellInfo(118)]    = 1, -- Polymorph
+    --    [GetSpellInfo(82691)]  = 1, -- Ring of Frost
+    --    [GetSpellInfo(31661)]  = 1, -- Dragon's Breath
+    --    [GetSpellInfo(122)]    = 1, -- Frost Nova
+    --    [GetSpellInfo(33395)]  = 1, -- Freeze
+    --    [GetSpellInfo(157997)] = 1, -- Ice Nova
+    --    [GetSpellInfo(228600)] = 1, -- Glacial Spike
+    --    [GetSpellInfo(198121)] = 1, -- Forstbite
 
-            --Monk
-            [GetSpellInfo(119381)] = 1, -- Leg Sweep
-            [GetSpellInfo(202346)] = 1, -- Double Barrel
-            [GetSpellInfo(115078)] = 1, -- Paralysis
-            [GetSpellInfo(198909)] = 1, -- Song of Chi-Ji
-            [GetSpellInfo(202274)] = 1, -- Incendiary Brew
-            [GetSpellInfo(233759)] = 1, -- Grapple Weapon
-            [GetSpellInfo(123407)] = 1, -- Spinning Fire Blossom
+    --    --Monk
+    --    [GetSpellInfo(119381)] = 1, -- Leg Sweep
+    --    [GetSpellInfo(202346)] = 1, -- Double Barrel
+    --    [GetSpellInfo(115078)] = 1, -- Paralysis
+    --    [GetSpellInfo(198909)] = 1, -- Song of Chi-Ji
+    --    [GetSpellInfo(202274)] = 1, -- Incendiary Brew
+    --    [GetSpellInfo(233759)] = 1, -- Grapple Weapon
+    --    [GetSpellInfo(123407)] = 1, -- Spinning Fire Blossom
 
-            --Paladin
-            [GetSpellInfo(853)]    = 1, -- Hammer of Justice
-            [GetSpellInfo(20066)]  = 1, -- Repentance
-            [GetSpellInfo(105421)] = 1, -- Blinding Light
-            [GetSpellInfo(31935)]  = 1, -- Avenger's Shield
-            [GetSpellInfo(217824)] = 1, -- Shield of Virtue
-            [GetSpellInfo(205290)] = 1, -- Wake of Ashes
+    --    --Paladin
+    --    [GetSpellInfo(853)]    = 1, -- Hammer of Justice
+    --    [GetSpellInfo(20066)]  = 1, -- Repentance
+    --    [GetSpellInfo(105421)] = 1, -- Blinding Light
+    --    [GetSpellInfo(31935)]  = 1, -- Avenger's Shield
+    --    [GetSpellInfo(217824)] = 1, -- Shield of Virtue
+    --    [GetSpellInfo(205290)] = 1, -- Wake of Ashes
 
-            --Priest
-            [GetSpellInfo(9484)]   = 1, -- Shackle Undead
-            [GetSpellInfo(200196)] = 1, -- Holy Word: Chastise
-            [GetSpellInfo(200200)] = 1, -- Holy Word: Chastise
-            [GetSpellInfo(226943)] = 1, -- Mind Bomb
-            [GetSpellInfo(605)]    = 1, -- Mind Control
-            [GetSpellInfo(8122)]   = 1, -- Psychic Scream
-            [GetSpellInfo(15487)]  = 1, -- Silence
-            [GetSpellInfo(64044)]  = 1, -- Psychic Horror
+    --    --Priest
+    --    [GetSpellInfo(9484)]   = 1, -- Shackle Undead
+    --    [GetSpellInfo(200196)] = 1, -- Holy Word: Chastise
+    --    [GetSpellInfo(200200)] = 1, -- Holy Word: Chastise
+    --    [GetSpellInfo(226943)] = 1, -- Mind Bomb
+    --    [GetSpellInfo(605)]    = 1, -- Mind Control
+    --    [GetSpellInfo(8122)]   = 1, -- Psychic Scream
+    --    [GetSpellInfo(15487)]  = 1, -- Silence
+    --    [GetSpellInfo(64044)]  = 1, -- Psychic Horror
 
-            --Rogue
-            [GetSpellInfo(2094)]   = 1, -- Blind
-            [GetSpellInfo(6770)]   = 1, -- Sap
-            [GetSpellInfo(1776)]   = 1, -- Gouge
-            [GetSpellInfo(1330)]   = 1, -- Garrote - Silence
-            [GetSpellInfo(207777)] = 1, -- Dismantle
-            --[GetSpellInfo(199804)] = 1, -- Between the Eyes
-            [GetSpellInfo(408)]    = 1, -- Kidney Shot
-            [GetSpellInfo(1833)]   = 1, -- Cheap Shot
-            [GetSpellInfo(207736)] = 1, -- Shadowy Duel (Smoke effect)
-            [GetSpellInfo(212182)] = 1, -- Smoke Bomb
+    --    --Rogue
+    --    [GetSpellInfo(2094)]   = 1, -- Blind
+    --    [GetSpellInfo(6770)]   = 1, -- Sap
+    --    [GetSpellInfo(1776)]   = 1, -- Gouge
+    --    [GetSpellInfo(1330)]   = 1, -- Garrote - Silence
+    --    [GetSpellInfo(207777)] = 1, -- Dismantle
+    --    --[GetSpellInfo(199804)] = 1, -- Between the Eyes
+    --    [GetSpellInfo(408)]    = 1, -- Kidney Shot
+    --    [GetSpellInfo(1833)]   = 1, -- Cheap Shot
+    --    [GetSpellInfo(207736)] = 1, -- Shadowy Duel (Smoke effect)
+    --    [GetSpellInfo(212182)] = 1, -- Smoke Bomb
 
-            --Shaman
-            [GetSpellInfo(51514)]  = 1, -- Hex
-            [GetSpellInfo(211015)] = 1, -- Hex (Cockroach)
-            [GetSpellInfo(211010)] = 1, -- Hex (Snake)
-            [GetSpellInfo(211004)] = 1, -- Hex (Spider)
-            [GetSpellInfo(210873)] = 1, -- Hex (Compy)
-            [GetSpellInfo(196942)] = 1, -- Hex (Voodoo Totem)
-            [GetSpellInfo(269352)] = 1, -- Hex (Skeletal Hatchling)
-            [GetSpellInfo(277778)] = 1, -- Hex (Zandalari Tendonripper)
-            [GetSpellInfo(277784)] = 1, -- Hex (Wicker Mongrel)
-            [GetSpellInfo(118905)] = 1, -- Static Charge
-            [GetSpellInfo(77505)]  = 1, -- Earthquake (Knocking down)
-            [GetSpellInfo(118345)] = 1, -- Pulverize (Pet)
-            [GetSpellInfo(204399)] = 1, -- Earthfury
-            [GetSpellInfo(204437)] = 1, -- Lightning Lasso
-            [GetSpellInfo(157375)] = 1, -- Gale Force
-            [GetSpellInfo(64695)]  = 1, -- Earthgrab
+    --    --Shaman
+    --    [GetSpellInfo(51514)]  = 1, -- Hex
+    --    [GetSpellInfo(211015)] = 1, -- Hex (Cockroach)
+    --    [GetSpellInfo(211010)] = 1, -- Hex (Snake)
+    --    [GetSpellInfo(211004)] = 1, -- Hex (Spider)
+    --    [GetSpellInfo(210873)] = 1, -- Hex (Compy)
+    --    [GetSpellInfo(196942)] = 1, -- Hex (Voodoo Totem)
+    --    [GetSpellInfo(269352)] = 1, -- Hex (Skeletal Hatchling)
+    --    [GetSpellInfo(277778)] = 1, -- Hex (Zandalari Tendonripper)
+    --    [GetSpellInfo(277784)] = 1, -- Hex (Wicker Mongrel)
+    --    [GetSpellInfo(118905)] = 1, -- Static Charge
+    --    [GetSpellInfo(77505)]  = 1, -- Earthquake (Knocking down)
+    --    [GetSpellInfo(118345)] = 1, -- Pulverize (Pet)
+    --    [GetSpellInfo(204399)] = 1, -- Earthfury
+    --    [GetSpellInfo(204437)] = 1, -- Lightning Lasso
+    --    [GetSpellInfo(157375)] = 1, -- Gale Force
+    --    [GetSpellInfo(64695)]  = 1, -- Earthgrab
 
-            --Warlock
-            [GetSpellInfo(710)]    = 1, -- Banish
-            [GetSpellInfo(6789)]   = 1, -- Mortal Coil
-            [GetSpellInfo(118699)] = 1, -- Fear
-            [GetSpellInfo(6358)]   = 1, -- Seduction (Succub)
-            [GetSpellInfo(171017)] = 1, -- Meteor Strike (Infernal)
-            [GetSpellInfo(22703)]  = 1, -- Infernal Awakening (Infernal CD)
-            [GetSpellInfo(30283)]  = 1, -- Shadowfury
-            [GetSpellInfo(89766)]  = 1, -- Axe Toss
-            [GetSpellInfo(233582)] = 1, -- Entrenched in Flame
+    --    --Warlock
+    --    [GetSpellInfo(710)]    = 1, -- Banish
+    --    [GetSpellInfo(6789)]   = 1, -- Mortal Coil
+    --    [GetSpellInfo(118699)] = 1, -- Fear
+    --    [GetSpellInfo(6358)]   = 1, -- Seduction (Succub)
+    --    [GetSpellInfo(171017)] = 1, -- Meteor Strike (Infernal)
+    --    [GetSpellInfo(22703)]  = 1, -- Infernal Awakening (Infernal CD)
+    --    [GetSpellInfo(30283)]  = 1, -- Shadowfury
+    --    [GetSpellInfo(89766)]  = 1, -- Axe Toss
+    --    [GetSpellInfo(233582)] = 1, -- Entrenched in Flame
 
-            --Warrior
-            [GetSpellInfo(5246)]   = 1, -- Intimidating Shout
-            --[GetSpellInfo(7922)]   = 1, -- Warbringer
-            [GetSpellInfo(132169)] = 1, -- Storm Bolt
-            [GetSpellInfo(132168)] = 1, -- Shockwave
-            [GetSpellInfo(199085)] = 1, -- Warpath
-            [GetSpellInfo(105771)] = 1, -- Charge
-            [GetSpellInfo(199042)] = 1, -- Thunderstruck
-            [GetSpellInfo(236077)] = 1, -- Disarm
+    --    --Warrior
+    --    [GetSpellInfo(5246)]   = 1, -- Intimidating Shout
+    --    --[GetSpellInfo(7922)]   = 1, -- Warbringer
+    --    [GetSpellInfo(132169)] = 1, -- Storm Bolt
+    --    [GetSpellInfo(132168)] = 1, -- Shockwave
+    --    [GetSpellInfo(199085)] = 1, -- Warpath
+    --    [GetSpellInfo(105771)] = 1, -- Charge
+    --    [GetSpellInfo(199042)] = 1, -- Thunderstruck
+    --    [GetSpellInfo(236077)] = 1, -- Disarm
 
-            --Racial
-            [GetSpellInfo(20549)]  = 1, -- War Stomp
-            [GetSpellInfo(107079)] = 1, -- Quaking Palm
+    --    --Racial
+    --    [GetSpellInfo(20549)]  = 1, -- War Stomp
+    --    [GetSpellInfo(107079)] = 1, -- Quaking Palm
         },
     },
 }

@@ -1,4 +1,4 @@
-## Interface: 100002
+## Interface: 100005
 ## Title: KhunTark's UI
 ## Notes: UI for focusing combat
 ## Author: KhunTark
